@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fr-FR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toulouse Esport Connect — Le réseau des associations & événements gaming en Occitanie</title>
+    <meta name="description" content="Fédération des structures esport et associations gaming en Haute-Garonne. Mutualisation, événements régionaux et structuration du gaming toulousain.">
+    
+    <!-- Fonts: Inter & Bebas Neue -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Gaming & Tech Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tec: {
+                            red: '#E30613',
+                            redHover: '#B8040E',
+                            dark: '#0B0F17',
+                            card: '#141B27',
+                            border: '#232D3F',
+                            textMuted: '#94A3B8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E30613;
+            border-radius: 4px;
+        }
+        
+        /* Ambient Glow Effect */
+        .glow-red {
+            box-shadow: 0 0 35px -5px rgba(227, 6, 19, 0.35);
+        }
+        .glow-red-sm {
+            box-shadow: 0 0 15px 0px rgba(227, 6, 19, 0.25);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(227, 6, 19, 0.6);
+        }
+        
+        /* Background Mesh pattern */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(227, 6, 19, 0.12) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-tec-dark text-slate-100 font-sans antialiased selection:bg-tec-red selection:text-white min-h-screen flex flex-col justify-between">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-tec-dark/90 border-b border-tec-border/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-tec-red to-red-500 flex items-center justify-center font-display text-2xl tracking-wider text-white shadow-lg group-hover:scale-105 transition-transform">
+                    TEC
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display text-2xl tracking-wide text-white leading-none group-hover:text-tec-red transition-colors">TOULOUSE ESPORT CONNECT</span>
+                    <span class="text-[10px] tracking-widest text-tec-textMuted font-bold uppercase">Occitanie Gaming Network</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#association" class="hover:text-tec-red transition-colors">L'Association</a>
+                <a href="#actions" class="hover:text-tec-red transition-colors">Nos Actions</a>
+                <a href="#reseau" class="hover:text-tec-red transition-colors">Le Réseau</a>
+                <a href="#legal" class="hover:text-tec-red transition-colors">Transparence</a>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#rejoindre" class="px-5 py-2.5 rounded-lg bg-tec-red hover:bg-tec-redHover text-white font-semibold text-sm transition-all shadow-lg glow-red-sm hover:scale-[1.02] flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Nous rejoindre</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden p-2.5 text-slate-300 hover:text-white rounded-lg bg-tec-card border border-tec-border">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-tec-border bg-tec-card px-4 pt-4 pb-6 space-y-3">
+            <a href="#association" class="mobile-link block px-3 py-2 rounded-md hover:bg-tec-border text-base font-medium">L'Association</a>
+            <a href="#actions" class="mobile-link block px-3 py-2 rounded-md hover:bg-tec-border text-base font-medium">Nos Actions</a>
+            <a href="#reseau" class="mobile-link block px-3 py-2 rounded-md hover:bg-tec-border text-base font-medium">Le Réseau (10 Assos)</a>
+            <a href="#legal" class="mobile-link block px-3 py-2 rounded-md hover:bg-tec-border text-base font-medium">Transparence & Statuts</a>
+            <a href="#rejoindre" class="mobile-link block w-full text-center px-4 py-3 rounded-lg bg-tec-red font-bold text-white mt-4">Nous rejoindre</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative py-20 lg:py-32 overflow-hidden bg-grid-pattern border-b border-tec-border">
+            <div class="absolute inset-0 bg-gradient-to-b from-tec-red/10 via-transparent to-tec-dark pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tec-red/10 border border-tec-red/30 text-tec-red text-xs sm:text-sm font-semibold uppercase tracking-wider mb-8 animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-tec-red"></span>
+                    Collectif loi 1901 — Économie Sociale & Solidaire
+                </div>
+
+                <!-- Main Catchphrase -->
+                <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl tracking-tight text-white mb-6 uppercase">
+                    Fédérer. Mutualiser.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-tec-red via-red-500 to-orange-500 text-glow">
+                        Faire Rayonner L'Esport
+                    </span>
+                </h1>
+
+                <!-- Subtitle / Hook -->
+                <p class="max-w-3xl mx-auto text-lg sm:text-xl text-tec-textMuted font-normal leading-relaxed mb-10">
+                    Toulouse Esport Connect rassemble les clubs, organisateurs de LAN, acteurs éthiques et passionnés pour structurer et dynamiser l'écosystème gaming en Haute-Garonne et Occitanie.
+                </p>
+
+                <!-- CTA Cluster -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                    <a href="#rejoindre" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-tec-red hover:bg-tec-redHover text-white font-bold text-lg transition-all shadow-xl glow-red hover:scale-105 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-users text-xl"></i>
+                        <span>Rejoindre le collectif</span>
+                    </a>
+                    <a href="#reseau" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-tec-card hover:bg-tec-border text-slate-200 border border-tec-border font-semibold text-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-sitemap text-tec-red"></i>
+                        <span>Découvrir les 10 assos</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-10 bg-tec-card/50 border-b border-tec-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-xl bg-tec-card border border-tec-border/60">
+                        <div class="font-display text-4xl sm:text-5xl text-tec-red mb-1">10</div>
+                        <div class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-tec-textMuted">Associations Membres</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-tec-card border border-tec-border/60">
+                        <div class="font-display text-4xl sm:text-5xl text-white mb-1">30+</div>
+                        <div class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-tec-textMuted">Événements / An</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-tec-card border border-tec-border/60">
+                        <div class="font-display text-4xl sm:text-5xl text-tec-red mb-1">200+</div>
+                        <div class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-tec-textMuted">Joueurs Engagés</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-tec-card border border-tec-border/60">
+                        <div class="font-display text-4xl sm:text-5xl text-white mb-1">100%</div>
+                        <div class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-tec-textMuted">Bénévolat & Éthique</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="association" class="py-20 border-b border-tec-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-12 items-start">
+                    
+                    <!-- Left: Story & Governance -->
+                    <div class="lg:w-1/2 space-y-6">
+                        <div class="inline-flex items-center gap-2 text-tec-red text-xs font-bold uppercase tracking-widest">
+                            <i class="fa-solid fa-flag"></i> Notre histoire & mission
+                        </div>
+                        <h2 class="font-display text-4xl sm:text-5xl text-white uppercase tracking-tight">
+                            Une synergie nait de la passion toulousaine
+                        </h2>
+                        <p class="text-tec-textMuted leading-relaxed">
+                            L'idée est née d'un constat : la région toulousaine regorge de clubs compétitifs, organisateurs et créateurs esport talentueux, mais chacun évoluait en solo.
+                        </p>
+                        <p class="text-tec-textMuted leading-relaxed">
+                            En avril 2025, à l'occasion de la <strong class="text-white">Mêlée Rose</strong>, les premières rencontres ont scellé cette union. Le <strong class="text-white">15 décembre 2025</strong>, Toulouse Esport Connect est officiellement créée pour parler d'une seule voix forte auprès des institutions et partenaires.
+                        </p>
+                        
+                        <!-- Governance Cards -->
+                        <div class="pt-4 border-t border-tec-border grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-lg bg-tec-card border border-tec-border flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-tec-red/20 text-tec-red flex items-center justify-center font-bold text-lg">
+                                    JP
+                                </div>
+                                <div>
+                                    <div class="font-bold text-white">Julien Paltou</div>
+                                    <div class="text-xs text-tec-red font-semibold uppercase">Président du Bureau</div>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-lg bg-tec-card border border-tec-border flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center font-bold text-lg">
+                                    FB
+                                </div>
+                                <div>
+                                    <div class="font-bold text-white">Florian Brion</div>
+                                    <div class="text-xs text-slate-400 font-semibold uppercase">Secrétaire Général</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Core Values Grid -->
+                    <div class="lg:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-6 rounded-xl bg-tec-card border border-tec-border hover:border-tec-red/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-tec-red/10 text-tec-red flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Collectif</h3>
+                            <p class="text-sm text-tec-textMuted">Toutes les assos sont égales. Les décisions sont co-construites pour l'intérêt général de la scène.</p>
+                        </div>
+
+                        <div class="p-6 rounded-xl bg-tec-card border border-tec-border hover:border-tec-red/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-tec-red/10 text-tec-red flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Inclusion</h3>
+                            <p class="text-sm text-tec-textMuted">L'esport local accessible à tous les publics, sans distinction de niveau, genre ou origine.</p>
+                        </div>
+
+                        <div class="p-6 rounded-xl bg-tec-card border border-tec-border hover:border-tec-red/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-tec-red/10 text-tec-red flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Éthique</h3>
+                            <p class="text-sm text-tec-textMuted">Transparence financière totale, protection des jeunes joueurs et valorisation du bénévolat.</p>
+                        </div>
+
+                        <div class="p-6 rounded-xl bg-tec-card border border-tec-border hover:border-tec-red/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-tec-red/10 text-tec-red flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Durabilité</h3>
+                            <p class="text-sm text-tec-textMuted">Bâtir un écosystème pérenne et solide plutôt que des événements éphémères sans lendemain.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="actions" class="py-20 bg-tec-card/30 border-b border-tec-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-tec-red font-bold text-xs uppercase tracking-widest">Feuille de route</span>
+                    <h2 class="font-display text-4xl sm:text-5xl text-white uppercase mt-2">Nos 4 Piliers d'Action</h2>
+                    <p class="text-tec-textMuted mt-4">Des programmes concrets issus directement de nos statuts d'association pour soutenir le gaming local.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Action 1 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all relative overflow-hidden group">
+                        <span class="font-display text-6xl text-tec-border group-hover:text-tec-red/20 absolute right-6 top-4 transition-colors">01</span>
+                        <div class="relative z-10">
+                            <div class="text-tec-red font-semibold text-xs tracking-wider uppercase mb-2">Maillage Territorial</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Mise en réseau des acteurs</h3>
+                            <p class="text-tec-textMuted text-sm leading-relaxed">Cartographie complète des clubs d'Occitanie, organisation de tables rondes pour dirigeants et création d'un hub permanent d'échange d'expériences.</p>
+                        </div>
+                    </div>
+
+                    <!-- Action 2 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all relative overflow-hidden group">
+                        <span class="font-display text-6xl text-tec-border group-hover:text-tec-red/20 absolute right-6 top-4 transition-colors">02</span>
+                        <div class="relative z-10">
+                            <div class="text-tec-red font-semibold text-xs tracking-wider uppercase mb-2">Événementiel Majeur</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Production Événementielle</h3>
+                            <p class="text-tec-textMuted text-sm leading-relaxed">Conception de tournois multi-jeux, scènes ouvertes et LANs régionales d'une envergure impossible à porter par un club isolé.</p>
+                        </div>
+                    </div>
+
+                    <!-- Action 3 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all relative overflow-hidden group">
+                        <span class="font-display text-6xl text-tec-border group-hover:text-tec-red/20 absolute right-6 top-4 transition-colors">03</span>
+                        <div class="relative z-10">
+                            <div class="text-tec-red font-semibold text-xs tracking-wider uppercase mb-2">Accompagnement</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Professionnalisation</h3>
+                            <p class="text-tec-textMuted text-sm leading-relaxed">Boîte à outils partagée : guides juridiques, recherche de sponsors, gestion comptable assos et conseils en régie technique.</p>
+                        </div>
+                    </div>
+
+                    <!-- Action 4 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all relative overflow-hidden group">
+                        <span class="font-display text-6xl text-tec-border group-hover:text-tec-red/20 absolute right-6 top-4 transition-colors">04</span>
+                        <div class="relative z-10">
+                            <div class="text-tec-red font-semibold text-xs tracking-wider uppercase mb-2">Plaidoyer</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Représentation Institutionnelle</h3>
+                            <p class="text-tec-textMuted text-sm leading-relaxed">Interlocuteur unique crédible auprès de la Métropole de Toulouse, de la Région Occitanie et des partenaires médias/industriels.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Big Teaser Event Banner -->
+                <div class="mt-12 p-8 rounded-2xl bg-gradient-to-r from-tec-red/20 via-tec-card to-tec-card border border-tec-red/40 flex flex-col md:flex-row items-center justify-between gap-6 glow-red-sm">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 text-xs font-bold text-tec-red uppercase bg-tec-red/10 px-3 py-1 rounded-full border border-tec-red/30">
+                            <i class="fa-solid fa-bullhorn"></i> Projet en cours
+                        </div>
+                        <h3 class="font-display text-3xl text-white uppercase">Grand Rendez-Vous Esport Régional</h3>
+                        <p class="text-sm text-tec-textMuted max-w-2xl">Le collectif prépare un événement d'ampleur en Occitanie réunissant plusieurs LANs, scène broadcast et espace prévention. Dates et lieu révélés très bientôt !</p>
+                    </div>
+                    <a href="#rejoindre" class="whitespace-nowrap px-6 py-3 rounded-xl bg-tec-red hover:bg-tec-redHover text-white font-bold text-sm transition-all shadow-md">
+                        S'inscrire aux annonces
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="reseau" class="py-20 border-b border-tec-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <span class="text-tec-red font-bold text-xs uppercase tracking-widest">Écosystème Local</span>
+                        <h2 class="font-display text-4xl sm:text-5xl text-white uppercase mt-1">Les Associations Membres</h2>
+                        <p class="text-tec-textMuted text-sm mt-2">Dix structures dynamiques composent aujourd'hui le réseau toulousain.</p>
+                    </div>
+
+                    <!-- Filter buttons -->
+                    <div class="flex flex-wrap gap-2">
+                        <button class="filter-btn active px-4 py-2 rounded-lg bg-tec-red text-white text-xs font-bold uppercase" data-filter="all">Toutes (10)</button>
+                        <button class="filter-btn px-4 py-2 rounded-lg bg-tec-card border border-tec-border text-tec-textMuted hover:text-white text-xs font-bold uppercase" data-filter="fondateur">Fondatrices (6)</button>
+                        <button class="filter-btn px-4 py-2 rounded-lg bg-tec-card border border-tec-border text-tec-textMuted hover:text-white text-xs font-bold uppercase" data-filter="membre">Membres (4)</button>
+                    </div>
+                </div>
+
+                <!-- Associations Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="assos-grid">
+                    
+                    <!-- Asso 1 -->
+                    <div class="asso-card me-fondateur p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-tec-red/10 text-tec-red border border-tec-red/20">Fondateur</span>
+                                <span class="text-xs text-tec-textMuted font-mono">Depuis 2015</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">OSV Esport</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Pionnier toulousain. Axes principaux : performance compétitive, encadrement des jeunes et ateliers entreprise.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-gamepad text-tec-red mr-1"></i> Multi-jeux</span>
+                            <span class="text-white font-medium">Club Pilote</span>
+                        </div>
+                    </div>
+
+                    <!-- Asso 2 -->
+                    <div class="asso-card me-fondateur p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-tec-red/10 text-tec-red border border-tec-red/20">Fondateur</span>
+                                <span class="text-xs text-tec-textMuted font-mono">LAN Owner</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Good Guys</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Club engagé sur Overwatch, Champion de France 2026. Organisateur des célèbres tournois "Good LAN".</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Overwatch</span>
+                            <span class="text-white font-medium">Champion de France</span>
+                        </div>
+                    </div>
+
+                    <!-- Asso 3 -->
+                    <div class="asso-card me-fondateur p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-tec-red/10 text-tec-red border border-tec-red/20">Fondateur</span>
+                                <span class="text-xs text-tec-textMuted font-mono">Communauté</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Dragons Esport</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Club avec plusieurs équipes Overwatch. Organisateur régulier de la "LAN Dragon" en ligne et physique.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-users text-tec-red mr-1"></i> Multi-Équipes</span>
+                            <span class="text-white font-medium">LAN Dragon</span>
+                        </div>
+                    </div>
+
+                    <!-- Asso 4 -->
+                    <div class="asso-card me-fondateur p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-tec-red/10 text-tec-red border border-tec-red/20">Fondateur</span>
+                                <span class="text-xs text-tec-textMuted font-mono">Technique & Show</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Voxel</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Créé par des intermittents du spectacle passionnés. Ils apportent l'expertise scénique et événementielle pro.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-video text-cyan-400 mr-1"></i> Régie & Event</span>
+                            <span class="text-white font-medium">Production</span>
+                        </div>
+                    </div>
+
+                    <!-- Asso 5 -->
+                    <div class="asso-card me-fondateur p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-tec-red/10 text-tec-red border border-tec-red/20">Fondateur</span>
+                                <span class="text-xs text-tec-textMuted font-mono">Ouest Toulouse</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Save Esport</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Originaire de la vallée de la Save. Spécialiste des événements locaux amateurs et parc matériel mobile.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-truck-ramp-box text-emerald-400 mr-1"></i> Matériel Mobile</span>
+                            <span class="text-white font-medium">Proximité</span>
+                        </div>
+                    </div>
+
+                    <!-- Asso 6 -->
+                    <div class="asso-card me-fondateur p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-tec-red/10 text-tec-red border border-tec-red/20">Fondateur</span>
+                                <span class="text-xs text-tec-textMuted font-mono">Formation</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Hope Guardians</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Club axé sur la formation, le coaching éthique et la progression des joueurs amateurs vers l'intermédiaire.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-graduation-cap text-indigo-400 mr-1"></i> Coaching</span>
+                            <span class="text-white font-medium">Académie</span>
+                        </div>
+                    </div>
+
+                    <!-- Asso 7 - 10 (Membres) -->
+                    <div class="asso-card me-membre p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Membre Réseau</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Toulouse Versus Fighters</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Communaute spécialisée dans les jeux de combat (Fighting Games). Acteurs majeurs de la Mêlée Rose.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-hand-fist text-red-400 mr-1"></i> Versus Fighting</span>
+                            <span class="text-white font-medium">FGC Toulouse</span>
+                        </div>
+                    </div>
+
+                    <div class="asso-card me-membre p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Membre Réseau</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Lightning Project</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Structure orientée tournois en ligne rapides et ligues régionales amateurs.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-bolt text-yellow-400 mr-1"></i> Online Leagues</span>
+                            <span class="text-white font-medium">Compétition</span>
+                        </div>
+                    </div>
+
+                    <div class="asso-card me-membre p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Membre Réseau</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Flucky Boys</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Collectif de joueurs et streamers toulousains promouvant le fair-play et les événements caritatifs.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-tower-broadcast text-purple-400 mr-1"></i> Streaming</span>
+                            <span class="text-white font-medium">Communauté</span>
+                        </div>
+                    </div>
+
+                    <div class="asso-card me-membre p-6 rounded-xl bg-tec-card border border-tec-border flex flex-col justify-between hover:border-tec-red/60 transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Membre Réseau</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white uppercase mb-2">Toulouse Last Stock</h3>
+                            <p class="text-sm text-tec-textMuted mb-4">Association dédiée à la scène Super Smash Bros avec weeklys et majors régionaux.</p>
+                        </div>
+                        <div class="pt-4 border-t border-tec-border/60 flex items-center justify-between text-xs text-tec-textMuted">
+                            <span><i class="fa-solid fa-gamepad text-blue-400 mr-1"></i> Smash Bros</span>
+                            <span class="text-white font-medium">Weekly Host</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="legal" class="py-20 bg-tec-card/20 border-b border-tec-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-3xl mb-12">
+                    <span class="text-tec-red font-bold text-xs uppercase tracking-widest">Transparence & Institutions</span>
+                    <h2 class="font-display text-4xl sm:text-5xl text-white uppercase mt-1">Informations Administratives</h2>
+                    <p class="text-tec-textMuted text-sm mt-2">Toulouse Esport Connect est une association loi 1901 à but non lucratif, régulièrement déclarée et immatriculée en Haute-Garonne.</p>
+                </div>
+
+                <!-- Legal Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="p-5 rounded-xl bg-tec-card border border-tec-border">
+                        <div class="text-xs font-bold text-tec-textMuted uppercase mb-1">Dénomination Officielle</div>
+                        <div class="font-bold text-white text-lg">TOULOUSE ESPORT CONNECT</div>
+                        <div class="text-xs text-tec-red mt-2 font-mono">Forme Juridique : Catégorie 9220</div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-tec-card border border-tec-border">
+                        <div class="text-xs font-bold text-tec-textMuted uppercase mb-1">Numéro RNA</div>
+                        <div class="font-mono font-bold text-tec-red text-xl">W313041561</div>
+                        <div class="text-xs text-tec-textMuted mt-2">Sous-préfecture de Muret</div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-tec-card border border-tec-border">
+                        <div class="text-xs font-bold text-tec-textMuted uppercase mb-1">SIREN / SIRET</div>
+                        <div class="font-mono font-bold text-white text-lg">999 816 069 00010</div>
+                        <div class="text-xs text-tec-textMuted mt-2">Code APE : 93.12Z (Clubs de sports)</div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-tec-card border border-tec-border">
+                        <div class="text-xs font-bold text-tec-textMuted uppercase mb-1">Journal Officiel (JOAFE)</div>
+                        <div class="font-bold text-white">Annonce n° 278 (JO n°1)</div>
+                        <div class="text-xs text-tec-textMuted mt-2">Publiée le 6 janvier 2026</div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-tec-card border border-tec-border">
+                        <div class="text-xs font-bold text-tec-textMuted uppercase mb-1">Économie Sociale & Solidaire</div>
+                        <div class="font-bold text-emerald-400 flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle"></i> Membre du champ ESS
+                        </div>
+                        <div class="text-xs text-tec-textMuted mt-2">But non lucratif certifié</div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-tec-card border border-tec-border">
+                        <div class="text-xs font-bold text-tec-textMuted uppercase mb-1">Siège Social</div>
+                        <div class="text-sm font-medium text-white">31570 Sainte-Foy-d'Aigrefeuille</div>
+                        <div class="text-xs text-tec-textMuted mt-2">Adresse administrative (Non-accueil public)</div>
+                    </div>
+
+                </div>
+
+                <!-- Publication Director Callout -->
+                <div class="mt-8 p-4 rounded-lg bg-tec-card/80 border border-tec-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-tec-textMuted">
+                    <div>
+                        <strong class="text-white">Directeur de publication :</strong> Julien Paltou (Président) — Statuts et règlement intérieur transmis sur simple demande.
+                    </div>
+                    <button onclick="copyToClipboard('j.paltou@toulouse-esport-connect.fr')" class="px-3 py-1.5 rounded bg-tec-border hover:bg-slate-700 text-white font-mono flex items-center gap-2 transition-colors">
+                        <i class="fa-solid fa-copy"></i> Copy Mail Bureau
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="rejoindre" class="py-20 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-tec-red font-bold text-xs uppercase tracking-widest">Participer à l'aventure</span>
+                    <h2 class="font-display text-4xl sm:text-5xl text-white uppercase mt-1">Comment Souhaitez-vous Intervenir ?</h2>
+                    <p class="text-tec-textMuted mt-2">Sélectionnez votre profil pour entrer en contact avec l'équipe du bureau.</p>
+                </div>
+
+                <!-- Interactive Tab Cluster -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    
+                    <!-- Profile 1 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all cursor-pointer group flex flex-col justify-between" onclick="setContactRole('Structure / Association', 'Adhérer comme membre du réseau TEC')">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-tec-red/10 text-tec-red flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-sitemap"></i>
+                            </div>
+                            <div class="text-xs font-bold text-tec-red uppercase tracking-wider mb-1">Association / Club</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Adhérer comme Structure</h3>
+                            <p class="text-sm text-tec-textMuted">Accès direct au réseau, aux prêts de matériel mutualisé, aux réunions stratégiques et projets de LAN commune.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-tec-border text-xs font-bold text-white flex items-center gap-2">
+                            <span>Sélectionner ce profil</span>
+                            <i class="fa-solid fa-arrow-right text-tec-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Profile 2 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all cursor-pointer group flex flex-col justify-between" onclick="setContactRole('Bénévole / Staff', 'Rejoindre le staff événementiel ou communication')">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-tec-red/10 text-tec-red flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div class="text-xs font-bold text-tec-red uppercase tracking-wider mb-1">Individuel</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Devenir Bénévole</h3>
+                            <p class="text-sm text-tec-textMuted">Compétences en régie, graphisme, arbitrage, accueil ou communication ? Prêtez main forte sur nos événements.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-tec-border text-xs font-bold text-white flex items-center gap-2">
+                            <span>Sélectionner ce profil</span>
+                            <i class="fa-solid fa-arrow-right text-tec-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Profile 3 -->
+                    <div class="p-8 rounded-2xl bg-tec-card border border-tec-border hover:border-tec-red transition-all cursor-pointer group flex flex-col justify-between" onclick="setContactRole('Partenaire / Institution', 'Proposer un partenariat public/privé ou sponsoring')">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-tec-red/10 text-tec-red flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-building-flag"></i>
+                            </div>
+                            <div class="text-xs font-bold text-tec-red uppercase tracking-wider mb-1">Sponsor / École</div>
+                            <h3 class="font-display text-3xl text-white uppercase mb-3">Soutenir le Collectif</h3>
+                            <p class="text-sm text-tec-textMuted">Entreprises tech, écoles, médias ou collectivités : associez votre image au réseau esport majeur d'Occitanie.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-tec-border text-xs font-bold text-white flex items-center gap-2">
+                            <span>Sélectionner ce profil</span>
+                            <i class="fa-solid fa-arrow-right text-tec-red group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Form Box -->
+                <div class="max-w-2xl mx-auto p-8 rounded-2xl bg-tec-card border border-tec-border glow-red-sm">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="text-center mb-6">
+                            <h4 id="form-role-title" class="font-display text-2xl text-white uppercase">Prendre contact avec le bureau</h4>
+                            <p id="form-role-subtitle" class="text-xs text-tec-textMuted">Formulaire direct transmis à j.paltou@toulouse-esport-connect.fr</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-tec-textMuted mb-1">Votre Nom / Pseudo *</label>
+                                <input type="text" required placeholder="Alex Dupont" class="w-full px-4 py-3 rounded-lg bg-tec-dark border border-tec-border text-white text-sm focus:outline-none focus:border-tec-red">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-tec-textMuted mb-1">Votre Email *</label>
+                                <input type="email" required placeholder="alex@domaine.fr" class="w-full px-4 py-3 rounded-lg bg-tec-dark border border-tec-border text-white text-sm focus:outline-none focus:border-tec-red">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-tec-textMuted mb-1">Nom de votre structure (Si applicable)</label>
+                            <input type="text" id="structure-input" placeholder="Ex: OSV Esport, Mairie, École..." class="w-full px-4 py-3 rounded-lg bg-tec-dark border border-tec-border text-white text-sm focus:outline-none focus:border-tec-red">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-tec-textMuted mb-1">Votre Message *</label>
+                            <textarea required rows="4" placeholder="Présentez brièvement vos besoins ou votre envie de nous rejoindre..." class="w-full px-4 py-3 rounded-lg bg-tec-dark border border-tec-border text-white text-sm focus:outline-none focus:border-tec-red"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-tec-red hover:bg-tec-redHover text-white font-bold text-sm tracking-wider uppercase transition-all shadow-lg glow-red">
+                            Envoyer le message au collectif
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-tec-dark border-t border-tec-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                
+                <!-- Brand Footer -->
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-tec-red flex items-center justify-center font-display text-xl text-white">
+                        TEC
+                    </div>
+                    <span class="font-display text-xl text-white tracking-wide">TOULOUSE ESPORT CONNECT</span>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center gap-4">
+                    <a href="https://x.com" target="_blank" rel="noopener" aria-label="X Twitter" class="w-10 h-10 rounded-full bg-tec-card border border-tec-border flex items-center justify-center text-slate-300 hover:text-tec-red hover:border-tec-red transition-all">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord" class="w-10 h-10 rounded-full bg-tec-card border border-tec-border flex items-center justify-center text-slate-300 hover:text-tec-red hover:border-tec-red transition-all">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="https://twitch.tv" target="_blank" rel="noopener" aria-label="Twitch" class="w-10 h-10 rounded-full bg-tec-card border border-tec-border flex items-center justify-center text-slate-300 hover:text-tec-red hover:border-tec-red transition-all">
+                        <i class="fa-brands fa-twitch"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="w-10 h-10 rounded-full bg-tec-card border border-tec-border flex items-center justify-center text-slate-300 hover:text-tec-red hover:border-tec-red transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-tec-border/50 flex flex-col sm:flex-row items-center justify-between text-xs text-tec-textMuted gap-4">
+                <div>© 2026 Toulouse Esport Connect — Tous droits réservés. Association Loi 1901.</div>
+                <div class="flex gap-6">
+                    <a href="#legal" class="hover:text-white transition-colors">Mentions Légales</a>
+                    <a href="#legal" class="hover:text-white transition-colors">Politique de Confidentialité</a>
+                    <a href="mailto:j.paltou@toulouse-esport-connect.fr" class="hover:text-white transition-colors">Contact Direct</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Toast Notification Box -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
+        <div class="px-5 py-4 rounded-xl bg-tec-card border border-tec-red text-white text-sm font-medium shadow-2xl flex items-center gap-3 glow-red-sm">
+            <i class="fa-solid fa-circle-check text-tec-red text-lg" id="toast-icon"></i>
+            <span id="toast-message">Message envoyé avec succès !</span>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Drawer Navigation Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+
+        // Member Associations Filtering System
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const assoCards = document.querySelectorAll('.asso-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-tec-red', 'text-white', 'active');
+                    b.classList.add('bg-tec-card', 'text-tec-textMuted', 'border', 'border-tec-border');
+                });
+
+                btn.classList.remove('bg-tec-card', 'text-tec-textMuted', 'border', 'border-tec-border');
+                btn.classList.add('bg-tec-red', 'text-white', 'active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                assoCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else if (filter === 'fondateur') {
+                        card.style.display = card.classList.contains('me-fondateur') ? 'flex' : 'none';
+                    } else if (filter === 'membre') {
+                        card.style.display = card.classList.contains('me-membre') ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+
+        // Contact Wizard Profile Selector
+        function setContactRole(role, description) {
+            document.getElementById('form-role-title').innerText = "Profil : " + role;
+            document.getElementById('form-role-subtitle').innerText = description;
+            
+            // Scroll smoothly to form
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+            showToast('Profil "' + role + '" sélectionné !');
+        }
+
+        // Copy Email Helper
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('Adresse email copiée dans le presse-papier !');
+        }
+
+        // Custom Toast System (Replacement for banned alert())
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3500);
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showToast('Votre message a été transmis au bureau du collectif !');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
