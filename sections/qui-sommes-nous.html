@@ -1,0 +1,65 @@
+<!-- ==========================================================================
+   PAGE 5: QUI SOMMES-NOUS ?
+   ========================================================================== -->
+<section id="page-qui-sommes-nous" class="page-view">
+    <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-red font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation</span>
+            <h1 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h1>
+            <p class="text-gray-400 text-base mt-4">
+                Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour unir, valoriser et faire rayonner la scène vidéoludique toulousaine.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 items-center">
+            <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
+                <h2 class="font-bebas text-3xl text-white">Un Collectif au Service des Joueurs et des Clubs</h2>
+                <p>
+                    Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence et de structuration.
+                </p>
+                <p>
+                    Notre mission est de casser le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et éco-responsable du jeu vidéo.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                    <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
+                        <h4 class="font-bebas text-xl text-brand-red">Inclusivité</h4>
+                        <p class="text-xs text-gray-400">Ouvert à toutes les sensibilités et tous les niveaux.</p>
+                    </div>
+                    <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
+                        <h4 class="font-bebas text-xl text-brand-red">Proximité</h4>
+                        <p class="text-xs text-gray-400">Ancrage local fort au cœur de la Ville Rose.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/10">
+                <h3 class="font-bebas text-3xl text-white mb-6">Nous Contacter</h3>
+                <form onsubmit="event.preventDefault(); showNotification('Message envoyé avec succès !');" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold font-rajdhani uppercase text-gray-400 mb-1">Votre Nom / Pseudo</label>
+                        <input type="text" required placeholder="Alex"
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:border-brand-red outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold font-rajdhani uppercase text-gray-400 mb-1">Votre Email</label>
+                        <input type="email" required placeholder="alex@domaine.fr"
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:border-brand-red outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold font-rajdhani uppercase text-gray-400 mb-1">Votre Message</label>
+                        <textarea rows="4" required
+                            placeholder="Bonjour, je souhaite contacter le bureau TEC pour..."
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:border-brand-red outline-none"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase py-3 rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">
+                        Envoyer le Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
