@@ -1,20 +1,21 @@
 <!-- ==========================================================================
-   INTERACTIVE COMPONENTS: MODAL & TOAST NOTIFICATION
+   MODAL & TOAST NOTIFICATIONS
    ========================================================================== -->
-
-<!-- Association Details Modal -->
-<div id="assoc-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-brand-red/40 relative shadow-2xl animate-fade-in">
-        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl" aria-label="Fermer la boîte de dialogue">
+<div id="assoc-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-brand-red/40 relative shadow-2xl animate-fade-in" id="modal-card">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red" aria-label="Fermer la boîte de dialogue">
             <i class="fa-solid fa-xmark"></i>
         </button>
         <div id="modal-content">
-            <!-- Dynamic Content Injected via JS -->
+            <!-- Contenu injecté dynamiquement via JS -->
         </div>
     </div>
 </div>
 
-<!-- Toast Notification -->
-<div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider px-5 py-3 rounded-xl shadow-2xl glow-red-sm">
-    <span id="toast-text">Message transmis !</span>
+<div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider px-5 py-3.5 rounded-xl shadow-2xl glow-red-sm border border-white/20 transition-all" role="status" aria-live="polite">
+    <div class="flex items-center gap-2.5">
+        <i class="fa-solid fa-bell text-sm" id="toast-icon"></i>
+        <span id="toast-text">Message transmis !</span>
+    </div>
 </div>

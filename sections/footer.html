@@ -5,54 +5,61 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
 
-            <!-- Col 1: About TEC -->
             <div class="space-y-4">
-                <div class="flex items-center gap-2">
-                    <span class="font-bebas text-2xl text-white">TOULOUSE <span class="text-brand-red">ESPORT</span></span>
-                </div>
-                <p class="text-xs text-gray-500 leading-relaxed">
-                    Le réseau associatif fédérateur du jeu vidéo et de la culture esport à Toulouse et en Occitanie.
+                <a href="#accueil" onclick="switchTab('accueil'); return false;" class="flex items-center gap-3 group">
+                    <img src="media/toulouse-esport-connect-logo.webp" alt="Logo Toulouse Esport Connect" width="40" height="40" class="w-10 h-10 rounded-lg object-cover border border-white/10 shadow group-hover:scale-105 transition-transform duration-300">
+                    <div>
+                        <span class="font-bebas text-2xl text-white block leading-none">TOULOUSE</span>
+                        <span class="font-rajdhani font-bold text-xs tracking-widest text-brand-redLight block">ESPORT CONNECT</span>
+                    </div>
+                </a>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Le réseau associatif fédérateur du jeu vidéo et de la culture esport à Toulouse et en région Occitanie.
                 </p>
+                <div class="pt-2">
+                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-xs text-white bg-brand-discord/20 hover:bg-brand-discord px-3 py-1.5 rounded-lg border border-brand-discord/40 transition-all">
+                        <i class="fa-brands fa-discord"></i>
+                        <span>Rejoindre notre Discord</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- Col 2: Navigation Links -->
             <div>
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Navigation</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><button onclick="switchTab('accueil')" class="hover:text-brand-red transition-colors">Accueil</button></li>
-                    <li><button onclick="switchTab('projet')" class="hover:text-brand-red transition-colors">Notre Projet</button></li>
-                    <li><button onclick="switchTab('associations')" class="hover:text-brand-red transition-colors">Les Associations</button></li>
-                    <li><button onclick="switchTab('evenements')" class="hover:text-brand-red transition-colors">Événements</button></li>
-                    <li><button onclick="switchTab('qui-sommes-nous')" class="hover:text-brand-red transition-colors">Qui sommes-nous ?</button></li>
+                    <li><a href="#accueil" onclick="switchTab('accueil'); return false;" class="hover:text-brand-redLight transition-colors">Accueil</a></li>
+                    <li><a href="#projet" onclick="switchTab('projet'); return false;" class="hover:text-brand-redLight transition-colors">Notre Projet</a></li>
+                    <li><a href="#associations" onclick="switchTab('associations'); return false;" class="hover:text-brand-redLight transition-colors">Les Associations</a></li>
+                    <li><a href="#evenements" onclick="switchTab('evenements'); return false;" class="hover:text-brand-redLight transition-colors">Événements</a></li>
+                    <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
                 </ul>
             </div>
 
-            <!-- Col 3: Contact Info -->
             <div>
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Contact</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><i class="fa-solid fa-location-dot text-brand-red mr-2"></i> Toulouse, France</li>
-                    <li><i class="fa-solid fa-envelope text-brand-red mr-2"></i> contact@toulouse-esport-connect.fr</li>
+                    <li><i class="fa-solid fa-location-dot text-brand-redLight mr-2"></i> Toulouse (31000), France</li>
+                    <li><a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors"><i class="fa-solid fa-envelope text-brand-redLight mr-2"></i> contact@toulouse-esport-connect.fr</a></li>
                 </ul>
             </div>
 
-            <!-- Col 4: Social Networks -->
             <div>
-                <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Réseaux</h4>
-                <div class="flex gap-4 text-lg text-gray-400">
-                    <a href="#" class="hover:text-brand-red transition-colors" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-red transition-colors" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                    <a href="https://www.instagram.com/toulouseec__/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-red transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Réseaux Sociaux</h4>
+                <div class="flex gap-4 text-xl text-gray-400">
+                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Rejoindre le serveur Discord TEC"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.instagram.com/toulouseec__/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-redLight transition-colors" aria-label="Suivre TEC sur Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://x.com/toulouseec__" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Suivre TEC sur X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
 
         </div>
 
-        <div class="pt-8 border-t border-white/5 text-center text-xs text-gray-600 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p>&copy; 2026 Toulouse Esport Connect. Tous droits réservés.</p>
+        <div class="pt-8 border-t border-white/5 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Toulouse Esport Connect. Association Loi 1901. Tous droits réservés.</p>
             <div class="flex gap-4">
-                <a href="#" class="hover:text-gray-400">Mentions Légales</a>
-                <a href="#" class="hover:text-gray-400">Confidentialité</a>
+                <button onclick="showNotification('Mentions Légales : Association Loi 1901 - Siège social à Toulouse, France. Directeur de publication : Julien Paltou.')" class="hover:text-gray-300 transition-colors">Mentions Légales</button>
+                <button onclick="showNotification('Politique de Confidentialité : Aucune donnée personnelle n\'est revendue. Vos emails de contact sont strictement utilisés pour échanger avec le bureau TEC.')" class="hover:text-gray-300 transition-colors">Confidentialité</button>
             </div>
         </div>
     </div>

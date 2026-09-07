@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="tec-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3847" />
+      <stop offset="100%" stop-color="#BF000B" />
+    </linearGradient>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141419" />
+      <stop offset="100%" stop-color="#0B0B0E" />
+    </linearGradient>
+  </defs>
+  <!-- Background rounded squircle -->
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="url(#bg-grad)" stroke="#FF3847" stroke-width="4" />
+  <!-- Stylized TEC text mark -->
+  <text x="64" y="82" font-family="'Bebas Neue', 'Arial Black', sans-serif" font-weight="900" font-size="58" fill="url(#tec-grad)" text-anchor="middle" letter-spacing="4">TEC</text>
+  <!-- Glow accent dot -->
+  <circle cx="64" cy="106" r="4" fill="#FF3847" />
+</svg>

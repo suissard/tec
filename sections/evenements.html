@@ -6,145 +6,143 @@
 
         <!-- Section Title -->
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <span class="text-brand-red font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Agenda
-                Esport</span>
-            <h1 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Événements & Tournois</h1>
-            <p class="text-gray-400 text-sm sm:text-base mt-2">
-                Retrouvez les grands rendez-vous esportifs, LANs et festivals organisés par Toulouse Esport Connect et
-                ses associations.
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Agenda Esport</span>
+            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Événements & Tournois</h2>
+            <p class="text-gray-300 text-sm sm:text-base mt-2">
+                Retrouvez les grands rendez-vous esportifs, LANs et festivals organisés par Toulouse Esport Connect et ses associations adhérentes.
             </p>
         </div>
 
-        <!-- Featured Highlight Event -->
-        <div
-            class="glass-card rounded-3xl p-8 sm:p-10 border border-brand-red/40 glow-red mb-16 relative overflow-hidden">
-            <div
-                class="absolute top-0 right-0 bg-brand-red text-white text-xs font-rajdhani font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest">
-                Événement Majeur
+        <!-- Featured Highlight Event (Occitanie Gaming Festival avec Module de Pré-inscription Lead Capture) -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-brand-red/40 glow-red mb-16 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-brand-red text-white text-xs font-rajdhani font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest shadow-md">
+                Événement Majeur 2026
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-8">
-                    <span class="text-xs text-brand-red font-bold font-rajdhani uppercase tracking-widest block mb-2">
+                <div class="lg:col-span-7">
+                    <span class="text-xs text-brand-redLight font-bold font-rajdhani uppercase tracking-widest block mb-2">
                         <i class="fa-solid fa-calendar-days mr-2"></i> 11 - 12 Août 2026
                     </span>
-                    <h2 class="font-bebas text-4xl sm:text-6xl text-white uppercase leading-none mb-4">
+                    <h3 class="font-bebas text-4xl sm:text-6xl text-white uppercase leading-none mb-4">
                         Occitanie Gaming Festival
-                    </h2>
+                    </h3>
                     <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                        Le rendez-vous annuel incontournable du Toulouse Esport Connect ! Plus de 500 joueurs en
-                        compétition, scène principale, finales commentées, espaces rétrogaming et stands partenaires.
+                        Le rendez-vous annuel incontournable du Toulouse Esport Connect ! Plus de 500 joueurs en compétition, scène principale, finales commentées en direct, espace découverte rétrogaming et stands de recrutement.
                     </p>
-                    <div class="flex flex-wrap gap-4 text-xs font-semibold text-gray-400 mb-6">
-                        <span
-                            class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
-                            <i class="fa-solid fa-location-dot text-brand-red"></i> Hall 8, Toulouse
+                    <div class="flex flex-wrap gap-4 text-xs font-semibold text-gray-300 mb-6">
+                        <span class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
+                            <i class="fa-solid fa-location-dot text-brand-redLight"></i> Hall 8 - Parc Expo Toulouse
                         </span>
-                        <span
-                            class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
-                            <i class="fa-solid fa-gamepad text-brand-red"></i> LoL, Valorant, Smash, SF6
+                        <span class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
+                            <i class="fa-solid fa-gamepad text-brand-redLight"></i> LoL, Valorant, Smash, SF6
                         </span>
-                        <span
-                            class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
-                            <i class="fa-solid fa-ticket text-brand-red"></i> Entrée Libre
+                        <span class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
+                            <i class="fa-solid fa-ticket text-brand-redLight"></i> Entrée Libre & Tournois sur Inscription
                         </span>
                     </div>
                 </div>
 
-                <div class="lg:col-span-4 flex flex-col gap-3 justify-center">
-                    <button onclick="showNotification('Inscriptions ouvertes très bientôt !')"
-                        class="w-full py-4 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase rounded-xl shadow-lg transition-all glow-red-sm hover:scale-105">
-                        S'inscrire au Tournoi
-                    </button>
-                    <button onclick="showNotification('Programme détaillé disponible prochainement.')"
-                        class="w-full py-3 bg-brand-dark hover:bg-brand-accent text-white font-rajdhani font-bold text-xs tracking-widest uppercase rounded-xl transition-all border border-brand-cardBorder">
-                        Télécharger le Programme
-                    </button>
+                <!-- Module de Capture de Lead & Alerte Billetterie -->
+                <div class="lg:col-span-5 bg-brand-dark p-6 sm:p-7 rounded-2xl border border-white/10 shadow-xl">
+                    <div id="ogf-lead-container">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 rounded-full bg-brand-redLight animate-ping"></span>
+                            <span class="text-xs font-bold font-rajdhani uppercase text-brand-redLight tracking-wider">Alerte Billetterie & Inscriptions</span>
+                        </div>
+                        <h4 class="font-bebas text-2xl text-white mb-2">Soyez Prévenu en Avant-Première</h4>
+                        <p class="text-xs text-gray-300 mb-4">
+                            Les places de tournois sont limitées. Recevez le lien d'inscription 24h avant l'ouverture officielle.
+                        </p>
+
+                        <form id="ogf-lead-form" onsubmit="event.preventDefault(); handleOgfLeadSubmit(this);" class="space-y-3">
+                            <div>
+                                <label for="ogf-email" class="block text-[11px] font-medium text-gray-300 mb-1">Votre adresse email</label>
+                                <input type="email" id="ogf-email" name="email" required placeholder="joueur@domaine.fr"
+                                    class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
+                            </div>
+                            <div>
+                                <label for="ogf-interest" class="block text-[11px] font-medium text-gray-300 mb-1">Vous souhaitez participer en tant que :</label>
+                                <select id="ogf-interest" name="profile" class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2 text-xs text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
+                                    <option value="competiteur">Joueur / Équipe Compétiteur (LoL, Valorant, SF6, Smash)</option>
+                                    <option value="visiteur">Spectateur / Visiteur du festival</option>
+                                    <option value="createur">Créateur de contenu / Presse</option>
+                                    <option value="partenaire">Partenaire ou Stand associatif</option>
+                                </select>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-3 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs tracking-widest uppercase rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">
+                                <i class="fa-solid fa-bell mr-1.5"></i> Être alerté en priorité
+                            </button>
+                        </form>
+
+                        <div id="ogf-success-msg" class="hidden text-center py-4 bg-emerald-950/40 border border-emerald-500/30 rounded-xl mt-3 p-4">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-2xl mb-2"></i>
+                            <h5 class="font-bebas text-xl text-white">Inscription Confirmée !</h5>
+                            <p class="text-xs text-emerald-200">Vous recevrez l'accès prioritaire à la billetterie dès son ouverture.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Event Cards List -->
         <div class="space-y-6">
-            <h2 class="font-bebas text-3xl text-white uppercase mb-6">Prochains Rendez-vous</h2>
+            <h3 class="font-bebas text-3xl text-white uppercase mb-6">Prochains Rendez-vous</h3>
 
             <!-- Event Item 1 -->
-            <div
-                class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
                 <div class="flex items-center gap-6">
-                    <div
-                        class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
-                        <span class="font-bebas text-2xl text-brand-red leading-none">01</span>
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-brand-redLight leading-none">01</span>
                         <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">SEPT 2026</span>
                     </div>
                     <div>
-                        <span
-                            class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-red text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">
-                            Versus Fighting
-                        </span>
-                        <h3 class="font-bebas text-2xl text-white">Toulouse Fighting Ranking</h3>
-                        <p class="text-xs text-gray-400">
-                            Organisé par Toulouse Versus Fighting • Ranking mensuel d'Occitanie sur Street Fighter 6 &
-                            Tekken 8.
-                        </p>
+                        <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Versus Fighting</span>
+                        <h4 class="font-bebas text-2xl text-white">Toulouse Fighting Ranking</h4>
+                        <p class="text-xs text-gray-300">Organisé par Toulouse Versus Fighting • Ranking mensuel d'Occitanie sur Street Fighter 6 & Tekken 8.</p>
                     </div>
                 </div>
-                <button onclick="showNotification('Informations et billetterie enregistrées !')"
-                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0">
+                <button type="button" onclick="showNotification('Rendez-vous Toulouse Fighting Ranking enregistré dans vos rappels !')"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
             </div>
 
             <!-- Event Item 2 -->
-            <div
-                class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
                 <div class="flex items-center gap-6">
-                    <div
-                        class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
                         <span class="font-bebas text-2xl text-white leading-none">15</span>
                         <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">SEPT 2026</span>
                     </div>
                     <div>
-                        <span
-                            class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">
-                            Esport & Communauté
-                        </span>
-                        <h3 class="font-bebas text-2xl text-white">Occitanie League - Qualifier #1</h3>
-                        <p class="text-xs text-gray-400">
-                            Organisé par Oserv Esport, Dragon Esport & fLUKY BOYS • Qualifications régionales sur
-                            Valorant et League of Legends.
-                        </p>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Esport & Communauté</span>
+                        <h4 class="font-bebas text-2xl text-white">Occitanie League - Qualifier #1</h4>
+                        <p class="text-xs text-gray-300">Organisé par Oserv Esport, Dragon Esport & fLUKY BOYS • Qualifications régionales sur Valorant et League of Legends.</p>
                     </div>
                 </div>
-                <button onclick="showNotification('Informations et billetterie enregistrées !')"
-                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0">
+                <button type="button" onclick="showNotification('Informations de tournoi Occitanie League enregistrées !')"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
             </div>
 
             <!-- Event Item 3 -->
-            <div
-                class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
                 <div class="flex items-center gap-6">
-                    <div
-                        class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
                         <span class="font-bebas text-2xl text-white leading-none">04</span>
                         <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">OCT 2026</span>
                     </div>
                     <div>
-                        <span
-                            class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">
-                            LAN & Gaming
-                        </span>
-                        <h3 class="font-bebas text-2xl text-white">Voxel Community LAN & Speedrun</h3>
-                        <p class="text-xs text-gray-400">
-                            Organisé par Voxel & Lightning Project • Week-end gaming, tournois Trackmania et animations
-                            rétrogaming.
-                        </p>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">LAN & Gaming</span>
+                        <h4 class="font-bebas text-2xl text-white">Voxel Community LAN & Speedrun</h4>
+                        <p class="text-xs text-gray-300">Organisé par Voxel & Lightning Project • Week-end gaming, tournois Trackmania et animations rétrogaming.</p>
                     </div>
                 </div>
-                <button onclick="showNotification('Informations et billetterie enregistrées !')"
-                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0">
+                <button type="button" onclick="showNotification('Inscription pour la LAN Voxel prise en compte !')"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
             </div>

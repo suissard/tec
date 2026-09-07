@@ -4,42 +4,46 @@
 <section id="page-accueil" class="page-view active">
     <!-- Hero Banner -->
     <div class="relative pt-16 pb-20 overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand-red/15 rounded-full blur-[120px] pointer-events-none">
-        </div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand-red/15 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-rajdhani font-bold tracking-widest uppercase mb-6 glow-red-sm">
-                <span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-redLight text-xs font-rajdhani font-bold tracking-widest uppercase mb-6 glow-red-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-redLight animate-ping"></span>
                 Fédération des Associations Esport Toulousaines
             </div>
 
             <h1 class="font-bebas text-5xl sm:text-7xl lg:text-8xl tracking-wider text-white uppercase mb-6 leading-none">
                 Faire Rayonner L'Esport <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-red-500 to-white glow-text">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-redLight via-red-500 to-white glow-text">
                     À Toulouse
                 </span>
             </h1>
 
-            <p class="max-w-2xl mx-auto text-gray-400 text-base sm:text-lg leading-relaxed mb-10">
+            <p class="max-w-2xl mx-auto text-gray-300 text-base sm:text-lg leading-relaxed mb-10">
                 Toulouse Esport Connect rassemble et accompagne les associations, joueurs, créateurs et acteurs
-                locaux pour développer l'écosystème du jeu vidéo dans la Ville Rose.
+                locaux pour structurer et dynamiser l'écosystème du jeu vidéo dans la Ville Rose.
             </p>
 
-            <div class="flex flex-wrap items-center justify-center gap-4 mb-16">
-                <button onclick="switchTab('associations')"
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+                <a href="#associations" onclick="switchTab('associations'); return false;"
                     class="px-8 py-4 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase rounded-xl shadow-xl transition-all glow-red hover:scale-105">
                     Découvrir les Associations
-                </button>
-                <button onclick="switchTab('evenements')"
+                </a>
+                <a href="#evenements" onclick="switchTab('evenements'); return false;"
                     class="px-8 py-4 bg-brand-cardBg hover:bg-brand-accent border border-white/10 text-white font-rajdhani font-bold text-sm tracking-widest uppercase rounded-xl transition-all hover:scale-105">
                     Voir les Événements
-                </button>
+                </a>
+                <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                    class="px-8 py-4 bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase rounded-xl transition-all hover:scale-105 flex items-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                    <span>Rejoindre le Discord</span>
+                </a>
             </div>
 
             <!-- Counter Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
                 <div class="glass-card p-6 rounded-2xl text-center">
-                    <span class="font-bebas text-4xl sm:text-5xl text-brand-red block">6</span>
+                    <span class="font-bebas text-4xl sm:text-5xl text-brand-redLight block">6</span>
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Associations Membres</span>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
@@ -47,12 +51,36 @@
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Événements / An</span>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
-                    <span class="font-bebas text-4xl sm:text-5xl text-brand-red block">2000+</span>
+                    <span class="font-bebas text-4xl sm:text-5xl text-brand-redLight block">2000+</span>
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Joueurs Touchés</span>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
                     <span class="font-bebas text-4xl sm:text-5xl text-white block">100%</span>
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Collectif Toulousain</span>
+                </div>
+            </div>
+
+            <!-- Discord Community Callout Banner -->
+            <div class="max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-brand-cardBg via-[#171728] to-brand-cardBg border border-brand-discord/30 relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-brand-discord pointer-events-none">
+                    <i class="fa-brands fa-discord text-9xl"></i>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10 text-left">
+                    <div class="space-y-1">
+                        <div class="inline-flex items-center gap-2 text-xs font-rajdhani font-bold text-brand-discord uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Communauté Active • +500 Membres en ligne
+                        </div>
+                        <h3 class="font-bebas text-2xl sm:text-3xl text-white">Le QG Esport des Joueurs & Clubs Toulousains</h3>
+                        <p class="text-xs sm:text-sm text-gray-300 max-w-xl">
+                            Recherchez des coéquipiers, organisez des entraînements (scrims), échangez avec les responsables d'associations et découvrez les tournois locaux en avant-première.
+                        </p>
+                    </div>
+                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                        class="px-6 py-3.5 bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-xs uppercase tracking-widest rounded-xl transition-all hover:scale-105 flex items-center gap-2 flex-shrink-0 shadow-lg glow-discord">
+                        <i class="fa-brands fa-discord text-base"></i>
+                        <span>Entrer sur le Discord</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -70,31 +98,31 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-red/50 transition-all">
-                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red text-2xl mb-6">
+                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-2xl mb-6">
                         <i class="fa-solid fa-users"></i>
                     </div>
                     <h3 class="font-bebas text-2xl text-white mb-2">Un Réseau Solidaire</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <p class="text-gray-300 text-sm leading-relaxed">
                         Créer des synergies entre associations toulousaines, partager le matériel, les expériences et les compétences pour grandir ensemble.
                     </p>
                 </div>
 
                 <div class="glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-red/50 transition-all">
-                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red text-2xl mb-6">
+                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-2xl mb-6">
                         <i class="fa-solid fa-trophy"></i>
                     </div>
                     <h3 class="font-bebas text-2xl text-white mb-2">Grand Événementiel</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <p class="text-gray-300 text-sm leading-relaxed">
                         Co-organiser des tournois majeurs comme l'Occitanie Gaming Festival, des LAN party, conférences et scènes esport physiques.
                     </p>
                 </div>
 
                 <div class="glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-red/50 transition-all">
-                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red text-2xl mb-6">
+                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-2xl mb-6">
                         <i class="fa-solid fa-handshake-simple"></i>
                     </div>
                     <h3 class="font-bebas text-2xl text-white mb-2">Lien Institutionnel</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <p class="text-gray-300 text-sm leading-relaxed">
                         Représenter le jeu vidéo et l'esport auprès de la Mairie de Toulouse, des universités et des partenaires économiques régionaux.
                     </p>
                 </div>

@@ -6,63 +6,79 @@
         <div class="flex items-center justify-between h-20">
 
             <!-- Logo -->
-            <button onclick="switchTab('accueil')" class="flex items-center gap-3 group text-left">
+            <a href="#accueil" onclick="switchTab('accueil'); return false;" class="flex items-center gap-3 group text-left focus:outline-none focus:ring-2 focus:ring-brand-red rounded-xl p-1">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-red to-black p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
                     <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center overflow-hidden">
-                        <span class="font-bebas text-2xl tracking-wider text-brand-red group-hover:text-white transition-colors">TEC</span>
+                        <img src="media/toulouse-esport-connect-logo.webp" alt="Logo Toulouse Esport Connect" width="48" height="48" class="w-full h-full object-cover rounded-[10px]">
                     </div>
                 </div>
                 <div>
                     <span class="font-bebas text-2xl tracking-wider text-white block leading-none">TOULOUSE</span>
-                    <span class="font-rajdhani font-bold text-xs tracking-widest text-brand-red block">ESPORT CONNECT</span>
+                    <span class="font-rajdhani font-bold text-xs tracking-widest text-brand-redLight block">ESPORT CONNECT</span>
                 </div>
-            </button>
+            </a>
 
             <!-- Navigation Links (Desktop) -->
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
-                <button onclick="switchTab('accueil')" id="nav-accueil"
-                    class="nav-link text-brand-red font-bold relative py-2 transition-colors">Accueil</button>
-                <button onclick="switchTab('projet')" id="nav-projet"
-                    class="nav-link text-gray-400 hover:text-brand-red py-2 transition-colors">Notre Projet</button>
-                <button onclick="switchTab('associations')" id="nav-associations"
-                    class="nav-link text-gray-400 hover:text-brand-red py-2 transition-colors">Associations</button>
-                <button onclick="switchTab('evenements')" id="nav-evenements"
-                    class="nav-link text-gray-400 hover:text-brand-red py-2 transition-colors">Événements</button>
-                <button onclick="switchTab('qui-sommes-nous')" id="nav-qui-sommes-nous"
-                    class="nav-link text-gray-400 hover:text-brand-red py-2 transition-colors">Qui sommes-nous ?</button>
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm" aria-label="Navigation principale">
+                <a href="#accueil" onclick="switchTab('accueil'); return false;" id="nav-accueil"
+                    class="nav-link text-brand-redLight font-bold relative py-2 transition-colors">Accueil</a>
+                <a href="#projet" onclick="switchTab('projet'); return false;" id="nav-projet"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Notre Projet</a>
+                <a href="#associations" onclick="switchTab('associations'); return false;" id="nav-associations"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Associations</a>
+                <a href="#evenements" onclick="switchTab('evenements'); return false;" id="nav-evenements"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Événements</a>
+                <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" id="nav-qui-sommes-nous"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Qui sommes-nous ?</a>
             </nav>
 
-            <!-- Header CTA Button -->
-            <div class="hidden sm:flex items-center gap-4">
-                <button onclick="switchTab('projet'); scrollToAdhesion();"
-                    class="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-red text-white font-rajdhani font-bold text-sm tracking-wider uppercase overflow-hidden shadow-lg hover:bg-brand-redHover transition-all duration-300 glow-red-sm hover:scale-105">
+            <!-- Header CTA Buttons (Discord + Rejoindre) -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-xs tracking-wider uppercase transition-all duration-200 shadow-md hover:scale-105 glow-discord"
+                    aria-label="Rejoindre le Discord communautaire (+500 membres)">
+                    <i class="fa-brands fa-discord text-sm"></i>
+                    <span>Discord</span>
+                    <span class="bg-white/20 text-[10px] px-1.5 py-0.5 rounded-full font-sans font-semibold">+500</span>
+                </a>
+
+                <a href="#section-adhesion" onclick="switchTab('projet'); scrollToAdhesion(); return false;"
+                    class="relative group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-red text-white font-rajdhani font-bold text-xs tracking-wider uppercase overflow-hidden shadow-lg hover:bg-brand-redHover transition-all duration-300 glow-red-sm hover:scale-105">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Rejoindre le Réseau</span>
-                </button>
+                </a>
             </div>
 
             <!-- Mobile Menu Toggle Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none" aria-label="Menu principal">
-                <i class="fa-solid fa-bars text-2xl"></i>
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-red rounded-lg" aria-label="Menu principal" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fa-solid fa-bars text-2xl" id="mobile-menu-icon"></i>
             </button>
         </div>
     </div>
 
     <!-- Mobile Dropdown Navigation -->
-    <div id="mobile-menu" class="hidden md:hidden bg-brand-cardBg border-b border-brand-cardBorder px-4 pt-2 pb-6 space-y-3">
-        <button onclick="switchTab('accueil'); toggleMobileMenu()"
-            class="block w-full text-left py-2 text-gray-300 hover:text-brand-red">Accueil</button>
-        <button onclick="switchTab('projet'); toggleMobileMenu()"
-            class="block w-full text-left py-2 text-gray-300 hover:text-brand-red">Notre Projet</button>
-        <button onclick="switchTab('associations'); toggleMobileMenu()"
-            class="block w-full text-left py-2 text-gray-300 hover:text-brand-red">Associations</button>
-        <button onclick="switchTab('evenements'); toggleMobileMenu()"
-            class="block w-full text-left py-2 text-gray-300 hover:text-brand-red">Événements</button>
-        <button onclick="switchTab('qui-sommes-nous'); toggleMobileMenu()"
-            class="block w-full text-left py-2 text-gray-300 hover:text-brand-red">Qui sommes-nous ?</button>
-        <button onclick="switchTab('projet'); toggleMobileMenu(); scrollToAdhesion();"
-            class="block w-full text-center mt-4 py-3 bg-brand-red text-white font-bold rounded-lg uppercase tracking-wider">
-            Rejoindre le réseau
-        </button>
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-cardBg border-b border-brand-cardBorder px-4 pt-3 pb-6 space-y-2" aria-label="Menu mobile">
+        <a href="#accueil" onclick="switchTab('accueil'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Accueil</a>
+        <a href="#projet" onclick="switchTab('projet'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Notre Projet</a>
+        <a href="#associations" onclick="switchTab('associations'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Associations</a>
+        <a href="#evenements" onclick="switchTab('evenements'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Événements</a>
+        <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Qui sommes-nous ?</a>
+        
+        <div class="pt-2 border-t border-white/10 space-y-2">
+            <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                class="flex items-center justify-center gap-2 w-full text-center py-2.5 bg-brand-discord text-white font-rajdhani font-bold text-xs uppercase tracking-wider rounded-lg shadow">
+                <i class="fa-brands fa-discord"></i>
+                Rejoindre le Discord (+500 membres)
+            </a>
+            <a href="#section-adhesion" onclick="switchTab('projet'); toggleMobileMenu(); scrollToAdhesion(); return false;"
+                class="block w-full text-center py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs rounded-lg uppercase tracking-wider shadow">
+                Rejoindre le réseau
+            </a>
+        </div>
     </div>
 </header>

@@ -5,111 +5,111 @@
     <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <span class="text-brand-red font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Les Acteurs du Réseau</span>
-            <h1 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Les Associations Membres</h1>
-            <p class="text-gray-400 text-sm sm:text-base mt-2">
-                Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect. Cliquez sur leur logo pour découvrir leur fiche d'information.
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Les Acteurs du Réseau</span>
+            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Les Associations Membres</h2>
+            <p class="text-gray-300 text-sm sm:text-base mt-2">
+                Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect. Cliquez sur leur logo pour découvrir leur fiche d'information détaillée.
             </p>
         </div>
 
         <!-- Filter Controls -->
-        <div class="flex flex-wrap gap-2 justify-center mb-12" id="assoc-filters">
-            <button onclick="filterAssocLogos('all', this)"
-                class="assoc-btn active px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-red text-white">
+        <div class="flex flex-wrap gap-2 justify-center mb-12" id="assoc-filters" role="group" aria-label="Filtrer les associations par catégorie">
+            <button type="button" onclick="filterAssocLogos('all', this)"
+                class="assoc-btn active px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-red text-white focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Toutes les Associations
             </button>
-            <button onclick="filterAssocLogos('esport', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder">
+            <button type="button" onclick="filterAssocLogos('esport', this)"
+                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Esport
             </button>
-            <button onclick="filterAssocLogos('versus', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder">
+            <button type="button" onclick="filterAssocLogos('versus', this)"
+                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Versus Fighting
             </button>
-            <button onclick="filterAssocLogos('retro', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder">
+            <button type="button" onclick="filterAssocLogos('retro', this)"
+                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Rétrogaming & LAN
             </button>
-            <button onclick="filterAssocLogos('etudiant', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder">
+            <button type="button" onclick="filterAssocLogos('etudiant', this)"
+                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Étudiant & Communauté
             </button>
         </div>
 
-        <!-- LOGO SHOWCASE GRID -->
+        <!-- LOGO SHOWCASE GRID (Accessible <button> elements with Keyboard Focus) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-6" id="logo-grid">
 
             <!-- 1. Oserv esport -->
-            <div class="logo-item glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red transition-all duration-300"
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
-                onclick="openModal('Oserv Esport', 'Association et club compétitif toulousain majeur impliqué dans la formation des joueurs, la compétition et l\'événementiel régional.', 'contact@oserv-esport.fr', 'média pour le site/oserv-transparent.png', 'League of Legends, Rocket League, Valorant')">
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de Oserv Esport"
+                onclick="openModal('Oserv Esport', 'Association et club compétitif toulousain majeur impliqué dans la formation des joueurs, la compétition et l\'événementiel régional.', 'contact@oserv-esport.fr', 'media/oserv-transparent.png', 'League of Legends, Rocket League, Valorant', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="média pour le site/oserv-transparent.png" alt="Logo Oserv Esport" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/oserv-transparent.png" alt="Logo Oserv Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-red text-center leading-tight transition-colors">
-                    Oserv Esport
-                </span>
-            </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Oserv Esport</span>
+            </button>
 
             <!-- 2. Voxel -->
-            <div class="logo-item glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red transition-all duration-300"
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="retro"
-                onclick="openModal('Voxel', 'Association toulousaine dédiée aux événements ludiques, à l\'organisation de LAN parties et aux rendez-vous récréatifs autour du jeu vidéo.', 'contact@voxel-esport.fr', 'média pour le site/voxel-transparent.png', 'LAN Party, Multi-jeux, Rétrogaming')">
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de Voxel"
+                onclick="openModal('Voxel', 'Association toulousaine dédiée aux événements ludiques, à l\'organisation de LAN parties et aux rendez-vous récréatifs autour du jeu vidéo.', 'contact@voxel-esport.fr', 'media/voxel-transparent.png', 'LAN Party, Multi-jeux, Rétrogaming', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="média pour le site/voxel-transparent.png" alt="Logo Voxel" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/voxel-transparent.png" alt="Logo Voxel" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-red text-center leading-tight transition-colors">
-                    Voxel
-                </span>
-            </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Voxel</span>
+            </button>
 
             <!-- 3. Dragon esport -->
-            <div class="logo-item glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red transition-all duration-300"
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
-                onclick="openModal('Dragon Esport', 'Club esportif associatif engagé dans les circuits compétitifs et la promotion d\'une pratique engagée du jeu vidéo.', 'contact@dragonesport.fr', 'média pour le site/dragon-transparent.png', 'Valorant, CS2, League of Legends')">
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de Dragon Esport"
+                onclick="openModal('Dragon Esport', 'Club esportif associatif engagé dans les circuits compétitifs et la promotion d\'une pratique engagée du jeu vidéo.', 'contact@dragonesport.fr', 'media/dragon-transparent.png', 'Valorant, CS2, League of Legends', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="média pour le site/dragon-transparent.png" alt="Logo Dragon Esport" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/dragon-transparent.png" alt="Logo Dragon Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-red text-center leading-tight transition-colors">
-                    Dragon Esport
-                </span>
-            </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Dragon Esport</span>
+            </button>
 
             <!-- 4. fLUKY BOYS -->
-            <div class="logo-item glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red transition-all duration-300"
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="etudiant"
-                onclick="openModal('fLUKY BOYS', 'Collectif et association toulousaine réunissant joueurs passionnés, créateurs de contenus et équipes de compétition.', 'contact@flukyboys.fr', 'média pour le site/fluky-boys-transparent.png', 'Rocket League, Overwatch 2, TFT')">
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de fLUKY BOYS"
+                onclick="openModal('fLUKY BOYS', 'Collectif et association toulousaine réunissant joueurs passionnés, créateurs de contenus et équipes de compétition.', 'contact@flukyboys.fr', 'media/fluky-boys-transparent.png', 'Rocket League, Overwatch 2, TFT', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="média pour le site/fluky-boys-transparent.png" alt="Logo fLUKY BOYS" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/fluky-boys-transparent.png" alt="Logo fLUKY BOYS" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-red text-center leading-tight transition-colors">
-                    fLUKY BOYS
-                </span>
-            </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">fLUKY BOYS</span>
+            </button>
 
             <!-- 5. Lightning Project -->
-            <div class="logo-item glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red transition-all duration-300"
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
-                onclick="openModal('Lightning Project', 'Structure associative axée sur l\'accompagnement de joueurs, l\'organisation de tournois et l\'animation esport locale.', 'contact@lightningproject.fr', 'média pour le site/lightning-transparent.png', 'Trackmania, Smash Bros, FC24')">
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de Lightning Project"
+                onclick="openModal('Lightning Project', 'Structure associative axée sur l\'accompagnement de joueurs, l\'organisation de tournois et l\'animation esport locale.', 'contact@lightningproject.fr', 'media/lightning-transparent.png', 'Trackmania, Smash Bros, FC24', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="média pour le site/lightning-transparent.png" alt="Logo Lightning Project" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/lightning-transparent.png" alt="Logo Lightning Project" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-red text-center leading-tight transition-colors">
-                    Lightning Project
-                </span>
-            </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Lightning Project</span>
+            </button>
 
             <!-- 6. Toulouse versus fighting -->
-            <div class="logo-item glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red transition-all duration-300"
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="versus"
-                onclick="openModal('Toulouse Versus Fighting', 'Association de référence dédiée à la communauté des jeux de combat à Toulouse. Sessions hebdomadaires, ranking et tournois.', 'contact@toulousefighting.fr', 'média pour le site/tvsf-transparent.png', 'Street Fighter 6, Tekken 8, Guilty Gear, Smash')">
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de Toulouse Versus Fighting"
+                onclick="openModal('Toulouse Versus Fighting', 'Association de référence dédiée à la communauté des jeux de combat à Toulouse. Sessions hebdomadaires, ranking et tournois.', 'contact@toulousefighting.fr', 'media/tvsf-transparent.png', 'Street Fighter 6, Tekken 8, Guilty Gear, Smash', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-950 border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="média pour le site/tvsf-transparent.png" alt="Logo Toulouse Versus Fighting" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_2px_rgba(255,255,255,0.6)]">
+                    <img src="media/tvsf-transparent.png" alt="Logo Toulouse Versus Fighting" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_2px_rgba(255,255,255,0.6)]">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-red text-center leading-tight transition-colors">
-                    Toulouse Versus Fighting
-                </span>
-            </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Toulouse Versus Fighting</span>
+            </button>
 
         </div>
     </div>

@@ -5,53 +5,56 @@
     <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-brand-red font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation</span>
-            <h1 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h1>
-            <p class="text-gray-400 text-base mt-4">
+            <div class="inline-flex items-center justify-center p-1.5 bg-gradient-to-br from-brand-red to-black rounded-3xl shadow-2xl mb-6 glow-red-sm">
+                <img src="media/toulouse-esport-connect-logo.webp" alt="Logo Officiel Toulouse Esport Connect" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover">
+            </div>
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation</span>
+            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h2>
+            <p class="text-gray-300 text-base mt-4">
                 Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour unir, valoriser et faire rayonner la scène vidéoludique toulousaine.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 items-center">
             <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
-                <h2 class="font-bebas text-3xl text-white">Un Collectif au Service des Joueurs et des Clubs</h2>
+                <h3 class="font-bebas text-3xl text-white">Un Collectif au Service des Joueurs et des Clubs</h3>
                 <p>
                     Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence et de structuration.
                 </p>
                 <p>
-                    Notre mission est de casser le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et éco-responsable du jeu vidéo.
+                    Notre mission est de rompre le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et éco-responsable du jeu vidéo.
                 </p>
 
                 <div class="grid grid-cols-2 gap-4 pt-4">
                     <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
-                        <h4 class="font-bebas text-xl text-brand-red">Inclusivité</h4>
-                        <p class="text-xs text-gray-400">Ouvert à toutes les sensibilités et tous les niveaux.</p>
+                        <h4 class="font-bebas text-xl text-brand-redLight">Inclusivité</h4>
+                        <p class="text-xs text-gray-400">Ouvert à toutes les sensibilités et tous les niveaux de jeu.</p>
                     </div>
                     <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
-                        <h4 class="font-bebas text-xl text-brand-red">Proximité</h4>
-                        <p class="text-xs text-gray-400">Ancrage local fort au cœur de la Ville Rose.</p>
+                        <h4 class="font-bebas text-xl text-brand-redLight">Proximité</h4>
+                        <p class="text-xs text-gray-400">Ancrage local fort au cœur de la métropole toulousaine.</p>
                     </div>
                 </div>
             </div>
 
             <div class="glass-card p-8 rounded-3xl border border-white/10">
                 <h3 class="font-bebas text-3xl text-white mb-6">Nous Contacter</h3>
-                <form onsubmit="event.preventDefault(); showNotification('Message envoyé avec succès !');" class="space-y-4">
+                <form onsubmit="event.preventDefault(); handleContactSubmit(this);" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-bold font-rajdhani uppercase text-gray-400 mb-1">Votre Nom / Pseudo</label>
-                        <input type="text" required placeholder="Alex"
-                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:border-brand-red outline-none">
+                        <label for="contact-name" class="block text-xs font-medium text-gray-300 mb-1">Votre Nom / Pseudo</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="Alex"
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold font-rajdhani uppercase text-gray-400 mb-1">Votre Email</label>
-                        <input type="email" required placeholder="alex@domaine.fr"
-                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:border-brand-red outline-none">
+                        <label for="contact-email" class="block text-xs font-medium text-gray-300 mb-1">Votre adresse email</label>
+                        <input type="email" id="contact-email" name="email" required placeholder="alex@domaine.fr"
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold font-rajdhani uppercase text-gray-400 mb-1">Votre Message</label>
-                        <textarea rows="4" required
+                        <label for="contact-message" class="block text-xs font-medium text-gray-300 mb-1">Votre message</label>
+                        <textarea id="contact-message" name="message" rows="4" required
                             placeholder="Bonjour, je souhaite contacter le bureau TEC pour..."
-                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:border-brand-red outline-none"></textarea>
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"></textarea>
                     </div>
                     <button type="submit"
                         class="w-full bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase py-3 rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">

@@ -1,0 +1,21 @@
+{
+  "name": "toulouse-esport-connect",
+  "version": "1.1.0",
+  "description": "Site officiel de Toulouse Esport Connect (TEC)",
+  "scripts": {
+    "build:css": "npx -y tailwindcss@3 -i ./css/input.css -o ./css/tailwind.min.css --minify",
+    "build:html": "node ./scripts/build.js",
+    "build": "node ./scripts/build.js && npx -y tailwindcss@3 -i ./css/input.css -o ./css/tailwind.min.css --minify",
+    "watch:css": "npx -y tailwindcss@3 -i ./css/input.css -o ./css/tailwind.min.css --watch",
+    "dev": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "esport",
+    "toulouse",
+    "association",
+    "gaming",
+    "occitanie"
+  ],
+  "author": "Toulouse Esport Connect",
+  "license": "MIT"
+}
