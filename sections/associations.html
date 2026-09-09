@@ -2,43 +2,19 @@
    PAGE 3: ASSOCIATIONS (AVEC ESPACE ADHÉSION & BÉNÉVOLAT)
    ========================================================================== -->
 <section id="page-associations" class="page-view">
-    <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="pt-6 pb-16 sm:pt-12 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12">
-            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Les Acteurs du Réseau</span>
-            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Les Associations Membres</h2>
-            <p class="text-gray-300 text-sm sm:text-base mt-2">
+        <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-1">Les Acteurs du Réseau</span>
+            <h2 class="font-bebas text-4xl sm:text-6xl text-white uppercase">Les Associations Membres</h2>
+            <p class="text-gray-300 text-xs sm:text-base mt-1.5 max-w-2xl mx-auto">
                 Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect. Cliquez sur leur logo pour découvrir leur fiche d'information détaillée.
             </p>
         </div>
 
-        <!-- Filter Controls -->
-        <div class="flex flex-wrap gap-2 justify-center mb-12" id="assoc-filters" role="group" aria-label="Filtrer les associations par catégorie">
-            <button type="button" onclick="filterAssocLogos('all', this)"
-                class="assoc-btn active px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-red text-white focus:outline-none focus:ring-2 focus:ring-brand-red">
-                Toutes les Associations
-            </button>
-            <button type="button" onclick="filterAssocLogos('esport', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
-                Esport
-            </button>
-            <button type="button" onclick="filterAssocLogos('versus', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
-                Versus Fighting
-            </button>
-            <button type="button" onclick="filterAssocLogos('retro', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
-                Rétrogaming & LAN
-            </button>
-            <button type="button" onclick="filterAssocLogos('etudiant', this)"
-                class="assoc-btn px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all bg-brand-cardBg text-gray-400 hover:text-white border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
-                Étudiant & Communauté
-            </button>
-        </div>
-
         <!-- LOGO SHOWCASE GRID (Accessible <button> elements with Keyboard Focus) -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-6" id="logo-grid">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6" id="logo-grid">
 
             <!-- 1. OSV Esport -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
