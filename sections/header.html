@@ -22,14 +22,12 @@
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm" aria-label="Navigation principale">
                 <a href="#accueil" onclick="switchTab('accueil'); return false;" id="nav-accueil"
                     class="nav-link text-brand-redLight font-bold relative py-2 transition-colors">Accueil</a>
-                <a href="#projet" onclick="switchTab('projet'); return false;" id="nav-projet"
-                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Notre Projet</a>
+                <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" id="nav-qui-sommes-nous"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Qui sommes-nous ?</a>
                 <a href="#associations" onclick="switchTab('associations'); return false;" id="nav-associations"
                     class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Associations</a>
                 <a href="#evenements" onclick="switchTab('evenements'); return false;" id="nav-evenements"
                     class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Événements</a>
-                <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" id="nav-qui-sommes-nous"
-                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Qui sommes-nous ?</a>
             </nav>
 
             <!-- Header CTA Buttons (Discord + Rejoindre) -->
@@ -42,7 +40,7 @@
                     <span class="bg-white/20 text-[10px] px-1.5 py-0.5 rounded-full font-sans font-semibold">+500</span>
                 </a>
 
-                <a href="#section-adhesion" onclick="switchTab('projet'); scrollToAdhesion(); return false;"
+                <a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;"
                     class="relative group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-red text-white font-rajdhani font-bold text-xs tracking-wider uppercase overflow-hidden shadow-lg hover:bg-brand-redHover transition-all duration-300 glow-red-sm hover:scale-105">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Rejoindre le Réseau</span>
@@ -60,14 +58,12 @@
     <div id="mobile-menu" class="hidden md:hidden bg-brand-cardBg border-b border-brand-cardBorder px-4 pt-3 pb-6 space-y-2" aria-label="Menu mobile">
         <a href="#accueil" onclick="switchTab('accueil'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Accueil</a>
-        <a href="#projet" onclick="switchTab('projet'); toggleMobileMenu(); return false;"
-            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Notre Projet</a>
+        <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Qui sommes-nous ?</a>
         <a href="#associations" onclick="switchTab('associations'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Associations</a>
         <a href="#evenements" onclick="switchTab('evenements'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Événements</a>
-        <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); toggleMobileMenu(); return false;"
-            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Qui sommes-nous ?</a>
         
         <div class="pt-2 border-t border-white/10 space-y-2">
             <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
@@ -75,7 +71,7 @@
                 <i class="fa-brands fa-discord"></i>
                 Rejoindre le Discord (+500 membres)
             </a>
-            <a href="#section-adhesion" onclick="switchTab('projet'); toggleMobileMenu(); scrollToAdhesion(); return false;"
+            <a href="#section-adhesion" onclick="switchTab('associations', true, false); toggleMobileMenu(); scrollToAdhesion(); return false;"
                 class="block w-full text-center py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs rounded-lg uppercase tracking-wider shadow">
                 Rejoindre le réseau
             </a>

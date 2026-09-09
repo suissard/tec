@@ -29,10 +29,10 @@
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Navigation</h4>
                 <ul class="space-y-2 text-xs">
                     <li><a href="#accueil" onclick="switchTab('accueil'); return false;" class="hover:text-brand-redLight transition-colors">Accueil</a></li>
-                    <li><a href="#projet" onclick="switchTab('projet'); return false;" class="hover:text-brand-redLight transition-colors">Notre Projet</a></li>
+                    <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
                     <li><a href="#associations" onclick="switchTab('associations'); return false;" class="hover:text-brand-redLight transition-colors">Les Associations</a></li>
                     <li><a href="#evenements" onclick="switchTab('evenements'); return false;" class="hover:text-brand-redLight transition-colors">Événements</a></li>
-                    <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
+                    <li><a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
                 </ul>
             </div>
 
@@ -58,7 +58,7 @@
         <div class="pt-8 border-t border-white/5 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>&copy; 2026 Toulouse Esport Connect. Association Loi 1901. Tous droits réservés.</p>
             <div class="flex gap-4">
-                <button onclick="showNotification('Mentions Légales : Association Loi 1901 - Siège social à Toulouse, France. Directeur de publication : Julien Paltou.')" class="hover:text-gray-300 transition-colors">Mentions Légales</button>
+                <button type="button" onclick="openLegalModal(this)" class="hover:text-brand-redLight transition-colors underline-offset-4 hover:underline">Mentions Légales</button>
                 <button onclick="showNotification('Politique de Confidentialité : Aucune donnée personnelle n\'est revendue. Vos emails de contact sont strictement utilisés pour échanger avec le bureau TEC.')" class="hover:text-gray-300 transition-colors">Confidentialité</button>
             </div>
         </div>

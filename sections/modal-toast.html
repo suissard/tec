@@ -13,6 +13,81 @@
     </div>
 </div>
 
+<!-- Modale accessible des Mentions Légales -->
+<div id="legal-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+    role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-brand-red/40 relative shadow-2xl my-8 animate-fade-in text-left">
+        <button type="button" onclick="closeLegalModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red" aria-label="Fermer les mentions légales">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        
+        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-redLight text-lg">
+                <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div>
+                <h3 id="legal-modal-title" class="font-bebas text-3xl text-white tracking-wide leading-none">Mentions Légales</h3>
+                <p class="font-rajdhani text-xs uppercase tracking-wider text-brand-redLight font-bold">Informations administratives & statutaires</p>
+            </div>
+        </div>
+
+        <div class="space-y-4 text-xs text-gray-300 max-h-[65vh] overflow-y-auto pr-2 custom-scrollbar">
+            <!-- Identification -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-building-shield text-brand-redLight"></i> Identification de l'Association
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-gray-300">
+                    <div><strong class="text-white">Dénomination :</strong> TOULOUSE ESPORT CONNECT (TEC)</div>
+                    <div><strong class="text-white">Forme :</strong> Association déclarée (loi 1901)</div>
+                    <div><strong class="text-white">Catégorie juridique :</strong> 9220 (Association déclarée)</div>
+                    <div><strong class="text-white">Économie Sociale :</strong> Oui (Champ de l'ESS)</div>
+                    <div><strong class="text-white">Numéro RNA :</strong> <span class="font-mono text-brand-redLight">W313041561</span></div>
+                    <div><strong class="text-white">Code APE / NAF :</strong> 93.12Z (Clubs de sports)</div>
+                    <div><strong class="text-white">Numéro SIREN :</strong> <span class="font-mono text-white">999 816 069</span></div>
+                    <div><strong class="text-white">Numéro SIRET :</strong> <span class="font-mono text-white">999 816 069 00010</span></div>
+                </div>
+            </div>
+
+            <!-- Déclaration et parution -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-stamp text-brand-redLight"></i> Déclaration Officielle & Publication
+                </h4>
+                <p><strong class="text-white">Date de déclaration :</strong> 15 décembre 2025 auprès de la Sous-préfecture de Muret (Haute-Garonne).</p>
+                <p><strong class="text-white">Parution Journal Officiel :</strong> JOAFE n° 1 du 6 janvier 2026, annonce n° 278.</p>
+                <p><strong class="text-white">Siège social :</strong> 10, route de Bordé Neuve — 31570 Sainte-Foy-d'Aigrefeuille, France <em>(adresse administrative officielle, pas d'accueil physique de public)</em>.</p>
+            </div>
+
+            <!-- Direction et contact -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-user-tie text-brand-redLight"></i> Gouvernance & Publication
+                </h4>
+                <p><strong class="text-white">Directeur de la publication :</strong> Julien Paltou, Président de Toulouse Esport Connect.</p>
+                <p><strong class="text-white">Email officiel :</strong> <a href="mailto:contact@toulouse-esport-connect.fr" class="text-brand-redLight hover:underline">contact@toulouse-esport-connect.fr</a></p>
+                <p><strong class="text-white">Hébergement :</strong> Infrastructure sécurisée européenne déployée pour Toulouse Esport Connect.</p>
+            </div>
+
+            <!-- RGPD -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-brand-redLight"></i> Données Personnelles & Confidentialité (RGPD)
+                </h4>
+                <p class="leading-relaxed text-gray-400">
+                    Les informations recueillies via nos formulaires (contact, adhésion, alerte billetterie OGF) font l'objet d'un traitement informatique exclusivement destiné à la gestion de la vie associative et des projets de Toulouse Esport Connect. Aucune donnée n'est cédée, louée ou vendue à des tiers. Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant en nous contactant à <a href="mailto:contact@toulouse-esport-connect.fr" class="text-brand-redLight hover:underline">contact@toulouse-esport-connect.fr</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
+            <button type="button" onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all focus:outline-none focus:ring-2 focus:ring-brand-red">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
+
 <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider px-5 py-3.5 rounded-xl shadow-2xl glow-red-sm border border-white/20 transition-all" role="status" aria-live="polite">
     <div class="flex items-center gap-2.5">
         <i class="fa-solid fa-bell text-sm" id="toast-icon"></i>

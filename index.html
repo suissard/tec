@@ -124,14 +124,12 @@
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm" aria-label="Navigation principale">
                 <a href="#accueil" onclick="switchTab('accueil'); return false;" id="nav-accueil"
                     class="nav-link text-brand-redLight font-bold relative py-2 transition-colors">Accueil</a>
-                <a href="#projet" onclick="switchTab('projet'); return false;" id="nav-projet"
-                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Notre Projet</a>
+                <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" id="nav-qui-sommes-nous"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Qui sommes-nous ?</a>
                 <a href="#associations" onclick="switchTab('associations'); return false;" id="nav-associations"
                     class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Associations</a>
                 <a href="#evenements" onclick="switchTab('evenements'); return false;" id="nav-evenements"
                     class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Événements</a>
-                <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" id="nav-qui-sommes-nous"
-                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Qui sommes-nous ?</a>
             </nav>
 
             <!-- Header CTA Buttons (Discord + Rejoindre) -->
@@ -144,7 +142,7 @@
                     <span class="bg-white/20 text-[10px] px-1.5 py-0.5 rounded-full font-sans font-semibold">+500</span>
                 </a>
 
-                <a href="#section-adhesion" onclick="switchTab('projet'); scrollToAdhesion(); return false;"
+                <a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;"
                     class="relative group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-red text-white font-rajdhani font-bold text-xs tracking-wider uppercase overflow-hidden shadow-lg hover:bg-brand-redHover transition-all duration-300 glow-red-sm hover:scale-105">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Rejoindre le Réseau</span>
@@ -162,14 +160,12 @@
     <div id="mobile-menu" class="hidden md:hidden bg-brand-cardBg border-b border-brand-cardBorder px-4 pt-3 pb-6 space-y-2" aria-label="Menu mobile">
         <a href="#accueil" onclick="switchTab('accueil'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Accueil</a>
-        <a href="#projet" onclick="switchTab('projet'); toggleMobileMenu(); return false;"
-            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Notre Projet</a>
+        <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Qui sommes-nous ?</a>
         <a href="#associations" onclick="switchTab('associations'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Associations</a>
         <a href="#evenements" onclick="switchTab('evenements'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Événements</a>
-        <a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); toggleMobileMenu(); return false;"
-            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Qui sommes-nous ?</a>
         
         <div class="pt-2 border-t border-white/10 space-y-2">
             <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
@@ -177,7 +173,7 @@
                 <i class="fa-brands fa-discord"></i>
                 Rejoindre le Discord (+500 membres)
             </a>
-            <a href="#section-adhesion" onclick="switchTab('projet'); toggleMobileMenu(); scrollToAdhesion(); return false;"
+            <a href="#section-adhesion" onclick="switchTab('associations', true, false); toggleMobileMenu(); scrollToAdhesion(); return false;"
                 class="block w-full text-center py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs rounded-lg uppercase tracking-wider shadow">
                 Rejoindre le réseau
             </a>
@@ -186,7 +182,7 @@
 </header>
 
     <!-- ==========================================================================
-       MAIN CONTENT CONTAINER
+       MAIN CONTENT CONTAINER (4 PAGES)
        ========================================================================== -->
     <main class="flex-grow">
         <!-- ==========================================================================
@@ -234,15 +230,15 @@
             <!-- Counter Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
                 <div class="glass-card p-6 rounded-2xl text-center">
-                    <span class="font-bebas text-4xl sm:text-5xl text-brand-redLight block">6</span>
+                    <span class="font-bebas text-4xl sm:text-5xl text-brand-redLight block">+ de 10</span>
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Associations Membres</span>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
-                    <span class="font-bebas text-4xl sm:text-5xl text-white block">30+</span>
+                    <span class="font-bebas text-4xl sm:text-5xl text-white block">+ 30</span>
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Événements / An</span>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
-                    <span class="font-bebas text-4xl sm:text-5xl text-brand-redLight block">2000+</span>
+                    <span class="font-bebas text-4xl sm:text-5xl text-brand-redLight block">+ 200</span>
                     <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Joueurs Touchés</span>
                 </div>
                 <div class="glass-card p-6 rounded-2xl text-center">
@@ -294,7 +290,7 @@
                     </div>
                     <h3 class="font-bebas text-2xl text-white mb-2">Un Réseau Solidaire</h3>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                        Créer des synergies entre associations toulousaines, partager le matériel, les expériences et les compétences pour grandir ensemble.
+                        Créer des synergies entre associations toulousaines, partager les expériences et les compétences pour grandir ensemble.
                     </p>
                 </div>
 
@@ -322,61 +318,164 @@
     </div>
 </section>
         <!-- ==========================================================================
-   PAGE 2: NOTRE PROJET
+   PAGE 2: QUI SOMMES-NOUS ? (FUSION AVEC NOTRE PROJET)
    ========================================================================== -->
-<section id="page-projet" class="page-view">
+<section id="page-qui-sommes-nous" class="page-view">
     <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
+
+        <!-- 1. En-tête Principal & Présentation -->
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Vision & Stratégie</span>
-            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Notre Projet pour l'Esport Toulousain</h2>
-            <p class="text-gray-300 text-base mt-4">
-                Fédérer les structures actives de la métropole pour mutualiser les ressources, porter des projets d'envergure et former la scène de demain.
+            <div class="inline-flex items-center justify-center p-1.5 bg-gradient-to-br from-brand-red to-black rounded-3xl shadow-2xl mb-6 glow-red-sm">
+                <img src="media/toulouse-esport-connect-logo.webp" alt="Logo Officiel Toulouse Esport Connect" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover">
+            </div>
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation & Projet</span>
+            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h2>
+            <p class="text-gray-300 text-base mt-4 leading-relaxed">
+                Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour fédérer, accompagner et faire rayonner la scène vidéoludique et esportive de la métropole toulousaine et d'Occitanie.
             </p>
         </div>
 
-        <!-- 3 Pillars Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
-                <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">01</div>
-                <h3 class="font-bebas text-3xl text-white mb-4">Réseau d'Associations</h3>
-                <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                    Nous regroupons les associations esportives de Toulouse afin de favoriser les synergies entre elles ainsi qu'avec les entreprises et institutions locales.
-                </p>
-                <ul class="text-xs text-gray-300 space-y-2">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Partage de locaux & de matériel</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Entraide administrative & statutaire</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
-                <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">02</div>
-                <h3 class="font-bebas text-3xl text-white mb-4">Organisation d'Événements</h3>
-                <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                    L'Occitanie Gaming Festival est l'événement majeur du collectif. Il démontre qu'en jouant collectif, nous accomplissons de grandes choses.
-                </p>
-                <ul class="text-xs text-gray-300 space-y-2">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Tournois LAN & Scènes Versus</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Expositions Rétrogaming & Web</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
-                <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">03</div>
-                <h3 class="font-bebas text-3xl text-white mb-4">Développement Local</h3>
-                <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                    Soutenir la structuration des clubs amateurs pour offrir aux joueurs un parcours clair de la pratique loisir jusqu'au haut niveau compétitif.
-                </p>
-                <ul class="text-xs text-gray-300 space-y-2">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Sensibilisation aux usages responsables</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Intégration dans le réseau étudiant</li>
-                </ul>
+        <!-- 2. Bloc Histoire & Genèse (La Mêlée Rose) -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-brand-red/30 mb-16 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-brand-red/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8">
+                <div class="flex-shrink-0">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-redLight text-3xl shadow-lg">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-xs font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30">
+                            Genèse & Histoire
+                        </span>
+                        <span class="text-xs text-gray-400 font-rajdhani uppercase tracking-wider">
+                            Avril 2025 • Naissance du collectif
+                        </span>
+                    </div>
+                    <h3 class="font-bebas text-3xl sm:text-4xl text-white tracking-wide">
+                        De la Mêlée Rose à la Fédération Toulousaine
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        À Toulouse, les clubs et passionnés d'esport étaient nombreux mais évoluaient chacun de leur côté. En <strong>avril 2025</strong>, des échanges décisifs se nouent autour du tournoi de jeux de combat <em>La Mêlée Rose</em>. Le constat s'impose avec évidence : pour porter des événements d'envergure métropolitaine et valoriser nos talents, il faut unir nos forces.
+                    </p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Une soirée fondatrice réunit alors pour la première fois l'ensemble des structures locales autour d'une même table. Cette volonté partagée donne naissance à l'association <strong>Toulouse Esport Connect (TEC)</strong>, officiellement déclarée le <strong>15 décembre 2025</strong> pour fédérer l'ensemble de l'écosystème local.
+                    </p>
+                </div>
             </div>
         </div>
 
-        <!-- Association Board / Governance (Photographies réelles au lieu d'initiales) -->
-        <div class="glass-card rounded-3xl p-8 sm:p-12 mb-20 border border-white/10">
-            <div class="text-center mb-12">
+        <!-- 3. Les 4 Valeurs Fondamentales -->
+        <div class="mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Notre ADN</span>
+                <h3 class="font-bebas text-4xl text-white uppercase">Les 4 Valeurs Fondamentales</h3>
+                <p class="text-xs text-gray-400 mt-2">Les principes qui guident chacune de nos actions au quotidien</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Collectif -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Collectif</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Fédérer plutôt qu'isoler. La force du nombre permet de porter des projets majeurs qu'une structure seule ne pourrait assumer.
+                    </p>
+                </div>
+
+                <!-- Inclusivité -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Inclusivité</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Un esport et une pratique du jeu vidéo accessibles à tous, sans distinction de niveau de jeu, de genre ou d'âge.
+                    </p>
+                </div>
+
+                <!-- Éthique -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Éthique</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Sensibilisation à une pratique saine, prévention des conduites excessives, lutte contre la toxicité et respect d'autrui.
+                    </p>
+                </div>
+
+                <!-- Proximité -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Proximité</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Ancrage local fort au cœur de Toulouse et rayonnement engagé sur l'ensemble de la région Occitanie.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Notre Projet : Les 3 Piliers Stratégiques (Intégrés de Notre Projet) -->
+        <div class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Vision & Stratégie</span>
+                <h3 class="font-bebas text-4xl sm:text-5xl text-white uppercase">Notre Projet pour l'Esport Toulousain</h3>
+                <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                    Fédérer les structures actives de la métropole pour mutualiser les compétences, porter des événements d'envergure et former la scène compétitive de demain.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pilier 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
+                    <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">01</div>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Réseau d'Associations</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Nous regroupons les associations esportives de Toulouse afin de favoriser les synergies entre elles ainsi qu'avec les entreprises et institutions locales.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Partage d'expériences & collaborations</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Entraide administrative & statutaire</li>
+                    </ul>
+                </div>
+
+                <!-- Pilier 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
+                    <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">02</div>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Organisation d'Événements</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        L'Occitanie Gaming Festival est l'événement majeur du collectif. Il démontre qu'en jouant collectif, nous accomplissons de grandes choses pour la communauté.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Tournois LAN & Scènes Versus</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Espaces Découvertes, Rétrogaming & Web</li>
+                    </ul>
+                </div>
+
+                <!-- Pilier 3 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
+                    <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">03</div>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Développement Local</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Soutenir la structuration des clubs amateurs pour offrir aux joueurs un parcours clair de la pratique loisir jusqu'au haut niveau compétitif.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Sensibilisation aux usages responsables</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Intégration dans le réseau étudiant régional</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Gouvernance : Notre Bureau Associatif (Intégré de Notre Projet) -->
+        <div class="glass-card rounded-3xl p-8 sm:p-12 mb-16 border border-white/10">
+            <div class="text-center mb-10">
                 <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block">Gouvernance</span>
                 <h3 class="font-bebas text-4xl text-white uppercase">Notre Bureau Associatif</h3>
                 <p class="text-gray-400 text-xs sm:text-sm mt-1 max-w-md mx-auto">
@@ -384,7 +483,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <!-- Julien Paltou -->
                 <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
                     <div class="relative w-24 h-24 mx-auto mb-4">
@@ -401,22 +500,6 @@
                     </div>
                 </div>
 
-                <!-- Esperita -->
-                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
-                    <div class="relative w-24 h-24 mx-auto mb-4">
-                        <img src="media/team/esperita.jpg" alt="Esperita - Secrétaire Générale de Toulouse Esport Connect"
-                            class="w-full h-full object-cover rounded-full border-2 border-brand-red shadow-lg group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-brand-dark" title="Membre actif"></span>
-                    </div>
-                    <h4 class="font-bebas text-2xl text-white">“Esperita”</h4>
-                    <p class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider mb-2">Secrétaire Générale</p>
-                    <p class="text-xs text-gray-400 mb-4">Gestion administrative, accueil des nouveaux clubs et vie statutaire.</p>
-                    <div class="flex justify-center gap-3 text-gray-400 text-sm">
-                        <a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors" aria-label="Email du secrétariat"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Contacter sur Discord"><i class="fa-brands fa-discord"></i></a>
-                    </div>
-                </div>
-
                 <!-- Roro -->
                 <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
                     <div class="relative w-24 h-24 mx-auto mb-4">
@@ -426,7 +509,7 @@
                     </div>
                     <h4 class="font-bebas text-2xl text-white">“Roro”</h4>
                     <p class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider mb-2">Trésorier</p>
-                    <p class="text-xs text-gray-400 mb-4">Finances, partenariats événementiels et logistique matériel mutualisé.</p>
+                    <p class="text-xs text-gray-400 mb-4">Finances, partenariats événementiels et coordination logistique.</p>
                     <div class="flex justify-center gap-3 text-gray-400 text-sm">
                         <a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors" aria-label="Email de la trésorerie"><i class="fa-solid fa-envelope"></i></a>
                         <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Contacter sur Discord"><i class="fa-brands fa-discord"></i></a>
@@ -435,56 +518,64 @@
             </div>
         </div>
 
-        <!-- Adhesion Form Anchor -->
-        <div id="section-adhesion" class="glass-card rounded-3xl p-8 sm:p-12 border border-brand-red/30 glow-red">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-7">
-                    <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Adhésion & Partenariats</span>
-                    <h3 class="font-bebas text-4xl sm:text-5xl text-white uppercase leading-none mb-4">
-                        Vous êtes une association <span class="text-brand-redLight">Toulousaine</span> ?
-                    </h3>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                        Intégrez le réseau Toulouse Esport Connect pour bénéficier d'un accompagnement personnalisé, de relais de communication et d'accès partagé à du matériel d'événementiel.
-                    </p>
-                    <div class="space-y-3 text-xs text-gray-300">
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-redLight"></i> <span><strong>Adhésion gratuite</strong> pour les structures associatives loi 1901</span></div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-redLight"></i> <span>Prêt de matériel informatique, écrans et sonorisation pour vos LANs</span></div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-redLight"></i> <span>Relais sur les réseaux officiels et présence sur les salons régionaux</span></div>
+        <!-- 6. Formulaire de Contact & Coordonnées Directes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-10 items-center">
+            <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block">Échanger avec TEC</span>
+                <h3 class="font-bebas text-4xl text-white">Un Collectif au Service des Joueurs et des Clubs</h3>
+                <p>
+                    Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence, de fédération et de structuration.
+                </p>
+                <p>
+                    Notre mission est de rompre le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et responsable du jeu vidéo.
+                </p>
+                <div class="p-4 bg-brand-dark rounded-xl border border-white/10 flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-brand-red/20 text-brand-redLight flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div>
+                        <p class="font-rajdhani font-bold text-white text-xs uppercase tracking-wider">Un réseau ouvert et engagé</p>
+                        <p class="text-xs text-gray-400">Associations, bénévoles, joueurs ou partenaires institutionnels : contactez-nous pour échanger sur vos projets.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="lg:col-span-5 bg-brand-dark p-6 sm:p-8 rounded-2xl border border-white/10">
-                    <form onsubmit="event.preventDefault(); handleAdhesionSubmit(this);" class="space-y-4">
-                        <div>
-                            <label for="adhesion-name" class="block text-xs font-medium text-gray-300 mb-1">Nom de votre structure</label>
-                            <input type="text" id="adhesion-name" name="structureName" required placeholder="Ex: Toulouse Esport Club"
-                                class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                        </div>
-                        <div>
-                            <label for="adhesion-email" class="block text-xs font-medium text-gray-300 mb-1">Email du contact principal</label>
-                            <input type="email" id="adhesion-email" name="contactEmail" required placeholder="contact@votre-asso.fr"
-                                class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                        </div>
-                        <div>
-                            <label for="adhesion-domain" class="block text-xs font-medium text-gray-300 mb-1">Domaine d'activité / Jeux principaux</label>
-                            <input type="text" id="adhesion-domain" name="activityDomain" placeholder="Versus Fighting, LoL, Retrogaming..."
-                                class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase py-3 rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">
-                            Envoyer la candidature
-                        </button>
-                    </form>
-                </div>
+            <div class="glass-card p-8 rounded-3xl border border-white/10">
+                <h3 class="font-bebas text-3xl text-white mb-2">Nous Contacter</h3>
+                <p class="text-xs text-gray-400 mb-6">Réponse garantie sous 48h par le bureau de l'association</p>
+                <form onsubmit="event.preventDefault(); handleContactSubmit(this);" class="space-y-4">
+                    <div>
+                        <label for="contact-name" class="block text-xs font-medium text-gray-300 mb-1">Votre Nom / Pseudo <span class="text-brand-redLight">*</span></label>
+                        <input type="text" id="contact-name" name="name" required placeholder="Alex Dupont"
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-xs font-medium text-gray-300 mb-1">Votre adresse email <span class="text-brand-redLight">*</span></label>
+                        <input type="email" id="contact-email" name="email" required placeholder="alex@domaine.fr"
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-xs font-medium text-gray-300 mb-1">Votre message <span class="text-brand-redLight">*</span></label>
+                        <textarea id="contact-message" name="message" rows="4" required
+                            placeholder="Bonjour, je souhaite contacter le bureau TEC pour..."
+                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase py-3 rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">
+                        Envoyer le Message
+                    </button>
+                </form>
             </div>
         </div>
+
     </div>
 </section>
         <!-- ==========================================================================
-   PAGE 3: ASSOCIATIONS
+   PAGE 3: ASSOCIATIONS (AVEC ESPACE ADHÉSION & BÉNÉVOLAT)
    ========================================================================== -->
 <section id="page-associations" class="page-view">
     <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         <!-- Header -->
         <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Les Acteurs du Réseau</span>
@@ -521,79 +612,509 @@
         <!-- LOGO SHOWCASE GRID (Accessible <button> elements with Keyboard Focus) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-6" id="logo-grid">
 
-            <!-- 1. Oserv esport -->
+            <!-- 1. OSV Esport -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
+                data-id="osv-esport"
                 aria-haspopup="dialog"
-                aria-label="Voir la fiche détaillée de Oserv Esport"
-                onclick="openModal('Oserv Esport', 'Association et club compétitif toulousain majeur impliqué dans la formation des joueurs, la compétition et l\'événementiel régional.', 'contact@oserv-esport.fr', 'media/oserv-transparent.png', 'League of Legends, Rocket League, Valorant', this)">
+                aria-label="Voir la fiche détaillée de OSV Esport"
+                onclick="openModalById('osv-esport', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="media/oserv-transparent.png" alt="Logo Oserv Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/oserv-transparent.png" alt="Logo OSV Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Oserv Esport</span>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">OSV Esport</span>
             </button>
 
             <!-- 2. Voxel -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="retro"
+                data-id="voxel"
                 aria-haspopup="dialog"
                 aria-label="Voir la fiche détaillée de Voxel"
-                onclick="openModal('Voxel', 'Association toulousaine dédiée aux événements ludiques, à l\'organisation de LAN parties et aux rendez-vous récréatifs autour du jeu vidéo.', 'contact@voxel-esport.fr', 'media/voxel-transparent.png', 'LAN Party, Multi-jeux, Rétrogaming', this)">
+                onclick="openModalById('voxel', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="media/voxel-transparent.png" alt="Logo Voxel" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/voxel-transparent.png" alt="Logo Voxel" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Voxel</span>
             </button>
 
-            <!-- 3. Dragon esport -->
+            <!-- 3. Dragons Esport -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
+                data-id="dragons-esport"
                 aria-haspopup="dialog"
-                aria-label="Voir la fiche détaillée de Dragon Esport"
-                onclick="openModal('Dragon Esport', 'Club esportif associatif engagé dans les circuits compétitifs et la promotion d\'une pratique engagée du jeu vidéo.', 'contact@dragonesport.fr', 'media/dragon-transparent.png', 'Valorant, CS2, League of Legends', this)">
+                aria-label="Voir la fiche détaillée de Dragons Esport"
+                onclick="openModalById('dragons-esport', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="media/dragon-transparent.png" alt="Logo Dragon Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/dragon-transparent.png" alt="Logo Dragons Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Dragon Esport</span>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Dragons Esport</span>
             </button>
 
-            <!-- 4. fLUKY BOYS -->
+            <!-- 4. Flucky Boys -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="etudiant"
+                data-id="flucky-boys"
                 aria-haspopup="dialog"
-                aria-label="Voir la fiche détaillée de fLUKY BOYS"
-                onclick="openModal('fLUKY BOYS', 'Collectif et association toulousaine réunissant joueurs passionnés, créateurs de contenus et équipes de compétition.', 'contact@flukyboys.fr', 'media/fluky-boys-transparent.png', 'Rocket League, Overwatch 2, TFT', this)">
+                aria-label="Voir la fiche détaillée de Flucky Boys"
+                onclick="openModalById('flucky-boys', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="media/fluky-boys-transparent.png" alt="Logo fLUKY BOYS" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/fluky-boys-transparent.png" alt="Logo Flucky Boys" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">fLUKY BOYS</span>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Flucky Boys</span>
             </button>
 
             <!-- 5. Lightning Project -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
+                data-id="lightning-project"
                 aria-haspopup="dialog"
                 aria-label="Voir la fiche détaillée de Lightning Project"
-                onclick="openModal('Lightning Project', 'Structure associative axée sur l\'accompagnement de joueurs, l\'organisation de tournois et l\'animation esport locale.', 'contact@lightningproject.fr', 'media/lightning-transparent.png', 'Trackmania, Smash Bros, FC24', this)">
+                onclick="openModalById('lightning-project', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-900 to-black border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="media/lightning-transparent.png" alt="Logo Lightning Project" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <img src="media/lightning-transparent.png" alt="Logo Lightning Project" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Lightning Project</span>
             </button>
 
-            <!-- 6. Toulouse versus fighting -->
+            <!-- 6. Toulouse Versus Fighters -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="versus"
+                data-id="toulouse-versus-fighters"
                 aria-haspopup="dialog"
-                aria-label="Voir la fiche détaillée de Toulouse Versus Fighting"
-                onclick="openModal('Toulouse Versus Fighting', 'Association de référence dédiée à la communauté des jeux de combat à Toulouse. Sessions hebdomadaires, ranking et tournois.', 'contact@toulousefighting.fr', 'media/tvsf-transparent.png', 'Street Fighter 6, Tekken 8, Guilty Gear, Smash', this)">
+                aria-label="Voir la fiche détaillée de Toulouse Versus Fighters"
+                onclick="openModalById('toulouse-versus-fighters', this)">
                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-950 border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
-                    <img src="media/tvsf-transparent.png" alt="Logo Toulouse Versus Fighting" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_2px_rgba(255,255,255,0.6)]">
+                    <img src="media/tvsf-transparent.png" alt="Logo Toulouse Versus Fighters" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_2px_rgba(255,255,255,0.6)]">
                 </div>
-                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Toulouse Versus Fighting</span>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Toulouse Versus Fighters</span>
             </button>
 
+        </div> <!-- /LOGO-GRID -->
+
+        <!-- ==================================================================
+             SECTION ADHÉSION & BÉNÉVOLAT (Rejoindre le Réseau)
+             ================================================================== -->
+        <div id="section-adhesion" class="mt-20 pt-16 border-t border-white/10 space-y-12">
+            
+            <!-- En-tête de section -->
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Formules & Cotisations</span>
+                <h3 class="font-bebas text-4xl sm:text-5xl text-white uppercase tracking-wide">
+                    Rejoindre le Collectif Toulouse Esport Connect
+                </h3>
+                <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+                    Rejoignez le réseau esport toulousain. Que vous soyez un passionné, un bénévole prêt à donner un coup de main ou une structure associative, il y a une place pour vous dans le collectif.
+                </p>
+            </div>
+
+            <!-- Grille Tarifaire (Cartes de Prix interactives) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+                
+                <!-- Carte Tarif 1 : Membres Individuels (1 € / an) -->
+                <div id="card-adhesion-individuel" onclick="switchAdhesionTab('individuel', true);"
+                    class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-red ring-2 ring-brand-red/40 bg-brand-red/5 hover:border-brand-red transition-all flex flex-col justify-between relative overflow-hidden group shadow-xl glow-red-sm cursor-pointer">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between gap-4 mb-4 border-b border-white/10 pb-4">
+                            <div>
+                                <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-[11px] font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30">
+                                    Personne Physique
+                                </span>
+                                <h4 class="font-bebas text-3xl text-white mt-2">Membres Individuels</h4>
+                                <p class="text-xs text-gray-300">Joueurs, bénévoles, supporters et passionnés</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bebas text-5xl sm:text-6xl text-brand-redLight leading-none">1€</span>
+                                <span class="block font-rajdhani text-xs text-gray-400 font-bold uppercase">/ an</span>
+                            </div>
+                        </div>
+
+                        <!-- Liste détaillée des avantages (OLDadhesion.html) -->
+                        <div class="space-y-3.5 text-xs text-gray-300 py-2">
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Rejoindre le réseau esport toulousain
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès à une communauté locale active</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Rencontres et networking avec les acteurs esport</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Participation aux événements et soirées TEC</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Participer à la vie associative
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Droit de vote en Assemblée Générale</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Possibilité de proposer des projets et des idées</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Rejoindre les groupes de travail thématiques</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Gagner en visibilité
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Mise en avant des profils et projets membres</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Valorisation des compétences au sein du réseau</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Accéder à des ressources
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès aux espaces privés Discord TEC</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Retours d'expériences, conseils et veille régionale</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-3 border-t border-white/10">
+                        <button type="button" id="btn-select-individuel" onclick="event.stopPropagation(); switchAdhesionTab('individuel', true);"
+                            class="w-full py-3 px-4 rounded-xl bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all shadow glow-red-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Formule sélectionnée (1 € / an)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Carte Tarif 2 : Entité Morale / Association (50 € / an) -->
+                <div id="card-adhesion-asso" onclick="switchAdhesionTab('asso', true);"
+                    class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-brand-red/50 transition-all flex flex-col justify-between relative overflow-hidden group cursor-pointer">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red/5 rounded-full blur-2xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between gap-4 mb-4 border-b border-white/10 pb-4">
+                            <div>
+                                <span class="px-3 py-1 rounded-full bg-white/10 text-gray-300 text-[11px] font-rajdhani font-bold uppercase tracking-wider border border-white/10">
+                                    Personne Morale
+                                </span>
+                                <h4 class="font-bebas text-3xl text-white mt-2">Entité Morale (Association)</h4>
+                                <p class="text-xs text-gray-400">Clubs, associations loi 1901 et collectifs</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bebas text-5xl sm:text-6xl text-white leading-none">50€</span>
+                                <span class="block font-rajdhani text-xs text-brand-redLight font-bold uppercase">/ an</span>
+                            </div>
+                        </div>
+
+                        <!-- Liste détaillée des avantages (OLDadhesion.html) -->
+                        <div class="space-y-3.5 text-xs text-gray-300 py-2">
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Intégrer un réseau structuré
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès direct aux acteurs esport toulousains</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Développement de collaborations locales</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Projets et réflexions partagées</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Gagner en visibilité
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Présence sur les supports officiels TEC</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Relais de vos actualités et tournois</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Développer ses projets
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Mise en relation avec bénévoles et compétences</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Partage d'expérience entre structures associatives</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Échanges sur l'organisation événementielle</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
+                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Participer à l'écosystème
+                                </h5>
+                                <ul class="space-y-1 pl-4 text-gray-400">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> 1 voix délibérative en Assemblée Générale</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Participation aux orientations du collectif</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-3 border-t border-white/10">
+                        <button type="button" id="btn-select-asso" onclick="event.stopPropagation(); switchAdhesionTab('asso', true);"
+                            class="w-full py-3 px-4 rounded-xl bg-brand-dark hover:bg-brand-red text-gray-300 hover:text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all border border-brand-red/40 hover:border-brand-red flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-building"></i>
+                            <span>Choisir cette formule (50 € / an)</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Espace Formulaires Interactifs -->
+            <div id="form-container-card" class="glass-card rounded-3xl p-5 sm:p-8 md:p-10 border border-brand-red/30 glow-red overflow-hidden relative w-full scroll-mt-24">
+                
+                <!-- Onglets de sélection de formulaire responsive -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 border-b border-white/10 pb-6" role="tablist" aria-label="Formulaires d'adhésion">
+                    <button type="button" id="tab-adhesion-individuel" onclick="switchAdhesionTab('individuel', false)" role="tab" aria-selected="true" aria-controls="panel-adhesion-individuel"
+                        class="p-4 rounded-2xl font-rajdhani transition-all flex items-center gap-3.5 bg-brand-red text-white shadow-lg glow-red-sm border border-brand-red text-left group">
+                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg flex-shrink-0">
+                            <i class="fa-solid fa-user text-white"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="font-bebas text-xl text-white leading-none tracking-wide">Candidature Bénévole</div>
+                            <div class="text-xs text-white/80 font-rajdhani font-semibold mt-0.5">Membre Individuel • 1 € / an</div>
+                        </div>
+                    </button>
+                    <button type="button" id="tab-adhesion-asso" onclick="switchAdhesionTab('asso', false)" role="tab" aria-selected="false" aria-controls="panel-adhesion-asso"
+                        class="p-4 rounded-2xl font-rajdhani transition-all flex items-center gap-3.5 bg-brand-dark/80 text-gray-400 hover:text-white border border-brand-cardBorder hover:border-brand-red/40 text-left group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-lg flex-shrink-0 text-gray-400 group-hover:text-brand-redLight">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="font-bebas text-xl text-white leading-none tracking-wide">Structure Associative</div>
+                            <div class="text-xs text-gray-400 font-rajdhani font-semibold mt-0.5">Affiliation Club • 50 € / an</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Formulaire 1 : Candidature Bénévole Individuel (1 € / an) -->
+                <div id="panel-adhesion-individuel" role="tabpanel" aria-labelledby="tab-adhesion-individuel" class="space-y-6">
+                    <div class="max-w-3xl">
+                        <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-1">Donner un coup de main • Adhésion 1 € / an</span>
+                        <h4 class="font-bebas text-3xl sm:text-4xl text-white uppercase leading-tight">
+                            Formulaire de Candidature Bénévole Individuel
+                        </h4>
+                        <p class="text-gray-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Communication, graphisme, régie technique, accueil du public, presse, logistique : <strong>les besoins sont variés et il n'est pas nécessaire d'être un joueur compétitif pour participer</strong>. Remplissez ce formulaire pour rejoindre l'équipe bénévole de TEC et participer à nos projets.
+                        </p>
+                    </div>
+
+                    <!-- Notification de confirmation de soumission Bénévole -->
+                    <div id="vol-success-box" class="hidden p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-center space-y-2">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h5 class="font-bebas text-2xl text-white">Candidature transmise avec succès !</h5>
+                        <p class="text-xs text-gray-300 max-w-md mx-auto" id="vol-success-text">
+                            Merci pour votre engagement ! Le bureau de Toulouse Esport Connect vous recontactera rapidement par email et sur Discord pour finaliser votre adhésion.
+                        </p>
+                        <button type="button" onclick="resetVolunteerForm()" class="mt-2 px-4 py-2 rounded-lg bg-brand-dark border border-white/10 text-xs font-rajdhani font-bold text-white hover:border-brand-red">
+                            Soumettre une autre réponse
+                        </button>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); handleVolunteerSubmit(this);" class="space-y-6" id="form-volunteer">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="vol-fullname" class="block text-xs font-medium text-gray-300 mb-1">Nom & Prénom <span class="text-brand-redLight">*</span></label>
+                                <input type="text" id="vol-fullname" name="fullname" required placeholder="Ex: Thomas Dupont"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                            <div>
+                                <label for="vol-pseudo" class="block text-xs font-medium text-gray-300 mb-1">Pseudo gaming / d'usage <span class="text-gray-500">(optionnel)</span></label>
+                                <input type="text" id="vol-pseudo" name="pseudo" placeholder="Ex: NeoToulouse"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="vol-email" class="block text-xs font-medium text-gray-300 mb-1">Adresse Email <span class="text-brand-redLight">*</span></label>
+                                <input type="email" id="vol-email" name="email" required placeholder="thomas@domaine.fr"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                            <div>
+                                <label for="vol-discord" class="block text-xs font-medium text-gray-300 mb-1">Identifiant Discord <span class="text-brand-redLight">*</span></label>
+                                <input type="text" id="vol-discord" name="discord" required placeholder="Ex: thomas_tec ou thomas#1234"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                        </div>
+
+                        <!-- Domaines de compétences et d'action -->
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-2">
+                                Domaines où vous souhaitez vous investir <span class="text-brand-redLight">*</span> <span class="text-gray-500 font-normal">(plusieurs choix possibles)</span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Régie technique & Streaming" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">🎙️ Régie & Streaming</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Communication & Réseaux Sociaux" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">📱 Communication & Réseaux</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Graphisme, Vidéo & Création" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">🎨 Graphisme & Vidéo</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Accueil, Billetterie & Staffing" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">🎟️ Accueil & Billetterie</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Presse, Rédaction & Photographie" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">📰 Presse, Rédaction & Photo</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Logistique & Montage événementiel" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">🛠️ Logistique & Montage</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Arbitrage & Gestion de tournois" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">⚖️ Arbitrage & Tournois</span>
+                                </label>
+                                <label class="flex items-start gap-2.5 p-3 rounded-xl bg-brand-dark/90 border border-brand-cardBorder hover:border-brand-red/60 cursor-pointer transition-all text-xs text-gray-200 group select-none min-w-0">
+                                    <input type="checkbox" name="skills" value="Projets associatifs & Vie du collectif" class="mt-0.5 accent-brand-red rounded flex-shrink-0">
+                                    <span class="break-words leading-snug">💡 Projets & Vie associative</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Disponibilités -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="vol-avail" class="block text-xs font-medium text-gray-300 mb-1">Disponibilités principales</label>
+                                <select id="vol-avail" name="availability"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                                    <option value="Événements ponctuels (week-ends & salons)">Événements ponctuels (week-ends & salons)</option>
+                                    <option value="Régulier (quelques heures par semaine)">Régulier (quelques heures par semaine)</option>
+                                    <option value="Soirées en semaine uniquement">Soirées en semaine uniquement</option>
+                                    <option value="Week-ends uniquement">Week-ends uniquement</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="vol-games" class="block text-xs font-medium text-gray-300 mb-1">Jeux ou scènes de prédilection <span class="text-gray-500">(optionnel)</span></label>
+                                <input type="text" id="vol-games" name="games" placeholder="SF6, LoL, Rocket League, Smash, Rétrogaming..."
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="vol-message" class="block text-xs font-medium text-gray-300 mb-1">Vos motivations & expériences précédentes</label>
+                            <textarea id="vol-message" name="message" rows="3"
+                                placeholder="Parlez-nous en quelques mots de vous, de ce qui vous motive à rejoindre Toulouse Esport Connect ou de vos expériences associatives / événementielles..."
+                                class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border"></textarea>
+                        </div>
+
+                        <!-- Barre de soumission responsive sans débordement -->
+                        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-brand-dark/95 border border-white/10">
+                            <div class="text-xs text-gray-300">
+                                <span class="font-bold text-white block text-sm font-rajdhani">Cotisation individuelle de 1 € / an</span>
+                                <span class="text-gray-400">Statut de membre adhérent, droit de vote en AG et accès Discord privé.</span>
+                            </div>
+                            <button type="submit" id="btn-submit-volunteer"
+                                class="w-full md:w-auto px-6 py-3.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg transition-all glow-red-sm hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Envoyer ma candidature (1 € / an)</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Formulaire 2 : Candidature Structure Associative (50 € / an) -->
+                <div id="panel-adhesion-asso" role="tabpanel" aria-labelledby="tab-adhesion-asso" class="hidden space-y-6">
+                    <div class="max-w-3xl">
+                        <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-1">Clubs & Collectifs • Cotisation 50 € / an</span>
+                        <h4 class="font-bebas text-3xl sm:text-4xl text-white uppercase leading-tight">
+                            Formulaire d'Affiliation Structure Associative
+                        </h4>
+                        <p class="text-gray-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Vous êtes une association toulousaine ou occitane active dans le domaine du jeu vidéo ou de l'esport ? Rejoignez le réseau pour bénéficier d'un accompagnement personnalisé, de relais de communication et de synergies événementielles.
+                        </p>
+                    </div>
+
+                    <!-- Notification de confirmation de soumission Association -->
+                    <div id="asso-success-box" class="hidden p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-center space-y-2">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h5 class="font-bebas text-2xl text-white">Demande d'affiliation transmise !</h5>
+                        <p class="text-xs text-gray-300 max-w-md mx-auto" id="asso-success-text">
+                            Merci pour votre démarche. Le bureau de TEC examinera votre dossier d'adhésion et vous contactera sous 48h.
+                        </p>
+                        <button type="button" onclick="resetAssoForm()" class="mt-2 px-4 py-2 rounded-lg bg-brand-dark border border-white/10 text-xs font-rajdhani font-bold text-white hover:border-brand-red">
+                            Soumettre une autre demande
+                        </button>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); handleAdhesionSubmit(this);" class="space-y-4" id="form-asso">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="adhesion-name" class="block text-xs font-medium text-gray-300 mb-1">Nom officiel de l'association <span class="text-brand-redLight">*</span></label>
+                                <input type="text" id="adhesion-name" name="structureName" required placeholder="Ex: Toulouse Esport Club"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                            <div>
+                                <label for="adhesion-rna" class="block text-xs font-medium text-gray-300 mb-1">Numéro RNA ou SIRET <span class="text-gray-500">(optionnel)</span></label>
+                                <input type="text" id="adhesion-rna" name="rna" placeholder="Ex: W313000000"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="adhesion-email" class="block text-xs font-medium text-gray-300 mb-1">Email officiel de contact <span class="text-brand-redLight">*</span></label>
+                                <input type="email" id="adhesion-email" name="contactEmail" required placeholder="contact@votre-asso.fr"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                            <div>
+                                <label for="adhesion-contact" class="block text-xs font-medium text-gray-300 mb-1">Nom & Rôle du représentant <span class="text-brand-redLight">*</span></label>
+                                <input type="text" id="adhesion-contact" name="contactPerson" required placeholder="Ex: Julie Martin, Présidente"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="adhesion-domain" class="block text-xs font-medium text-gray-300 mb-1">Domaines d'activités & Jeux phares <span class="text-brand-redLight">*</span></label>
+                                <input type="text" id="adhesion-domain" name="activityDomain" required placeholder="Versus Fighting, LoL, Valorant, Rétrogaming..."
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                            <div>
+                                <label for="adhesion-links" class="block text-xs font-medium text-gray-300 mb-1">Site web ou Réseaux Sociaux <span class="text-gray-500">(optionnel)</span></label>
+                                <input type="text" id="adhesion-links" name="links" placeholder="https://x.com/monasso"
+                                    class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="adhesion-expectations" class="block text-xs font-medium text-gray-300 mb-1">Vos projets et attentes au sein du collectif</label>
+                            <textarea id="adhesion-expectations" name="expectations" rows="3"
+                                placeholder="Décrivez brièvement les projets que vous aimeriez monter en collaboration, vos besoins ou ce que vous souhaitez apporter au réseau..."
+                                class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border"></textarea>
+                        </div>
+
+                        <!-- Barre de soumission responsive sans débordement -->
+                        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-brand-dark/95 border border-white/10">
+                            <div class="text-xs text-gray-300">
+                                <span class="font-bold text-white block text-sm font-rajdhani">Cotisation annuelle de 50 € / an</span>
+                                <span class="text-gray-400">Pour les entités morales (loi 1901) avec 1 voix délibérative en Assemblée Générale.</span>
+                            </div>
+                            <button type="submit" id="btn-submit-asso"
+                                class="w-full md:w-auto px-6 py-3.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg transition-all glow-red-sm hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Déposer la candidature (50 € / an)</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </section>
         <!-- ==========================================================================
@@ -698,7 +1219,7 @@
                     <div>
                         <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Versus Fighting</span>
                         <h4 class="font-bebas text-2xl text-white">Toulouse Fighting Ranking</h4>
-                        <p class="text-xs text-gray-300">Organisé par Toulouse Versus Fighting • Ranking mensuel d'Occitanie sur Street Fighter 6 & Tekken 8.</p>
+                        <p class="text-xs text-gray-300">Organisé par Toulouse Versus Fighters • Ranking mensuel d'Occitanie sur Street Fighter 6 & Tekken 8.</p>
                     </div>
                 </div>
                 <button type="button" onclick="showNotification('Rendez-vous Toulouse Fighting Ranking enregistré dans vos rappels !')"
@@ -717,7 +1238,7 @@
                     <div>
                         <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Esport & Communauté</span>
                         <h4 class="font-bebas text-2xl text-white">Occitanie League - Qualifier #1</h4>
-                        <p class="text-xs text-gray-300">Organisé par Oserv Esport, Dragon Esport & fLUKY BOYS • Qualifications régionales sur Valorant et League of Legends.</p>
+                        <p class="text-xs text-gray-300">Organisé par OSV Esport, Dragons Esport & Flucky Boys • Qualifications régionales sur Valorant et League of Legends.</p>
                     </div>
                 </div>
                 <button type="button" onclick="showNotification('Informations de tournoi Occitanie League enregistrées !')"
@@ -743,74 +1264,6 @@
                     class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
-            </div>
-        </div>
-
-    </div>
-</section>
-        <!-- ==========================================================================
-   PAGE 5: QUI SOMMES-NOUS ?
-   ========================================================================== -->
-<section id="page-qui-sommes-nous" class="page-view">
-    <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <div class="inline-flex items-center justify-center p-1.5 bg-gradient-to-br from-brand-red to-black rounded-3xl shadow-2xl mb-6 glow-red-sm">
-                <img src="media/toulouse-esport-connect-logo.webp" alt="Logo Officiel Toulouse Esport Connect" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover">
-            </div>
-            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation</span>
-            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h2>
-            <p class="text-gray-300 text-base mt-4">
-                Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour unir, valoriser et faire rayonner la scène vidéoludique toulousaine.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 items-center">
-            <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
-                <h3 class="font-bebas text-3xl text-white">Un Collectif au Service des Joueurs et des Clubs</h3>
-                <p>
-                    Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence et de structuration.
-                </p>
-                <p>
-                    Notre mission est de rompre le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et éco-responsable du jeu vidéo.
-                </p>
-
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
-                        <h4 class="font-bebas text-xl text-brand-redLight">Inclusivité</h4>
-                        <p class="text-xs text-gray-400">Ouvert à toutes les sensibilités et tous les niveaux de jeu.</p>
-                    </div>
-                    <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
-                        <h4 class="font-bebas text-xl text-brand-redLight">Proximité</h4>
-                        <p class="text-xs text-gray-400">Ancrage local fort au cœur de la métropole toulousaine.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl border border-white/10">
-                <h3 class="font-bebas text-3xl text-white mb-6">Nous Contacter</h3>
-                <form onsubmit="event.preventDefault(); handleContactSubmit(this);" class="space-y-4">
-                    <div>
-                        <label for="contact-name" class="block text-xs font-medium text-gray-300 mb-1">Votre Nom / Pseudo</label>
-                        <input type="text" id="contact-name" name="name" required placeholder="Alex"
-                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                    </div>
-                    <div>
-                        <label for="contact-email" class="block text-xs font-medium text-gray-300 mb-1">Votre adresse email</label>
-                        <input type="email" id="contact-email" name="email" required placeholder="alex@domaine.fr"
-                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                    </div>
-                    <div>
-                        <label for="contact-message" class="block text-xs font-medium text-gray-300 mb-1">Votre message</label>
-                        <textarea id="contact-message" name="message" rows="4" required
-                            placeholder="Bonjour, je souhaite contacter le bureau TEC pour..."
-                            class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-sm tracking-widest uppercase py-3 rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">
-                        Envoyer le Message
-                    </button>
-                </form>
             </div>
         </div>
 
@@ -849,10 +1302,10 @@
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Navigation</h4>
                 <ul class="space-y-2 text-xs">
                     <li><a href="#accueil" onclick="switchTab('accueil'); return false;" class="hover:text-brand-redLight transition-colors">Accueil</a></li>
-                    <li><a href="#projet" onclick="switchTab('projet'); return false;" class="hover:text-brand-redLight transition-colors">Notre Projet</a></li>
+                    <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
                     <li><a href="#associations" onclick="switchTab('associations'); return false;" class="hover:text-brand-redLight transition-colors">Les Associations</a></li>
                     <li><a href="#evenements" onclick="switchTab('evenements'); return false;" class="hover:text-brand-redLight transition-colors">Événements</a></li>
-                    <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
+                    <li><a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
                 </ul>
             </div>
 
@@ -878,7 +1331,7 @@
         <div class="pt-8 border-t border-white/5 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>&copy; 2026 Toulouse Esport Connect. Association Loi 1901. Tous droits réservés.</p>
             <div class="flex gap-4">
-                <button onclick="showNotification('Mentions Légales : Association Loi 1901 - Siège social à Toulouse, France. Directeur de publication : Julien Paltou.')" class="hover:text-gray-300 transition-colors">Mentions Légales</button>
+                <button type="button" onclick="openLegalModal(this)" class="hover:text-brand-redLight transition-colors underline-offset-4 hover:underline">Mentions Légales</button>
                 <button onclick="showNotification('Politique de Confidentialité : Aucune donnée personnelle n\'est revendue. Vos emails de contact sont strictement utilisés pour échanger avec le bureau TEC.')" class="hover:text-gray-300 transition-colors">Confidentialité</button>
             </div>
         </div>
@@ -900,6 +1353,81 @@
     </div>
 </div>
 
+<!-- Modale accessible des Mentions Légales -->
+<div id="legal-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+    role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-brand-red/40 relative shadow-2xl my-8 animate-fade-in text-left">
+        <button type="button" onclick="closeLegalModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red" aria-label="Fermer les mentions légales">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        
+        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-redLight text-lg">
+                <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div>
+                <h3 id="legal-modal-title" class="font-bebas text-3xl text-white tracking-wide leading-none">Mentions Légales</h3>
+                <p class="font-rajdhani text-xs uppercase tracking-wider text-brand-redLight font-bold">Informations administratives & statutaires</p>
+            </div>
+        </div>
+
+        <div class="space-y-4 text-xs text-gray-300 max-h-[65vh] overflow-y-auto pr-2 custom-scrollbar">
+            <!-- Identification -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-building-shield text-brand-redLight"></i> Identification de l'Association
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-gray-300">
+                    <div><strong class="text-white">Dénomination :</strong> TOULOUSE ESPORT CONNECT (TEC)</div>
+                    <div><strong class="text-white">Forme :</strong> Association déclarée (loi 1901)</div>
+                    <div><strong class="text-white">Catégorie juridique :</strong> 9220 (Association déclarée)</div>
+                    <div><strong class="text-white">Économie Sociale :</strong> Oui (Champ de l'ESS)</div>
+                    <div><strong class="text-white">Numéro RNA :</strong> <span class="font-mono text-brand-redLight">W313041561</span></div>
+                    <div><strong class="text-white">Code APE / NAF :</strong> 93.12Z (Clubs de sports)</div>
+                    <div><strong class="text-white">Numéro SIREN :</strong> <span class="font-mono text-white">999 816 069</span></div>
+                    <div><strong class="text-white">Numéro SIRET :</strong> <span class="font-mono text-white">999 816 069 00010</span></div>
+                </div>
+            </div>
+
+            <!-- Déclaration et parution -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-stamp text-brand-redLight"></i> Déclaration Officielle & Publication
+                </h4>
+                <p><strong class="text-white">Date de déclaration :</strong> 15 décembre 2025 auprès de la Sous-préfecture de Muret (Haute-Garonne).</p>
+                <p><strong class="text-white">Parution Journal Officiel :</strong> JOAFE n° 1 du 6 janvier 2026, annonce n° 278.</p>
+                <p><strong class="text-white">Siège social :</strong> 10, route de Bordé Neuve — 31570 Sainte-Foy-d'Aigrefeuille, France <em>(adresse administrative officielle, pas d'accueil physique de public)</em>.</p>
+            </div>
+
+            <!-- Direction et contact -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-user-tie text-brand-redLight"></i> Gouvernance & Publication
+                </h4>
+                <p><strong class="text-white">Directeur de la publication :</strong> Julien Paltou, Président de Toulouse Esport Connect.</p>
+                <p><strong class="text-white">Email officiel :</strong> <a href="mailto:contact@toulouse-esport-connect.fr" class="text-brand-redLight hover:underline">contact@toulouse-esport-connect.fr</a></p>
+                <p><strong class="text-white">Hébergement :</strong> Infrastructure sécurisée européenne déployée pour Toulouse Esport Connect.</p>
+            </div>
+
+            <!-- RGPD -->
+            <div class="bg-brand-dark/80 p-4 rounded-xl border border-white/5 space-y-2">
+                <h4 class="font-rajdhani font-bold text-sm uppercase text-white tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-brand-redLight"></i> Données Personnelles & Confidentialité (RGPD)
+                </h4>
+                <p class="leading-relaxed text-gray-400">
+                    Les informations recueillies via nos formulaires (contact, adhésion, alerte billetterie OGF) font l'objet d'un traitement informatique exclusivement destiné à la gestion de la vie associative et des projets de Toulouse Esport Connect. Aucune donnée n'est cédée, louée ou vendue à des tiers. Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant en nous contactant à <a href="mailto:contact@toulouse-esport-connect.fr" class="text-brand-redLight hover:underline">contact@toulouse-esport-connect.fr</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
+            <button type="button" onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all focus:outline-none focus:ring-2 focus:ring-brand-red">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
+
 <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider px-5 py-3.5 rounded-xl shadow-2xl glow-red-sm border border-white/20 transition-all" role="status" aria-live="polite">
     <div class="flex items-center gap-2.5">
         <i class="fa-solid fa-bell text-sm" id="toast-icon"></i>
@@ -907,8 +1435,70 @@
     </div>
 </div>
 
-    <!-- Application Script -->
-    <script src="js/main.js"></script>
+    <!-- Associations Data (JSON) -->
+    <script type="application/json" id="associations-data">
+[
+  {
+    "id": "osv-esport",
+    "name": "OSV Esport",
+    "category": "esport",
+    "description": "Premier club esport toulousain créé en 2015. Trois axes : performance esport, encadrement des jeunes et accompagnement des entreprises.",
+    "email": "contact@osv-esport.fr",
+    "logo": "media/oserv-transparent.png",
+    "games": "League of Legends, Rocket League, Valorant"
+  },
+  {
+    "id": "voxel",
+    "name": "Voxel",
+    "category": "retro",
+    "description": "Association toulousaine dédiée aux événements ludiques, à l'organisation de LAN parties et aux rendez-vous récréatifs autour du jeu vidéo.",
+    "email": "contact@voxel-esport.fr",
+    "logo": "media/voxel-transparent.png",
+    "games": "LAN Party, Multi-jeux, Rétrogaming"
+  },
+  {
+    "id": "dragons-esport",
+    "name": "Dragons Esport",
+    "category": "esport",
+    "description": "Club comptant plusieurs équipes Overwatch de niveaux différents. Organisateur d'événements en ligne et physiques (« LAN Dragon »).",
+    "email": "contact@dragonesport.fr",
+    "logo": "media/dragon-transparent.png",
+    "games": "Valorant, CS2, Overwatch"
+  },
+  {
+    "id": "flucky-boys",
+    "name": "Flucky Boys",
+    "category": "etudiant",
+    "description": "Collectif et association toulousaine réunissant joueurs passionnés, créateurs de contenus et équipes de compétition.",
+    "email": "contact@fluckyboys.fr",
+    "logo": "media/fluky-boys-transparent.png",
+    "games": "Rocket League, Overwatch 2, TFT"
+  },
+  {
+    "id": "lightning-project",
+    "name": "Lightning Project",
+    "category": "esport",
+    "description": "Structure associative axée sur l'accompagnement de joueurs, l'organisation de tournois et l'animation esport locale.",
+    "email": "contact@lightningproject.fr",
+    "logo": "media/lightning-transparent.png",
+    "games": "Trackmania, Smash Bros, FC24"
+  },
+  {
+    "id": "toulouse-versus-fighters",
+    "name": "Toulouse Versus Fighters",
+    "category": "versus",
+    "description": "Association de référence dédiée à la communauté des jeux de combat à Toulouse. Sessions hebdomadaires, ranking et tournois.",
+    "email": "contact@toulousefighting.fr",
+    "logo": "media/tvsf-transparent.png",
+    "games": "Street Fighter 6, Tekken 8, Guilty Gear, Smash",
+    "imgClass": "drop-shadow-[0_0_2px_rgba(255,255,255,0.6)]",
+    "containerBg": "from-zinc-800 to-zinc-950"
+  }
+]
+    </script>
+
+    <!-- Application Script (Cache Busted) -->
+    <script src="js/main.js?v=1.2.0"></script>
 </body>
 
 </html>

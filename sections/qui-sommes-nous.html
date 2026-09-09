@@ -1,57 +1,242 @@
 <!-- ==========================================================================
-   PAGE 5: QUI SOMMES-NOUS ?
+   PAGE 2: QUI SOMMES-NOUS ? (FUSION AVEC NOTRE PROJET)
    ========================================================================== -->
 <section id="page-qui-sommes-nous" class="page-view">
     <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        <!-- 1. En-tête Principal & Présentation -->
         <div class="text-center max-w-3xl mx-auto mb-16">
             <div class="inline-flex items-center justify-center p-1.5 bg-gradient-to-br from-brand-red to-black rounded-3xl shadow-2xl mb-6 glow-red-sm">
                 <img src="media/toulouse-esport-connect-logo.webp" alt="Logo Officiel Toulouse Esport Connect" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover">
             </div>
-            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation</span>
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation & Projet</span>
             <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h2>
-            <p class="text-gray-300 text-base mt-4">
-                Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour unir, valoriser et faire rayonner la scène vidéoludique toulousaine.
+            <p class="text-gray-300 text-base mt-4 leading-relaxed">
+                Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour fédérer, accompagner et faire rayonner la scène vidéoludique et esportive de la métropole toulousaine et d'Occitanie.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 items-center">
-            <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
-                <h3 class="font-bebas text-3xl text-white">Un Collectif au Service des Joueurs et des Clubs</h3>
-                <p>
-                    Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence et de structuration.
-                </p>
-                <p>
-                    Notre mission est de rompre le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et éco-responsable du jeu vidéo.
-                </p>
-
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
-                        <h4 class="font-bebas text-xl text-brand-redLight">Inclusivité</h4>
-                        <p class="text-xs text-gray-400">Ouvert à toutes les sensibilités et tous les niveaux de jeu.</p>
+        <!-- 2. Bloc Histoire & Genèse (La Mêlée Rose) -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-brand-red/30 mb-16 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-brand-red/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8">
+                <div class="flex-shrink-0">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-redLight text-3xl shadow-lg">
+                        <i class="fa-solid fa-gamepad"></i>
                     </div>
-                    <div class="p-4 bg-brand-dark rounded-xl border border-white/10">
-                        <h4 class="font-bebas text-xl text-brand-redLight">Proximité</h4>
-                        <p class="text-xs text-gray-400">Ancrage local fort au cœur de la métropole toulousaine.</p>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-xs font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30">
+                            Genèse & Histoire
+                        </span>
+                        <span class="text-xs text-gray-400 font-rajdhani uppercase tracking-wider">
+                            Avril 2025 • Naissance du collectif
+                        </span>
+                    </div>
+                    <h3 class="font-bebas text-3xl sm:text-4xl text-white tracking-wide">
+                        De la Mêlée Rose à la Fédération Toulousaine
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        À Toulouse, les clubs et passionnés d'esport étaient nombreux mais évoluaient chacun de leur côté. En <strong>avril 2025</strong>, des échanges décisifs se nouent autour du tournoi de jeux de combat <em>La Mêlée Rose</em>. Le constat s'impose avec évidence : pour porter des événements d'envergure métropolitaine et valoriser nos talents, il faut unir nos forces.
+                    </p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Une soirée fondatrice réunit alors pour la première fois l'ensemble des structures locales autour d'une même table. Cette volonté partagée donne naissance à l'association <strong>Toulouse Esport Connect (TEC)</strong>, officiellement déclarée le <strong>15 décembre 2025</strong> pour fédérer l'ensemble de l'écosystème local.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Les 4 Valeurs Fondamentales -->
+        <div class="mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Notre ADN</span>
+                <h3 class="font-bebas text-4xl text-white uppercase">Les 4 Valeurs Fondamentales</h3>
+                <p class="text-xs text-gray-400 mt-2">Les principes qui guident chacune de nos actions au quotidien</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Collectif -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Collectif</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Fédérer plutôt qu'isoler. La force du nombre permet de porter des projets majeurs qu'une structure seule ne pourrait assumer.
+                    </p>
+                </div>
+
+                <!-- Inclusivité -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Inclusivité</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Un esport et une pratique du jeu vidéo accessibles à tous, sans distinction de niveau de jeu, de genre ou d'âge.
+                    </p>
+                </div>
+
+                <!-- Éthique -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Éthique</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Sensibilisation à une pratique saine, prévention des conduites excessives, lutte contre la toxicité et respect d'autrui.
+                    </p>
+                </div>
+
+                <!-- Proximité -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder hover:border-brand-red/50 transition-all group text-left">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white mb-2">Proximité</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Ancrage local fort au cœur de Toulouse et rayonnement engagé sur l'ensemble de la région Occitanie.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Notre Projet : Les 3 Piliers Stratégiques (Intégrés de Notre Projet) -->
+        <div class="mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Vision & Stratégie</span>
+                <h3 class="font-bebas text-4xl sm:text-5xl text-white uppercase">Notre Projet pour l'Esport Toulousain</h3>
+                <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                    Fédérer les structures actives de la métropole pour mutualiser les compétences, porter des événements d'envergure et former la scène compétitive de demain.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pilier 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
+                    <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">01</div>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Réseau d'Associations</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Nous regroupons les associations esportives de Toulouse afin de favoriser les synergies entre elles ainsi qu'avec les entreprises et institutions locales.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Partage d'expériences & collaborations</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Entraide administrative & statutaire</li>
+                    </ul>
+                </div>
+
+                <!-- Pilier 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
+                    <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">02</div>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Organisation d'Événements</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        L'Occitanie Gaming Festival est l'événement majeur du collectif. Il démontre qu'en jouant collectif, nous accomplissons de grandes choses pour la communauté.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Tournois LAN & Scènes Versus</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Espaces Découvertes, Rétrogaming & Web</li>
+                    </ul>
+                </div>
+
+                <!-- Pilier 3 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
+                    <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">03</div>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Développement Local</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Soutenir la structuration des clubs amateurs pour offrir aux joueurs un parcours clair de la pratique loisir jusqu'au haut niveau compétitif.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Sensibilisation aux usages responsables</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Intégration dans le réseau étudiant régional</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Gouvernance : Notre Bureau Associatif (Intégré de Notre Projet) -->
+        <div class="glass-card rounded-3xl p-8 sm:p-12 mb-16 border border-white/10">
+            <div class="text-center mb-10">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block">Gouvernance</span>
+                <h3 class="font-bebas text-4xl text-white uppercase">Notre Bureau Associatif</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1 max-w-md mx-auto">
+                    Une équipe de passionnés engagés au quotidien pour porter la voix du jeu vidéo toulousain.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <!-- Julien Paltou -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="media/team/julien-paltou.jpg" alt="Julien “Lymle” Paltou - Président de Toulouse Esport Connect"
+                            class="w-full h-full object-cover rounded-full border-2 border-brand-red shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-brand-dark" title="Membre actif"></span>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white">Julien “Lymle” Paltou</h4>
+                    <p class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider mb-2">Président</p>
+                    <p class="text-xs text-gray-400 mb-4">Coordinateur des projets métropolitains et relations institutionnelles.</p>
+                    <div class="flex justify-center gap-3 text-gray-400 text-sm">
+                        <a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors" aria-label="Email de Julien Paltou"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Contacter sur Discord"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <!-- Roro -->
+                <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="media/team/roro.jpg" alt="Roro - Trésorier de Toulouse Esport Connect"
+                            class="w-full h-full object-cover rounded-full border-2 border-brand-red shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-brand-dark" title="Membre actif"></span>
+                    </div>
+                    <h4 class="font-bebas text-2xl text-white">“Roro”</h4>
+                    <p class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider mb-2">Trésorier</p>
+                    <p class="text-xs text-gray-400 mb-4">Finances, partenariats événementiels et coordination logistique.</p>
+                    <div class="flex justify-center gap-3 text-gray-400 text-sm">
+                        <a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors" aria-label="Email de la trésorerie"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Contacter sur Discord"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Formulaire de Contact & Coordonnées Directes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-10 items-center">
+            <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
+                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block">Échanger avec TEC</span>
+                <h3 class="font-bebas text-4xl text-white">Un Collectif au Service des Joueurs et des Clubs</h3>
+                <p>
+                    Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence, de fédération et de structuration.
+                </p>
+                <p>
+                    Notre mission est de rompre le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et responsable du jeu vidéo.
+                </p>
+                <div class="p-4 bg-brand-dark rounded-xl border border-white/10 flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-brand-red/20 text-brand-redLight flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div>
+                        <p class="font-rajdhani font-bold text-white text-xs uppercase tracking-wider">Un réseau ouvert et engagé</p>
+                        <p class="text-xs text-gray-400">Associations, bénévoles, joueurs ou partenaires institutionnels : contactez-nous pour échanger sur vos projets.</p>
                     </div>
                 </div>
             </div>
 
             <div class="glass-card p-8 rounded-3xl border border-white/10">
-                <h3 class="font-bebas text-3xl text-white mb-6">Nous Contacter</h3>
+                <h3 class="font-bebas text-3xl text-white mb-2">Nous Contacter</h3>
+                <p class="text-xs text-gray-400 mb-6">Réponse garantie sous 48h par le bureau de l'association</p>
                 <form onsubmit="event.preventDefault(); handleContactSubmit(this);" class="space-y-4">
                     <div>
-                        <label for="contact-name" class="block text-xs font-medium text-gray-300 mb-1">Votre Nom / Pseudo</label>
-                        <input type="text" id="contact-name" name="name" required placeholder="Alex"
+                        <label for="contact-name" class="block text-xs font-medium text-gray-300 mb-1">Votre Nom / Pseudo <span class="text-brand-redLight">*</span></label>
+                        <input type="text" id="contact-name" name="name" required placeholder="Alex Dupont"
                             class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
                     </div>
                     <div>
-                        <label for="contact-email" class="block text-xs font-medium text-gray-300 mb-1">Votre adresse email</label>
+                        <label for="contact-email" class="block text-xs font-medium text-gray-300 mb-1">Votre adresse email <span class="text-brand-redLight">*</span></label>
                         <input type="email" id="contact-email" name="email" required placeholder="alex@domaine.fr"
                             class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
                     </div>
                     <div>
-                        <label for="contact-message" class="block text-xs font-medium text-gray-300 mb-1">Votre message</label>
+                        <label for="contact-message" class="block text-xs font-medium text-gray-300 mb-1">Votre message <span class="text-brand-redLight">*</span></label>
                         <textarea id="contact-message" name="message" rows="4" required
                             placeholder="Bonjour, je souhaite contacter le bureau TEC pour..."
                             class="w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"></textarea>

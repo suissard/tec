@@ -9,7 +9,9 @@ const path = require('path');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const SECTIONS_DIR = path.join(ROOT_DIR, 'sections');
+const DATA_DIR = path.join(ROOT_DIR, 'data');
 const OUTPUT_HTML = path.join(ROOT_DIR, 'index.html');
+const ASSOC_JSON_PATH = path.join(DATA_DIR, 'associations.json');
 
 function readSection(fileName) {
   const filePath = path.join(SECTIONS_DIR, fileName);
@@ -19,15 +21,59 @@ function readSection(fileName) {
   return fs.readFileSync(filePath, 'utf8').trim();
 }
 
+function getAssociations() {
+  if (fs.existsSync(ASSOC_JSON_PATH)) {
+    try {
+      return JSON.parse(fs.readFileSync(ASSOC_JSON_PATH, 'utf8'));
+    } catch (e) {
+      console.error('⚠️ Erreur lecture data/associations.json:', e);
+    }
+  }
+  return [];
+}
+
+function renderAssocGrid(associations) {
+  return associations.map((assoc, idx) => {
+    const containerBg = assoc.containerBg || 'from-zinc-900 to-black';
+    const imgClass = assoc.imgClass || '';
+    return `            <!-- ${idx + 1}. ${assoc.name} -->
+            <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
+                data-cat="${assoc.category}"
+                data-id="${assoc.id}"
+                aria-haspopup="dialog"
+                aria-label="Voir la fiche détaillée de ${assoc.name}"
+                onclick="openModalById('${assoc.id}', this)">
+                <div class="w-24 h-24 rounded-2xl bg-gradient-to-br ${containerBg} border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
+                    <img src="${assoc.logo}" alt="Logo ${assoc.name}" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ${imgClass}">
+                </div>
+                <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">${assoc.name}</span>
+            </button>`;
+  }).join('\n\n');
+}
+
 function assembleHtml() {
   console.log('🔨 Assembling sections into index.html...');
 
+  const associationsList = getAssociations();
+  console.log(`📦 Loaded ${associationsList.length} associations from data/associations.json`);
+
   const header = readSection('header.html');
   const accueil = readSection('accueil.html');
-  const projet = readSection('projet.html');
-  const associations = readSection('associations.html');
-  const evenements = readSection('evenements.html');
   const quiSommesNous = readSection('qui-sommes-nous.html');
+  let associations = readSection('associations.html');
+
+  if (associationsList.length > 0) {
+    const gridHtml = renderAssocGrid(associationsList);
+    associations = associations.replace(
+      /(<div class="grid [^"]*" id="logo-grid">)[\s\S]*?(<\/div>\s*<!-- \/LOGO-GRID -->)/,
+      `$1\n\n${gridHtml}\n\n        $2`
+    );
+    // Sync clean grid back to sections/associations.html
+    const assocSectionPath = path.join(SECTIONS_DIR, 'associations.html');
+    fs.writeFileSync(assocSectionPath, associations + '\n', 'utf8');
+  }
+
+  const evenements = readSection('evenements.html');
   const footer = readSection('footer.html');
   const modalToast = readSection('modal-toast.html');
 
@@ -136,22 +182,26 @@ function assembleHtml() {
     ${header}
 
     <!-- ==========================================================================
-       MAIN CONTENT CONTAINER
+       MAIN CONTENT CONTAINER (4 PAGES)
        ========================================================================== -->
     <main class="flex-grow">
         ${accueil}
-        ${projet}
+        ${quiSommesNous}
         ${associations}
         ${evenements}
-        ${quiSommesNous}
     </main>
 
     ${footer}
 
     ${modalToast}
 
-    <!-- Application Script -->
-    <script src="js/main.js"></script>
+    <!-- Associations Data (JSON) -->
+    <script type="application/json" id="associations-data">
+${JSON.stringify(associationsList, null, 2)}
+    </script>
+
+    <!-- Application Script (Cache Busted) -->
+    <script src="js/main.js?v=1.2.0"></script>
 </body>
 
 </html>

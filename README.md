@@ -25,7 +25,7 @@ L'application intègre une navigation fluide sans rechargement de page, découp�
 
 ### 2. 🎯 Notre Projet
 - **3 piliers fondamentaux** détaillant la feuille de route du réseau :
-  1. *Réseau d'Associations* : mutualisation des ressources, matériels et synergies locales.
+  1. *Réseau d'Associations* : mutualisation des compétences, synergies locales et projets communs.
   2. *Organisation d'Événements* : portage de projets d'envergure (notamment l'*Occitanie Gaming Festival*).
   3. *Développement Local* : accompagnement des clubs amateurs et formation citoyenne / étudiante.
 - **Gouvernance & Bureau associatif** : présentation de l'équipe dirigeante.
@@ -114,7 +114,6 @@ tec/
     ├── og-banner.jpg           # Bannière Open Graph / Twitter Card
     ├── team/                   # Photos des membres du bureau associatif
     │   ├── julien-paltou.jpg
-    │   ├── esperita.jpg
     │   └── roro.jpg
     ├── oserv-transparent.png
     ├── voxel-transparent.png

@@ -27,7 +27,7 @@
 - [x] **Contrastes WCAG AA** : le texte rouge vif `#E30613` sur fond `#0B0B0E` (ratio ~3.8:1) était insuffisant pour les petits caractères.
   - *Résolu* : Création d'une teinte accessible `brand.redLight` (`#FF3847`, ratio de contraste > 4.8:1 conforme WCAG 2.1 AA) appliquée à l'ensemble des métadonnées, badges, textes courts et liens d'interaction.
 - [x] **Crédibilité humaine** : les cartes de gouvernance utilisaient des initiales génériques ("JP", "ESP", "RO").
-  - *Résolu* : Intégration de photographies réalistes de portrait esport pour Julien Paltou (Président), Esperita (Secrétaire) et Roro (Trésorier) dans `media/team/`, accompagnées de leurs rôles et contacts.
+  - *Résolu* : Intégration de photographies réalistes de portrait esport pour Julien Paltou (Président) et Roro (Trésorier) dans `media/team/`, accompagnées de leurs rôles et contacts. Bureau ajusté à 2 membres avec mise en page centrée.
 - [x] **Identité visuelle de l'association** : absence du visuel officiel de Toulouse Esport Connect (remplacé par un simple bloc textuel "TEC").
   - *Résolu* : Intégration du logo officiel [`media/toulouse-esport-connect-logo.webp`](file:///home/suissard/PROGRAMMATIONS/tec/media/toulouse-esport-connect-logo.webp) dans la barre de navigation supérieure (header), le pied de page (footer), l'en-tête de la section *Qui sommes-nous ?* et les métadonnées Schema.org (`SportsOrganization`).
 
