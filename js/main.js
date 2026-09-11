@@ -223,12 +223,12 @@ function openModal(title, description, email, logoText, games, triggerElement) {
 
     const isImage = logoText && (logoText.includes('/') || logoText.endsWith('.webp') || logoText.endsWith('.png') || logoText.endsWith('.jpg') || logoText.endsWith('.svg') || logoText.includes('<img'));
     const logoHtml = isImage
-        ? (logoText.startsWith('<') ? logoText : `<img src="${logoText}" alt="Logo ${title}" class="w-full h-full object-contain p-1 rounded-xl">`)
+        ? (logoText.startsWith('<') ? logoText : `<img src="${logoText}" alt="Logo ${title}" class="w-full h-full object-contain">`)
         : logoText;
 
     modalContent.innerHTML = `
         <div class="flex items-center gap-4 mb-4">
-            <div class="w-16 h-16 rounded-2xl bg-brand-dark border-2 border-brand-red flex items-center justify-center text-brand-red font-bebas text-2xl shadow-lg overflow-hidden flex-shrink-0">
+            <div class="w-16 h-16 rounded-2xl assoc-logo-badge border border-white/20 flex items-center justify-center text-brand-red font-bebas text-2xl shadow-lg overflow-hidden flex-shrink-0 p-2">
                 ${logoHtml}
             </div>
             <div>

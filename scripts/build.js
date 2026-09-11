@@ -34,7 +34,6 @@ function getAssociations() {
 
 function renderAssocGrid(associations) {
   return associations.map((assoc, idx) => {
-    const containerBg = assoc.containerBg || 'from-zinc-900 to-black';
     const imgClass = assoc.imgClass || '';
     return `            <!-- ${idx + 1}. ${assoc.name} -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
@@ -43,7 +42,7 @@ function renderAssocGrid(associations) {
                 aria-haspopup="dialog"
                 aria-label="Voir la fiche détaillée de ${assoc.name}"
                 onclick="openModalById('${assoc.id}', this)">
-                <div class="w-24 h-24 rounded-2xl bg-gradient-to-br ${containerBg} border-2 border-white/20 group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2">
+                <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
                     <img src="${assoc.logo}" alt="Logo ${assoc.name}" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ${imgClass}">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">${assoc.name}</span>
@@ -121,7 +120,7 @@ function assembleHtml() {
           "name": "Toulouse Esport Connect",
           "alternateName": "TEC",
           "url": "https://toulouse-esport-connect.fr/",
-          "logo": "https://toulouse-esport-connect.fr/media/toulouse-esport-connect-logo.webp",
+          "logo": "https://toulouse-esport-connect.fr/media/logo-clair.svg",
           "description": "Fédération associative pour le développement et la promotion de l'esport à Toulouse et en Occitanie.",
           "address": {
             "@type": "PostalAddress",
