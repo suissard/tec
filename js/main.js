@@ -820,6 +820,47 @@ window.identifyUser = identifyUser;
 window.trackDiscordClick = trackDiscordClick;
 window.trackSocialClick = trackSocialClick;
 window.trackEventInterest = trackEventInterest;
+window.openProtectedEmail = openProtectedEmail;
+
+/**
+ * Ouvre le client de messagerie tout en protégeant les adresses contre le moissonnage (scraping).
+ * Décode la valeur Base64, déclenche l'ouverture du mailto: et copie également l'adresse dans le presse-papier.
+ * @param {HTMLElement} btn - Bouton déclencheur contenant l'attribut data-contact
+ * @param {Event} [event]
+ */
+function openProtectedEmail(btn, event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    if (!btn) return;
+    const encoded = btn.getAttribute('data-contact');
+    if (!encoded) return;
+
+    try {
+        const email = atob(encoded.trim());
+        
+        // Copie dans le presse-papier pour le confort des utilisateurs webmail
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(() => {
+                showNotification(`Messagerie ouverte (${email} copié dans le presse-papier) !`, 'success');
+            }).catch(() => {
+                showNotification(`Ouverture de votre messagerie vers ${email}...`, 'info');
+            });
+        } else {
+            showNotification(`Ouverture de votre messagerie vers ${email}...`, 'info');
+        }
+
+        // Déclenche l'ouverture du client mail par défaut
+        window.location.href = `mailto:${email}`;
+
+        if (typeof trackEvent === 'function') {
+            trackEvent('bureau_email_clicked', { email_domain: email.split('@')[1] });
+        }
+    } catch (e) {
+        console.error('Erreur lors du décodage de l\'adresse email:', e);
+    }
+}
 
 /**
  * Form handler for Contact
