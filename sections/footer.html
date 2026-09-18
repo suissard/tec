@@ -14,10 +14,11 @@
                     </div>
                 </a>
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Le réseau associatif fédérateur du jeu vidéo et de la culture esport à Toulouse et en région Occitanie.
+                    Le collectif associatif de l'esport et du jeu vidéo à Toulouse et en Occitanie.
                 </p>
                 <div class="pt-2">
                     <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                        onclick="trackDiscordClick('footer');"
                         class="inline-flex items-center gap-2 text-xs text-white bg-brand-discord/20 hover:bg-brand-discord px-3 py-1.5 rounded-lg border border-brand-discord/40 transition-all">
                         <i class="fa-brands fa-discord"></i>
                         <span>Rejoindre notre Discord</span>
@@ -32,7 +33,7 @@
                     <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
                     <li><a href="#associations" onclick="switchTab('associations'); return false;" class="hover:text-brand-redLight transition-colors">Les Associations</a></li>
                     <li><a href="#evenements" onclick="switchTab('evenements'); return false;" class="hover:text-brand-redLight transition-colors">Événements</a></li>
-                    <li><a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
+                    <li><a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'adherer_reseau', location: 'footer' }); switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
                 </ul>
             </div>
 
@@ -40,16 +41,16 @@
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Contact</h4>
                 <ul class="space-y-2 text-xs">
                     <li><i class="fa-solid fa-location-dot text-brand-redLight mr-2"></i> Toulouse (31000), France</li>
-                    <li><a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors"><i class="fa-solid fa-envelope text-brand-redLight mr-2"></i> contact@toulouse-esport-connect.fr</a></li>
+                    <li><a href="mailto:contact@toulouse-esport-connect.fr" onclick="trackEvent('contact_email_clicked', { email: 'contact@toulouse-esport-connect.fr', location: 'footer' });" class="hover:text-brand-redLight transition-colors"><i class="fa-solid fa-envelope text-brand-redLight mr-2"></i> contact@toulouse-esport-connect.fr</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Réseaux Sociaux</h4>
                 <div class="flex gap-4 text-xl text-gray-400">
-                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Rejoindre le serveur Discord TEC"><i class="fa-brands fa-discord"></i></a>
-                    <a href="https://www.instagram.com/toulouseec__/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-redLight transition-colors" aria-label="Suivre TEC sur Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://x.com/toulouseec__" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Suivre TEC sur X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" onclick="trackDiscordClick('footer_icon');" class="hover:text-brand-discord transition-colors" aria-label="Rejoindre le serveur Discord TEC"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.instagram.com/toulouseec__/" target="_blank" rel="noopener noreferrer" onclick="trackSocialClick('instagram', 'footer');" class="hover:text-brand-redLight transition-colors" aria-label="Suivre TEC sur Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://x.com/toulouseec__" target="_blank" rel="noopener noreferrer" onclick="trackSocialClick('x_twitter', 'footer');" class="hover:text-white transition-colors" aria-label="Suivre TEC sur X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
 

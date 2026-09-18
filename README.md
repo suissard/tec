@@ -1,8 +1,8 @@
 # 🎮 Toulouse Esport Connect (TEC)
 
-> **Le réseau fédérateur des associations esportives et vidéoludiques toulousaines.**
+> **Le réseau fédérateur des associations esportives toulousaines.**
 
-Bienvenue sur le dépôt du site officiel de **Toulouse Esport Connect (TEC)**, association Loi 1901 dédiée à la valorisation, l'accompagnement et la mise en réseau des acteurs du jeu vidéo et de l'esport dans la métropole toulousaine et en région Occitanie.
+Bienvenue sur le dépôt du site officiel de **Toulouse Esport Connect (TEC)**, association Loi 1901 dédiée à la valorisation, l'accompagnement et la mise en réseau des acteurs de l'esport dans la métropole toulousaine et en région Occitanie.
 
 ---
 
@@ -26,7 +26,7 @@ L'application intègre une navigation fluide sans rechargement de page, découp�
 ### 2. 🎯 Notre Projet
 - **3 piliers fondamentaux** détaillant la feuille de route du réseau :
   1. *Réseau d'Associations* : mutualisation des compétences, synergies locales et projets communs.
-  2. *Organisation d'Événements* : portage de projets d'envergure (notamment l'*Occitanie Gaming Festival*).
+  2. *Organisation d'Événements* : portage de tournois, LANs et projets d'envergure régionale.
   3. *Développement Local* : accompagnement des clubs amateurs et formation citoyenne / étudiante.
 - **Gouvernance & Bureau associatif** : présentation de l'équipe dirigeante.
 - **Formulaire d'adhésion interactif** avec ancre de défilement fluide (`scrollToAdhesion()`) pour les structures candidates.
@@ -45,7 +45,7 @@ L'application intègre une navigation fluide sans rechargement de page, découp�
   - Accessibilité au clavier (fermeture avec la touche `Échap` ou clic en dehors).
 
 ### 4. 📅 Agenda & Événements
-- **Mise en avant de l'événement phare** : focus complet sur l'*Occitanie Gaming Festival* (lieu, dates, disciplines, billetterie).
+- **Programmation des tournois** : vue d'ensemble des tournois, rankings et rassemblements esportifs toulousains.
 - **Planning des rendez-vous à venir** : rankings mensuels, qualifications régionales et LANs communautaires.
 - **Système de notification toast** informant l'utilisateur de la prise en compte de ses interactions.
 
@@ -77,7 +77,7 @@ Le design repose sur une palette sombre et intense contrastée par le rouge embl
 - **HTML5 Sémantique & A11y** : balisage accessible, hiérarchie de titres respectée (1 seul `<h1>`), cartes accessibles au clavier (`<button>`) et référencement optimisé (SEO & JSON-LD).
 - **Tailwind CSS (Compilé & Minifié)** : feuilles de style statiques compilées (`css/tailwind.min.css`) sans CDN au runtime pour des performances optimales (Core Web Vitals).
 - **CSS3 personnalisé** : scrollbar personnalisée, effets de lueur (*glow*), motifs de grille en fond et transitions d'onglets définis dans [`css/style.css`](file:///home/suissard/PROGRAMMATIONS/tec/css/style.css).
-- **Vanilla JavaScript (ES6+)** : routage SPA par Hash (`#associations`, `#evenements`) et `History API`, gestion du bouton retour navigateur, modale accessible avec capture de focus, et persistance des leads (OGF) dans [`js/main.js`](file:///home/suissard/PROGRAMMATIONS/tec/js/main.js).
+- **Vanilla JavaScript (ES6+)** : routage SPA par Hash (`#associations`, `#evenements`) et `History API`, gestion du bouton retour navigateur, modale accessible avec capture de focus dans [`js/main.js`](file:///home/suissard/PROGRAMMATIONS/tec/js/main.js).
 - **Google Fonts** : *Bebas Neue*, *Rajdhani*, *Inter*.
 - **FontAwesome 6** : icônes vectorielles.
 
@@ -99,13 +99,13 @@ tec/
 │   ├── tailwind.min.css        # CSS statique compilé et minifié (24KB)
 │   └── style.css               # Effets visuels, animations, glassmorphism & scrollbar
 ├── js/
-│   └── main.js                 # Routage SPA, historique, modale accessible et leads
+│   └── main.js                 # Routage SPA, historique, modale accessible et tracking
 ├── sections/                   # Composants modulaires synchronisés
 │   ├── header.html             # En-tête avec bouton Discord (+500) et navigation
 │   ├── accueil.html            # Hero banner, statistiques et hub Discord
 │   ├── projet.html             # Piliers, bureau associatif (photos réelles) et adhésion
 │   ├── associations.html       # Galerie accessible des associations affiliées
-│   ├── evenements.html         # Agenda & module d'alerte billetterie OGF
+│   ├── evenements.html         # Agenda & calendrier des tournois
 │   ├── qui-sommes-nous.html    # Valeurs et formulaire de contact
 │   ├── footer.html             # Pied de page et liens sociaux
 │   └── modal-toast.html        # Boîte de dialogue accessible & notifications

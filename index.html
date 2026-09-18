@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toulouse Esport Connect – Le réseau des associations esport toulousaines</title>
-    <meta name="description" content="Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème du jeu vidéo dans la Ville Rose.">
+    <meta name="description" content="Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème de l'esport dans la Ville Rose.">
     <meta name="theme-color" content="#E30613">
 
     <!-- Canonical URL -->
@@ -19,7 +19,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://toulouse-esport-connect.fr/">
     <meta property="og:title" content="Toulouse Esport Connect (TEC) – Réseau des associations esport toulousaines">
-    <meta property="og:description" content="Fédération des acteurs du jeu vidéo et de l'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.">
+    <meta property="og:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.">
     <meta property="og:image" content="media/og-banner.jpg">
     <meta property="og:site_name" content="Toulouse Esport Connect">
     <meta property="og:locale" content="fr_FR">
@@ -28,10 +28,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://toulouse-esport-connect.fr/">
     <meta name="twitter:title" content="Toulouse Esport Connect (TEC) – Réseau Esport Toulousain">
-    <meta name="twitter:description" content="Fédération des acteurs du jeu vidéo et de l'esport à Toulouse : annuaire des clubs, tournois et communauté active.">
+    <meta name="twitter:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, tournois et communauté active.">
     <meta name="twitter:image" content="media/og-banner.jpg">
 
-    <!-- Schema.org JSON-LD (SportsOrganization & Event) -->
+    <!-- Schema.org JSON-LD (SportsOrganization) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -55,29 +55,6 @@
             "https://discord.gg/VH98qQWEhh",
             "https://www.instagram.com/toulouseec__/"
           ]
-        },
-        {
-          "@type": "Event",
-          "@id": "https://toulouse-esport-connect.fr/#ogf2026",
-          "name": "Occitanie Gaming Festival 2026",
-          "description": "Le grand festival et rendez-vous esport annuel réunissant plus de 500 joueurs en compétition, scènes tournois et espaces découvertes.",
-          "startDate": "2026-08-11T09:00:00+02:00",
-          "endDate": "2026-08-12T20:00:00+02:00",
-          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-          "eventStatus": "https://schema.org/EventScheduled",
-          "location": {
-            "@type": "Place",
-            "name": "Hall 8 - Parc des Expositions",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Toulouse",
-              "postalCode": "31400",
-              "addressCountry": "FR"
-            }
-          },
-          "organizer": {
-            "@id": "https://toulouse-esport-connect.fr/#organization"
-          }
         }
       ]
     }
@@ -96,9 +73,20 @@
 
     <!-- Custom Theme Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu fu pu gu bu init Hu zu qu ju Gu Xl Bu Qu Du eh ih nh sh rh oh capture getExtension Uu cu hh calculateEventProperties uh register register_once register_for_session unregister unregister_for_session gh Nu dh getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync mh identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset yh shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty fh Xu createPersonProfile setInternalOrTestUser ph wu opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Ju debug Yl Os getPageViewId captureTraceFeedback captureTraceMetric Ru".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_vpNtMCN68k4QKuEjygkt7WcqqTP7T8rfLj9JKEmE6KRN', {
+            api_host: 'https://eu.i.posthog.com',
+            defaults: '2026-05-30',
+            person_profiles: 'identified_only',
+            capture_pageleave: true
+        })
+    </script>
 </head>
 
-<body class="bg-brand-dark text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white bg-grid-pattern">
+<body class="bg-brand-dark text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white">
 
     <!-- ==========================================================================
    HEADER & NAVIGATION
@@ -135,6 +123,7 @@
             <!-- Header CTA Buttons (Discord + Rejoindre) -->
             <div class="hidden sm:flex items-center gap-3">
                 <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                    onclick="trackDiscordClick('header');"
                     class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-xs tracking-wider uppercase transition-all duration-200 shadow-md hover:scale-105 glow-discord"
                     aria-label="Rejoindre le Discord communautaire (+500 membres)">
                     <i class="fa-brands fa-discord text-sm"></i>
@@ -142,7 +131,7 @@
                     <span class="bg-white/20 text-[10px] px-1.5 py-0.5 rounded-full font-sans font-semibold">+500</span>
                 </a>
 
-                <a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;"
+                <a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'rejoindre_reseau', location: 'header' }); switchTab('associations', true, false); scrollToAdhesion(); return false;"
                     class="relative group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-red text-white font-rajdhani font-bold text-xs tracking-wider uppercase overflow-hidden shadow-lg hover:bg-brand-redHover transition-all duration-300 glow-red-sm hover:scale-105">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Rejoindre le Réseau</span>
@@ -169,11 +158,12 @@
         
         <div class="pt-2 border-t border-white/10 space-y-2">
             <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                onclick="trackDiscordClick('header_mobile');"
                 class="flex items-center justify-center gap-2 w-full text-center py-2.5 bg-brand-discord text-white font-rajdhani font-bold text-xs uppercase tracking-wider rounded-lg shadow">
                 <i class="fa-brands fa-discord"></i>
                 Rejoindre le Discord (+500 membres)
             </a>
-            <a href="#section-adhesion" onclick="switchTab('associations', true, false); toggleMobileMenu(); scrollToAdhesion(); return false;"
+            <a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'rejoindre_reseau', location: 'header_mobile' }); switchTab('associations', true, false); toggleMobileMenu(); scrollToAdhesion(); return false;"
                 class="block w-full text-center py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs rounded-lg uppercase tracking-wider shadow">
                 Rejoindre le réseau
             </a>
@@ -196,7 +186,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-redLight text-xs font-rajdhani font-bold tracking-widest uppercase mb-4 sm:mb-5 glow-red-sm">
                 <span class="w-2 h-2 rounded-full bg-brand-redLight animate-ping"></span>
-                Fédération des Associations Esport Toulousaines
+                Le Collectif des Associations Esport Toulousaines
             </div>
 
             <h1 class="font-bebas text-5xl sm:text-6xl lg:text-7xl tracking-wider text-white uppercase mb-4 leading-none">
@@ -207,20 +197,21 @@
             </h1>
 
             <p class="max-w-2xl mx-auto text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8">
-                Toulouse Esport Connect rassemble et accompagne les associations, joueurs, créateurs et acteurs
-                locaux pour structurer et dynamiser l'écosystème du jeu vidéo dans la Ville Rose.
+                Le point de rencontre des clubs, compétiteurs et passionnés de jeux vidéo dans la métropole toulousaine.
+                Découvrez les associations membres, participez aux tournois locaux et rejoignez la communauté.
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
-                <a href="#associations" onclick="switchTab('associations'); return false;"
+                <a href="#associations" onclick="trackEvent('cta_clicked', { cta_name: 'discover_associations', location: 'hero' }); switchTab('associations'); return false;"
                     class="px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs sm:text-sm tracking-widest uppercase rounded-xl shadow-xl transition-all glow-red hover:scale-105">
                     Découvrir les Associations
                 </a>
-                <a href="#evenements" onclick="switchTab('evenements'); return false;"
+                <a href="#evenements" onclick="trackEvent('cta_clicked', { cta_name: 'view_events', location: 'hero' }); switchTab('evenements'); return false;"
                     class="px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-cardBg hover:bg-brand-accent border border-white/10 text-white font-rajdhani font-bold text-xs sm:text-sm tracking-widest uppercase rounded-xl transition-all hover:scale-105">
                     Voir les Événements
                 </a>
                 <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                    onclick="trackDiscordClick('hero');"
                     class="px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-xs sm:text-sm tracking-widest uppercase rounded-xl transition-all hover:scale-105 flex items-center gap-2 shadow-lg">
                     <i class="fa-brands fa-discord text-base sm:text-lg"></i>
                     <span>Rejoindre le Discord</span>
@@ -249,51 +240,6 @@
         </div>
     </div>
 
-    <!-- Why TEC Section -->
-    <div class="pt-8 pb-12 sm:pt-10 sm:pb-16 bg-black/40 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-6 sm:mb-8">
-                <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-1">Nos Missions</span>
-                <h2 class="font-bebas text-3xl sm:text-4xl text-white uppercase">Pourquoi Toulouse Esport Connect ?</h2>
-                <p class="text-gray-400 text-xs sm:text-sm max-w-xl mx-auto mt-1">
-                    Une structure unifiée pour donner plus d'impact et de soutien à nos communautés locales.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-brand-red/50 transition-all">
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl sm:text-2xl mb-4 sm:mb-6">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <h3 class="font-bebas text-xl sm:text-2xl text-white mb-2">Un Réseau Solidaire</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        Créer des synergies entre associations toulousaines, partager les expériences et les compétences pour grandir ensemble.
-                    </p>
-                </div>
-
-                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-brand-red/50 transition-all">
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl sm:text-2xl mb-4 sm:mb-6">
-                        <i class="fa-solid fa-trophy"></i>
-                    </div>
-                    <h3 class="font-bebas text-xl sm:text-2xl text-white mb-2">Grand Événementiel</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        Co-organiser des tournois majeurs comme l'Occitanie Gaming Festival, des LAN party, conférences et scènes esport physiques.
-                    </p>
-                </div>
-
-                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-brand-red/50 transition-all">
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-redLight text-xl sm:text-2xl mb-4 sm:mb-6">
-                        <i class="fa-solid fa-handshake-simple"></i>
-                    </div>
-                    <h3 class="font-bebas text-xl sm:text-2xl text-white mb-2">Lien Institutionnel</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        Représenter le jeu vidéo et l'esport auprès de la Mairie de Toulouse, des universités et des partenaires économiques régionaux.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Discord Community Callout Banner -->
     <div class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-brand-cardBg via-[#171728] to-brand-cardBg border border-brand-discord/30 relative overflow-hidden shadow-2xl">
@@ -312,6 +258,7 @@
                     </p>
                 </div>
                 <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                    onclick="trackDiscordClick('callout_banner');"
                     class="px-6 py-3.5 bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-xs uppercase tracking-widest rounded-xl transition-all hover:scale-105 flex items-center gap-2 flex-shrink-0 shadow-lg glow-discord">
                     <i class="fa-brands fa-discord text-base"></i>
                     <span>Entrer sur le Discord</span>
@@ -334,7 +281,7 @@
             <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation & Projet</span>
             <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h2>
             <p class="text-gray-300 text-base mt-4 leading-relaxed">
-                Toulouse Esport Connect (TEC) est une association Loi 1901 à but non lucratif créée pour fédérer, accompagner et faire rayonner la scène vidéoludique et esportive de la métropole toulousaine et d'Occitanie.
+                Toulouse Esport Connect réunit les forces vives du jeu vidéo local. Notre mission : soutenir les initiatives associatives, professionnaliser la pratique et faire de Toulouse un pôle esport incontournable.
             </p>
         </div>
 
@@ -357,13 +304,13 @@
                         </span>
                     </div>
                     <h3 class="font-bebas text-3xl sm:text-4xl text-white tracking-wide">
-                        De la Mêlée Rose à la Fédération Toulousaine
+                        De la Mêlée Rose à l'Union Toulousaine
                     </h3>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                        À Toulouse, les clubs et passionnés d'esport étaient nombreux mais évoluaient chacun de leur côté. En <strong>avril 2025</strong>, des échanges décisifs se nouent autour du tournoi de jeux de combat <em>La Mêlée Rose</em>. Le constat s'impose avec évidence : pour porter des événements d'envergure métropolitaine et valoriser nos talents, il faut unir nos forces.
+                        À Toulouse, les clubs et passionnés étaient nombreux mais évoluaient en ordre dispersé. En <strong>avril 2025</strong>, des échanges décisifs se nouent à l'occasion du tournoi de jeux de combat <em>La Mêlée Rose</em>. Le constat s'impose : pour organiser des rendez-vous majeurs et valoriser les talents d'ici, il faut avancer ensemble.
                     </p>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                        Une soirée fondatrice réunit alors pour la première fois l'ensemble des structures locales autour d'une même table. Cette volonté partagée donne naissance à l'association <strong>Toulouse Esport Connect (TEC)</strong>, officiellement déclarée le <strong>15 décembre 2025</strong> pour fédérer l'ensemble de l'écosystème local.
+                        Une soirée fondatrice réunit l'ensemble des structures locales autour d'une même table. Cette ambition commune donne naissance à l'association <strong>Toulouse Esport Connect (TEC)</strong>, déclarée le <strong>15 décembre 2025</strong> pour mutualiser l'énergie de tout le territoire.
                     </p>
                 </div>
             </div>
@@ -385,7 +332,7 @@
                     </div>
                     <h4 class="font-bebas text-2xl text-white mb-2">Collectif</h4>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Fédérer plutôt qu'isoler. La force du nombre permet de porter des projets majeurs qu'une structure seule ne pourrait assumer.
+                        L'union plutôt que l'isolement. Travailler main dans la main pour accomplir ce qu'aucun club ne pourrait réaliser seul.
                     </p>
                 </div>
 
@@ -396,7 +343,7 @@
                     </div>
                     <h4 class="font-bebas text-2xl text-white mb-2">Inclusivité</h4>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Un esport et une pratique du jeu vidéo accessibles à tous, sans distinction de niveau de jeu, de genre ou d'âge.
+                        Ouvrir les portes de la compétition et des loisirs à tous, sans distinction de niveau, de genre ou de milieu.
                     </p>
                 </div>
 
@@ -407,7 +354,7 @@
                     </div>
                     <h4 class="font-bebas text-2xl text-white mb-2">Éthique</h4>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Sensibilisation à une pratique saine, prévention des conduites excessives, lutte contre la toxicité et respect d'autrui.
+                        Fair-play, respect mutuel, bien-être des joueurs et prévention active contre toute forme de toxicité en ligne.
                     </p>
                 </div>
 
@@ -418,19 +365,19 @@
                     </div>
                     <h4 class="font-bebas text-2xl text-white mb-2">Proximité</h4>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Ancrage local fort au cœur de Toulouse et rayonnement engagé sur l'ensemble de la région Occitanie.
+                        Être présent sur le terrain : dans les salles, les universités et les tiers-lieux au cœur de la Ville Rose.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- 4. Notre Projet : Les 3 Piliers Stratégiques (Intégrés de Notre Projet) -->
+        <!-- 4. Notre Projet : Les 3 Piliers Stratégiques -->
         <div class="mb-16">
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Vision & Stratégie</span>
                 <h3 class="font-bebas text-4xl sm:text-5xl text-white uppercase">Notre Projet pour l'Esport Toulousain</h3>
                 <p class="text-gray-300 text-sm mt-2 leading-relaxed">
-                    Fédérer les structures actives de la métropole pour mutualiser les compétences, porter des événements d'envergure et former la scène compétitive de demain.
+                    Trois axes d'action concrets pour structurer notre milieu et offrir un cadre durable aux pratiquants.
                 </p>
             </div>
 
@@ -438,39 +385,39 @@
                 <!-- Pilier 1 -->
                 <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
                     <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">01</div>
-                    <h3 class="font-bebas text-3xl text-white mb-4">Réseau d'Associations</h3>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Coopération Inter-Clubs</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                        Nous regroupons les associations esportives de Toulouse afin de favoriser les synergies entre elles ainsi qu'avec les entreprises et institutions locales.
+                        Mettre en commun notre matériel, nos savoir-faire administratifs et créer un dialogue constructif avec les collectivités et partenaires locaux.
                     </p>
                     <ul class="text-xs text-gray-300 space-y-2">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Partage d'expériences & collaborations</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Entraide administrative & statutaire</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Partage d'équipements & d'expériences</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Soutien juridique & gestion associative</li>
                     </ul>
                 </div>
 
                 <!-- Pilier 2 -->
                 <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
                     <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">02</div>
-                    <h3 class="font-bebas text-3xl text-white mb-4">Organisation d'Événements</h3>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Événements & Compétitions</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                        L'Occitanie Gaming Festival est l'événement majeur du collectif. Il démontre qu'en jouant collectif, nous accomplissons de grandes choses pour la communauté.
+                        Co-produire des tournois physiques, animer des scènes ouvertes et garantir des conditions de jeu optimales pour le public et les compétiteurs.
                     </p>
                     <ul class="text-xs text-gray-300 space-y-2">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Tournois LAN & Scènes Versus</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Espaces Découvertes, Rétrogaming & Web</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Tournois LAN, Rankings & Scènes Versus</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Espaces découverte, VR & rétrogaming</li>
                     </ul>
                 </div>
 
                 <!-- Pilier 3 -->
                 <div class="glass-card p-8 rounded-3xl border border-brand-cardBorder relative overflow-hidden group">
                     <div class="text-brand-red font-bebas text-6xl opacity-20 absolute top-4 right-6 group-hover:scale-110 transition-transform">03</div>
-                    <h3 class="font-bebas text-3xl text-white mb-4">Développement Local</h3>
+                    <h3 class="font-bebas text-3xl text-white mb-4">Transmission & Jeunesse</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                        Soutenir la structuration des clubs amateurs pour offrir aux joueurs un parcours clair de la pratique loisir jusqu'au haut niveau compétitif.
+                        Accompagner les jeunes équipes, faire le pont avec le monde étudiant et sensibiliser aux métiers du numérique et de l'esport.
                     </p>
                     <ul class="text-xs text-gray-300 space-y-2">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Sensibilisation aux usages responsables</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Intégration dans le réseau étudiant régional</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Ateliers & sensibilisation aux bonnes pratiques</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redLight"></i> Passerelles vers les circuits compétitifs</li>
                     </ul>
                 </div>
             </div>
@@ -482,7 +429,7 @@
                 <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block">Gouvernance</span>
                 <h3 class="font-bebas text-4xl text-white uppercase">Notre Bureau Associatif</h3>
                 <p class="text-gray-400 text-xs sm:text-sm mt-1 max-w-md mx-auto">
-                    Une équipe de passionnés engagés au quotidien pour porter la voix du jeu vidéo toulousain.
+                    Une équipe de passionnés engagés au quotidien pour porter la voix de l'esport toulousain.
                 </p>
             </div>
 
@@ -525,20 +472,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-10 items-center">
             <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
                 <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block">Échanger avec TEC</span>
-                <h3 class="font-bebas text-4xl text-white">Un Collectif au Service des Joueurs et des Clubs</h3>
+                <h3 class="font-bebas text-4xl text-white">Une Idée, un Projet ou une Question ?</h3>
                 <p>
-                    Né de la volonté commune des acteurs majeurs du territoire, Toulouse Esport Connect agit comme un pôle de compétence, de fédération et de structuration.
+                    Que vous représentiez un club à la recherche d'entraide, un joueur en quête d'orientation, une école souhaitant organiser un tournoi ou une structure partenaire : notre collectif est à votre écoute.
                 </p>
                 <p>
-                    Notre mission est de rompre le travail en silo, d'accélérer le développement des jeunes associations et de promouvoir une pratique saine, inclusive et responsable du jeu vidéo.
+                    Contactez-nous directement via ce formulaire ou venez échanger avec nous sur notre serveur Discord. Nous vous répondrons sous 48h.
                 </p>
                 <div class="p-4 bg-brand-dark rounded-xl border border-white/10 flex items-center gap-4">
                     <div class="w-10 h-10 rounded-lg bg-brand-red/20 text-brand-redLight flex items-center justify-center text-lg flex-shrink-0">
-                        <i class="fa-solid fa-handshake"></i>
+                        <i class="fa-solid fa-comments"></i>
                     </div>
                     <div>
-                        <p class="font-rajdhani font-bold text-white text-xs uppercase tracking-wider">Un réseau ouvert et engagé</p>
-                        <p class="text-xs text-gray-400">Associations, bénévoles, joueurs ou partenaires institutionnels : contactez-nous pour échanger sur vos projets.</p>
+                        <p class="font-rajdhani font-bold text-white text-xs uppercase tracking-wider">Disponibilité & Écoute</p>
+                        <p class="text-xs text-gray-400">Échange informel, projet d'événement, partenariat ou adhésion : nous sommes disponibles.</p>
                     </div>
                 </div>
             </div>
@@ -680,10 +627,10 @@
             <div class="text-center max-w-3xl mx-auto">
                 <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Formules & Cotisations</span>
                 <h3 class="font-bebas text-4xl sm:text-5xl text-white uppercase tracking-wide">
-                    Rejoindre le Collectif Toulouse Esport Connect
+                    Adhérer & S'investir
                 </h3>
                 <p class="text-gray-300 text-sm mt-3 leading-relaxed">
-                    Rejoignez le réseau esport toulousain. Que vous soyez un passionné, un bénévole prêt à donner un coup de main ou une structure associative, il y a une place pour vous dans le collectif.
+                    Que vous souhaitiez vous engager sur le terrain comme bénévole ou affilier votre club pour faire grandir la scène toulousaine, choisissez la formule qui vous correspond.
                 </p>
             </div>
 
@@ -709,47 +656,35 @@
                             </div>
                         </div>
 
-                        <!-- Liste détaillée des avantages (OLDadhesion.html) -->
+                        <!-- Liste détaillée des avantages spécifiques Bénévoles -->
                         <div class="space-y-3.5 text-xs text-gray-300 py-2">
                             <div>
                                 <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Rejoindre le réseau esport toulousain
+                                    <i class="fa-solid fa-gamepad text-brand-redLight"></i> Au cœur des événements
                                 </h5>
                                 <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès à une communauté locale active</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Rencontres et networking avec les acteurs esport</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Participation aux événements et soirées TEC</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Participation aux coulisses : régie, arbitrage, accueil, streaming</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès privilégié aux tournois et soirées organisées par TEC</li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Participer à la vie associative
+                                    <i class="fa-solid fa-graduation-cap text-brand-redLight"></i> Montée en compétences
                                 </h5>
                                 <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Droit de vote en Assemblée Générale</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Possibilité de proposer des projets et des idées</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Rejoindre les groupes de travail thématiques</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Ateliers pratiques et retour d'expérience avec des organisateurs chevronnés</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Valorisation de vos réalisations au sein du milieu associatif</li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Gagner en visibilité
+                                    <i class="fa-solid fa-users text-brand-redLight"></i> Vie associative & Échange
                                 </h5>
                                 <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Mise en avant des profils et projets membres</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Valorisation des compétences au sein du réseau</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Accéder à des ressources
-                                </h5>
-                                <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès aux espaces privés Discord TEC</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Retours d'expériences, conseils et veille régionale</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Salons Discord privés réservés aux membres et groupes de travail</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Droit de vote en Assemblée Générale pour élire le bureau</li>
                                 </ul>
                             </div>
                         </div>
@@ -783,47 +718,35 @@
                             </div>
                         </div>
 
-                        <!-- Liste détaillée des avantages (OLDadhesion.html) -->
+                        <!-- Liste détaillée des avantages spécifiques Associations -->
                         <div class="space-y-3.5 text-xs text-gray-300 py-2">
                             <div>
                                 <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Intégrer un réseau structuré
+                                    <i class="fa-solid fa-bullhorn text-brand-redLight"></i> Visibilité & Audience
                                 </h5>
                                 <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Accès direct aux acteurs esport toulousains</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Développement de collaborations locales</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Projets et réflexions partagées</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Relais de vos annonces et tournois sur tous les canaux officiels TEC</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Fiche club détaillée dans l'annuaire des associations membres</li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Gagner en visibilité
+                                    <i class="fa-solid fa-toolbox text-brand-redLight"></i> Mutualisation & Moyens
                                 </h5>
                                 <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Présence sur les supports officiels TEC</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Relais de vos actualités et tournois</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Prêt d'équipements événementiels (câblage, écrans, régie, signalétique)</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Aide au montage de dossiers administratifs et de subventions</li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Développer ses projets
+                                    <i class="fa-solid fa-calendar-days text-brand-redLight"></i> Calendrier & Décision
                                 </h5>
                                 <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Mise en relation avec bénévoles et compétences</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Partage d'expérience entre structures associatives</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Échanges sur l'organisation événementielle</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h5 class="font-rajdhani font-bold text-white uppercase tracking-wider flex items-center gap-2 mb-1 text-xs">
-                                    <i class="fa-solid fa-arrow-right text-brand-redLight"></i> Participer à l'écosystème
-                                </h5>
-                                <ul class="space-y-1 pl-4 text-gray-400">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> 1 voix délibérative en Assemblée Générale</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Participation aux orientations du collectif</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> Coordination des dates de compétition pour éviter les chevauchements</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle text-[5px] text-brand-redLight"></i> 1 voix délibérative en AG pour décider des orientations du collectif</li>
                                 </ul>
                             </div>
                         </div>
@@ -1010,7 +933,7 @@
                             Formulaire d'Affiliation Structure Associative
                         </h4>
                         <p class="text-gray-300 text-xs sm:text-sm mt-2 leading-relaxed">
-                            Vous êtes une association toulousaine ou occitane active dans le domaine du jeu vidéo ou de l'esport ? Rejoignez le réseau pour bénéficier d'un accompagnement personnalisé, de relais de communication et de synergies événementielles.
+                            Vous représentez une association toulousaine ou occitane active dans le jeu vidéo ? Affiliez votre structure pour coordonner vos dates de tournois, mutualiser nos équipements et porter vos projets auprès des partenaires locaux.
                         </p>
                     </div>
 
@@ -1107,81 +1030,8 @@
             <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Agenda Esport</span>
             <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Événements & Tournois</h2>
             <p class="text-gray-300 text-sm sm:text-base mt-2">
-                Retrouvez les grands rendez-vous esportifs, LANs et festivals organisés par Toulouse Esport Connect et ses associations adhérentes.
+                Retrouvez les grands rendez-vous esportifs, LANs et tournois organisés par Toulouse Esport Connect et ses associations adhérentes.
             </p>
-        </div>
-
-        <!-- Featured Highlight Event (Occitanie Gaming Festival avec Module de Pré-inscription Lead Capture) -->
-        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-brand-red/40 glow-red mb-16 relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-brand-red text-white text-xs font-rajdhani font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest shadow-md">
-                Événement Majeur 2026
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-7">
-                    <span class="text-xs text-brand-redLight font-bold font-rajdhani uppercase tracking-widest block mb-2">
-                        <i class="fa-solid fa-calendar-days mr-2"></i> 11 - 12 Août 2026
-                    </span>
-                    <h3 class="font-bebas text-4xl sm:text-6xl text-white uppercase leading-none mb-4">
-                        Occitanie Gaming Festival
-                    </h3>
-                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                        Le rendez-vous annuel incontournable du Toulouse Esport Connect ! Plus de 500 joueurs en compétition, scène principale, finales commentées en direct, espace découverte rétrogaming et stands de recrutement.
-                    </p>
-                    <div class="flex flex-wrap gap-4 text-xs font-semibold text-gray-300 mb-6">
-                        <span class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
-                            <i class="fa-solid fa-location-dot text-brand-redLight"></i> Hall 8 - Parc Expo Toulouse
-                        </span>
-                        <span class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
-                            <i class="fa-solid fa-gamepad text-brand-redLight"></i> LoL, Valorant, Smash, SF6
-                        </span>
-                        <span class="flex items-center gap-2 bg-brand-dark px-3 py-1.5 rounded-lg border border-white/10">
-                            <i class="fa-solid fa-ticket text-brand-redLight"></i> Entrée Libre & Tournois sur Inscription
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Module de Capture de Lead & Alerte Billetterie -->
-                <div class="lg:col-span-5 bg-brand-dark p-6 sm:p-7 rounded-2xl border border-white/10 shadow-xl">
-                    <div id="ogf-lead-container">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="w-2 h-2 rounded-full bg-brand-redLight animate-ping"></span>
-                            <span class="text-xs font-bold font-rajdhani uppercase text-brand-redLight tracking-wider">Alerte Billetterie & Inscriptions</span>
-                        </div>
-                        <h4 class="font-bebas text-2xl text-white mb-2">Soyez Prévenu en Avant-Première</h4>
-                        <p class="text-xs text-gray-300 mb-4">
-                            Les places de tournois sont limitées. Recevez le lien d'inscription 24h avant l'ouverture officielle.
-                        </p>
-
-                        <form id="ogf-lead-form" onsubmit="event.preventDefault(); handleOgfLeadSubmit(this);" class="space-y-3">
-                            <div>
-                                <label for="ogf-email" class="block text-[11px] font-medium text-gray-300 mb-1">Votre adresse email</label>
-                                <input type="email" id="ogf-email" name="email" required placeholder="joueur@domaine.fr"
-                                    class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                            </div>
-                            <div>
-                                <label for="ogf-interest" class="block text-[11px] font-medium text-gray-300 mb-1">Vous souhaitez participer en tant que :</label>
-                                <select id="ogf-interest" name="profile" class="w-full bg-brand-cardBg border border-brand-cardBorder rounded-lg px-3 py-2 text-xs text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none">
-                                    <option value="competiteur">Joueur / Équipe Compétiteur (LoL, Valorant, SF6, Smash)</option>
-                                    <option value="visiteur">Spectateur / Visiteur du festival</option>
-                                    <option value="createur">Créateur de contenu / Presse</option>
-                                    <option value="partenaire">Partenaire ou Stand associatif</option>
-                                </select>
-                            </div>
-                            <button type="submit"
-                                class="w-full py-3 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs tracking-widest uppercase rounded-lg shadow-lg transition-all glow-red-sm hover:scale-105">
-                                <i class="fa-solid fa-bell mr-1.5"></i> Être alerté en priorité
-                            </button>
-                        </form>
-
-                        <div id="ogf-success-msg" class="hidden text-center py-4 bg-emerald-950/40 border border-emerald-500/30 rounded-xl mt-3 p-4">
-                            <i class="fa-solid fa-circle-check text-emerald-400 text-2xl mb-2"></i>
-                            <h5 class="font-bebas text-xl text-white">Inscription Confirmée !</h5>
-                            <p class="text-xs text-emerald-200">Vous recevrez l'accès prioritaire à la billetterie dès son ouverture.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Event Cards List -->
@@ -1201,7 +1051,7 @@
                         <p class="text-xs text-gray-300">Organisé par Toulouse Versus Fighters • Ranking mensuel d'Occitanie sur Street Fighter 6 & Tekken 8.</p>
                     </div>
                 </div>
-                <button type="button" onclick="showNotification('Rendez-vous Toulouse Fighting Ranking enregistré dans vos rappels !')"
+                <button type="button" onclick="trackEventInterest('Toulouse Fighting Ranking', 'Toulouse Versus Fighters'); showNotification('Rendez-vous Toulouse Fighting Ranking enregistré dans vos rappels !');"
                     class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
@@ -1220,7 +1070,7 @@
                         <p class="text-xs text-gray-300">Organisé par OSV Esport, Dragons Esport & Flucky Boys • Qualifications régionales sur Valorant et League of Legends.</p>
                     </div>
                 </div>
-                <button type="button" onclick="showNotification('Informations de tournoi Occitanie League enregistrées !')"
+                <button type="button" onclick="trackEventInterest('Occitanie League - Qualifier #1', 'OSV Esport, Dragons Esport & Flucky Boys'); showNotification('Informations de tournoi Occitanie League enregistrées !');"
                     class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
@@ -1239,7 +1089,7 @@
                         <p class="text-xs text-gray-300">Organisé par Voxel & Lightning Project • Week-end gaming, tournois Trackmania et animations rétrogaming.</p>
                     </div>
                 </div>
-                <button type="button" onclick="showNotification('Inscription pour la LAN Voxel prise en compte !')"
+                <button type="button" onclick="trackEventInterest('Voxel Community LAN & Speedrun', 'Voxel & Lightning Project'); showNotification('Inscription pour la LAN Voxel prise en compte !');"
                     class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
@@ -1266,10 +1116,11 @@
                     </div>
                 </a>
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Le réseau associatif fédérateur du jeu vidéo et de la culture esport à Toulouse et en région Occitanie.
+                    Le collectif associatif de l'esport et du jeu vidéo à Toulouse et en Occitanie.
                 </p>
                 <div class="pt-2">
                     <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                        onclick="trackDiscordClick('footer');"
                         class="inline-flex items-center gap-2 text-xs text-white bg-brand-discord/20 hover:bg-brand-discord px-3 py-1.5 rounded-lg border border-brand-discord/40 transition-all">
                         <i class="fa-brands fa-discord"></i>
                         <span>Rejoindre notre Discord</span>
@@ -1284,7 +1135,7 @@
                     <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
                     <li><a href="#associations" onclick="switchTab('associations'); return false;" class="hover:text-brand-redLight transition-colors">Les Associations</a></li>
                     <li><a href="#evenements" onclick="switchTab('evenements'); return false;" class="hover:text-brand-redLight transition-colors">Événements</a></li>
-                    <li><a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
+                    <li><a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'adherer_reseau', location: 'footer' }); switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
                 </ul>
             </div>
 
@@ -1292,16 +1143,16 @@
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Contact</h4>
                 <ul class="space-y-2 text-xs">
                     <li><i class="fa-solid fa-location-dot text-brand-redLight mr-2"></i> Toulouse (31000), France</li>
-                    <li><a href="mailto:contact@toulouse-esport-connect.fr" class="hover:text-brand-redLight transition-colors"><i class="fa-solid fa-envelope text-brand-redLight mr-2"></i> contact@toulouse-esport-connect.fr</a></li>
+                    <li><a href="mailto:contact@toulouse-esport-connect.fr" onclick="trackEvent('contact_email_clicked', { email: 'contact@toulouse-esport-connect.fr', location: 'footer' });" class="hover:text-brand-redLight transition-colors"><i class="fa-solid fa-envelope text-brand-redLight mr-2"></i> contact@toulouse-esport-connect.fr</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="font-rajdhani font-bold text-white uppercase text-xs tracking-widest mb-4">Réseaux Sociaux</h4>
                 <div class="flex gap-4 text-xl text-gray-400">
-                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" class="hover:text-brand-discord transition-colors" aria-label="Rejoindre le serveur Discord TEC"><i class="fa-brands fa-discord"></i></a>
-                    <a href="https://www.instagram.com/toulouseec__/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-redLight transition-colors" aria-label="Suivre TEC sur Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://x.com/toulouseec__" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Suivre TEC sur X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer" onclick="trackDiscordClick('footer_icon');" class="hover:text-brand-discord transition-colors" aria-label="Rejoindre le serveur Discord TEC"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.instagram.com/toulouseec__/" target="_blank" rel="noopener noreferrer" onclick="trackSocialClick('instagram', 'footer');" class="hover:text-brand-redLight transition-colors" aria-label="Suivre TEC sur Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://x.com/toulouseec__" target="_blank" rel="noopener noreferrer" onclick="trackSocialClick('x_twitter', 'footer');" class="hover:text-white transition-colors" aria-label="Suivre TEC sur X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
 
@@ -1375,6 +1226,7 @@
                 </h4>
                 <p><strong class="text-white">Date de déclaration :</strong> 15 décembre 2025 auprès de la Sous-préfecture de Muret (Haute-Garonne).</p>
                 <p><strong class="text-white">Parution Journal Officiel :</strong> JOAFE n° 1 du 6 janvier 2026, annonce n° 278.</p>
+                <p><strong class="text-white">Objet statutaire :</strong> Fédérer les structures actives dans le domaine de l'esport en région toulousaine ; mutualiser des ressources, des compétences et des opportunités ; organiser des événements communs ; représenter collectivement ses membres auprès des institutions et favoriser le développement de l'esport localement de manière éthique, inclusive et durable.</p>
                 <p><strong class="text-white">Siège social :</strong> 10, route de Bordé Neuve — 31570 Sainte-Foy-d'Aigrefeuille, France <em>(adresse administrative officielle, pas d'accueil physique de public)</em>.</p>
             </div>
 
@@ -1394,7 +1246,7 @@
                     <i class="fa-solid fa-shield-halved text-brand-redLight"></i> Données Personnelles & Confidentialité (RGPD)
                 </h4>
                 <p class="leading-relaxed text-gray-400">
-                    Les informations recueillies via nos formulaires (contact, adhésion, alerte billetterie OGF) font l'objet d'un traitement informatique exclusivement destiné à la gestion de la vie associative et des projets de Toulouse Esport Connect. Aucune donnée n'est cédée, louée ou vendue à des tiers. Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant en nous contactant à <a href="mailto:contact@toulouse-esport-connect.fr" class="text-brand-redLight hover:underline">contact@toulouse-esport-connect.fr</a>.
+                    Les informations recueillies via nos formulaires (contact, adhésion) font l'objet d'un traitement informatique exclusivement destiné à la gestion de la vie associative et des projets de Toulouse Esport Connect. Aucune donnée n'est cédée, louée ou vendue à des tiers. Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant en nous contactant à <a href="mailto:contact@toulouse-esport-connect.fr" class="text-brand-redLight hover:underline">contact@toulouse-esport-connect.fr</a>.
                 </p>
             </div>
         </div>
@@ -1431,7 +1283,7 @@
     "id": "voxel",
     "name": "Voxel",
     "category": "retro",
-    "description": "Association toulousaine dédiée aux événements ludiques, à l'organisation de LAN parties et aux rendez-vous récréatifs autour du jeu vidéo.",
+    "description": "Association toulousaine dédiée aux événements ludiques, à l'organisation de LAN parties et aux rendez-vous récréatifs autour de l'esport.",
     "email": "contact@voxel-esport.fr",
     "logo": "media/voxel-transparent.png",
     "games": "LAN Party, Multi-jeux, Rétrogaming"
@@ -1476,7 +1328,7 @@
     </script>
 
     <!-- Application Script (Cache Busted) -->
-    <script src="js/main.js?v=1.2.0"></script>
+    <script src="js/main.js?v=1.3.0"></script>
 </body>
 
 </html>

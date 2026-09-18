@@ -83,7 +83,7 @@ function assembleHtml() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toulouse Esport Connect – Le réseau des associations esport toulousaines</title>
-    <meta name="description" content="Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème du jeu vidéo dans la Ville Rose.">
+    <meta name="description" content="Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème de l'esport dans la Ville Rose.">
     <meta name="theme-color" content="#E30613">
 
     <!-- Canonical URL -->
@@ -97,7 +97,7 @@ function assembleHtml() {
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://toulouse-esport-connect.fr/">
     <meta property="og:title" content="Toulouse Esport Connect (TEC) – Réseau des associations esport toulousaines">
-    <meta property="og:description" content="Fédération des acteurs du jeu vidéo et de l'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.">
+    <meta property="og:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.">
     <meta property="og:image" content="media/og-banner.jpg">
     <meta property="og:site_name" content="Toulouse Esport Connect">
     <meta property="og:locale" content="fr_FR">
@@ -106,10 +106,10 @@ function assembleHtml() {
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://toulouse-esport-connect.fr/">
     <meta name="twitter:title" content="Toulouse Esport Connect (TEC) – Réseau Esport Toulousain">
-    <meta name="twitter:description" content="Fédération des acteurs du jeu vidéo et de l'esport à Toulouse : annuaire des clubs, tournois et communauté active.">
+    <meta name="twitter:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, tournois et communauté active.">
     <meta name="twitter:image" content="media/og-banner.jpg">
 
-    <!-- Schema.org JSON-LD (SportsOrganization & Event) -->
+    <!-- Schema.org JSON-LD (SportsOrganization) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -133,29 +133,6 @@ function assembleHtml() {
             "https://discord.gg/VH98qQWEhh",
             "https://www.instagram.com/toulouseec__/"
           ]
-        },
-        {
-          "@type": "Event",
-          "@id": "https://toulouse-esport-connect.fr/#ogf2026",
-          "name": "Occitanie Gaming Festival 2026",
-          "description": "Le grand festival et rendez-vous esport annuel réunissant plus de 500 joueurs en compétition, scènes tournois et espaces découvertes.",
-          "startDate": "2026-08-11T09:00:00+02:00",
-          "endDate": "2026-08-12T20:00:00+02:00",
-          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-          "eventStatus": "https://schema.org/EventScheduled",
-          "location": {
-            "@type": "Place",
-            "name": "Hall 8 - Parc des Expositions",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Toulouse",
-              "postalCode": "31400",
-              "addressCountry": "FR"
-            }
-          },
-          "organizer": {
-            "@id": "https://toulouse-esport-connect.fr/#organization"
-          }
         }
       ]
     }
@@ -174,9 +151,20 @@ function assembleHtml() {
 
     <!-- Custom Theme Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu fu pu gu bu init Hu zu qu ju Gu Xl Bu Qu Du eh ih nh sh rh oh capture getExtension Uu cu hh calculateEventProperties uh register register_once register_for_session unregister unregister_for_session gh Nu dh getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync mh identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset yh shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty fh Xu createPersonProfile setInternalOrTestUser ph wu opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Ju debug Yl Os getPageViewId captureTraceFeedback captureTraceMetric Ru".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_vpNtMCN68k4QKuEjygkt7WcqqTP7T8rfLj9JKEmE6KRN', {
+            api_host: 'https://eu.i.posthog.com',
+            defaults: '2026-05-30',
+            person_profiles: 'identified_only',
+            capture_pageleave: true
+        })
+    </script>
 </head>
 
-<body class="bg-brand-dark text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white bg-grid-pattern">
+<body class="bg-brand-dark text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white">
 
     ${header}
 
@@ -200,7 +188,7 @@ ${JSON.stringify(associationsList, null, 2)}
     </script>
 
     <!-- Application Script (Cache Busted) -->
-    <script src="js/main.js?v=1.2.0"></script>
+    <script src="js/main.js?v=1.3.0"></script>
 </body>
 
 </html>

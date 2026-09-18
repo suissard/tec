@@ -30,6 +30,8 @@
   - *Résolu* : Intégration de photographies réalistes de portrait esport pour Julien Paltou (Président) et Roro (Trésorier) dans `media/team/`, accompagnées de leurs rôles et contacts. Bureau ajusté à 2 membres avec mise en page centrée.
 - [x] **Identité visuelle de l'association** : absence du visuel officiel de Toulouse Esport Connect (remplacé par un simple bloc textuel "TEC").
   - *Résolu* : Intégration du logo officiel [`media/toulouse-esport-connect-logo.webp`](file:///home/suissard/PROGRAMMATIONS/tec/media/toulouse-esport-connect-logo.webp) dans la barre de navigation supérieure (header), le pied de page (footer), l'en-tête de la section *Qui sommes-nous ?* et les métadonnées Schema.org (`SportsOrganization`).
+- [x] **0.4 — Le fond quadrillé** : motif de quadrillage (`.bg-grid-pattern`) sur le `body` qui surchargeait le visuel.
+  - *Résolu* : Suppression complète de la classe `bg-grid-pattern` sur le `<body>` dans `scripts/build.js` et `index.html`, et suppression de la règle CSS correspondante dans [`css/style.css`](file:///home/suissard/PROGRAMMATIONS/tec/css/style.css). L'arrière-plan uni sombre (`bg-brand-dark` / `#0B0B0E`) offre un rendu plus épuré, sobre et lisible.
 
 ---
 
@@ -48,3 +50,25 @@
   - *Résolu* : Dossier renommé en `media/` via Git, et tous les chemins relatifs mis à jour sans aucun lien orphelin.
 - [x] **Composants dans `sections/` désynchronisés de `index.html`** :
   - *Résolu* : Création d'un script d'assemblage automatisé [`scripts/build.js`](file:///home/suissard/PROGRAMMATIONS/tec/scripts/build.js) et de commandes `npm run build` dans [`package.json`](file:///home/suissard/PROGRAMMATIONS/tec/package.json). Les 8 composants de `sections/` et `index.html` sont désormais strictement synchronisés et maintenables.
+
+---
+
+## 📝 Rédactionnel & Contenu :
+
+- [x] **0.3 — Trop de répétitions & Harmonisation éditoriale** :
+  - **Diagnostic** : Omniprésence de formules redondantes (*« fédérer »*, *« écosystème »*, *« mutualiser les compétences »*, *« événements d'envergure »*) et doublons de sections entières (Accueil vs Qui sommes-nous, Qui sommes-nous s'auto-répétant 5 fois, puces d'adhésion en miroir).
+  - **Plan de correction** :
+    1. `sections/accueil.html` :
+       - Remplacement du titre institutionnel *"Fédération"* par *"Collectif des Associations Esport Toulousaines"*.
+       - Suppression du bloc redondant *"Pourquoi Toulouse Esport Connect ?"* qui paraphrasait les 3 piliers de Qui sommes-nous, fluidifiant le passage direct du Hero vers la communauté et l'annuaire.
+    2. `sections/qui-sommes-nous.html` :
+       - Réécriture et fluidification des 4 valeurs (Collectif, Inclusivité, Éthique, Proximité) pour éliminer les répétitions du verbe *« fédérer »*.
+       - Restructuration des 3 Piliers Stratégiques avec un vocabulaire opérationnel et concret (action sur le terrain, mutualisation de matériel/logistique, passerelle vers la compétition).
+       - Élimination du bloc pré-formulaire redondant (qui répétait la genèse et les valeurs pour la 5ème fois) au profit d'un texte d'accueil direct et chaleureux pour le formulaire de contact.
+    3. `sections/associations.html` :
+       - Différenciation stricte des listes d'avantages entre la carte **Bénévole (1 €)** (aventure humaine, apprentissage régie/comm/arbitrage, coulisses d'événements) et la carte **Association (50 €)** (force de frappe collective, calendrier partagé, visibilité institutionnelle, voix délibérative).
+       - Allègement des sous-titres et descriptions pour supprimer la répétition en boucle de la phrase *"Rejoindre le réseau esport toulousain"*.
+    4. `sections/footer.html` :
+       - Harmonisation du slogan officiel (*« Le collectif associatif de l'esport et du gaming à Toulouse et en Occitanie »*).
+    5. `scripts/build.js` & vérification :
+       - Recompilation et validation complète (`npm run build`).

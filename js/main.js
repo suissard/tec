@@ -15,6 +15,71 @@ const PAGE_TITLES = {
 let lastFocusedElement = null;
 
 /**
+ * Safe PostHog Event Tracking Helper
+ * @param {string} eventName - Event identifier
+ * @param {Record<string, any>} [properties] - Custom event metadata
+ */
+function trackEvent(eventName, properties = {}) {
+    if (typeof window !== 'undefined' && window.posthog && typeof window.posthog.capture === 'function') {
+        try {
+            window.posthog.capture(eventName, properties);
+        } catch (e) {
+            console.warn('⚠️ PostHog capture warning:', e);
+        }
+    }
+}
+
+/**
+ * Identify a user in PostHog upon key form submissions
+ * @param {string} distinctId - Distinct identifier (email)
+ * @param {Record<string, any>} [properties] - Profile properties
+ */
+function identifyUser(distinctId, properties = {}) {
+    if (typeof window !== 'undefined' && window.posthog && typeof window.posthog.identify === 'function') {
+        try {
+            window.posthog.identify(distinctId, properties);
+        } catch (e) {
+            console.warn('⚠️ PostHog identify warning:', e);
+        }
+    }
+}
+
+/**
+ * Track Discord join clicks across different CTAs
+ * @param {string} source - Origin ('header', 'hero', 'callout_banner', 'footer', etc.)
+ */
+function trackDiscordClick(source) {
+    trackEvent('discord_join_clicked', {
+        source: source,
+        url: 'https://discord.gg/VH98qQWEhh'
+    });
+}
+
+/**
+ * Track clicks on social media links
+ * @param {string} platform - 'instagram' | 'x_twitter'
+ * @param {string} [source='footer'] - Placement source
+ */
+function trackSocialClick(platform, source = 'footer') {
+    trackEvent('social_link_clicked', {
+        platform: platform,
+        source: source
+    });
+}
+
+/**
+ * Track user interest in agenda events
+ * @param {string} eventName - Event title
+ * @param {string} organizer - Organizer name
+ */
+function trackEventInterest(eventName, organizer) {
+    trackEvent('event_interest_clicked', {
+        event_name: eventName,
+        organizer: organizer
+    });
+}
+
+/**
  * Switch active page view (SPA navigation with History & Hash support)
  * @param {string} pageId - Target page identifier (e.g. 'accueil', 'projet')
  * @param {boolean} [pushState=true] - Whether to update window history
@@ -62,6 +127,17 @@ function switchTab(pageId, pushState = true, scrollToTop = true) {
         document.title = PAGE_TITLES[targetId];
     }
 
+    // PostHog SPA Pageview & Navigation Tracking
+    trackEvent('$pageview', {
+        $current_url: window.location.href,
+        page_id: targetId,
+        page_title: PAGE_TITLES[targetId] || targetId
+    });
+    trackEvent('page_view_spa', {
+        page_id: targetId,
+        page_title: PAGE_TITLES[targetId] || targetId
+    });
+
     // Smooth scroll to top if requested
     if (scrollToTop) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -107,6 +183,8 @@ function scrollToAdhesion() {
  * @param {HTMLElement} [btnElement] - Optional button element clicked
  */
 function filterAssocLogos(category, btnElement) {
+    trackEvent('association_filter_selected', { category: category });
+
     const btns = document.querySelectorAll('.assoc-btn');
     btns.forEach(b => {
         b.classList.remove('bg-brand-red', 'text-white', 'active');
@@ -182,6 +260,12 @@ function openModalById(id, triggerElement) {
     }
     const assoc = associationsData[id];
     if (assoc) {
+        trackEvent('association_modal_opened', {
+            association_id: id,
+            association_name: assoc.name,
+            category: assoc.category,
+            games: assoc.games
+        });
         openModal(assoc.name, assoc.description, assoc.email, assoc.logo, assoc.games, triggerElement);
     } else if (typeof fetch !== 'undefined') {
         fetch('data/associations.json')
@@ -190,6 +274,12 @@ function openModalById(id, triggerElement) {
                 list.forEach(a => associationsData[a.id] = a);
                 const found = associationsData[id];
                 if (found) {
+                    trackEvent('association_modal_opened', {
+                        association_id: id,
+                        association_name: found.name,
+                        category: found.category,
+                        games: found.games
+                    });
                     openModal(found.name, found.description, found.email, found.logo, found.games, triggerElement);
                 }
             });
@@ -241,7 +331,7 @@ function openModal(title, description, email, logoText, games, triggerElement) {
         
         <div class="p-3 bg-brand-dark rounded-xl border border-white/10 mb-6">
             <span class="text-[10px] text-gray-400 block font-rajdhani font-bold uppercase mb-1">Contact Réseau Officiel</span>
-            <a href="mailto:${email}" class="text-brand-redLight hover:underline text-xs font-medium focus:outline-none focus:ring-1 focus:ring-brand-red">
+            <a href="mailto:${email}" data-assoc-name="${title}" data-assoc-email="${email}" onclick="trackEvent('association_email_clicked', { association_name: this.getAttribute('data-assoc-name'), email: this.getAttribute('data-assoc-email') })" class="text-brand-redLight hover:underline text-xs font-medium focus:outline-none focus:ring-1 focus:ring-brand-red">
                 <i class="fa-solid fa-envelope mr-1.5"></i>${email}
             </a>
         </div>
@@ -250,7 +340,7 @@ function openModal(title, description, email, logoText, games, triggerElement) {
             <button type="button" onclick="closeModal()" id="modal-close-btn" class="px-4 py-2 bg-brand-dark hover:bg-brand-accent text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors border border-brand-cardBorder focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Fermer
             </button>
-            <a href="mailto:${email}" class="px-4 py-2 bg-brand-red hover:bg-brand-redHover text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow focus:outline-none focus:ring-2 focus:ring-brand-red">
+            <a href="mailto:${email}" data-assoc-name="${title}" data-assoc-email="${email}" onclick="trackEvent('association_contact_clicked', { association_name: this.getAttribute('data-assoc-name'), email: this.getAttribute('data-assoc-email'), type: 'button' })" class="px-4 py-2 bg-brand-red hover:bg-brand-redHover text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow focus:outline-none focus:ring-2 focus:ring-brand-red">
                 Contacter
             </a>
         </div>
@@ -284,6 +374,7 @@ function closeModal() {
  * @param {HTMLElement} [triggerElement] - Element that triggered the modal
  */
 function openLegalModal(triggerElement) {
+    trackEvent('legal_modal_opened');
     const modal = document.getElementById('legal-modal');
     if (!modal) return;
 
@@ -338,33 +429,6 @@ function showNotification(msg, type = 'info') {
     }, 4000);
 }
 
-/**
- * Lead Capture handler for Occitanie Gaming Festival
- * @param {HTMLFormElement} form
- */
-function handleOgfLeadSubmit(form) {
-    const email = form.email.value.trim();
-    const profile = form.profile.value;
-
-    if (!email) return;
-
-    try {
-        const leads = JSON.parse(localStorage.getItem('tec_ogf_leads') || '[]');
-        leads.push({ email, profile, date: new Date().toISOString() });
-        localStorage.setItem('tec_ogf_leads', JSON.stringify(leads));
-    } catch (e) {
-        console.warn('Storage not accessible:', e);
-    }
-
-    // Hide form, show confirmation box
-    form.classList.add('hidden');
-    const successMsg = document.getElementById('ogf-success-msg');
-    if (successMsg) {
-        successMsg.classList.remove('hidden');
-    }
-
-    showNotification('🎉 Inscription confirmée ! Vous recevrez votre accès prioritaire.', 'success');
-}
 
 /**
  * Switch adhesion formula tab ('asso' | 'individuel')
@@ -373,6 +437,12 @@ function handleOgfLeadSubmit(form) {
  * @param {boolean} [shouldScroll=false]
  */
 function switchAdhesionTab(type, shouldScroll = false) {
+    trackEvent('adhesion_tab_switched', {
+        formula_type: type,
+        annual_fee: type === 'asso' ? 50 : 1,
+        initiated_scroll: shouldScroll
+    });
+
     const btnAsso = document.getElementById('tab-adhesion-asso');
     const btnIndiv = document.getElementById('tab-adhesion-individuel');
     const panelAsso = document.getElementById('panel-adhesion-asso');
@@ -501,6 +571,28 @@ function handleVolunteerSubmit(form) {
         console.warn('LocalStorage non accessible:', e);
     }
 
+    // PostHog Tracking & Profile Identification
+    trackEvent('volunteer_form_submitted', {
+        skills_count: checkedSkills.length,
+        skills: checkedSkills,
+        availability: availability,
+        has_pseudo: Boolean(pseudo),
+        has_games: Boolean(games),
+        has_message: Boolean(message)
+    });
+    if (email) {
+        identifyUser(email, {
+            email: email,
+            name: name,
+            pseudo: pseudo || undefined,
+            discord_handle: discord || undefined,
+            volunteer_skills: checkedSkills,
+            availability: availability,
+            favorite_games: games || undefined,
+            role: 'volunteer_applicant'
+        });
+    }
+
     // In-card success feedback
     form.classList.add('hidden');
     const successBox = document.getElementById('vol-success-box');
@@ -538,22 +630,45 @@ function handleAdhesionSubmit(form) {
     const structure = form.structureName ? form.structureName.value.trim() : '';
     const email = form.contactEmail ? form.contactEmail.value.trim() : '';
     const contact = form.contactPerson ? form.contactPerson.value.trim() : '';
+    const domain = form.activityDomain ? form.activityDomain.value.trim() : '';
+    const rna = form.rna ? form.rna.value.trim() : '';
+    const links = form.links ? form.links.value.trim() : '';
+    const expectations = form.expectations ? form.expectations.value.trim() : '';
 
     try {
         const adhesions = JSON.parse(localStorage.getItem('tec_adhesions') || '[]');
         adhesions.push({
             structure,
-            rna: form.rna ? form.rna.value.trim() : '',
+            rna,
             email,
             contact,
-            activityDomain: form.activityDomain ? form.activityDomain.value.trim() : '',
-            links: form.links ? form.links.value.trim() : '',
-            expectations: form.expectations ? form.expectations.value.trim() : '',
+            activityDomain: domain,
+            links,
+            expectations,
             date: new Date().toISOString()
         });
         localStorage.setItem('tec_adhesions', JSON.stringify(adhesions));
     } catch (e) {
         console.warn('LocalStorage non accessible:', e);
+    }
+
+    // PostHog Tracking & Profile Identification
+    trackEvent('association_adhesion_submitted', {
+        structure_name: structure,
+        activity_domain: domain,
+        has_rna: Boolean(rna),
+        has_links: Boolean(links),
+        has_expectations: Boolean(expectations)
+    });
+    if (email) {
+        identifyUser(email, {
+            email: email,
+            name: contact,
+            structure_name: structure,
+            rna: rna || undefined,
+            activity_domain: domain,
+            role: 'association_representative'
+        });
     }
 
     // In-card success feedback
@@ -601,12 +716,18 @@ window.handleVolunteerSubmit = handleVolunteerSubmit;
 window.handleAdhesionSubmit = handleAdhesionSubmit;
 window.resetVolunteerForm = resetVolunteerForm;
 window.resetAssoForm = resetAssoForm;
+window.trackEvent = trackEvent;
+window.identifyUser = identifyUser;
+window.trackDiscordClick = trackDiscordClick;
+window.trackSocialClick = trackSocialClick;
+window.trackEventInterest = trackEventInterest;
 
 /**
  * Form handler for Contact
  * @param {HTMLFormElement} form
  */
 function handleContactSubmit(form) {
+    trackEvent('contact_form_submitted');
     form.reset();
     showNotification('Message envoyé au bureau TEC ! Nous vous répondrons sous 48h.', 'success');
 }
@@ -725,17 +846,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    // Check if user previously signed up for OGF lead capture
-    try {
-        const leads = JSON.parse(localStorage.getItem('tec_ogf_leads') || '[]');
-        if (leads.length > 0) {
-            const ogfForm = document.getElementById('ogf-lead-form');
-            const successMsg = document.getElementById('ogf-success-msg');
-            if (ogfForm && successMsg) {
-                ogfForm.classList.add('hidden');
-                successMsg.classList.remove('hidden');
-            }
-        }
-    } catch (e) {}
 });

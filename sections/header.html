@@ -33,6 +33,7 @@
             <!-- Header CTA Buttons (Discord + Rejoindre) -->
             <div class="hidden sm:flex items-center gap-3">
                 <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                    onclick="trackDiscordClick('header');"
                     class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-brand-discord hover:bg-brand-discordHover text-white font-rajdhani font-bold text-xs tracking-wider uppercase transition-all duration-200 shadow-md hover:scale-105 glow-discord"
                     aria-label="Rejoindre le Discord communautaire (+500 membres)">
                     <i class="fa-brands fa-discord text-sm"></i>
@@ -40,7 +41,7 @@
                     <span class="bg-white/20 text-[10px] px-1.5 py-0.5 rounded-full font-sans font-semibold">+500</span>
                 </a>
 
-                <a href="#section-adhesion" onclick="switchTab('associations', true, false); scrollToAdhesion(); return false;"
+                <a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'rejoindre_reseau', location: 'header' }); switchTab('associations', true, false); scrollToAdhesion(); return false;"
                     class="relative group inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-red text-white font-rajdhani font-bold text-xs tracking-wider uppercase overflow-hidden shadow-lg hover:bg-brand-redHover transition-all duration-300 glow-red-sm hover:scale-105">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Rejoindre le Réseau</span>
@@ -67,11 +68,12 @@
         
         <div class="pt-2 border-t border-white/10 space-y-2">
             <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
+                onclick="trackDiscordClick('header_mobile');"
                 class="flex items-center justify-center gap-2 w-full text-center py-2.5 bg-brand-discord text-white font-rajdhani font-bold text-xs uppercase tracking-wider rounded-lg shadow">
                 <i class="fa-brands fa-discord"></i>
                 Rejoindre le Discord (+500 membres)
             </a>
-            <a href="#section-adhesion" onclick="switchTab('associations', true, false); toggleMobileMenu(); scrollToAdhesion(); return false;"
+            <a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'rejoindre_reseau', location: 'header_mobile' }); switchTab('associations', true, false); toggleMobileMenu(); scrollToAdhesion(); return false;"
                 class="block w-full text-center py-2.5 bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs rounded-lg uppercase tracking-wider shadow">
                 Rejoindre le réseau
             </a>
