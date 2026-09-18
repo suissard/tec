@@ -138,6 +138,11 @@ function switchTab(pageId, pushState = true, scrollToTop = true) {
         page_title: PAGE_TITLES[targetId] || targetId
     });
 
+    // If opening associations tab, adjust slider height after DOM layout
+    if (targetId === 'associations') {
+        setTimeout(updateRejoindreSliderHeight, 60);
+    }
+
     // Smooth scroll to top if requested
     if (scrollToTop) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -175,6 +180,49 @@ function scrollToAdhesion() {
             window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
     }, 120);
+}
+
+/**
+ * Smoothly scroll to the benevolat section on the Associations page with header offset
+ */
+function scrollToBenevolat() {
+    trackEvent('cta_clicked', { cta_name: 'postuler_benevole', destination: 'slider_benevolat' });
+    const assocPage = document.getElementById('page-associations');
+    if (!assocPage || !assocPage.classList.contains('active')) {
+        switchTab('associations', true, false);
+    }
+    switchRejoindreSlide('benevole', false);
+    setTimeout(() => {
+        scrollToRejoindreSlider();
+    }, 120);
+}
+
+/**
+ * Smoothly scroll to the structure affiliation form on the Associations page
+ */
+function scrollToAffiliation() {
+    trackEvent('cta_clicked', { cta_name: 'affilier_structure', destination: 'slider_affiliation' });
+    const assocPage = document.getElementById('page-associations');
+    if (!assocPage || !assocPage.classList.contains('active')) {
+        switchTab('associations', true, false);
+    }
+    switchRejoindreSlide('asso', false);
+    setTimeout(() => {
+        scrollToRejoindreSlider();
+    }, 120);
+}
+
+/**
+ * Smoothly scroll to the unified rejoindre forms slider container
+ */
+function scrollToRejoindreSlider() {
+    const el = document.getElementById('container-rejoindre-slider') || document.getElementById('section-rejoindre-forms') || document.getElementById('section-benevolat');
+    if (el) {
+        const headerOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
 }
 
 /**
@@ -430,122 +478,139 @@ function showNotification(msg, type = 'info') {
 }
 
 
+let currentRejoindreSlide = 'benevole';
+
 /**
- * Switch adhesion formula tab ('asso' | 'individuel')
- * Synchronizes tabs, pricing cards highlights, and buttons
+ * Switch slider between Benevole and Association forms
+ * @param {'benevole' | 'asso'} type
+ * @param {boolean} [shouldScroll=false]
+ */
+function switchRejoindreSlide(type, shouldScroll = false) {
+    currentRejoindreSlide = type;
+    const track = document.getElementById('rejoindre-slider-track');
+    const slideBenevole = document.getElementById('slide-benevole');
+    const slideAsso = document.getElementById('slide-asso');
+    const tabBenevole = document.getElementById('tab-slider-benevole');
+    const tabAsso = document.getElementById('tab-slider-asso');
+    const dotBenevole = document.getElementById('dot-benevole');
+    const dotAsso = document.getElementById('dot-asso');
+    const indicatorText = document.getElementById('slider-indicator-text');
+
+    const isBenevole = type === 'benevole';
+
+    if (track) {
+        track.style.transform = isBenevole ? 'translateX(0%)' : 'translateX(-50%)';
+    }
+
+    if (slideBenevole && slideAsso) {
+        if (isBenevole) {
+            slideBenevole.removeAttribute('inert');
+            slideBenevole.removeAttribute('aria-hidden');
+            slideAsso.setAttribute('inert', '');
+            slideAsso.setAttribute('aria-hidden', 'true');
+        } else {
+            slideAsso.removeAttribute('inert');
+            slideAsso.removeAttribute('aria-hidden');
+            slideBenevole.setAttribute('inert', '');
+            slideBenevole.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    // Update segmented tabs styling
+    if (tabBenevole && tabAsso) {
+        if (isBenevole) {
+            tabBenevole.className = 'flex-1 sm:flex-initial px-5 py-2.5 rounded-xl font-rajdhani font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 bg-brand-red text-white shadow glow-red-sm border border-brand-red';
+            tabBenevole.setAttribute('aria-selected', 'true');
+            tabAsso.className = 'flex-1 sm:flex-initial px-5 py-2.5 rounded-xl font-rajdhani font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 text-gray-400 hover:text-white border border-transparent';
+            tabAsso.setAttribute('aria-selected', 'false');
+        } else {
+            tabAsso.className = 'flex-1 sm:flex-initial px-5 py-2.5 rounded-xl font-rajdhani font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 bg-brand-red text-white shadow glow-red-sm border border-brand-red';
+            tabAsso.setAttribute('aria-selected', 'true');
+            tabBenevole.className = 'flex-1 sm:flex-initial px-5 py-2.5 rounded-xl font-rajdhani font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 text-gray-400 hover:text-white border border-transparent';
+            tabBenevole.setAttribute('aria-selected', 'false');
+        }
+    }
+
+    // Update dots indicator
+    if (dotBenevole && dotAsso) {
+        if (isBenevole) {
+            dotBenevole.className = 'w-3 h-3 rounded-full bg-brand-red transition-all scale-110 shadow-sm';
+            dotAsso.className = 'w-3 h-3 rounded-full bg-white/20 hover:bg-white/40 transition-all';
+        } else {
+            dotAsso.className = 'w-3 h-3 rounded-full bg-brand-red transition-all scale-110 shadow-sm';
+            dotBenevole.className = 'w-3 h-3 rounded-full bg-white/20 hover:bg-white/40 transition-all';
+        }
+    }
+
+    if (indicatorText) {
+        indicatorText.textContent = isBenevole ? 'Formulaire 1 sur 2 : Bénévole' : 'Formulaire 2 sur 2 : Association';
+    }
+
+    updateRejoindreSliderHeight();
+
+    trackEvent('rejoindre_slider_switched', { slide: type });
+
+    if (shouldScroll) {
+        scrollToRejoindreSlider();
+    }
+}
+
+/**
+ * Slide to previous form in slider
+ */
+function prevRejoindreSlide() {
+    switchRejoindreSlide(currentRejoindreSlide === 'asso' ? 'benevole' : 'asso');
+}
+
+/**
+ * Slide to next form in slider
+ */
+function nextRejoindreSlide() {
+    switchRejoindreSlide(currentRejoindreSlide === 'benevole' ? 'asso' : 'benevole');
+}
+
+/**
+ * Dynamically adjust slider viewport height to match the active slide
+ */
+function updateRejoindreSliderHeight() {
+    const viewport = document.getElementById('rejoindre-slider-viewport');
+    if (!viewport) return;
+    const activeSlide = currentRejoindreSlide === 'benevole'
+        ? document.getElementById('slide-benevole')
+        : document.getElementById('slide-asso');
+    if (activeSlide) {
+        const height = activeSlide.offsetHeight;
+        if (height > 0) {
+            viewport.style.height = height + 'px';
+        }
+    }
+}
+
+/**
+ * Backwards compatibility helper for switchAdhesionTab
  * @param {'asso' | 'individuel'} type
  * @param {boolean} [shouldScroll=false]
  */
 function switchAdhesionTab(type, shouldScroll = false) {
-    trackEvent('adhesion_tab_switched', {
-        formula_type: type,
-        annual_fee: type === 'asso' ? 50 : 1,
-        initiated_scroll: shouldScroll
-    });
-
-    const btnAsso = document.getElementById('tab-adhesion-asso');
-    const btnIndiv = document.getElementById('tab-adhesion-individuel');
-    const panelAsso = document.getElementById('panel-adhesion-asso');
-    const panelIndiv = document.getElementById('panel-adhesion-individuel');
-
-    const cardIndiv = document.getElementById('card-adhesion-individuel');
-    const cardAsso = document.getElementById('card-adhesion-asso');
-    const btnSelectIndiv = document.getElementById('btn-select-individuel');
-    const btnSelectAsso = document.getElementById('btn-select-asso');
-
-    if (type === 'individuel') {
-        // Individual tab active
-        if (btnIndiv) {
-            btnIndiv.className = 'p-4 rounded-2xl font-rajdhani transition-all flex items-center gap-3.5 bg-brand-red text-white shadow-lg glow-red-sm border border-brand-red text-left group';
-            btnIndiv.setAttribute('aria-selected', 'true');
-        }
-        if (btnAsso) {
-            btnAsso.className = 'p-4 rounded-2xl font-rajdhani transition-all flex items-center gap-3.5 bg-brand-dark/80 text-gray-400 hover:text-white border border-brand-cardBorder hover:border-brand-red/40 text-left group';
-            btnAsso.setAttribute('aria-selected', 'false');
-        }
-
-        if (panelIndiv) panelIndiv.classList.remove('hidden');
-        if (panelAsso) panelAsso.classList.add('hidden');
-
-        // Update pricing cards highlight
-        if (cardIndiv) {
-            cardIndiv.classList.add('border-brand-red', 'ring-2', 'ring-brand-red/40', 'bg-brand-red/5');
-            cardIndiv.classList.remove('border-white/10');
-        }
-        if (cardAsso) {
-            cardAsso.classList.remove('border-brand-red', 'ring-2', 'ring-brand-red/40', 'bg-brand-red/5');
-            cardAsso.classList.add('border-white/10');
-        }
-
-        if (btnSelectIndiv) {
-            btnSelectIndiv.className = 'w-full py-3 px-4 rounded-xl bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all shadow glow-red-sm flex items-center justify-center gap-2';
-            btnSelectIndiv.innerHTML = '<i class="fa-solid fa-check"></i><span>Formule sélectionnée (1 € / an)</span>';
-        }
-        if (btnSelectAsso) {
-            btnSelectAsso.className = 'w-full py-3 px-4 rounded-xl bg-brand-dark hover:bg-brand-red text-gray-300 hover:text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all border border-brand-red/40 hover:border-brand-red flex items-center justify-center gap-2';
-            btnSelectAsso.innerHTML = '<i class="fa-solid fa-building"></i><span>Choisir cette formule (50 € / an)</span>';
-        }
-    } else {
-        // Association tab active
-        if (btnAsso) {
-            btnAsso.className = 'p-4 rounded-2xl font-rajdhani transition-all flex items-center gap-3.5 bg-brand-red text-white shadow-lg glow-red-sm border border-brand-red text-left group';
-            btnAsso.setAttribute('aria-selected', 'true');
-        }
-        if (btnIndiv) {
-            btnIndiv.className = 'p-4 rounded-2xl font-rajdhani transition-all flex items-center gap-3.5 bg-brand-dark/80 text-gray-400 hover:text-white border border-brand-cardBorder hover:border-brand-red/40 text-left group';
-            btnIndiv.setAttribute('aria-selected', 'false');
-        }
-
-        if (panelAsso) panelAsso.classList.remove('hidden');
-        if (panelIndiv) panelIndiv.classList.add('hidden');
-
-        // Update pricing cards highlight
-        if (cardAsso) {
-            cardAsso.classList.add('border-brand-red', 'ring-2', 'ring-brand-red/40', 'bg-brand-red/5');
-            cardAsso.classList.remove('border-white/10');
-        }
-        if (cardIndiv) {
-            cardIndiv.classList.remove('border-brand-red', 'ring-2', 'ring-brand-red/40', 'bg-brand-red/5');
-            cardIndiv.classList.add('border-white/10');
-        }
-
-        if (btnSelectAsso) {
-            btnSelectAsso.className = 'w-full py-3 px-4 rounded-xl bg-brand-red hover:bg-brand-redHover text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all shadow glow-red-sm flex items-center justify-center gap-2';
-            btnSelectAsso.innerHTML = '<i class="fa-solid fa-check"></i><span>Formule sélectionnée (50 € / an)</span>';
-        }
-        if (btnSelectIndiv) {
-            btnSelectIndiv.className = 'w-full py-3 px-4 rounded-xl bg-brand-dark hover:bg-brand-red text-gray-300 hover:text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all border border-brand-red/40 hover:border-brand-red flex items-center justify-center gap-2';
-            btnSelectIndiv.innerHTML = '<i class="fa-solid fa-user-plus"></i><span>Choisir cette formule (1 € / an)</span>';
-        }
-    }
-
-    if (shouldScroll) {
-        scrollToForm();
-    }
+    const targetSlide = type === 'individuel' ? 'benevole' : 'asso';
+    switchRejoindreSlide(targetSlide, shouldScroll);
 }
 
 /**
- * Smooth scroll to adhesion form container taking the 80px sticky header into account
+ * Backwards compatibility helper for scrollToForm
  */
 function scrollToForm() {
-    const el = document.getElementById('form-container-card');
-    if (el) {
-        const headerOffset = 90;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
+    scrollToRejoindreSlider();
 }
 
 /**
- * Form handler for Individual Volunteer Candidacy (1 € / an)
+ * Form handler for Volunteer Candidacy (Espace Bénévolat)
  * @param {HTMLFormElement} form
  */
 function handleVolunteerSubmit(form) {
     const name = form.fullname ? form.fullname.value.trim() : (form.name ? form.name.value.trim() : '');
     const email = form.email ? form.email.value.trim() : '';
-    const discord = form.discord ? form.discord.value.trim() : '';
-    const pseudo = form.pseudo ? form.pseudo.value.trim() : '';
+    const discord = form.discord ? form.discord.value.trim() : (form.pseudo ? form.pseudo.value.trim() : '');
     const availability = form.availability ? form.availability.value : '';
     const message = form.message ? form.message.value.trim() : '';
     const games = form.games ? form.games.value.trim() : '';
@@ -557,9 +622,8 @@ function handleVolunteerSubmit(form) {
         const volunteers = JSON.parse(localStorage.getItem('tec_volunteers') || '[]');
         volunteers.push({
             name,
-            pseudo,
-            email,
             discord,
+            email,
             skills: checkedSkills,
             availability,
             games,
@@ -576,7 +640,7 @@ function handleVolunteerSubmit(form) {
         skills_count: checkedSkills.length,
         skills: checkedSkills,
         availability: availability,
-        has_pseudo: Boolean(pseudo),
+        has_discord: Boolean(discord),
         has_games: Boolean(games),
         has_message: Boolean(message)
     });
@@ -584,7 +648,6 @@ function handleVolunteerSubmit(form) {
         identifyUser(email, {
             email: email,
             name: name,
-            pseudo: pseudo || undefined,
             discord_handle: discord || undefined,
             volunteer_skills: checkedSkills,
             availability: availability,
@@ -593,18 +656,42 @@ function handleVolunteerSubmit(form) {
         });
     }
 
-    // In-card success feedback
+    // In-card success feedback (sans aucun tarif, focus sur l'échange vocal)
     form.classList.add('hidden');
     const successBox = document.getElementById('vol-success-box');
     const successText = document.getElementById('vol-success-text');
     if (successBox) {
         if (successText && name) {
-            successText.innerHTML = `Merci <strong>${name}</strong> pour votre engagement ! Le bureau de TEC vous recontactera rapidement à l'adresse <strong>${email}</strong> et sur Discord (<strong>${discord}</strong>) pour finaliser votre adhésion.`;
+            successText.innerHTML = `Merci <strong>${name}</strong> pour votre candidature ! Le bureau de TEC vous recontactera rapidement par email (<strong>${email}</strong>) et sur Discord (<strong>${discord}</strong>) pour planifier un échange vocal.`;
         }
         successBox.classList.remove('hidden');
     }
 
-    showNotification(`Merci ${name || 'bénévole'} ! Candidature enregistrée avec succès.`, 'success');
+    setTimeout(updateRejoindreSliderHeight, 50);
+    showNotification(`Merci ${name || 'bénévole'} ! Candidature transmise avec succès.`, 'success');
+}
+
+/**
+ * Open Membre Sympathisant modal
+ */
+function openSympathisantModal() {
+    trackEvent('sympathisant_modal_opened');
+    const modal = document.getElementById('sympathisant-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/**
+ * Close Membre Sympathisant modal
+ */
+function closeSympathisantModal() {
+    const modal = document.getElementById('sympathisant-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
 }
 
 /**
@@ -620,6 +707,7 @@ function resetVolunteerForm() {
     if (successBox) {
         successBox.classList.add('hidden');
     }
+    setTimeout(updateRejoindreSliderHeight, 50);
 }
 
 /**
@@ -682,6 +770,7 @@ function handleAdhesionSubmit(form) {
         successBox.classList.remove('hidden');
     }
 
+    setTimeout(updateRejoindreSliderHeight, 50);
     showNotification(`Candidature pour "${structure || 'votre association'}" transmise au bureau TEC !`, 'success');
 }
 
@@ -698,6 +787,7 @@ function resetAssoForm() {
     if (successBox) {
         successBox.classList.add('hidden');
     }
+    setTimeout(updateRejoindreSliderHeight, 50);
 }
 
 /**
@@ -710,8 +800,17 @@ function handleIndividualAdhesionSubmit(form) {
 
 // Global window exposure for inline handlers
 window.switchAdhesionTab = switchAdhesionTab;
+window.switchRejoindreSlide = switchRejoindreSlide;
+window.prevRejoindreSlide = prevRejoindreSlide;
+window.nextRejoindreSlide = nextRejoindreSlide;
+window.updateRejoindreSliderHeight = updateRejoindreSliderHeight;
+window.scrollToRejoindreSlider = scrollToRejoindreSlider;
 window.scrollToForm = scrollToForm;
 window.scrollToAdhesion = scrollToAdhesion;
+window.scrollToBenevolat = scrollToBenevolat;
+window.scrollToAffiliation = scrollToAffiliation;
+window.openSympathisantModal = openSympathisantModal;
+window.closeSympathisantModal = closeSympathisantModal;
 window.handleVolunteerSubmit = handleVolunteerSubmit;
 window.handleAdhesionSubmit = handleAdhesionSubmit;
 window.resetVolunteerForm = resetVolunteerForm;
@@ -748,6 +847,18 @@ function handleRouting() {
         return;
     }
 
+    if (hash === 'benevolat' || hash === 'section-benevolat') {
+        switchTab('associations', false, false);
+        scrollToBenevolat();
+        return;
+    }
+
+    if (hash === 'affiliation' || hash === 'container-affiliation-asso') {
+        switchTab('associations', false, false);
+        scrollToAffiliation();
+        return;
+    }
+
     if (hash === 'projet') {
         switchTab('qui-sommes-nous', false);
         return;
@@ -764,6 +875,19 @@ function handleRouting() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initial routing based on current URL hash
     handleRouting();
+
+    // Initialise and observe slider height
+    updateRejoindreSliderHeight();
+    window.addEventListener('resize', updateRejoindreSliderHeight);
+    if (window.ResizeObserver) {
+        const s1 = document.getElementById('slide-benevole');
+        const s2 = document.getElementById('slide-asso');
+        const resizeObs = new ResizeObserver(() => {
+            updateRejoindreSliderHeight();
+        });
+        if (s1) resizeObs.observe(s1);
+        if (s2) resizeObs.observe(s2);
+    }
 
     // Listen to hash changes and browser Back/Forward (popstate)
     window.addEventListener('popstate', () => {
@@ -800,6 +924,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Modal backdrop click to close (Sympathisant modal)
+    const sympathisantModal = document.getElementById('sympathisant-modal');
+    if (sympathisantModal) {
+        sympathisantModal.addEventListener('click', (e) => {
+            if (e.target === sympathisantModal) {
+                closeSympathisantModal();
+            }
+        });
+    }
+
     // Keyboard navigation: Escape closes modals & Tab focus trap
     document.addEventListener('keydown', (e) => {
         // Assoc modal handling
@@ -832,6 +966,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (e.key === 'Tab') {
                 const focusable = legalModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable.length > 0) {
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        last.focus();
+                        e.preventDefault();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        first.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        }
+
+        // Sympathisant modal handling
+        if (sympathisantModal && !sympathisantModal.classList.contains('hidden')) {
+            if (e.key === 'Escape') {
+                closeSympathisantModal();
+                return;
+            }
+            if (e.key === 'Tab') {
+                const focusable = sympathisantModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 if (focusable.length > 0) {
                     const first = focusable[0];
                     const last = focusable[focusable.length - 1];
