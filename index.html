@@ -60,10 +60,8 @@
     }
     </script>
 
-    <!-- Google Fonts Preconnect & Stylesheet -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Self-hosted fonts -->
+    <link rel="stylesheet" href="media/fonts/fonts.css">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -74,21 +72,16 @@
     <!-- Custom Theme Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- PostHog Analytics -->
-    <script>
-        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu fu pu gu bu init Hu zu qu ju Gu Xl Bu Qu Du eh ih nh sh rh oh capture getExtension Uu cu hh calculateEventProperties uh register register_once register_for_session unregister unregister_for_session gh Nu dh getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync mh identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset yh shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty fh Xu createPersonProfile setInternalOrTestUser ph wu opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Ju debug Yl Os getPageViewId captureTraceFeedback captureTraceMetric Ru".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-        posthog.init('phc_vpNtMCN68k4QKuEjygkt7WcqqTP7T8rfLj9JKEmE6KRN', {
-            api_host: 'https://eu.i.posthog.com',
-            defaults: '2026-05-30',
-            person_profiles: 'identified_only',
-            capture_pageleave: true
-        })
-    </script>
+    <!-- PostHog Analytics (loaded dynamically after cookie consent) -->
+    <script id="posthog-script" src="" defer></script>
 </head>
 
 <body class="bg-brand-dark text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white">
 
-    <!-- ==========================================================================
+    <!-- Skip link (accessibilité) -->
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+<!-- ==========================================================================
    HEADER & NAVIGATION
    ========================================================================== -->
 <header class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-white/10 transition-all duration-300">
@@ -166,7 +159,7 @@
     <!-- ==========================================================================
        MAIN CONTENT CONTAINER (4 PAGES)
        ========================================================================== -->
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
         <!-- ==========================================================================
    PAGE 1: ACCUEIL
    ========================================================================== -->
@@ -561,8 +554,7 @@
 
         <!-- LOGO SHOWCASE GRID (Accessible <button> elements with Keyboard Focus) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6" id="logo-grid">
-
-            <!-- 1. OSV Esport -->
+                        <!-- 1. OSV Esport -->
             <button type="button" class="logo-item text-center glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:scale-105 hover:border-brand-red focus:border-brand-red focus:ring-2 focus:ring-brand-red focus:outline-none transition-all duration-300 w-full"
                 data-cat="esport"
                 data-id="osv-esport"
@@ -639,7 +631,6 @@
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Toulouse Versus Fighters</span>
             </button>
-
         </div> <!-- /LOGO-GRID -->
 
         <!-- ==================================================================
@@ -1027,7 +1018,7 @@
                                     </div>
 
                                     <div>
-                                        <label for="vol-games" class="block text-xs font-medium text-gray-300 mb-1">Jeux ou scènes de prédilection <span class="text-gray-500">(optionnel)</span></label>
+                                        <label for="vol-games" class="block text-xs font-medium text-gray-300 mb-1">Jeux ou scènes de prédilection <span class="text-gray-400">(optionnel)</span></label>
                                         <input type="text" id="vol-games" name="games" placeholder="SF6, LoL, Rocket League, Smash, Rétrogaming..."
                                             class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
                                     </div>
@@ -1097,7 +1088,7 @@
                                                 class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
                                         </div>
                                         <div>
-                                            <label for="adhesion-rna" class="block text-xs font-medium text-gray-300 mb-1">Numéro RNA ou SIRET <span class="text-gray-500">(optionnel)</span></label>
+                                            <label for="adhesion-rna" class="block text-xs font-medium text-gray-300 mb-1">Numéro RNA ou SIRET <span class="text-gray-400">(optionnel)</span></label>
                                             <input type="text" id="adhesion-rna" name="rna" placeholder="Ex: W313000000"
                                                 class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
                                         </div>
@@ -1123,7 +1114,7 @@
                                                 class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
                                         </div>
                                         <div>
-                                            <label for="adhesion-links" class="block text-xs font-medium text-gray-300 mb-1">Site web ou Réseaux Sociaux <span class="text-gray-500">(optionnel)</span></label>
+                                            <label for="adhesion-links" class="block text-xs font-medium text-gray-300 mb-1">Site web ou Réseaux Sociaux <span class="text-gray-400">(optionnel)</span></label>
                                             <input type="text" id="adhesion-links" name="links" placeholder="https://x.com/monasso"
                                                 class="w-full max-w-full bg-brand-dark border border-brand-cardBorder rounded-lg px-3 py-2.5 text-sm text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none box-border">
                                         </div>
@@ -1499,6 +1490,26 @@
     </div>
 </div>
 
+    <!-- Cookie & Tracking Consent Banner (RGPD / PostHog) -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[60] bg-brand-dark border-t border-white/10 p-4 sm:p-6 backdrop-blur-md shadow-2xl transform translate-y-full transition-transform duration-300 ease-in-out">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="text-sm sm:text-base text-gray-300 leading-relaxed">
+            <p class="font-medium text-white mb-1 sm:mb-0">Cookies et mesures d’audience</p>
+            <p class="text-xs sm:text-sm text-gray-400">
+                Nous utilisons des cookies pour mesurer l’audience du site (PostHog) et améliorer votre expérience. Aucune donnée personnelle n’est vendue à des tiers.
+            </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-end">
+            <button type="button" id="cookie-decline" class="px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white text-sm font-medium transition-colors">
+                Refuser
+            </button>
+            <button type="button" id="cookie-accept" class="px-4 py-2.5 rounded-lg bg-brand-red text-white hover:bg-brand-redHover text-sm font-medium transition-all shadow glow-red-sm hover:scale-[1.02]">
+                Accepter
+            </button>
+        </div>
+    </div>
+</div>
+
     <!-- Associations Data (JSON) -->
     <script type="application/json" id="associations-data">
 [
@@ -1560,8 +1571,8 @@
 ]
     </script>
 
-    <!-- Application Script (Cache Busted) -->
-    <script src="js/main.js?v=1.3.0"></script>
+    <!-- Application Script (Cache Busted, ES Module) -->
+    <script type="module" src="js/main.js?v=1.3.0"></script>
 </body>
 
 </html>

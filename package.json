@@ -7,7 +7,9 @@
     "build:html": "node ./scripts/build.js",
     "build": "node ./scripts/build.js && npx -y tailwindcss@3 -i ./css/input.css -o ./css/tailwind.min.css --minify",
     "watch:css": "npx -y tailwindcss@3 -i ./css/input.css -o ./css/tailwind.min.css --watch",
-    "dev": "python3 -m http.server 8080"
+    "dev": "python3 -m http.server 8080",
+    "lint": "eslint js/",
+    "lint:fix": "eslint js/ --fix"
   },
   "keywords": [
     "esport",
@@ -17,5 +19,11 @@
     "occitanie"
   ],
   "author": "Toulouse Esport Connect",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "prettier": "^3.9.10",
+    "tailwindcss": "^3.4.0"
+  }
 }

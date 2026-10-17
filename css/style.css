@@ -73,6 +73,14 @@
     display: block;
 }
 
+/* Skip link (accessibilité) */
+.skip-link {
+    position: absolute;
+    top: -10000px;
+    left: 0;
+    z-index: 9999;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

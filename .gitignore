@@ -1,0 +1,4 @@
+node_modules/
+.kilo/worktrees/
+.DS_Store
+Thumbs.db
