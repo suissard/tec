@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://toulouse-esport-connect.fr/">
     <meta property="og:title" content="Toulouse Esport Connect (TEC) – Réseau des associations esport toulousaines">
     <meta property="og:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.">
-    <meta property="og:image" content="media/og-banner.jpg">
+    <meta property="og:image" content="media/og-banner.webp">
     <meta property="og:site_name" content="Toulouse Esport Connect">
     <meta property="og:locale" content="fr_FR">
 
@@ -29,7 +29,7 @@
     <meta name="twitter:url" content="https://toulouse-esport-connect.fr/">
     <meta name="twitter:title" content="Toulouse Esport Connect (TEC) – Réseau Esport Toulousain">
     <meta name="twitter:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, tournois et communauté active.">
-    <meta name="twitter:image" content="media/og-banner.jpg">
+    <meta name="twitter:image" content="media/og-banner.webp">
 
     <!-- Schema.org JSON-LD (SportsOrganization) -->
     <script type="application/ld+json">
@@ -63,8 +63,8 @@
     <!-- Self-hosted fonts -->
     <link rel="stylesheet" href="media/fonts/fonts.css">
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome Icons (self-hosted) -->
+    <link rel="stylesheet" href="media/fontawesome/all.min.css">
 
     <!-- Compiled Static Tailwind CSS (High Performance, No Runtime CDN) -->
     <link rel="stylesheet" href="css/tailwind.min.css">
@@ -301,7 +301,7 @@
         <!-- 1. En-tête Principal & Présentation -->
         <div class="text-center max-w-3xl mx-auto mb-16">
             <div class="inline-flex items-center justify-center p-1.5 bg-gradient-to-br from-brand-red to-black rounded-3xl shadow-2xl mb-6 glow-red-sm">
-                <img src="media/logo-clair.svg" alt="Logo Officiel Toulouse Esport Connect" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-contain p-2">
+                <img src="media/logo-clair.svg" alt="Logo Officiel Toulouse Esport Connect" width="112" height="112" decoding="async" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-contain p-2">
             </div>
             <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Présentation & Projet</span>
             <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Qui sommes-nous ?</h2>
@@ -462,7 +462,7 @@
                 <!-- Julien Paltou -->
                 <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
                     <div class="relative w-24 h-24 mx-auto mb-4">
-                        <img src="media/team/julien-paltou.jpg" alt="Julien “Lymle” Paltou - Président de Toulouse Esport Connect"
+                        <img src="media/team/julien-paltou.jpg" alt="Julien “Lymle” Paltou - Président de Toulouse Esport Connect" loading="lazy" decoding="async"
                             class="w-full h-full object-cover rounded-full border-2 border-brand-red shadow-lg group-hover:scale-105 transition-transform duration-300">
                         <span class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-brand-dark" title="Membre actif"></span>
                     </div>
@@ -484,7 +484,7 @@
                 <!-- Roro -->
                 <div class="bg-brand-dark p-6 rounded-2xl border border-brand-cardBorder text-center hover:border-brand-red/40 transition-all group">
                     <div class="relative w-24 h-24 mx-auto mb-4">
-                        <img src="media/team/roro.jpg" alt="Roro - Trésorier de Toulouse Esport Connect"
+                        <img src="media/team/roro.jpg" alt="Roro - Trésorier de Toulouse Esport Connect" loading="lazy" decoding="async"
                             class="w-full h-full object-cover rounded-full border-2 border-brand-red shadow-lg group-hover:scale-105 transition-transform duration-300">
                         <span class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-brand-dark" title="Membre actif"></span>
                     </div>
@@ -562,7 +562,7 @@
                 aria-label="Voir la fiche détaillée de OSV Esport"
                 onclick="openModalById('osv-esport', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="media/oserv-transparent.png" alt="Logo OSV Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_2px_rgba(255,255,255,0.45)]">
+                    <img src="media/oserv-transparent.png" alt="Logo OSV Esport" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_2px_rgba(255,255,255,0.45)]">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">OSV Esport</span>
             </button>
@@ -575,7 +575,7 @@
                 aria-label="Voir la fiche détaillée de Voxel"
                 onclick="openModalById('voxel', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="media/voxel-transparent.png" alt="Logo Voxel" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
+                    <img src="media/voxel-transparent.webp" alt="Logo Voxel" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Voxel</span>
             </button>
@@ -588,7 +588,7 @@
                 aria-label="Voir la fiche détaillée de Dragons Esport"
                 onclick="openModalById('dragons-esport', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="media/dragon-transparent.png" alt="Logo Dragons Esport" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
+                    <img src="media/dragon-transparent.webp" alt="Logo Dragons Esport" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Dragons Esport</span>
             </button>
@@ -601,7 +601,7 @@
                 aria-label="Voir la fiche détaillée de Flucky Boys"
                 onclick="openModalById('flucky-boys', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="media/fluky-boys-transparent.png" alt="Logo Flucky Boys" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
+                    <img src="media/fluky-boys-transparent.webp" alt="Logo Flucky Boys" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Flucky Boys</span>
             </button>
@@ -614,7 +614,7 @@
                 aria-label="Voir la fiche détaillée de Lightning Project"
                 onclick="openModalById('lightning-project', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="media/lightning-transparent.png" alt="Logo Lightning Project" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
+                    <img src="media/lightning-transparent.webp" alt="Logo Lightning Project" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Lightning Project</span>
             </button>
@@ -627,7 +627,7 @@
                 aria-label="Voir la fiche détaillée de Toulouse Versus Fighters"
                 onclick="openModalById('toulouse-versus-fighters', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="media/tvsf-white-transparent.png" alt="Logo Toulouse Versus Fighters" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
+                    <img src="media/tvsf-white-transparent.webp" alt="Logo Toulouse Versus Fighters" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">Toulouse Versus Fighters</span>
             </button>
@@ -1255,7 +1255,7 @@
 
             <div class="space-y-4">
                 <a href="#accueil" onclick="switchTab('accueil'); return false;" class="flex items-center gap-3 group">
-                    <img src="media/logo-clair.svg" alt="Logo Toulouse Esport Connect" width="40" height="40" class="w-10 h-10 rounded-lg object-contain p-0.5 border border-white/10 shadow group-hover:scale-105 transition-transform duration-300">
+                    <img src="media/logo-clair.svg" alt="Logo Toulouse Esport Connect" width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 rounded-lg object-contain p-0.5 border border-white/10 shadow group-hover:scale-105 transition-transform duration-300">
                     <div>
                         <span class="font-bebas text-2xl text-white block leading-none">TOULOUSE</span>
                         <span class="font-rajdhani font-bold text-xs tracking-widest text-brand-redLight block">ESPORT CONNECT</span>
@@ -1529,7 +1529,7 @@
     "category": "retro",
     "description": "Association toulousaine dédiée aux événements ludiques, à l'organisation de LAN parties et aux rendez-vous récréatifs autour de l'esport.",
     "email": "contact@voxel-esport.fr",
-    "logo": "media/voxel-transparent.png",
+    "logo": "media/voxel-transparent.webp",
     "games": "LAN Party, Multi-jeux, Rétrogaming"
   },
   {
@@ -1538,7 +1538,7 @@
     "category": "esport",
     "description": "Club comptant plusieurs équipes Overwatch de niveaux différents. Organisateur d'événements en ligne et physiques (« LAN Dragon »).",
     "email": "contact@dragonesport.fr",
-    "logo": "media/dragon-transparent.png",
+    "logo": "media/dragon-transparent.webp",
     "games": "Valorant, CS2, Overwatch"
   },
   {
@@ -1547,7 +1547,7 @@
     "category": "etudiant",
     "description": "Collectif et association toulousaine réunissant joueurs passionnés, créateurs de contenus et équipes de compétition.",
     "email": "contact@fluckyboys.fr",
-    "logo": "media/fluky-boys-transparent.png",
+    "logo": "media/fluky-boys-transparent.webp",
     "games": "Rocket League, Overwatch 2, TFT"
   },
   {
@@ -1556,7 +1556,7 @@
     "category": "esport",
     "description": "Structure associative axée sur l'accompagnement de joueurs, l'organisation de tournois et l'animation esport locale.",
     "email": "contact@lightningproject.fr",
-    "logo": "media/lightning-transparent.png",
+    "logo": "media/lightning-transparent.webp",
     "games": "Trackmania, Smash Bros, FC24"
   },
   {
@@ -1565,7 +1565,7 @@
     "category": "versus",
     "description": "Association de référence dédiée à la communauté des jeux de combat à Toulouse. Sessions hebdomadaires, ranking et tournois.",
     "email": "contact@toulousefighting.fr",
-    "logo": "media/tvsf-white-transparent.png",
+    "logo": "media/tvsf-white-transparent.webp",
     "games": "Street Fighter 6, Tekken 8, Guilty Gear, Smash"
   }
 ]

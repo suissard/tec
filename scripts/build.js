@@ -43,7 +43,7 @@ function renderAssocGrid(associations) {
                 aria-label="Voir la fiche détaillée de ${assoc.name}"
                 onclick="openModalById('${assoc.id}', this)">
                 <div class="w-24 h-24 rounded-2xl assoc-logo-badge border-2 border-transparent group-hover:border-brand-red flex items-center justify-center shadow-xl transition-all overflow-hidden p-2.5">
-                    <img src="${assoc.logo}" alt="Logo ${assoc.name}" width="96" height="96" loading="lazy" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ${imgClass}">
+                    <img src="${assoc.logo}" alt="Logo ${assoc.name}" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain rounded-xl group-hover:scale-110 transition-transform duration-300 ${imgClass}">
                 </div>
                 <span class="font-bebas text-lg text-white group-hover:text-brand-redLight text-center leading-tight transition-colors">${assoc.name}</span>
             </button>`;
@@ -96,7 +96,7 @@ function assembleHtml() {
     <meta property="og:url" content="https://toulouse-esport-connect.fr/">
     <meta property="og:title" content="Toulouse Esport Connect (TEC) – Réseau des associations esport toulousaines">
     <meta property="og:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.">
-    <meta property="og:image" content="media/og-banner.jpg">
+    <meta property="og:image" content="media/og-banner.webp">
     <meta property="og:site_name" content="Toulouse Esport Connect">
     <meta property="og:locale" content="fr_FR">
 
@@ -105,7 +105,7 @@ function assembleHtml() {
     <meta name="twitter:url" content="https://toulouse-esport-connect.fr/">
     <meta name="twitter:title" content="Toulouse Esport Connect (TEC) – Réseau Esport Toulousain">
     <meta name="twitter:description" content="Fédération des acteurs de l'esport à Toulouse : annuaire des clubs, tournois et communauté active.">
-    <meta name="twitter:image" content="media/og-banner.jpg">
+    <meta name="twitter:image" content="media/og-banner.webp">
 
     <!-- Schema.org JSON-LD (SportsOrganization) -->
     <script type="application/ld+json">
@@ -139,8 +139,8 @@ function assembleHtml() {
     <!-- Self-hosted fonts -->
     <link rel="stylesheet" href="media/fonts/fonts.css">
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome Icons (self-hosted) -->
+    <link rel="stylesheet" href="media/fontawesome/all.min.css">
 
     <!-- Compiled Static Tailwind CSS (High Performance, No Runtime CDN) -->
     <link rel="stylesheet" href="css/tailwind.min.css">
