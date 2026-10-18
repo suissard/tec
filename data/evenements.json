@@ -1,0 +1,74 @@
+[
+  {
+    "id": "toulouse-fighting-ranking",
+    "title": "Toulouse Fighting Ranking",
+    "date": "2026-09-01",
+    "category": "Versus Fighting",
+    "organizer": "Toulouse Versus Fighters",
+    "description": "Ranking mensuel d'Occitanie sur Street Fighter 6 & Tekken 8.",
+    "badgeColor": "brand-red"
+  },
+  {
+    "id": "occitanie-league-qualifier-1",
+    "title": "Occitanie League - Qualifier #1",
+    "date": "2026-09-15",
+    "category": "Esport & Communauté",
+    "organizer": "OSV Esport, Dragons Esport & Flucky Boys",
+    "description": "Qualifications régionales sur Valorant et League of Legends.",
+    "badgeColor": "white"
+  },
+  {
+    "id": "voxel-community-lan",
+    "title": "Voxel Community LAN & Speedrun",
+    "date": "2026-10-04",
+    "category": "LAN & Gaming",
+    "organizer": "Voxel & Lightning Project",
+    "description": "Week-end gaming, tournois Trackmania et animations rétrogaming.",
+    "badgeColor": "white"
+  },
+  {
+    "id": "tec-lan-party",
+    "title": "TEC LAN Party d'Automne",
+    "date": "2026-10-18",
+    "category": "LAN & Gaming",
+    "organizer": "Toulouse Esport Connect",
+    "description": "LAN ouverte à tous les adhérents, tournois sur place et buvette.",
+    "badgeColor": "brand-red"
+  },
+  {
+    "id": "valorant-tournament",
+    "title": "Tournoi Valorant Régional",
+    "date": "2026-11-08",
+    "category": "Esport & Communauté",
+    "organizer": "OSV Esport & Lightning Project",
+    "description": "Compétition 5v5 avec prize pool et diffusion sur Twitch.",
+    "badgeColor": "white"
+  },
+  {
+    "id": "retro-gaming-night",
+    "title": "Nuit du Rétrogaming",
+    "date": "2026-11-22",
+    "category": "Rétrogaming & LAN",
+    "organizer": "Voxel",
+    "description": "Consoles classiques, bornes d'arcade et concours de high score.",
+    "badgeColor": "white"
+  },
+  {
+    "id": "tekken-rankings",
+    "title": "Tekken 8 Weekly Rankings",
+    "date": "2026-12-06",
+    "category": "Versus Fighting",
+    "organizer": "Toulouse Versus Fighters",
+    "description": "Sessions hebdomadaires de classement sur Tekken 8.",
+    "badgeColor": "brand-red"
+  },
+  {
+    "id": "new-year-lan",
+    "title": "LAN du Nouvel An",
+    "date": "2026-12-31",
+    "category": "LAN & Gaming",
+    "organizer": "Toulouse Esport Connect & Voxel",
+    "description": "Veillée de fin d'année avec tournois et compte à minuit.",
+    "badgeColor": "brand-red"
+  }
+]

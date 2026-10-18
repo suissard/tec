@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tec-lan-automne",
+    "title": "LAN Party d'Automne : inscriptions ouvertes",
+    "date": "2026-10-15",
+    "excerpt": "Rejoignez-nous pour notre premier LAN ouvert à tous les adhérents. Tournois, buvette et bonne ambiance au programme.",
+    "content": "La TEC LAN Party d'Automne aura lieu le 18 octobre prochain. Au programme : tournois sur Trackmania, Valorant et Street Fighter 6, buvette, et espace libre pour jouer entre adhérents. Inscriptions gratuites pour les membres à jour de cotisation.",
+    "author": "Bureau TEC",
+    "category": "Événement"
+  },
+  {
+    "id": "assemblee-generale-2026",
+    "title": "Assemblée Générale 2026 : compte-rendu",
+    "date": "2026-09-20",
+    "excerpt": "Retour sur notre première AG : élection du bureau, validation des comptes et orientations pour l'année à venir.",
+    "content": "Notre première Assemblée Générale s'est tenue le 15 septembre 2026. Au programme : présentation du rapport d'activité, validation des comptes, élection du nouveau bureau et définition des orientations stratégiques pour 2026-2027.",
+    "author": "Julien Paltou",
+    "category": "Gouvernance"
+  },
+  {
+    "id": "nouveau-partenaire-osv",
+    "title": "Nouveau partenaire : OSV Esport rejoint le collectif",
+    "date": "2026-08-30",
+    "excerpt": "OSV Esport, premier club esport toulousain créé en 2015, officialise son adhésion à Toulouse Esport Connect.",
+    "content": "Nous sommes ravis d'accueillir OSV Esport au sein du collectif. Fondé en 2015, OSV Esport est le premier club esport toulousain avec trois axes : performance esport, encadrement des jeunes et accompagnement des entreprises.",
+    "author": "Bureau TEC",
+    "category": "Partenariat"
+  },
+  {
+    "id": "atelier-initiation-retrogaming",
+    "title": "Atelier initiation rétrogaming le 5 octobre",
+    "date": "2026-10-02",
+    "excerpt": "Voxel organise un après-midi découverte autour des consoles classiques et bornes d'arcade, ouvert à tous les publics.",
+    "content": "Samedi 5 octobre, Voxel vous invite à un après-midi rétrogaming : consoles classiques (NES, SNES, Mega Drive), bornes d'arcade, et concours de high score sur Pac-Man et Space Invaders. Gratuit et ouvert à tous.",
+    "author": "Voxel",
+    "category": "Atelier"
+  }
+]

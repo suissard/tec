@@ -5,13 +5,58 @@
 
 import { trackEvent } from './tracking.js';
 
-export const VALID_PAGES = ['accueil', 'qui-sommes-nous', 'associations', 'evenements'];
+/**
+ * Update meta tags for the current SPA page (SEO)
+ * @param {string} pageId - Current page identifier
+ */
+function updateMetaTags(pageId) {
+    const meta = PAGE_META[pageId];
+    if (!meta) return;
+
+    const descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.setAttribute('content', meta.description);
+
+    const ogDescEl = document.querySelector('meta[property="og:description"]');
+    if (ogDescEl) ogDescEl.setAttribute('content', meta.ogDescription);
+
+    const twDescEl = document.querySelector('meta[name="twitter:description"]');
+    if (twDescEl) twDescEl.setAttribute('content', meta.ogDescription);
+}
+
+export const VALID_PAGES = ['accueil', 'qui-sommes-nous', 'associations', 'evenements', 'news'];
+
+// État de recherche des associations
+let assocSearchTerm = '';
 
 export const PAGE_TITLES = {
     'accueil': 'Toulouse Esport Connect – Le réseau des associations esport toulousaines',
     'qui-sommes-nous': 'Qui sommes-nous ? – Toulouse Esport Connect',
     'associations': 'Associations Membres & Adhésion – Toulouse Esport Connect',
-    'evenements': 'Événements & Tournois – Toulouse Esport Connect'
+    'evenements': 'Événements & Tournois – Toulouse Esport Connect',
+    'news': 'Actualités – Toulouse Esport Connect'
+};
+
+export const PAGE_META = {
+    'accueil': {
+        description: 'Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l\'écosystème de l\'esport dans la Ville Rose.',
+        ogDescription: 'Fédération des acteurs de l\'esport à Toulouse : annuaire des clubs, agenda des tournois, projets collectifs et communauté Discord.'
+    },
+    'qui-sommes-nous': {
+        description: 'Découvrez Toulouse Esport Connect : notre mission, nos valeurs, notre bureau associatif et nos 3 piliers stratégiques pour l\'esport toulousain.',
+        ogDescription: 'Qui sommes-nous ? Présentation, valeurs et gouvernance de Toulouse Esport Connect, le réseau des associations esport toulousaines.'
+    },
+    'associations': {
+        description: 'Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect. Annuaire, adhésion et candidature bénévole.',
+        ogDescription: 'Les associations membres de TEC : OSV Esport, Voxel, Dragons Esport, Flucky Boys, Lightning Project, Toulouse Versus Fighters.'
+    },
+    'evenements': {
+        description: 'Agenda esport à Toulouse : tournois, LANs et événements organisés par Toulouse Esport Connect et ses associations adhérentes.',
+        ogDescription: 'Événements et tournois esport à Toulouse et en Occitanie : agenda des prochains rendez-vous.'
+    },
+    'news': {
+        description: 'Actualités de Toulouse Esport Connect : événements, partenariats, ateliers et vie du collectif.',
+        ogDescription: 'Le blog de TEC : toute l\'actualité de l\'esport toulousain.'
+    }
 };
 
 /**
@@ -61,6 +106,9 @@ export function switchTab(pageId, pushState = true, scrollToTop = true) {
     if (PAGE_TITLES[targetId]) {
         document.title = PAGE_TITLES[targetId];
     }
+
+    // Update meta description & Open Graph tags for SEO
+    updateMetaTags(targetId);
 
     // PostHog SPA Pageview & Navigation Tracking
     trackEvent('$pageview', {
@@ -173,34 +221,120 @@ export function scrollToRejoindreSlider() {
 }
 
 /**
- * Filter logos on the Associations page
+ * Set the search term for association filtering
+ * @param {string} term - Search text
+ */
+export function setAssocSearchTerm(term) {
+    assocSearchTerm = (term || '').toLowerCase().trim();
+    applyAssocFilters();
+}
+
+/**
+ * Apply both text search and category filters to association logos
+ */
+export function applyAssocFilters() {
+    const categoryBtn = document.querySelector('.assoc-filter-btn.active');
+    const category = categoryBtn ? categoryBtn.getAttribute('data-cat') : 'all';
+
+    const logos = document.querySelectorAll('.logo-item');
+    let visibleCount = 0;
+
+    logos.forEach(logo => {
+        const cat = logo.getAttribute('data-cat');
+        const name = (logo.querySelector('span')?.textContent || '').toLowerCase();
+        const id = (logo.getAttribute('data-id') || '').toLowerCase();
+
+        const matchesCategory = category === 'all' || cat === category;
+        const matchesText = assocSearchTerm === '' || name.includes(assocSearchTerm) || id.includes(assocSearchTerm);
+
+        if (matchesCategory && matchesText) {
+            logo.style.display = 'flex';
+            visibleCount++;
+        } else {
+            logo.style.display = 'none';
+        }
+    });
+
+    // Mettre à jour le compteur de résultats
+    const resultsEl = document.getElementById('assoc-search-results');
+    if (resultsEl) {
+        if (assocSearchTerm !== '' || category !== 'all') {
+            resultsEl.textContent = `${visibleCount} association${visibleCount > 1 ? 's' : ''} trouvée${visibleCount > 1 ? 's' : ''}`;
+        } else {
+            resultsEl.textContent = '';
+        }
+    }
+
+    trackEvent('association_filter_applied', { category, search: assocSearchTerm || null, results: visibleCount });
+}
+
+/**
+ * Filter logos on the Associations page (legacy wrapper for applyAssocFilters)
  * @param {string} category - Category filter ('all', 'esport', 'versus', 'retro', 'etudiant')
  * @param {HTMLElement} [btnElement] - Optional button element clicked
  */
 export function filterAssocLogos(category, btnElement) {
-    trackEvent('association_filter_selected', { category: category });
-
-    const btns = document.querySelectorAll('.assoc-btn');
+    const btns = document.querySelectorAll('.assoc-filter-btn');
     btns.forEach(b => {
         b.classList.remove('bg-brand-red', 'text-white', 'active');
         b.classList.add('bg-brand-cardBg', 'text-gray-400');
     });
 
-    const targetBtn = btnElement || (window.event && window.event.target ? window.event.target.closest('.assoc-btn') : null);
+    const targetBtn = btnElement || (window.event && window.event.target ? window.event.target.closest('.assoc-filter-btn') : null);
     if (targetBtn) {
         targetBtn.classList.add('bg-brand-red', 'text-white', 'active');
         targetBtn.classList.remove('bg-brand-cardBg', 'text-gray-400');
     }
 
-    const logos = document.querySelectorAll('.logo-item');
-    logos.forEach(logo => {
-        const cat = logo.getAttribute('data-cat');
+    applyAssocFilters();
+}
+
+/**
+ * Filter events on the Events page by category
+ * @param {string} category - Category filter ('all' or exact category name)
+ * @param {HTMLElement} [btnElement] - Optional button element clicked
+ */
+export function filterEvents(category, btnElement) {
+    const btns = document.querySelectorAll('.event-filter-btn');
+    btns.forEach(b => {
+        b.classList.remove('bg-brand-red', 'text-white', 'active');
+        b.classList.add('bg-brand-cardBg', 'text-gray-400');
+    });
+
+    const targetBtn = btnElement || (window.event && window.event.target ? window.event.target.closest('.event-filter-btn') : null);
+    if (targetBtn) {
+        targetBtn.classList.add('bg-brand-red', 'text-white', 'active');
+        targetBtn.classList.remove('bg-brand-cardBg', 'text-gray-400');
+    }
+
+    const cards = document.querySelectorAll('#page-evenements .glass-card');
+    cards.forEach(card => {
+        const badge = card.querySelector('span.px-2.5');
+        const cat = badge ? badge.textContent.trim() : '';
         if (category === 'all' || cat === category) {
-            logo.style.display = 'flex';
+            card.style.display = 'flex';
         } else {
-            logo.style.display = 'none';
+            card.style.display = 'none';
         }
     });
+
+    trackEvent('event_filter_applied', { category });
+}
+
+/**
+ * Smoothly scroll to a specific news article on the News page
+ * @param {string} articleId - Article ID (e.g. 'tec-lan-automne')
+ */
+export function scrollToArticle(articleId) {
+    setTimeout(() => {
+        const el = document.getElementById(`article-${articleId}`);
+        if (el) {
+            const headerOffset = 90;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    }, 100);
 }
 
 /**

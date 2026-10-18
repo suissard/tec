@@ -103,6 +103,8 @@
                     class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Associations</a>
                 <a href="#evenements" onclick="switchTab('evenements'); return false;" id="nav-evenements"
                     class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Événements</a>
+                <a href="#news" onclick="switchTab('news'); return false;" id="nav-news"
+                    class="nav-link text-gray-400 hover:text-brand-redLight py-2 transition-colors">Actualités</a>
             </nav>
 
             <!-- Header CTA Buttons (Discord + Rejoindre) -->
@@ -140,6 +142,8 @@
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Associations</a>
         <a href="#evenements" onclick="switchTab('evenements'); toggleMobileMenu(); return false;"
             class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Événements</a>
+        <a href="#news" onclick="switchTab('news'); toggleMobileMenu(); return false;"
+            class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg text-gray-300 hover:text-brand-redLight hover:bg-white/5">Actualités</a>
         
         <div class="pt-2 border-t border-white/10 space-y-2">
             <a href="https://discord.gg/VH98qQWEhh" target="_blank" rel="noopener noreferrer"
@@ -157,7 +161,7 @@
 </header>
 
     <!-- ==========================================================================
-       MAIN CONTENT CONTAINER (4 PAGES)
+       MAIN CONTENT CONTAINER
        ========================================================================== -->
     <main id="main-content" class="flex-grow">
         <!-- ==========================================================================
@@ -550,6 +554,25 @@
             <p class="text-gray-300 text-xs sm:text-base mt-1.5 max-w-2xl mx-auto">
                 Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect. Cliquez sur leur logo pour découvrir leur fiche d'information détaillée.
             </p>
+        </div>
+
+        <!-- Recherche & filtres catégorie -->
+        <div class="max-w-3xl mx-auto mb-8 sm:mb-10">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div class="relative w-full sm:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                    <input type="text" id="assoc-search" placeholder="Rechercher une association…"
+                        class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brand-dark border border-brand-cardBorder text-white text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition-all">
+                </div>
+                <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrer par catégorie">
+                    <button type="button" data-cat="all" class="assoc-filter-btn px-4 py-2 rounded-xl bg-brand-red text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Toutes</button>
+                    <button type="button" data-cat="esport" class="assoc-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Esport</button>
+                    <button type="button" data-cat="versus" class="assoc-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Versus Fighting</button>
+                    <button type="button" data-cat="retro" class="assoc-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Rétrogaming</button>
+                    <button type="button" data-cat="etudiant" class="assoc-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Étudiant</button>
+                </div>
+            </div>
+            <p id="assoc-search-results" class="mt-2 text-xs text-gray-400 text-center font-rajdhani"></p>
         </div>
 
         <!-- LOGO SHOWCASE GRID (Accessible <button> elements with Keyboard Focus) -->
@@ -1184,15 +1207,24 @@
         <div class="space-y-6">
             <h3 class="font-bebas text-3xl text-white uppercase mb-6">Prochains Rendez-vous</h3>
 
-            <!-- Event Item 1 -->
+            <!-- Filtres catégorie événements -->
+            <div class="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Filtrer les événements par catégorie">
+                <button type="button" data-cat="all" class="event-filter-btn px-4 py-2 rounded-xl bg-brand-red text-white font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Tous</button>
+                <button type="button" data-cat="Versus Fighting" class="event-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Versus Fighting</button>
+                <button type="button" data-cat="Esport & Communauté" class="event-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Esport</button>
+                <button type="button" data-cat="LAN & Gaming" class="event-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">LAN & Gaming</button>
+                <button type="button" data-cat="Rétrogaming & LAN" class="event-filter-btn px-4 py-2 rounded-xl bg-brand-cardBg text-gray-400 hover:bg-white/10 font-rajdhani font-bold text-xs uppercase tracking-wider transition-all">Rétrogaming</button>
+            </div>
+
+                        <!-- Event 1: Toulouse Fighting Ranking -->
             <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
                 <div class="flex items-center gap-6">
-                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
-                        <span class="font-bebas text-2xl text-brand-redLight leading-none">01</span>
-                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">SEPT 2026</span>
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-brand-redLight leading-none">1</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">SEPT.</span>
                     </div>
                     <div>
-                        <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Versus Fighting</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight border border-brand-red/30 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Versus Fighting</span>
                         <h4 class="font-bebas text-2xl text-white">Toulouse Fighting Ranking</h4>
                         <p class="text-xs text-gray-300">Organisé par Toulouse Versus Fighters • Ranking mensuel d'Occitanie sur Street Fighter 6 & Tekken 8.</p>
                     </div>
@@ -1203,43 +1235,226 @@
                 </button>
             </div>
 
-            <!-- Event Item 2 -->
+            <!-- Event 2: Occitanie League - Qualifier #1 -->
             <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
                 <div class="flex items-center gap-6">
                     <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
                         <span class="font-bebas text-2xl text-white leading-none">15</span>
-                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">SEPT 2026</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">SEPT.</span>
                     </div>
                     <div>
-                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Esport & Communauté</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 border border-white/10 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Esport & Communauté</span>
                         <h4 class="font-bebas text-2xl text-white">Occitanie League - Qualifier #1</h4>
                         <p class="text-xs text-gray-300">Organisé par OSV Esport, Dragons Esport & Flucky Boys • Qualifications régionales sur Valorant et League of Legends.</p>
                     </div>
                 </div>
-                <button type="button" onclick="trackEventInterest('Occitanie League - Qualifier #1', 'OSV Esport, Dragons Esport & Flucky Boys'); showNotification('Informations de tournoi Occitanie League enregistrées !');"
+                <button type="button" onclick="trackEventInterest('Occitanie League - Qualifier #1', 'OSV Esport, Dragons Esport & Flucky Boys'); showNotification('Rendez-vous Occitanie League - Qualifier #1 enregistré dans vos rappels !');"
                     class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
             </div>
 
-            <!-- Event Item 3 -->
+            <!-- Event 3: Voxel Community LAN & Speedrun -->
             <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
                 <div class="flex items-center gap-6">
                     <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
-                        <span class="font-bebas text-2xl text-white leading-none">04</span>
-                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">OCT 2026</span>
+                        <span class="font-bebas text-2xl text-white leading-none">4</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">OCT.</span>
                     </div>
                     <div>
-                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">LAN & Gaming</span>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 border border-white/10 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">LAN & Gaming</span>
                         <h4 class="font-bebas text-2xl text-white">Voxel Community LAN & Speedrun</h4>
                         <p class="text-xs text-gray-300">Organisé par Voxel & Lightning Project • Week-end gaming, tournois Trackmania et animations rétrogaming.</p>
                     </div>
                 </div>
-                <button type="button" onclick="trackEventInterest('Voxel Community LAN & Speedrun', 'Voxel & Lightning Project'); showNotification('Inscription pour la LAN Voxel prise en compte !');"
+                <button type="button" onclick="trackEventInterest('Voxel Community LAN & Speedrun', 'Voxel & Lightning Project'); showNotification('Rendez-vous Voxel Community LAN & Speedrun enregistré dans vos rappels !');"
                     class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
                     Rejoindre
                 </button>
             </div>
+
+            <!-- Event 4: TEC LAN Party d'Automne -->
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-brand-redLight leading-none">18</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">OCT.</span>
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight border border-brand-red/30 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">LAN & Gaming</span>
+                        <h4 class="font-bebas text-2xl text-white">TEC LAN Party d'Automne</h4>
+                        <p class="text-xs text-gray-300">Organisé par Toulouse Esport Connect • LAN ouverte à tous les adhérents, tournois sur place et buvette.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="trackEventInterest('TEC LAN Party d'Automne', 'Toulouse Esport Connect'); showNotification('Rendez-vous TEC LAN Party d'Automne enregistré dans vos rappels !');"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
+                    Rejoindre
+                </button>
+            </div>
+
+            <!-- Event 5: Tournoi Valorant Régional -->
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-white leading-none">8</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">NOV.</span>
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 border border-white/10 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Esport & Communauté</span>
+                        <h4 class="font-bebas text-2xl text-white">Tournoi Valorant Régional</h4>
+                        <p class="text-xs text-gray-300">Organisé par OSV Esport & Lightning Project • Compétition 5v5 avec prize pool et diffusion sur Twitch.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="trackEventInterest('Tournoi Valorant Régional', 'OSV Esport & Lightning Project'); showNotification('Rendez-vous Tournoi Valorant Régional enregistré dans vos rappels !');"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
+                    Rejoindre
+                </button>
+            </div>
+
+            <!-- Event 6: Nuit du Rétrogaming -->
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-white/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-white leading-none">22</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">NOV.</span>
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 border border-white/10 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Rétrogaming & LAN</span>
+                        <h4 class="font-bebas text-2xl text-white">Nuit du Rétrogaming</h4>
+                        <p class="text-xs text-gray-300">Organisé par Voxel • Consoles classiques, bornes d'arcade et concours de high score.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="trackEventInterest('Nuit du Rétrogaming', 'Voxel'); showNotification('Rendez-vous Nuit du Rétrogaming enregistré dans vos rappels !');"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
+                    Rejoindre
+                </button>
+            </div>
+
+            <!-- Event 7: Tekken 8 Weekly Rankings -->
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-brand-redLight leading-none">6</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">DÉC.</span>
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight border border-brand-red/30 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Versus Fighting</span>
+                        <h4 class="font-bebas text-2xl text-white">Tekken 8 Weekly Rankings</h4>
+                        <p class="text-xs text-gray-300">Organisé par Toulouse Versus Fighters • Sessions hebdomadaires de classement sur Tekken 8.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="trackEventInterest('Tekken 8 Weekly Rankings', 'Toulouse Versus Fighters'); showNotification('Rendez-vous Tekken 8 Weekly Rankings enregistré dans vos rappels !');"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
+                    Rejoindre
+                </button>
+            </div>
+
+            <!-- Event 8: LAN du Nouvel An -->
+            <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-brand-red/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-dark border border-brand-red/20 flex flex-col items-center justify-center text-center p-2 flex-shrink-0">
+                        <span class="font-bebas text-2xl text-brand-redLight leading-none">31</span>
+                        <span class="text-[10px] font-rajdhani uppercase text-gray-400 font-bold">DÉC.</span>
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-redLight border border-brand-red/30 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">LAN & Gaming</span>
+                        <h4 class="font-bebas text-2xl text-white">LAN du Nouvel An</h4>
+                        <p class="text-xs text-gray-300">Organisé par Toulouse Esport Connect & Voxel • Veillée de fin d'année avec tournois et compte à minuit.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="trackEventInterest('LAN du Nouvel An', 'Toulouse Esport Connect & Voxel'); showNotification('Rendez-vous LAN du Nouvel An enregistré dans vos rappels !');"
+                    class="px-6 py-2.5 bg-brand-dark hover:bg-brand-red text-white text-xs font-rajdhani font-bold uppercase tracking-wider rounded-xl transition-colors border border-brand-cardBorder flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red">
+                    Rejoindre
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+        <!-- ==========================================================================
+   PAGE 5: ACTUALITÉS
+   ========================================================================== -->
+<section id="page-news" class="page-view">
+    <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Title -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-widest block mb-2">Actualités</span>
+            <h2 class="font-bebas text-5xl sm:text-6xl text-white uppercase">Le Blog TEC</h2>
+            <p class="text-gray-300 text-sm sm:text-base mt-2">
+                Toute l'actualité de Toulouse Esport Connect : événements, partenariats, ateliers et vie du collectif.
+            </p>
+        </div>
+
+        <!-- News Articles Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="news-grid">
+                        <!-- Article 1: LAN Party d'Automne : inscriptions ouvertes -->
+            <article id="article-tec-lan-automne" class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brand-red/50 transition-all flex flex-col">
+                <div class="flex-shrink-0 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-[10px] font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30 inline-flex mb-3">Événement</span>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">15 octobre 2026</span>
+                </div>
+                <h3 class="font-bebas text-2xl sm:text-3xl text-white mb-3 leading-tight">LAN Party d'Automne : inscriptions ouvertes</h3>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">Rejoignez-nous pour notre premier LAN ouvert à tous les adhérents. Tournois, buvette et bonne ambiance au programme.</p>
+                <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                    <a href="#article-tec-lan-automne" onclick="switchTab('news', true, false); scrollToArticle('tec-lan-automne'); return false;"
+                        class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider hover:underline transition-colors">
+                        Lire la suite →
+                    </a>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">Bureau TEC</span>
+                </div>
+            </article>
+
+            <!-- Article 2: Atelier initiation rétrogaming le 5 octobre -->
+            <article id="article-atelier-initiation-retrogaming" class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brand-red/50 transition-all flex flex-col">
+                <div class="flex-shrink-0 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-[10px] font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30 inline-flex mb-3">Atelier</span>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">2 octobre 2026</span>
+                </div>
+                <h3 class="font-bebas text-2xl sm:text-3xl text-white mb-3 leading-tight">Atelier initiation rétrogaming le 5 octobre</h3>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">Voxel organise un après-midi découverte autour des consoles classiques et bornes d'arcade, ouvert à tous les publics.</p>
+                <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                    <a href="#article-atelier-initiation-retrogaming" onclick="switchTab('news', true, false); scrollToArticle('atelier-initiation-retrogaming'); return false;"
+                        class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider hover:underline transition-colors">
+                        Lire la suite →
+                    </a>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">Voxel</span>
+                </div>
+            </article>
+
+            <!-- Article 3: Assemblée Générale 2026 : compte-rendu -->
+            <article id="article-assemblee-generale-2026" class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brand-red/50 transition-all flex flex-col">
+                <div class="flex-shrink-0 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-[10px] font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30 inline-flex mb-3">Gouvernance</span>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">20 septembre 2026</span>
+                </div>
+                <h3 class="font-bebas text-2xl sm:text-3xl text-white mb-3 leading-tight">Assemblée Générale 2026 : compte-rendu</h3>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">Retour sur notre première AG : élection du bureau, validation des comptes et orientations pour l'année à venir.</p>
+                <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                    <a href="#article-assemblee-generale-2026" onclick="switchTab('news', true, false); scrollToArticle('assemblee-generale-2026'); return false;"
+                        class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider hover:underline transition-colors">
+                        Lire la suite →
+                    </a>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">Julien Paltou</span>
+                </div>
+            </article>
+
+            <!-- Article 4: Nouveau partenaire : OSV Esport rejoint le collectif -->
+            <article id="article-nouveau-partenaire-osv" class="glass-card rounded-2xl p-6 border border-white/10 hover:border-brand-red/50 transition-all flex flex-col">
+                <div class="flex-shrink-0 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-brand-red/20 text-brand-redLight text-[10px] font-rajdhani font-bold uppercase tracking-wider border border-brand-red/30 inline-flex mb-3">Partenariat</span>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">30 août 2026</span>
+                </div>
+                <h3 class="font-bebas text-2xl sm:text-3xl text-white mb-3 leading-tight">Nouveau partenaire : OSV Esport rejoint le collectif</h3>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">OSV Esport, premier club esport toulousain créé en 2015, officialise son adhésion à Toulouse Esport Connect.</p>
+                <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                    <a href="#article-nouveau-partenaire-osv" onclick="switchTab('news', true, false); scrollToArticle('nouveau-partenaire-osv'); return false;"
+                        class="text-brand-redLight font-rajdhani font-bold text-xs uppercase tracking-wider hover:underline transition-colors">
+                        Lire la suite →
+                    </a>
+                    <span class="text-[10px] text-gray-500 font-rajdhani">Bureau TEC</span>
+                </div>
+            </article>
         </div>
 
     </div>
@@ -1281,6 +1496,7 @@
                     <li><a href="#qui-sommes-nous" onclick="switchTab('qui-sommes-nous'); return false;" class="hover:text-brand-redLight transition-colors">Qui sommes-nous ?</a></li>
                     <li><a href="#associations" onclick="switchTab('associations'); return false;" class="hover:text-brand-redLight transition-colors">Les Associations</a></li>
                     <li><a href="#evenements" onclick="switchTab('evenements'); return false;" class="hover:text-brand-redLight transition-colors">Événements</a></li>
+                    <li><a href="#news" onclick="switchTab('news'); return false;" class="hover:text-brand-redLight transition-colors">Actualités</a></li>
                     <li><a href="#section-adhesion" onclick="trackEvent('cta_clicked', { cta_name: 'adherer_reseau', location: 'footer' }); switchTab('associations', true, false); scrollToAdhesion(); return false;" class="hover:text-brand-redLight transition-colors">Adhérer au Réseau</a></li>
                 </ul>
             </div>

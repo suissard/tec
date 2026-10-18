@@ -7,7 +7,7 @@ import { trackEvent, identifyUser, trackDiscordClick, trackSocialClick, trackEve
 import {
     switchTab, toggleMobileMenu, scrollToAdhesion,
     scrollToBenevolat, scrollToAffiliation, scrollToRejoindreSlider, filterAssocLogos,
-    handleRouting
+    handleRouting, setAssocSearchTerm, applyAssocFilters, filterEvents, scrollToArticle
 } from './router.js';
 import {
     openModal, closeModal, openLegalModal, closeLegalModal, openSympathisantModal,
@@ -149,6 +149,10 @@ window.scrollToBenevolat = scrollToBenevolat;
 window.scrollToAffiliation = scrollToAffiliation;
 window.scrollToRejoindreSlider = scrollToRejoindreSlider;
 window.filterAssocLogos = filterAssocLogos;
+window.setAssocSearchTerm = setAssocSearchTerm;
+window.applyAssocFilters = applyAssocFilters;
+window.filterEvents = filterEvents;
+window.scrollToArticle = scrollToArticle;
 window.handleRouting = handleRouting;
 window.openModal = openModal;
 window.openModalById = openModalById;
@@ -212,6 +216,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileBtn) {
         mobileBtn.addEventListener('click', toggleMobileMenu);
     }
+
+    // Association search & category filters
+    const searchInput = document.getElementById('assoc-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            setAssocSearchTerm(e.target.value);
+        });
+    }
+
+    const categoryBtns = document.querySelectorAll('.assoc-filter-btn');
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const cat = e.currentTarget.getAttribute('data-cat');
+            filterAssocLogos(cat, e.currentTarget);
+        });
+    });
+
+    // Event category filters
+    const eventBtns = document.querySelectorAll('.event-filter-btn');
+    eventBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const cat = e.currentTarget.getAttribute('data-cat');
+            filterEvents(cat, e.currentTarget);
+        });
+    });
 
     // Modal backdrop click to close (Association modal)
     const modal = document.getElementById('assoc-modal');
