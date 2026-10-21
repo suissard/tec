@@ -1,0 +1,296 @@
+/* ==========================================================================
+   TEC - Global stylesheet (point d'entrée CSS) — Tailwind CSS v4
+   ==========================================================================
+   Migration v4 : plus de @tailwind base/components/utilities.
+   - `@import 'tailwindcss' source(none)` désactive la détection automatique ;
+   - `@source` déclare explicitement les fichiers à scanner ;
+   - les tokens brand (couleurs, polices, animations) vivent dans `@theme`.
+   ========================================================================== */
+
+@import 'tailwindcss' source(none);
+@import './variables.css';
+
+@source '../../';
+@source '../../../index.html';
+
+/* ==========================================================================
+   Design tokens (ex-tailwind.config.js)
+   Les utilités générées sont en kebab-case : bg-brand-card-bg, text-brand-red-light…
+   ========================================================================== */
+
+@theme {
+  /* Brand colors */
+  --color-brand-red: #e30613;
+  --color-brand-red-hover: #bf000b;
+  --color-brand-red-light: #ff3847;
+  --color-brand-dark: #0b0b0e;
+  --color-brand-card-bg: #141419;
+  --color-brand-card-border: #262630;
+  --color-brand-accent: #1d1d26;
+  --color-brand-discord: #5865f2;
+  --color-brand-discord-hover: #4752c4;
+
+  /* Typography */
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-rajdhani: 'Rajdhani', sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ==========================================================================
+   Self-hosted fonts (bundlées via Vite)
+   ========================================================================== */
+
+/* Bebas Neue */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+/* Inter */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/Inter-300.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Inter-400.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/Inter-500.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Inter-600.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/Inter-700.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../fonts/Inter-800.ttf') format('truetype');
+}
+
+/* Rajdhani */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Rajdhani-600.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/Rajdhani-700.ttf') format('truetype');
+}
+
+/* ==========================================================================
+   Base layer
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen flex flex-col bg-brand-dark font-sans text-gray-100 antialiased;
+    @apply selection:bg-brand-red selection:text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-brand-red;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-red-hover;
+  }
+
+  /* Accessibilité : anneau de focus visible au clavier (cf. anneau TEC) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-red ring-offset-2 ring-offset-brand-dark;
+  }
+}
+
+/* ==========================================================================
+   Patterns partagés (@utility : déclarées au top-level pour être @apply-ables ;
+   générées uniquement lorsqu'utilisées dans les sources scannées)
+   ========================================================================== */
+
+@utility btn {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-lg font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2;
+}
+
+@utility btn-primary {
+  @apply btn bg-brand-red text-white hover:bg-brand-red-hover;
+}
+
+@utility btn-outline {
+  @apply btn border-2 border-brand-red text-brand-red hover:bg-brand-red/10;
+}
+
+@utility btn-ghost {
+  @apply btn text-brand-red hover:bg-brand-red/10;
+}
+
+@utility input-base {
+  @apply w-full rounded-lg border border-brand-card-border bg-brand-card-bg px-4 py-2.5 text-white transition placeholder:text-gray-500 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20;
+}
+
+/* ==========================================================================
+   Composants utilitaires réutilisés
+   ========================================================================== */
+
+@layer components {
+  /* Lien de navigation (soulèvement au survol + souligné de route active) */
+  .nav-link {
+    @apply relative font-medium text-gray-300 transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-brand-red after:transition-transform hover:text-brand-red hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+
+  /* Glassmorphism Card Effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(227, 6, 19, 0.6);
+  }
+
+  /* Ambient Glow & Text Effects */
+  .glow-red {
+    box-shadow: var(--glow-red);
+  }
+
+  .glow-red-sm {
+    box-shadow: var(--glow-red-sm);
+  }
+
+  .glow-discord {
+    box-shadow: var(--glow-discord);
+  }
+
+  .glow-text {
+    text-shadow: var(--glow-text);
+  }
+
+  /* Skip link (accessibilité) — visible uniquement au focus clavier */
+  .skip-link {
+    @apply btn-primary sr-only z-50 focus:not-sr-only focus:absolute focus:top-4 focus:left-4;
+  }
+}
+
+/* ==========================================================================
+   Animations globales
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter-active {
+  animation: fadeIn 0.25s ease-in-out forwards;
+}
+
+/* ==========================================================================
+   Transitions Vue (pages, menu mobile, toasts)
+   ========================================================================== */
+
+/* Page transitions */
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-opacity duration-200;
+}
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+}
+
+/* Mobile menu slide */
+.mobile-panel-enter-active,
+.mobile-panel-leave-active {
+  @apply ease-out transition-transform duration-300;
+}
+.mobile-panel-enter-from {
+  @apply translate-x-full;
+}
+.mobile-panel-leave-to {
+  @apply translate-x-full;
+}
+
+/* Toast slide */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  @apply ease-out transition-all duration-300;
+}
+.slide-fade-enter-from {
+  @apply translate-x-full opacity-0;
+}
+.slide-fade-leave-to {
+  @apply translate-x-full opacity-0;
+}
+
+/* Active nav link */
+.nav-link.router-link-exact-active {
+  @apply font-medium text-brand-red-light;
+}
+.nav-link.router-link-exact-active::after {
+  @apply content-[''] absolute bottom-0 left-0 h-0.5 w-full bg-brand-red;
+}

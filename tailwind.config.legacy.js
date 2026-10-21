@@ -1,10 +1,10 @@
+/**
+ * Configuration Tailwind utilisée uniquement par les scripts legacy (vanilla JS).
+ * Le projet Vue utilise tailwind.config.js (contenu limité à index.html + src/).
+ */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./index.html",
-    "./sections/**/*.html",
-    "./js/**/*.js"
-  ],
+  content: ['./index.legacy.html', './sections/**/*.html', './js/**/*.js'],
   theme: {
     extend: {
       colors: {
@@ -17,15 +17,15 @@ module.exports = {
           cardBorder: '#262630',
           accent: '#1D1D26',
           discord: '#5865F2',
-          discordHover: '#4752C4'
-        }
+          discordHover: '#4752C4',
+        },
       },
       fontFamily: {
         bebas: ['"Bebas Neue"', 'sans-serif'],
         rajdhani: ['Rajdhani', 'sans-serif'],
-        sans: ['Inter', 'sans-serif']
-      }
-    }
+        sans: ['Inter', 'sans-serif'],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };

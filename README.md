@@ -1,163 +1,312 @@
 # 🎮 Toulouse Esport Connect (TEC)
 
-> **Le réseau fédérateur des associations esportives toulousaines.**
+> **Site officiel de Toulouse Esport Connect (TEC) — SPA Vue 3.**
 
-Bienvenue sur le dépôt du site officiel de **Toulouse Esport Connect (TEC)**, association Loi 1901 dédiée à la valorisation, l'accompagnement et la mise en réseau des acteurs de l'esport dans la métropole toulousaine et en région Occitanie.
+**Toulouse Esport Connect (TEC)** est le réseau fédérateur des associations
+esportives toulousaines, porté par l'association **Toulouse Esport Connect** (Loi 1901).
+Le site rassemble les associations, joueurs compétitifs, créateurs de contenus et
+organisateurs d'événements de la métropole toulousaine et d'Occitanie.
 
----
+L'application est une **Single Page Application (SPA) Vue 3** — moderne, responsive,
+accessible (WCAG AA) et pensée pour être hébergée en **statique** (aucun backend requis).
 
-## 📌 Présentation du Projet
-
-**Toulouse Esport Connect** rassemble les associations, joueurs compétitifs, passionnés, créateurs de contenus et organisateurs d'événements afin de structurer et dynamiser l'écosystème local.
-
-Le site web a été conçu comme une **Single Page Application (SPA)** fluide, moderne et responsive, offrant une expérience immersive inspirée des codes graphiques de l'esport contemporain (dark mode, glassmorphism, néons et accents carmin).
-
----
-
-## ✨ Fonctionnalités Principales
-
-L'application intègre une navigation fluide sans rechargement de page, découpée en 5 univers principaux :
-
-### 1. 🏠 Accueil
-- **Hero Banner** dynamique avec typographie percutante et badges lumineux.
-- **Compteurs clés** mettant en avant l'impact du collectif (associations membres, événements annuels, communauté de joueurs).
-- **Points d'entrée rapides** vers l'annuaire associatif et le calendrier événementiel.
-
-### 2. 🎯 Notre Projet
-- **3 piliers fondamentaux** détaillant la feuille de route du réseau :
-  1. *Réseau d'Associations* : mutualisation des compétences, synergies locales et projets communs.
-  2. *Organisation d'Événements* : portage de tournois, LANs et projets d'envergure régionale.
-  3. *Développement Local* : accompagnement des clubs amateurs et formation citoyenne / étudiante.
-- **Gouvernance & Bureau associatif** : présentation de l'équipe dirigeante.
-- **Formulaire d'adhésion interactif** avec ancre de défilement fluide (`scrollToAdhesion()`) pour les structures candidates.
-
-### 3. 👥 Annuaire des Associations Membres
-- **Filtrage par catégorie en temps réel** :
-  - `Toutes les Associations`
-  - `Esport` (Oserv Esport, Dragon Esport, Lightning Project...)
-  - `Versus Fighting` (Toulouse Versus Fighting)
-  - `Rétrogaming & LAN` (Voxel)
-  - `Étudiant & Communauté` (fLUKY BOYS)
-- **Modale dynamique interactive** au clic sur chaque logo avec :
-  - Présentation détaillée de l'association.
-  - Titres et jeux compétitifs couverts (LoL, Valorant, Street Fighter 6, Tekken 8, Rocket League, etc.).
-  - Coordonnées directes et lien de contact.
-  - Accessibilité au clavier (fermeture avec la touche `Échap` ou clic en dehors).
-
-### 4. 📅 Agenda & Événements
-- **Programmation des tournois** : vue d'ensemble des tournois, rankings et rassemblements esportifs toulousains.
-- **Planning des rendez-vous à venir** : rankings mensuels, qualifications régionales et LANs communautaires.
-- **Système de notification toast** informant l'utilisateur de la prise en compte de ses interactions.
-
-### 5. 🤝 Qui sommes-nous ? & Contact
-- Présentation de la mission et des valeurs de TEC (*Inclusivité*, *Proximité*, *Éco-responsabilité*).
-- **Formulaire de contact direct** avec feedback instantané.
-- **Pied de page complet** avec liens rapides, coordonnées de contact et réseaux sociaux (Discord, Instagram, X/Twitter).
+> 📖 Documentation détaillée : [`ARCHITECTURE.md`](./ARCHITECTURE.md) ·
+> [`CONTRIBUTING.md`](./CONTRIBUTING.md) · [`CHANGELOG.md`](./CHANGELOG.md) ·
+> [`docs/`](./docs/)
 
 ---
 
-## 🎨 Charte Graphique & Design System
+## ✨ Fonctionnalités
 
-Le design repose sur une palette sombre et intense contrastée par le rouge emblématique :
-
-| Élément | Valeur / Règle | Rôle |
+| Route | Page | Contenu |
 |---|---|---|
-| **Brand Red** | `#E30613` / `#BF000B` (hover) | Couleur d'accent principale, boutons CTA, halos lumineux |
-| **Brand Dark** | `#0B0B0E` | Fond sombre profond |
-| **Card Background** | `#141419` & `rgba(20, 20, 25, 0.85)` | Cartes avec flou d'arrière-plan (*glassmorphism*) |
-| **Borders** | `#262630` / `rgba(255, 255, 255, 0.08)` | Délimitations subtiles |
-| **Typographie Titres** | `'Bebas Neue', sans-serif` | Titraille esport imposante et lisible |
-| **Typographie Accents** | `'Rajdhani', sans-serif` | Badges, libellés, dates et CTA |
-| **Typographie Corps** | `'Inter', sans-serif` | Lecture fluide et ergonomique des textes |
+| `/` | **Accueil** | Hero, compteurs animés, dernières actualités, prochains événements, annuaire |
+| `/associations` | **Associations** | Annuaire filtrable (catégories + recherche), fiche détaillée en modale |
+| `/evenements` | **Événements** | Agenda trié, filtres par catégorie, statuts (`open` / `full` / `past`), modale |
+| `/actualites` | **Actualités** | Liste paginée, article mis en avant, JSON-LD `NewsArticle`, modale |
+| `/qui-sommes-nous` | **Qui sommes-nous ?** | Mission, valeurs, gouvernance |
+| `/contact` | **Contact** | Formulaire validé + toasts de confirmation |
+| `/benevolat` | **Devenir bénévole** | Formulaire multi-étapes (4 étapes) avec brouillon persistant |
+| `/adhesion` | **Adhésion** | Adhésion individuelle ou structure (SIRET, jeux, cotisation) |
+| `/mentions-legales` | **Mentions légales** | Statut, hébergement, données personnelles |
+| `/:pathMatch(.*)*` | **404** | Page introuvable avec retour à l'accueil |
+
+Transversal : menu mobile, bannière de consentement cookies (RGPD), notifications
+toasts, modale globale accessible, prefetch des routes principales, SEO (titre +
+meta description + Open Graph + JSON-LD injectés à chaque navigation).
 
 ---
 
-## 🛠️ Technologies Utilisées
+## 🛠️ Stack technique
 
-- **HTML5 Sémantique & A11y** : balisage accessible, hiérarchie de titres respectée (1 seul `<h1>`), cartes accessibles au clavier (`<button>`) et référencement optimisé (SEO & JSON-LD).
-- **Tailwind CSS (Compilé & Minifié)** : feuilles de style statiques compilées (`css/tailwind.min.css`) sans CDN au runtime pour des performances optimales (Core Web Vitals).
-- **CSS3 personnalisé** : scrollbar personnalisée, effets de lueur (*glow*), motifs de grille en fond et transitions d'onglets définis dans [`css/style.css`](file:///home/suissard/PROGRAMMATIONS/tec/css/style.css).
-- **Vanilla JavaScript (ES6+)** : routage SPA par Hash (`#associations`, `#evenements`) et `History API`, gestion du bouton retour navigateur, modale accessible avec capture de focus dans [`js/main.js`](file:///home/suissard/PROGRAMMATIONS/tec/js/main.js).
-- **Google Fonts** : *Bebas Neue*, *Rajdhani*, *Inter*.
-- **FontAwesome 6** : icônes vectorielles.
-
----
-
-## 📁 Arborescence du Projet
-
-```text
-tec/
-├── index.html                  # Application SPA assemblée prête au déploiement
-├── package.json                # Scripts npm de build et dépendances
-├── tailwind.config.js          # Configuration Tailwind (couleurs brand, polices, content)
-├── README.md                   # Documentation du projet
-├── TODO.md                     # Suivi des points d'amélioration
-├── scripts/
-│   └── build.js                # Script d'assemblage modulaire (sections -> index.html)
-├── css/
-│   ├── input.css               # Point d'entrée Tailwind CLI
-│   ├── tailwind.min.css        # CSS statique compilé et minifié (24KB)
-│   └── style.css               # Effets visuels, animations, glassmorphism & scrollbar
-├── js/
-│   └── main.js                 # Routage SPA, historique, modale accessible et tracking
-├── sections/                   # Composants modulaires synchronisés
-│   ├── header.html             # En-tête avec bouton Discord (+500) et navigation
-│   ├── accueil.html            # Hero banner, statistiques et hub Discord
-│   ├── projet.html             # Piliers, bureau associatif (photos réelles) et adhésion
-│   ├── associations.html       # Galerie accessible des associations affiliées
-│   ├── evenements.html         # Agenda & calendrier des tournois
-│   ├── qui-sommes-nous.html    # Valeurs et formulaire de contact
-│   ├── footer.html             # Pied de page et liens sociaux
-│   └── modal-toast.html        # Boîte de dialogue accessible & notifications
-└── media/                      # Médias, logos et photos du site (dossier normalisé Linux)
-    ├── favicon.svg             # Favicon officiel vectoriel TEC
-    ├── og-banner.jpg           # Bannière Open Graph / Twitter Card
-    ├── team/                   # Photos des membres du bureau associatif
-    │   ├── julien-paltou.jpg
-    │   └── roro.jpg
-    ├── oserv-transparent.png
-    ├── voxel-transparent.png
-    ├── dragon-transparent.png
-    ├── fluky-boys-transparent.png
-    ├── lightning-transparent.png
-    └── tvsf-transparent.png
-```
+| Domaine | Outil | Version |
+|---|---|---|
+| Framework | **Vue 3** (Composition API, `<script setup lang="ts">`) | 3.4 |
+| Bundler / dev server | **Vite** (Rolldown, chunks vendors avancés) | 8 |
+| État global | **Pinia** (3 stores : `app`, `data`, `forms`) | 2 |
+| Routage | **Vue Router 4** (History API + repli hash) | 4 |
+| Styles | **Tailwind CSS 4** (`@theme`, `@utility`, `@source`) | 4 |
+| Validation | **Zod 4** (schémas de formulaires) | 4 |
+| Utilitaires | **VueUse** (`useId`, …) | 10 |
+| Tests unitaires | **Vitest** + `@vue/test-utils` + jsdom + coverage V8 | 5 |
+| Tests E2E | **Playwright** | 1.64 |
+| Lint / format | **ESLint 10** (flat config) + **Prettier** | — |
+| Typage | **TypeScript** + `vue-tsc` | 5.6 |
 
 ---
 
-## 🚀 Démarrage Rapide & Build
-
-### Commandes de Build
+## 🚀 Démarrage rapide
 
 ```bash
-# Assembler le HTML et compiler Tailwind CSS :
-npm run build
+# 1. Installer les dépendances
+npm install
 
-# Compiler uniquement Tailwind CSS (minifié) :
-npm run build:css
-
-# Recompiler automatiquement Tailwind en mode surveillance (watch) :
-npm run watch:css
-
-# Lancer un serveur de développement local :
+# 2. Lancer le serveur de développement (http://localhost:3000, ouverture auto)
 npm run dev
 ```
 
-### Option : Serveur local léger
-Accédez simplement à : `http://localhost:8080`
+### Commandes
+
+| Commande | Description |
+|---|---|
+| `npm run dev` | Serveur de développement Vite (port **3000**) |
+| `npm run build` | Build de production dans `dist/` (sourcemaps + chunks vendors) |
+| `npm run preview` | Prévisualise le build (`dist/`) |
+| `npm run lint` | ESLint + Prettier avec auto-correction |
+| `npm run lint:fix` | Identique à `lint` (alias) |
+| `npm run typecheck` | `vue-tsc` (app) + `tsc` (config Node) en `--noEmit` |
+| `npm run test:unit` | Tests unitaires Vitest (13 fichiers, **95 tests**) |
+| `npm run test:coverage` | Tests + couverture V8 (seuils : 80 % lignes/fonctions, 70 % branches) |
+| `npm run legacy:build` | Assemble le site vanilla (`sections/` → `index.legacy.html`) + compile Tailwind |
+| `npm run legacy:build:css` | Compile uniquement `css/tailwind.min.css` |
+| `npm run legacy:watch:css` | Recompile le CSS legacy en continu |
+| `npm run legacy:serve` | Sert le site legacy (http://localhost:8080) |
+| `npm run legacy:lint` | Lint du JS vanilla (`js/`) |
+
+> **Tests E2E** : `@playwright/test` est installé et la couverture unitaire est en place.
+> Le script `test:e2e` et la suite `tests/e2e/` seront ajoutés lors de la phase dédiée
+> (voir [`docs/deployment.md`](./docs/deployment.md#tests-e2e-playwright)).
+
+---
+
+## 🔐 Variables d'environnement
+
+Aucune variable n'est requise pour démarrer. Elles sont toutes facultatives et
+préfixées `VITE_` (définies dans `.env` — ignoré par git — ou `.env.local`) :
+
+| Variable | Défaut | Rôle |
+|---|---|---|
+| `VITE_HASH_ROUTER` | *(absente)* | `'true'` → bascule le routeur en **hash history** (`/#/contact`). Utile sur un hébergeur sans règle de rewrite SPA |
+| `VITE_POSTHOG_KEY` | *(absente)* | Clé API PostHog. Sans cette clé, aucune injection de tracker (no-op) |
+| `VITE_POSTHOG_HOST` | `https://eu.i.posthog.com` | Hébergeur du SDK PostHog (injecté **uniquement** après consentement) |
+
+Exemple `.env` :
+
+```bash
+VITE_HASH_ROUTER=true
+VITE_POSTHOG_KEY=phc_xxxxxxxxxxxxxxxxxxxxx
+VITE_POSTHOG_HOST=https://eu.i.posthog.com
+```
+
+Le typage de ces variables vit dans [`src/vite-env.d.ts`](./src/vite-env.d.ts).
+
+---
+
+## 📁 Structure du projet
+
+```text
+tec/
+├── index.html                 # Point d'entrée Vite (app Vue 3)
+├── vite.config.ts             # Plugin Vue, alias @/, plugin data/ (dev + build)
+├── vitest.config.ts           # jsdom, globals, setup tests, seuils de couverture
+├── eslint.config.mjs          # Flat config ESLint (Vue + TS + Prettier)
+├── eslint.legacy.config.mjs   # Flat config séparée pour le site legacy
+├── tsconfig*.json             # TS app (strict-ish) / TS Node
+├── postcss.config.js          # @tailwindcss/postcss (Tailwind 4)
+│
+├── data/                      # 📦 Données métier JSON (source unique)
+│   ├── associations.json      # 6 associations
+│   ├── evenements.json        # 8 événements
+│   └── news.json              # 4 actualités
+│
+├── src/                       # 🧩 Application Vue 3 (voir ci-dessous)
+│
+├── tests/                     # 🧪 Tests unitaires Vitest
+│   ├── setup.ts
+│   ├── stores/                # app, data, forms
+│   ├── composables/           # useModal, useDebounce, useLocalStorage, …
+│   ├── components/ui/         # BaseButton, BaseInput, Stepper
+│   └── utils/                 # helpers, validation
+│
+├── docs/                      # 📚 Documentation technique
+│   ├── stores.md
+│   ├── composables.md
+│   ├── components.md
+│   ├── forms.md
+│   └── deployment.md
+│
+├── js/ · css/ · sections/     # 🕰️ Site vanilla legacy (assemblé par scripts/build.js)
+├── index.legacy.html          # Sortie du build legacy
+├── media/                     # Logos, photos, favicon, bannière Open Graph
+└── dist/                      # Build de production (gitignoré)
+```
+
+### `src/` — l'application
+
+```text
+src/
+├── main.ts                    # Bootstrap : createApp + Pinia + Router + CSS global
+├── App.vue                    # Shell : DefaultLayout + <RouterView> animé +
+│                              #   <Teleport body> (ModalHost, ToastHost, CookieBanner)
+│                              #   + consentement cookies + prefetch des routes
+├── assets/
+│   ├── css/main.css           # Point d'entrée Tailwind 4 (@theme, @utility, @source)
+│   ├── css/variables.css      # CSS custom properties (glassmorphism, glows)
+│   └── fonts/                 # Fonts self-hosted (Bebas Neue, Rajdhani, Inter)
+├── components/
+│   ├── ui/                    # 20 composants génériques (Base*, ModalHost, Stepper…)
+│   ├── layout/                # SiteHeader, SiteFooter
+│   ├── forms/                 # ContactForm
+│   └── *.vue                  # Cartes métier (Association/Event/News), Hero, Pagination…
+├── composables/               # 6 composables réutilisables
+├── layouts/DefaultLayout.vue  # Skip-link + header + <main> + footer
+├── pages/                     # 10 vues (9 routes + NotFound)
+├── router/index.ts            # Routes, guards SEO, scrollBehavior, history/hash
+├── services/api.ts            # Couche HTTP typée (ApiError + fetch JSON local)
+├── stores/                    # Pinia : app.ts, data.ts, forms.ts
+├── types/index.ts             # Types métier alignés sur data/*.json
+└── utils/                     # constants, helpers, validation (Zod), seo (JSON-LD)
+```
+
+---
+
+## 🏗️ Architecture en bref
+
+```text
+data/*.json ──▶ services/api.ts ──▶ stores/data.ts ──▶ pages/*.vue ──▶ components/*
+                                     ▲                      │
+                       stores/app.ts (toasts, menu) ◀───────┤
+                       stores/forms.ts (validation Zod) ◀───┘
+```
+
+- **Stores Pinia (singleton)** : `app` (menu mobile, chargement, toasts),
+  `data` (associations, événements, actualités + cache), `forms` (contact,
+  bénévolat, adhésion + persistance localStorage).
+- **Composables** : modale globale (`useModal`, singleton), consentement cookies
+  (`useCookieConsent`, singleton), `useLocalStorage`, `useDebounce`,
+  `useFocusTrap`, `useIntersectionObserver`.
+- **Routeur** : 9 routes + 404, `meta.title` / `meta.description` appliqués par
+  `beforeEach` (onglet + `<meta>` + Open Graph), lazy loading par `import()`,
+  `scrollBehavior` (ancres avec offset 96 px sous le header sticky), prefetch des
+  4 routes principales dans `App.vue`.
+- **CSS** : Tailwind 4 sans `tailwind.config.js` — tokens de marque dans `@theme`,
+  patterns réutilisables (`btn`, `input-base`, `glass-card`, `skip-link`).
+
+Le détail complet se trouve dans [`ARCHITECTURE.md`](./ARCHITECTURE.md) et
+[`docs/`](./docs/).
+
+---
+
+## 📦 Données
+
+Les données sont **locales et statiques** : trois fichiers JSON dans `data/`
+(`associations.json`, `evenements.json`, `news.json`), servis en `/data/*.json`
+par un plugin Vite dédié (`tecDataAssets` dans `vite.config.ts`) :
+
+- **dev** : middleware Vite qui lit `data/` (interdit toute traversée de répertoire) ;
+- **build** : copie de `data/` vers `dist/data/` (requis pour `vite preview`).
+
+Le passage à une API distante se fait uniquement dans [`src/services/api.ts`](./src/services/api.ts)
+(les stores et pages ne connaissent que `fetchAssociations()`, `fetchEvents()`, …).
+
+---
+
+## 📝 Formulaires
+
+- **Validation Zod** centralisée dans [`src/utils/validation.ts`](./src/utils/validation.ts) :
+  `volunteerSchema` (4 sous-schemas d'étapes), `adhesionIndivSchema`,
+  `adhesionAssoSchema`, helper `validateForm(data, schema) → { valid, errors, data }`.
+- **Soumission** via `useFormStore` : `submitContact()`, `submitVolunteer()`,
+  `submitAdhesion(data, kind)` — état `submitting / success / error` exposé aux vues.
+- **Persistance** : chaque envoi validé est écrit dans `localStorage`
+  (`tec_contacts`, `tec_volunteers`, `tec_adhesions`) avec horodatage ; le brouillon
+  du formulaire bénévole est sauvegardé sous `tec_volunteer_draft`.
+- **UI** : composants `Base*` avec `aria-invalid`, `aria-describedby`, `role="alert"`
+  sur les erreurs et `aria-live` sur les confirmations.
+
+Détail des schémas : [`docs/forms.md`](./docs/forms.md).
+
+---
+
+## ♿ Accessibilité
+
+- **Skip link** « Aller au contenu principal » (`DefaultLayout`), `<main id="main-content">`.
+- **Focus trap** clavier sur la modale, le menu mobile et la bannière cookies
+  (`useFocusTrap` : Tab cyclique, Échap, restauration du focus).
+- **ARIA** : `role="dialog"` + `aria-modal`, `role="alert"` sur les erreurs de champ,
+  `aria-live="polite"` sur les toasts/stepper/compteur, `aria-expanded` sur les
+  boutons d'accordéon et de menu.
+- **Hiérarchie de titres** : un seul `<h1>` par page (fourni par `HeroSection`).
+- **Contraste** : palette validée sur fond sombre (rouge `#E30613`, gris `#A1A1AA`+),
+  focus visible `ring-2 ring-brand-red`.
+- **Compatibilité** : formulaires natifs (`required`, `type="email"`, `autocomplete`),
+  cibles tactiles ≥ 40 px, navigation clavier complète.
+
+---
+
+## 🧪 Tests
+
+```bash
+npm run test:unit       # 13 fichiers, 95 tests
+npm run test:coverage   # V8 : 96 % instructions, 97,7 % lignes, 99,2 % fonctions
+```
+
+Couverture cible (seuils bloquants dans `vitest.config.ts`) : **80 %** lignes /
+fonctions / statements, **70 %** branches.
+
+---
+
+## 🚢 Déploiement
+
+Build **100 % statique** :
+
+```bash
+npm run build      # → dist/ (+ dist/data/)
+npm run preview    # vérification locale du build
+```
+
+1. Héberger `dist/` sur un hébergeur statique (Netlify, Vercel, GitHub Pages, nginx).
+2. Configurer un **rewrite SPA** (`/* → /index.html`) — ou définir
+   `VITE_HASH_ROUTER=true` si le rewrite est impossible.
+3. Déployer `data/` avec le build (déjà copié dans `dist/data/`).
+4. CI/CD GitHub Actions prêt à l'emploi : voir [`docs/deployment.md`](./docs/deployment.md).
+
+---
+
+## 🕰️ Site vanilla (legacy)
+
+Le site d'origine (HTML assemblé + JS vanilla) reste disponible et buildable :
+
+```bash
+npm run legacy:build   # sections/ → index.legacy.html + css/tailwind.min.css
+npm run legacy:serve   # http://localhost:8080
+```
+
+Il est conservé comme référence et en repli de production ; il est exclu du lint
+principal (`eslint.legacy.config.mjs`).
 
 ---
 
 ## 🌐 Liens & Contact
 
-- **Email Officiel** : [contact@toulouse-esport-connect.fr](mailto:contact@toulouse-esport-connect.fr)
+- **Email** : [contact@toulouse-esport-connect.fr](mailto:contact@toulouse-esport-connect.fr)
 - **Discord** : [Rejoindre le serveur communautaire](https://discord.gg/VH98qQWEhh)
 - **Instagram** : [@toulouseec__](https://www.instagram.com/toulouseec__/)
-- **Siège Social** : Toulouse, Haute-Garonne (31), France
+- **Siège** : Toulouse, Haute-Garonne (31), France
 
 ---
 
-## 📄 Licence & Droits
+## 📄 Licence
 
-© 2026 **Toulouse Esport Connect**. Tous droits réservés.  
-Les logos des structures partenaires et associations affiliées restent la propriété intellectuelle exclusive de leurs détenteurs respectifs.
+MIT — © 2026 **Toulouse Esport Connect**. Tous droits réservés pour les contenus
+et les logos des structures partenaires / affiliées.
