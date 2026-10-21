@@ -1,0 +1,59 @@
+name: Deploy
+
+# Déclenché uniquement quand la CI associée sur `main` se termine avec succès.
+on:
+  workflow_run:
+    workflows: ['CI']
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      # On dépile le commit exact validé par la CI (et non la tête de branche).
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_SITE_URL: ${{ vars.SITE_URL }}
+
+      # GitHub Pages : l'artefact doit être téléversé AVANT le déploiement.
+      - name: Upload Pages artifact
+        if: ${{ secrets.DEPLOY_TARGET == 'github-pages' || !secrets.DEPLOY_TARGET }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+          name: github-pages
+      - name: Deploy to GitHub Pages
+        if: ${{ secrets.DEPLOY_TARGET == 'github-pages' || !secrets.DEPLOY_TARGET }}
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages
+
+      - name: Deploy to Netlify
+        if: ${{ secrets.DEPLOY_TARGET == 'netlify' }}
+        run: npx netlify-cli deploy --dir=dist --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Deploy to Vercel
+        if: ${{ secrets.DEPLOY_TARGET == 'vercel' }}
+        run: npx vercel deploy --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

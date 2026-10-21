@@ -5,7 +5,7 @@
     "category": "esport",
     "description": "Premier club esport toulousain créé en 2015. Trois axes : performance esport, encadrement des jeunes et accompagnement des entreprises.",
     "email": "contact@osv-esport.fr",
-    "logo": "media/oserv-transparent.png",
+    "logo": "/media/oserv-transparent.png",
     "imgClass": "drop-shadow-[0_0_2px_rgba(255,255,255,0.45)]",
     "games": "League of Legends, Rocket League, Valorant"
   },
@@ -15,7 +15,7 @@
     "category": "retro",
     "description": "Association toulousaine dédiée aux événements ludiques, à l'organisation de LAN parties et aux rendez-vous récréatifs autour de l'esport.",
     "email": "contact@voxel-esport.fr",
-    "logo": "media/voxel-transparent.webp",
+    "logo": "/media/voxel-transparent.webp",
     "games": "LAN Party, Multi-jeux, Rétrogaming"
   },
   {
@@ -24,7 +24,7 @@
     "category": "esport",
     "description": "Club comptant plusieurs équipes Overwatch de niveaux différents. Organisateur d'événements en ligne et physiques (« LAN Dragon »).",
     "email": "contact@dragonesport.fr",
-    "logo": "media/dragon-transparent.webp",
+    "logo": "/media/dragon-transparent.webp",
     "games": "Valorant, CS2, Overwatch"
   },
   {
@@ -33,7 +33,7 @@
     "category": "etudiant",
     "description": "Collectif et association toulousaine réunissant joueurs passionnés, créateurs de contenus et équipes de compétition.",
     "email": "contact@fluckyboys.fr",
-    "logo": "media/fluky-boys-transparent.webp",
+    "logo": "/media/fluky-boys-transparent.webp",
     "games": "Rocket League, Overwatch 2, TFT"
   },
   {
@@ -42,7 +42,7 @@
     "category": "esport",
     "description": "Structure associative axée sur l'accompagnement de joueurs, l'organisation de tournois et l'animation esport locale.",
     "email": "contact@lightningproject.fr",
-    "logo": "media/lightning-transparent.webp",
+    "logo": "/media/lightning-transparent.webp",
     "games": "Trackmania, Smash Bros, FC24"
   },
   {
@@ -51,7 +51,7 @@
     "category": "versus",
     "description": "Association de référence dédiée à la communauté des jeux de combat à Toulouse. Sessions hebdomadaires, ranking et tournois.",
     "email": "contact@toulousefighting.fr",
-    "logo": "media/tvsf-white-transparent.webp",
+    "logo": "/media/tvsf-white-transparent.webp",
     "games": "Street Fighter 6, Tekken 8, Guilty Gear, Smash"
   }
 ]

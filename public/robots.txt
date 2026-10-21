@@ -1,0 +1,7 @@
+# Toulouse Esport Connect — robots.txt
+# Repli servi en dev ; régénéré dans dist/ à chaque build par vite-plugin-sitemap
+# (hostname piloté par VITE_SITE_URL, défaut https://tec-asso.fr).
+User-agent: *
+Allow: /
+
+Sitemap: https://tec-asso.fr/sitemap.xml
