@@ -1,47 +1,48 @@
 <script setup lang="ts">
 /**
- * Section héros des pages TEC : titre, sous-titre et actions (slot).
- * Dégradé d'ambiance + halo rouge discret, responsive mobile-first.
+ * En-tête de page (maquette 2026) : grand titre centré façon
+ * « LES ÉVÉNEMENTS <rouge>TOULOUSAINS</rouge> » + sous-titre et actions.
+ * Si `highlight` n'est pas fourni, le dernier mot du titre passe en rouge.
  */
+import { computed } from 'vue';
+
 interface Props {
   /** Titre principal (h1 de la page) */
   title: string;
+  /** Partie du titre affichée en rouge (défaut : dernier mot) */
+  highlight?: string;
   /** Sous-titre court */
   subtitle?: string;
   /** Sur-titre au-dessus du titre (ex. « TEC ») */
   eyebrow?: string;
 }
-
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
+  highlight: undefined,
   subtitle: undefined,
   eyebrow: undefined,
+});
+
+const parts = computed(() => {
+  const title = props.title.trim();
+  const red = props.highlight ?? (title.includes(' ') ? title.slice(title.lastIndexOf(' ') + 1) : '');
+  if (!red || !title.endsWith(red)) return { start: title, red: '' };
+  return { start: title.slice(0, title.length - red.length), red };
 });
 </script>
 
 <template>
-  <section
-    class="relative overflow-hidden border-b border-brand-card-border bg-linear-to-b from-brand-accent/60 via-brand-dark to-brand-dark"
-  >
-    <!-- Halo décoratif -->
-    <div
-      class="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-brand-red/15 blur-3xl"
-      aria-hidden="true"
-    ></div>
-
-    <div class="relative max-w-6xl mx-auto px-4 py-12 md:py-20">
-      <p
-        v-if="eyebrow"
-        class="mb-3 font-rajdhani text-sm font-bold uppercase tracking-[0.3em] text-brand-red-light"
-      >
+  <section class="relative">
+    <div class="max-w-6xl mx-auto px-4 pt-12 pb-6 md:pt-16 text-center">
+      <p v-if="eyebrow" class="mb-2 font-rajdhani text-sm font-bold uppercase tracking-[0.3em] text-brand-red">
         {{ eyebrow }}
       </p>
-      <h1 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white glow-text">
-        {{ title }}
+      <h1 class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">
+        {{ parts.start }}<span v-if="parts.red">{{ parts.red }}</span>
       </h1>
-      <p v-if="subtitle" class="mt-4 max-w-2xl text-lg text-gray-400">
+      <p v-if="subtitle" class="mx-auto mt-5 max-w-2xl text-base md:text-lg text-[#333]">
         {{ subtitle }}
       </p>
-      <div v-if="$slots.actions" class="mt-8 flex flex-wrap gap-4">
+      <div v-if="$slots.actions" class="mt-8 flex flex-wrap justify-center gap-4">
         <slot name="actions" />
       </div>
     </div>

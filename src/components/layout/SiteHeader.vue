@@ -19,11 +19,18 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'Accueil', to: { name: routeNames.Home } },
-  { label: 'Associations', to: { name: routeNames.Associations } },
+  { label: 'Notre projet', to: { name: routeNames.About } },
   { label: 'Événements', to: { name: routeNames.Events } },
+  { label: 'Associations', to: { name: routeNames.Associations } },
+];
+
+const CONTACT_ITEM: NavItem = { label: 'Contact', to: { name: routeNames.Contact } };
+
+/** Menu mobile : liens principaux + actualités + contact. */
+const MOBILE_ITEMS: NavItem[] = [
+  ...NAV_ITEMS,
   { label: 'Actualités', to: { name: routeNames.News } },
-  { label: 'Qui sommes-nous ?', to: { name: routeNames.About } },
-  { label: 'Contact', to: { name: routeNames.Contact } },
+  CONTACT_ITEM,
 ];
 
 const appStore = useAppStore();
@@ -55,7 +62,7 @@ watch(
 
 <template>
   <header
-    class="sticky top-0 z-40 bg-brand-dark/95 border-b border-brand-card-border transition-all duration-300"
+    class="sticky top-0 z-40 bg-[#232323] shadow-[0_2px_12px_rgba(0,0,0,0.35)] transition-all duration-300"
   >
     <nav
       class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4"
@@ -64,33 +71,31 @@ watch(
       <!-- Logo -->
       <RouterLink
         :to="{ name: routeNames.Home }"
-        class="flex items-baseline gap-2 p-1 rounded-xl group"
+        class="flex items-center p-1 rounded-xl transition-transform hover:scale-105"
         aria-label="Toulouse Esport Connect — Accueil"
       >
-        <span
-          class="font-bebas text-2xl md:text-3xl text-white group-hover:text-brand-red-light transition-colors"
-          >TEC</span
-        >
-        <span class="font-sans text-xs text-gray-400 hidden sm:block">Toulouse Esport Connect</span>
+        <img
+          src="/media/logo-clair.svg"
+          alt="Toulouse Esport Connect"
+          class="h-10 md:h-12 w-auto"
+          width="160"
+          height="48"
+        />
       </RouterLink>
 
       <!-- Navigation desktop -->
-      <ul class="hidden lg:flex items-center gap-6">
+      <ul class="hidden lg:flex items-center gap-8 mr-auto ml-12">
         <li v-for="item in NAV_ITEMS" :key="item.label">
-          <RouterLink
-            :to="item.to"
-            class="nav-link relative inline-block py-2 text-sm text-gray-300 hover:text-brand-red-light transition-colors"
-          >
+          <RouterLink :to="item.to" class="nav-link tec-nav-link">
             {{ item.label }}
           </RouterLink>
         </li>
       </ul>
 
       <!-- CTA desktop -->
-      <div class="hidden lg:flex items-center gap-3">
-        <BaseButton variant="ghost" size="sm" :href="EXTERNAL_LINKS.discord">Discord</BaseButton>
-        <BaseButton variant="primary" size="sm" to="/adhesion">Adhésion</BaseButton>
-        <BaseButton variant="outline" size="sm" to="/benevolat">Bénévolat</BaseButton>
+      <div class="hidden lg:flex items-center gap-10">
+        <RouterLink :to="CONTACT_ITEM.to" class="nav-link tec-nav-link">Contact</RouterLink>
+        <RouterLink id="header-adhesion" to="/adhesion" class="btn-red px-8!">Adhérer</RouterLink>
       </div>
 
       <!-- Bascule menu mobile -->
@@ -161,7 +166,7 @@ watch(
 
         <nav aria-label="Navigation mobile">
           <ul class="space-y-1">
-            <li v-for="item in NAV_ITEMS" :key="`mobile-${item.label}`">
+            <li v-for="item in MOBILE_ITEMS" :key="`mobile-${item.label}`">
               <RouterLink
                 :to="item.to"
                 class="block w-full text-left py-2.5 px-3 rounded-lg text-gray-300 hover:text-brand-red-light hover:bg-white/5 transition-colors"

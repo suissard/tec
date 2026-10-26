@@ -1,11 +1,11 @@
 <script setup lang="ts">
 /**
- * Carte d'événement TEC : badge de statut, date, lieu, catégorie et jauge
- * de places. Un clic ouvre la fiche détaillée (modale) via `open`.
+ * Carte d'événement TEC (maquette 2026) : visuel avec pastille date rouge,
+ * titre, date + lieu, bouton « Voir l'événement » qui émet `open`.
  */
 import { computed } from 'vue';
 
-import { resolveEventStatus, formatDateShort, formatDateLong } from '@/utils/helpers';
+import { resolveEventStatus } from '@/utils/helpers';
 import type { EventItem, EventStatus } from '@/types';
 
 interface Props {
@@ -16,109 +16,91 @@ interface Props {
 const props = defineProps<Props>();
 const emit = defineEmits<{ open: [] }>();
 
-const status = computed<EventStatus>(() => resolveEventStatus(props.event));
+const MONTHS = ['JAN', 'FÉV', 'MAR', 'AVR', 'MAI', 'JUIN', 'JUIL', 'AOÛT', 'SEPT', 'OCT', 'NOV', 'DÉC'];
 
-const STATUS_META: Record<EventStatus, { label: string; classes: string }> = {
-  open: {
-    label: 'Inscriptions ouvertes',
-    classes: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/40',
-  },
-  full: { label: 'Complet', classes: 'bg-amber-500/15 text-amber-400 border-amber-500/40' },
-  cancelled: { label: 'Annulé', classes: 'bg-rose-500/15 text-rose-400 border-rose-500/40' },
-  past: { label: 'Terminé', classes: 'bg-white/10 text-gray-400 border-white/20' },
+const status = computed<EventStatus>(() => resolveEventStatus(props.event));
+const STATUS_LABEL: Partial<Record<EventStatus, string>> = {
+  full: 'Complet',
+  cancelled: 'Annulé',
+  past: 'Terminé',
 };
 
-const statusMeta = computed(() => STATUS_META[status.value]);
-
-/** Badge date : fond rouge ou blanc selon le JSON (défaut rouge). */
-const badgeClasses = computed(() =>
-  props.event.badgeColor === 'white'
-    ? 'bg-white text-brand-dark'
-    : 'bg-brand-red text-white glow-red-sm'
-);
-
-/** Jauge de places renseignée uniquement si les compteurs existent. */
-const hasGauge = computed(
-  () =>
-    typeof props.event.maxParticipants === 'number' &&
-    props.event.maxParticipants > 0 &&
-    typeof props.event.currentParticipants === 'number'
-);
-
-const gaugePercent = computed(() => {
-  if (!hasGauge.value) return 0;
-  const max = props.event.maxParticipants ?? 1;
-  const current = props.event.currentParticipants ?? 0;
-  return Math.min(100, Math.round((current / max) * 100));
-});
-
-/** Date affichée sur le badge latéral. */
-const badgeDate = computed(() => formatDateShort(props.event.date));
-/** Date complète (accessible). */
-const fullDate = computed(() =>
-  props.event.endDate
-    ? `Du ${formatDateLong(props.event.date)} au ${formatDateLong(props.event.endDate)}`
-    : formatDateLong(props.event.date)
+const day = computed(() => props.event.date.slice(8, 10));
+const month = computed(() => MONTHS[Number(props.event.date.slice(5, 7)) - 1] ?? '');
+const longDate = computed(() =>
+  new Date(props.event.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
 );
 </script>
 
 <template>
-  <article class="glass-card rounded-2xl p-5 flex gap-4 h-full text-left">
-    <!-- Badge date -->
-    <div
-      class="shrink-0 self-start rounded-xl px-3 py-2 text-center font-rajdhani font-bold leading-none"
-      :class="badgeClasses"
-    >
-      <span class="block text-lg">{{ badgeDate }}</span>
+  <article class="event-card" :class="{ 'opacity-70': status === 'cancelled' || status === 'past' }">
+    <div class="event-card__media">
+      <img v-if="event.image" :src="event.image" alt="" class="h-full w-full object-cover" loading="lazy" />
+      <div class="event-card__date" aria-hidden="true">
+        <span class="text-2xl leading-none">{{ day }}</span>
+        <span class="text-xs">{{ month }}</span>
+      </div>
+      <span v-if="STATUS_LABEL[status]" class="event-card__status">{{ STATUS_LABEL[status] }}</span>
     </div>
-
-    <div class="min-w-0 flex-1">
-      <div class="flex flex-wrap items-center gap-2">
-        <span
-          class="rounded-full border px-2 py-0.5 text-[11px] font-medium"
-          :class="statusMeta.classes"
-        >
-          {{ statusMeta.label }}
+    <div class="p-4">
+      <h3 class="font-bebas text-2xl text-[#141414] truncate" :title="event.title">{{ event.title }}</h3>
+      <div class="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-xs text-[#333]">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="h-4 w-4 text-brand-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
+          <time :datetime="event.date">{{ longDate }}</time>
         </span>
-        <span class="text-[11px] uppercase tracking-wider text-gray-500">
-          {{ event.category }}
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="h-4 w-4 text-brand-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z" /><circle cx="12" cy="9" r="2.5" /></svg>
+          {{ event.location ?? 'Toulouse' }}
         </span>
       </div>
-
-      <h3 class="mt-2 font-bebas text-xl text-white leading-tight">{{ event.title }}</h3>
-
-      <p class="mt-1 text-xs text-gray-400"><span class="sr-only">Date : </span>🗓 {{ fullDate }}</p>
-      <p v-if="event.location" class="mt-0.5 text-xs text-gray-400">
-        <span class="sr-only">Lieu : </span>📍 {{ event.location }}
-      </p>
-      <p class="mt-0.5 text-xs text-gray-400">
-        <span class="sr-only">Organisé par : </span>🎯 {{ event.organizer }}
-      </p>
-
-      <!-- Jauge de places -->
-      <div v-if="hasGauge" class="mt-3">
-        <div class="h-1.5 rounded-full bg-white/10 overflow-hidden" role="presentation">
-          <div
-            class="h-full rounded-full bg-brand-red transition-all duration-500"
-            :class="gaugePercent >= 100 ? 'bg-amber-500' : ''"
-            :style="{ width: `${gaugePercent}%` }"
-          ></div>
-        </div>
-        <p class="mt-1 text-[11px] text-gray-500">
-          {{ event.currentParticipants }} / {{ event.maxParticipants }} participants
-        </p>
-      </div>
-
-      <p class="mt-3 text-sm text-gray-400 line-clamp-2">{{ event.description }}</p>
-
-      <button
-        type="button"
-        class="mt-4 rounded-xl border border-brand-red/50 px-4 py-1.5 text-xs font-rajdhani font-bold uppercase tracking-wider text-brand-red-light transition-colors hover:bg-brand-red/10 focus-visible:outline-none"
-        :aria-label="`Voir le détail de ${event.title}`"
-        @click="emit('open')"
-      >
-        Voir le détail
+      <button type="button" class="btn-red btn-sm mt-4" :aria-label="`Voir l'événement ${event.title}`" @click="emit('open')">
+        Voir l’événement
       </button>
     </div>
   </article>
 </template>
+
+<style scoped>
+.event-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+.event-card__media {
+  position: relative;
+  height: 130px;
+  background: linear-gradient(135deg, #1b2236, #0e1322);
+}
+.event-card__date {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 10px;
+  background: var(--color-brand-red);
+  color: #fff;
+  font-family: var(--font-bebas);
+}
+.event-card__status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+</style>

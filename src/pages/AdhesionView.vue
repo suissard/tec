@@ -10,6 +10,7 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import HeroSection from '@/components/HeroSection.vue';
+import AdhesionPricing from '@/components/AdhesionPricing.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseCheckbox from '@/components/ui/BaseCheckbox.vue';
 import BaseDatePicker from '@/components/ui/BaseDatePicker.vue';
@@ -296,6 +297,7 @@ onMounted(async () => {
 <template>
   <div>
     <HeroSection :title="pageTitle" :subtitle="pageDescription" eyebrow="Adhésion" />
+    <AdhesionPricing v-if="!showSuccess" />
 
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="adhesion-title">
       <!-- Confirmation après envoi -->

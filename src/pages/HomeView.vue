@@ -1,97 +1,47 @@
 <script setup lang="ts">
 /**
- * Page Accueil — vitrine du réseau : héros, chiffres clés, prochains événements,
- * dernières actualités, associations en avant et appels à l'action.
+ * Page Accueil — maquette « Fédérer l'esport à Toulouse » :
+ * héros split, prochains événements, logos des associations,
+ * bandeau de chiffres clés et appel à l'adhésion.
  */
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted } from 'vue';
 
-import AssociationCard from '@/components/AssociationCard.vue';
-import EventCard from '@/components/EventCard.vue';
-import HeroSection from '@/components/HeroSection.vue';
-import NewsCard from '@/components/NewsCard.vue';
 import AssociationDetailModal from '@/components/AssociationDetailModal.vue';
+import EventCard from '@/components/EventCard.vue';
 import EventDetailModal from '@/components/EventDetailModal.vue';
-import NewsDetailModal from '@/components/NewsDetailModal.vue';
-import BaseButton from '@/components/ui/BaseButton.vue';
-import StatsCounter, { type StatItem } from '@/components/StatsCounter.vue';
 import { useModal } from '@/composables/useModal';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
-import { STORAGE_KEYS } from '@/utils/constants';
-import type { Association, EventItem, NewsItem } from '@/types';
+import type { Association, EventItem } from '@/types';
 
 const dataStore = useDataStore();
 const appStore = useAppStore();
 const modal = useModal();
 
-const pageDescription =
-  "Le réseau fédérateur des associations esportives toulousaines : annuaire, agenda et actualités de l'écosystème local.";
+/** Visuel du héros (à remplacer par une photo officielle d'événement). */
+const HERO_IMAGE = '/media/hero-esport.jpg';
 
-/** Retourne une copie mélangée du tableau (Fisher-Yates). */
-function shuffle<T>(items: T[]): T[] {
-  const copy = [...items];
-  for (let index = copy.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
-  }
-  return copy;
-}
-
-/** Nombre de candidatures bénévoles enregistrées dans le navigateur. */
-function countStoredEntries(key: string): number {
-  try {
-    const raw = window.localStorage.getItem(key);
-    if (!raw) return 0;
-    const parsed: unknown = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed.length : 0;
-  } catch {
-    return 0;
-  }
-}
 
 /* ------------------------------------------------------------- données */
 const upcomingEvents = computed<EventItem[]>(() => dataStore.getUpcomingEvents(3));
-const latestNews = computed<NewsItem[]>(() => dataStore.getLatestNews(3));
-/** Échantillon d'associations mis en avant (nouvelle sélection à chaque visite). */
-const featuredAssociations = computed<Association[]>(() =>
-  shuffle(dataStore.associations).slice(0, 4)
-);
+const associations = computed<Association[]>(() => dataStore.associations.slice(0, 7));
 
-/** Nombre de bénévoles (persistance locale du formulaire). */
-const volunteerCount = ref(0);
 
-const stats = computed<StatItem[]>(() => [
-  { value: dataStore.associations.length, label: 'Associations membres' },
-  {
-    value: dataStore.events.filter((event) => event.status !== 'cancelled').length,
-    label: 'Événements organisés',
-  },
-  { value: volunteerCount.value, label: 'Bénévoles engagés' },
-]);
 
 /* --------------------------------------------------------------- modales */
 function openEventDetail(event: EventItem): void {
   modal.open(EventDetailModal, { title: event.title, event, size: 'xl' });
 }
-
-function openNewsDetail(news: NewsItem): void {
-  modal.open(NewsDetailModal, { title: news.title, news, size: 'xl' });
-}
-
 function openAssociationDetail(association: Association): void {
   modal.open(AssociationDetailModal, { title: association.name, association, size: 'xl' });
 }
 
 /* -------------------------------------------------------------- cycle */
 onMounted(async () => {
-  volunteerCount.value = countStoredEntries(STORAGE_KEYS.volunteers);
-
   appStore.setLoading(true);
   try {
     await dataStore.loadAll();
-    if (dataStore.error) {
-      appStore.showToast('Erreur chargement données', 'error');
-    }
+    if (dataStore.error) appStore.showToast('Erreur chargement données', 'error');
   } catch {
     appStore.showToast('Erreur chargement données', 'error');
   } finally {
@@ -101,129 +51,102 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    <HeroSection
-      eyebrow="Toulouse Esport Connect"
-      title="L’esport toulousain, ensemble"
-      :subtitle="pageDescription"
-    >
-      <template #actions>
-        <BaseButton variant="primary" to="/associations">Découvrir les associations</BaseButton>
-        <BaseButton variant="outline" to="/evenements">Voir l’agenda</BaseButton>
-        <BaseButton variant="ghost" to="/benevolat">Devenir bénévole</BaseButton>
-      </template>
-    </HeroSection>
+  <div class="home">
+    <!-- ============================== HÉROS ============================== -->
+    <section class="hero" aria-labelledby="home-title">
+      <div class="hero__image" :style="{ backgroundImage: `url('${HERO_IMAGE}')` }" aria-hidden="true"></div>
 
-    <StatsCounter :stats="stats" />
-
-    <!-- Prochains événements -->
-    <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="home-events">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p
-            class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
-          >
-            Agenda
+      <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
+        <div class="max-w-xl">
+          <h1 id="home-title" class="font-bebas leading-[0.9] text-6xl md:text-8xl text-[#141414]">
+            Fédérer<br />l’esport<br /><span class="text-brand-red">à Toulouse</span>
+          </h1>
+          <p class="mt-5 text-base md:text-lg font-semibold text-[#1d1d1d]">
+            Le réseau des associations<br />et événements gaming en Occitanie
           </p>
-          <h2 id="home-events" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-            Prochains événements
-          </h2>
-        </div>
-        <BaseButton variant="outline" size="sm" to="/evenements">Tout l’agenda</BaseButton>
-      </div>
-
-      <p v-if="upcomingEvents.length === 0" class="mt-6 text-sm text-gray-400">
-        Aucun événement à venir pour le moment — revenez vite !
-      </p>
-      <div v-else class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <EventCard
-          v-for="event in upcomingEvents"
-          :key="event.id"
-          :event="event"
-          @open="openEventDetail(event)"
-        />
-      </div>
-    </section>
-
-    <!-- Dernières actualités -->
-    <section
-      class="bg-brand-card-bg/40 border-y border-brand-card-border"
-      aria-labelledby="home-news"
-    >
-      <div class="max-w-6xl mx-auto px-4 py-10 md:py-14">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p
-              class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
-            >
-              Actualités
-            </p>
-            <h2 id="home-news" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-              Les dernières nouvelles
-            </h2>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <RouterLink id="hero-events-btn" to="/evenements" class="btn-red">Voir les événements</RouterLink>
+            <RouterLink id="hero-join-btn" to="/adhesion" class="btn-outline-red">Rejoindre le T.E.C</RouterLink>
           </div>
-          <BaseButton variant="outline" size="sm" to="/actualites">Toutes les actus</BaseButton>
         </div>
+      </div>
+    </section>
 
-        <p v-if="latestNews.length === 0" class="mt-6 text-sm text-gray-400">
-          Aucune actualité publiée pour l’instant.
+    <div>
+      <!-- ======================= PROCHAINS ÉVÉNEMENTS ======================= -->
+      <section class="max-w-5xl mx-auto px-4 py-14" aria-labelledby="home-events">
+        <h2 id="home-events" class="section-title">Prochains <span>événements</span></h2>
+
+        <p v-if="upcomingEvents.length === 0" class="mt-8 text-center text-sm text-gray-600">
+          Aucun événement à venir pour le moment — revenez vite !
         </p>
-        <div v-else class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <NewsCard
-            v-for="news in latestNews"
-            :key="news.id"
-            :news="news"
-            @open="openNewsDetail(news)"
-          />
+        <div v-else class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <EventCard v-for="event in upcomingEvents" :key="event.id" :event="event" @open="openEventDetail(event)" />
         </div>
-      </div>
-    </section>
 
-    <!-- Associations en avant -->
-    <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="home-associations">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p
-            class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
-          >
-            Le réseau
-          </p>
-          <h2 id="home-associations" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-            Nos associations membres
-          </h2>
+        <div class="mt-8 text-center">
+          <RouterLink id="home-all-events" to="/evenements" class="btn-outline-red">Voir tous les événements</RouterLink>
         </div>
-        <BaseButton variant="outline" size="sm" to="/associations">Tout l’annuaire</BaseButton>
-      </div>
+      </section>
 
-      <p v-if="featuredAssociations.length === 0" class="mt-6 text-sm text-gray-400">
-        Le réseau est en cours de constitution — bientôt des news !
-      </p>
-      <div v-else class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <AssociationCard
-          v-for="association in featuredAssociations"
-          :key="association.id"
-          :association="association"
-          @open="openAssociationDetail(association)"
-        />
-      </div>
-    </section>
+      <!-- ======================= ASSOCIATIONS ======================= -->
+      <section class="max-w-6xl mx-auto px-4 pb-16" aria-labelledby="home-associations">
+        <h2 id="home-associations" class="section-title">Les associations <span>toulousaines</span></h2>
 
-    <!-- Appel à l'action final -->
-    <section class="max-w-6xl mx-auto px-4 pb-16" aria-labelledby="home-cta">
-      <div class="glass-card rounded-3xl p-8 md:p-12 text-center">
-        <h2 id="home-cta" class="font-bebas text-3xl md:text-4xl text-white glow-text">
-          Ensemble, faisons rayonner l’esport toulousain !
-        </h2>
-        <p class="mx-auto mt-3 max-w-2xl text-sm md:text-base text-gray-400">
-          Association, club, créateur ou simple passionné : rejoignez le collectif, proposez vos
-          événements et participez à la vie du réseau.
-        </p>
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <BaseButton variant="primary" to="/adhesion">Adhérer au réseau</BaseButton>
-          <BaseButton variant="outline" to="/benevolat">Devenir bénévole</BaseButton>
-          <BaseButton variant="ghost" to="/contact">Nous contacter</BaseButton>
+        <ul class="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
+          <li v-for="association in associations" :key="association.id">
+            <button type="button" class="assoc-logo" :aria-label="`Découvrir ${association.name}`" @click="openAssociationDetail(association)">
+              <img :src="association.logo" :alt="association.name" loading="lazy" />
+            </button>
+          </li>
+        </ul>
+
+        <div class="mt-10 text-center">
+          <RouterLink id="home-all-assos" to="/associations" class="btn-outline-red">Voir toutes les associations</RouterLink>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
   </div>
 </template>
+
+<style scoped>
+/* ---------- Héros ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero__image {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 55%;
+  background-size: cover;
+  background-position: center;
+  /* bord gauche « déchiré » */
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 3% 100%, 6% 92%, 2% 84%, 7% 75%, 3% 66%, 8% 57%, 2% 48%, 6% 38%, 1% 28%, 7% 18%, 3% 9%);
+  animation: hero-in 0.9s ease-out both;
+}
+@media (max-width: 767px) {
+  .hero__image {
+    width: 100%;
+    opacity: 0.25;
+    clip-path: none;
+  }
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translateX(40px); }
+}
+
+/* ---------- Logos associations ---------- */
+.assoc-logo {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  transition: transform 0.25s, filter 0.25s;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+}
+.assoc-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.assoc-logo:hover { transform: scale(1.12); filter: drop-shadow(0 6px 10px rgba(227, 6, 19, 0.4)); }
+
+</style>

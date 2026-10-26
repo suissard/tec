@@ -189,23 +189,19 @@ onMounted(async () => {
 
 <template>
   <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
-    <header class="mb-8">
-      <h1 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white">{{ pageTitle }}</h1>
-      <p class="mt-4 text-lg text-gray-400 max-w-2xl">{{ pageDescription }}</p>
+    <header class="mb-10 text-center">
+      <h1 class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">Les événements <span>toulousains</span></h1>
+      <p class="mx-auto mt-5 text-base text-[#333] max-w-2xl">{{ pageDescription }}</p>
     </header>
 
     <!-- Onglets -->
-    <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrer les événements par période">
+    <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Filtrer les événements par période">
       <button
         v-for="tab in TABS"
         :key="tab.id"
         type="button"
-        class="rounded-full border px-4 py-2 text-xs font-rajdhani font-bold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
-        :class="
-          activeTab === tab.id
-            ? 'border-brand-red bg-brand-red/15 text-white'
-            : 'border-brand-card-border bg-white/5 text-gray-300 hover:border-brand-red/50 hover:text-white'
-        "
+        class="btn-sm"
+        :class="activeTab === tab.id ? 'btn-red' : 'btn-outline-red'"
         :aria-pressed="activeTab === tab.id"
         @click="activeTab = tab.id"
       >
