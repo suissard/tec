@@ -21,6 +21,12 @@ export enum routeNames {
   Legal = 'legal',
   Volunteer = 'volunteer',
   Adhesion = 'adhesion',
+  /* Pages d'essais « effet griffure » (à conserver le temps du choix du rendu) */
+  Essais = 'essais',
+  Essai1 = 'essai-1',
+  Essai2 = 'essai-2',
+  Essai3 = 'essai-3',
+  EssaiMask = 'essai-mask',
   NotFound = 'not-found',
 }
 
@@ -121,6 +127,56 @@ const routes: RouteRecordRaw[] = [
       title: 'Adhésion',
       description:
         'Rejoignez le réseau Toulouse Esport Connect : adhésion des particuliers, clubs, associations et partenaires.',
+    },
+  },
+  {
+    path: '/essais',
+    name: routeNames.Essais,
+    component: () => import('@/pages/EssaisView.vue'),
+    meta: {
+      title: 'Essais — effet griffure',
+      description:
+        'Comparaison des trois techniques d’effet griffure entre le fond gris clair et la photo de scène esport sur la page d’accueil de TEC.',
+    },
+  },
+  {
+    path: '/essai1',
+    name: routeNames.Essai1,
+    component: () => import('@/pages/Essai1View.vue'),
+    meta: {
+      title: 'Essai 1 — Griffes pure CSS',
+      description:
+        'Effet griffure en pur CSS : clip-path polygone irrégulier et trois rayures de griffes animées entre le fond gris et la photo esport.',
+    },
+  },
+  {
+    path: '/essai2',
+    name: routeNames.Essai2,
+    component: () => import('@/pages/Essai2View.vue'),
+    meta: {
+      title: 'Essai 2 — Masque SVG déchiré',
+      description:
+        'Effet griffure par masque SVG découpé (clipPath) avec filtre de fourrure et stries de blessure sur le fond gris.',
+    },
+  },
+  {
+    path: '/essai3',
+    name: routeNames.Essai3,
+    component: () => import('@/pages/Essai3View.vue'),
+    meta: {
+      title: 'Essai 3 — Masque d’écorçure + rayures',
+      description:
+        'Effet griffure par masque d’écorçure (-webkit-mask-image SVG bruit) et rayures de griffes animées.',
+    },
+  },
+  {
+    path: '/essai-mask',
+    name: routeNames.EssaiMask,
+    component: () => import('@/pages/EssaiMaskView.vue'),
+    meta: {
+      title: 'Essai — Masque dechirure.png',
+      description:
+        'Effet griffure réalisé avec votre image dechirure.png en masque (-webkit-mask-image) entre le fond gris clair et la photo esport.',
     },
   },
   {
