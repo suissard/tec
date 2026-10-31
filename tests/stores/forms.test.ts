@@ -36,8 +36,7 @@ const validAdhesionIndiv: AdhesionIndivData = {
   phone: '0600000000',
   address: '1 rue Test',
   birthDate: '2000-01-01',
-  contribution: 'libre',
-  amount: '25',
+  contribution: '1',
   paymentMethod: 'cb',
   acceptCgu: true,
 };
@@ -126,14 +125,14 @@ describe('useFormStore', () => {
     expect(localStorage.getItem('tec_volunteers')).toBeNull();
   });
 
-  it('submitAdhesion individu persiste avec amount si libre', async () => {
+  it('submitAdhesion individu persiste la formule choisie', async () => {
     const store = useFormStore();
     const result = await store.submitAdhesion(validAdhesionIndiv, 'indiv');
     expect(result).toBe(true);
     expect(store.adhesionState.success).toBe(true);
     const stored = JSON.parse(localStorage.getItem('tec_adhesions') ?? '[]');
     expect(stored).toHaveLength(1);
-    expect(stored[0].amount).toBe('25');
+    expect(stored[0].contribution).toBe('1');
     expect(stored[0].kind).toBe('indiv');
     expect(store.adhesionIndiv.firstName).toBe(''); // réinitialisé après envoi
   });

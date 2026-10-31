@@ -3,8 +3,8 @@
  * Page Adhésion — deux onglets (« Particulier » et « Structure »),
  * préremplissage via `?asso=<nom>`, validation Zod (`adhesionIndivSchema` /
  * `adhesionAssoSchema`) puis envoi via `useFormStore.submitAdhesion`.
- * Le montant libre (`contribution === 'libre'`) est contrôlé côté UI :
- * le schema Zod ne valide que l'enum de cotisation.
+ * Les tarifs reprennent les trois formules du réseau : 1 € membre individuel,
+ * 5 € membre sympathisant et 50 € entité morale.
  */
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
@@ -83,8 +83,7 @@ function createDefaultIndiv(): AdhesionIndivData {
     phone: '',
     address: '',
     birthDate: '',
-    contribution: '10',
-    amount: '',
+    contribution: '1',
     paymentMethod: 'cb',
     acceptCgu: false,
   };
@@ -135,14 +134,6 @@ const indivForm = computed(() => formData.value as AdhesionIndivData);
 
 /** Accès typé au formulaire structure (onglet actif = 'asso'). */
 const assoForm = computed(() => formData.value as AdhesionAssoForm);
-
-/** Montant libre saisi — accès typé `string` pour `BaseInput` (v-model). */
-const amountValue = computed<string>({
-  get: () => indivForm.value.amount ?? '',
-  set: (value) => {
-    indivForm.value.amount = value;
-  },
-});
 
 /** Moyen de paiement — accès typé `string` pour `BaseRadioGroup` (v-model). */
 const paymentMethodValue = computed<string>({
@@ -217,7 +208,7 @@ function focusFirstError(): void {
 /** Payload nettoyé : SIRET sans espaces, membres convertis, nom du logo. */
 function buildPayload(): AdhesionIndivData | AdhesionAssoData {
   if (kind.value === 'indiv') {
-    return { ...indivForm.value, amount: amountValue.value };
+    return { ...indivForm.value };
   }
 
   const membersCount = Number.parseInt(assoForm.value.membersCount, 10);
@@ -229,25 +220,8 @@ function buildPayload(): AdhesionIndivData | AdhesionAssoData {
   };
 }
 
-/**
- * Contrôle du montant libre (hors schema Zod qui ne valide que l'enum).
- * @returns `false` si le montant est absent ou inférieur à 1 €.
- */
-function validateFreeAmount(): boolean {
-  if (kind.value !== 'indiv' || indivForm.value.contribution !== 'libre') return true;
-
-  const value = Number(amountValue.value);
-  if (amountValue.value.trim() !== '' && Number.isFinite(value) && value >= 1) return true;
-
-  errors.value = { amount: 'Indiquez un montant libre supérieur ou égal à 1 €.' };
-  appStore.showToast('Montant libre invalide : saisissez au moins 1 €.', 'error');
-  focusFirstError();
-  return false;
-}
-
 async function submit(): Promise<void> {
   errors.value = {};
-  if (!validateFreeAmount()) return;
 
   const payload = buildPayload();
   const schema = kind.value === 'indiv' ? adhesionIndivSchema : adhesionAssoSchema;
@@ -455,23 +429,12 @@ onMounted(async () => {
 
               <BaseSelect
                 v-model="indivForm.contribution"
-                label="Cotisation annuelle"
+                label="Formule d’adhésion"
                 name="contribution"
                 :options="CONTRIBUTION_LIST"
+                hint="1 € : droits bénévoles et accès au staff — 5 € : soutien sans engagement bénévole."
                 required
                 :error="fieldError('contribution')"
-              />
-
-              <BaseInput
-                v-if="indivForm.contribution === 'libre'"
-                v-model="amountValue"
-                label="Montant libre (€)"
-                type="number"
-                name="amount"
-                placeholder="Ex. : 15"
-                hint="Saisissez un montant en euros, supérieur ou égal à 1 €."
-                required
-                :error="fieldError('amount')"
               />
 
               <BaseRadioGroup
@@ -515,6 +478,21 @@ onMounted(async () => {
               class="space-y-5"
             >
               <h3 class="font-bebas text-2xl text-white">Adhésion d’une structure</h3>
+
+              <div class="rounded-xl border border-brand-card-border bg-white/5 p-4">
+                <p
+                  class="font-rajdhani text-xs font-bold uppercase tracking-[0.2em] text-brand-red-light"
+                >
+                  Cotisation annuelle
+                </p>
+                <p class="mt-1 font-bebas text-2xl text-white">
+                  50 €
+                  <span
+                    class="font-rajdhani text-sm font-bold uppercase tracking-wider text-gray-400"
+                    >— Entité morale</span
+                  >
+                </p>
+              </div>
 
               <div class="grid gap-5 sm:grid-cols-2">
                 <BaseInput

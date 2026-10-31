@@ -104,10 +104,8 @@ export interface AdhesionIndivData {
   address: string;
   /** Date de naissance ISO (AAAA-MM-JJ) */
   birthDate: string;
-  /** Cotisation choisie : "10" | "20" | "50" | "libre" */
+  /** Formule choisie : "1" (membre individuel) | "5" (membre sympathisant) */
   contribution: string;
-  /** Montant libre saisi quand `contribution === 'libre'` (gestion UI uniquement, hors schema Zod) */
-  amount?: string;
   paymentMethod: PaymentMethod;
   acceptCgu: boolean;
 }

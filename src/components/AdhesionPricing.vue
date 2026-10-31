@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
- * Panneau tarifs d'adhésion (maquette 2026) : membres individuels (1 €)
- * et entités morales (50 €) avec la liste des avantages.
+ * Panneau tarifs d'adhésion (maquette 2026) : membres individuels (1 €),
+ * membres sympathisants (5 €) et entités morales (50 €) avec leurs avantages.
  */
 interface Offer {
   price: string;
@@ -14,10 +14,21 @@ const OFFERS: Offer[] = [
     price: '1€',
     title: ['Membres', 'individuels'],
     groups: [
+      { title: 'Devenir bénévole', items: ['Droits bénévoles et accès au staff TEC', 'Participation active à l’organisation des événements'] },
       { title: 'Rejoindre le réseau esport toulousain', items: ['Accès à une communauté locale active', 'Rencontres et networking avec les acteurs de l’esport', 'Participation aux événements et soirées TEC'] },
       { title: 'Participer à la vie associative', items: ['Droit de vote en assemblée générale', 'Possibilité de proposer des projets et idées', 'Possibilité de rejoindre les groupes de travail TEC'] },
       { title: 'Gagner en visibilité', items: ['Mise en avant des profils et projets membres', 'Valorisation des compétences au sein du réseau'] },
       { title: 'Accéder à des ressources', items: ['Accès aux espaces privés Discord', 'Partage de documents, conseils et retours d’expérience', 'Veille et informations sur l’esport régional'] },
+    ],
+  },
+  {
+    price: '5€',
+    title: ['Membres', 'sympathisants'],
+    groups: [
+      { title: 'Soutenir l’association', items: ['Contribution au développement de l’esport toulousain', 'Soutien aux projets et actions du collectif'] },
+      { title: 'Rejoindre la communauté', items: ['Accès à une communauté locale active', 'Participation aux événements et soirées TEC'] },
+      { title: 'Rester informé', items: ['Veille et informations sur l’esport régional', 'Relais des actualités TEC'] },
+      { title: 'Sans engagement bénévole', items: ['Pas de droits bénévoles', 'Pas d’accès au staff'] },
     ],
   },
   {
@@ -41,7 +52,7 @@ const OFFERS: Offer[] = [
       <img src="/media/tec-logo-only-croix.svg" alt="" class="pricing__croix" aria-hidden="true" />
       <h2 id="pricing-title" class="relative font-bebas text-5xl text-center text-[#141414]">Adhésion</h2>
 
-      <div class="relative mt-6 grid gap-10 md:grid-cols-2">
+      <div class="relative mt-6 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         <article v-for="offer in OFFERS" :key="offer.price" class="offer">
           <header class="text-center">
             <p class="font-bebas text-5xl text-brand-red">{{ offer.price }}</p>

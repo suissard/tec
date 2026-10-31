@@ -55,7 +55,7 @@ const faqItems: AccordionItem[] = [
     id: 'faq-adhesion',
     title: 'Combien coûte l’adhésion ?',
     content:
-      'L’adhésion individuelle est à partir de 10€/an. Pour les associations, contactez-nous pour un devis adapté.',
+      'L’adhésion est de 1 €/an pour un membre individuel (bénévole), 5 €/an pour un membre sympathisant et 50 €/an pour une entité morale (association).',
   },
   {
     id: 'faq-evenement',

@@ -46,7 +46,7 @@ const EMPTY_ADHESION_INDIV: AdhesionIndivData = {
   phone: '',
   address: '',
   birthDate: '',
-  contribution: '20',
+  contribution: '1',
   paymentMethod: 'cb',
   acceptCgu: false,
 };
@@ -85,10 +85,8 @@ export const VOLUNTEER_AVAILABILITIES = [
 
 /** Montants de cotisation proposés à l'adhésion individuelle. */
 export const CONTRIBUTION_OPTIONS = [
-  { value: '10', label: '10 € — Soutien' },
-  { value: '20', label: '20 € — Adhérent' },
-  { value: '50', label: '50 € — Mécène' },
-  { value: 'libre', label: 'Montant libre' },
+  { value: '1', label: '1 € / an — Membre individuel (bénévole)' },
+  { value: '5', label: '5 € / an — Membre sympathisant' },
 ] as const;
 
 /** Moyens de paiement (stub — aucun paiement en ligne). */

@@ -300,15 +300,25 @@
    ========================================================================== */
 
 @layer components {
-  /* Fond gris clair à grain (zone de contenu de toutes les pages) */
+  /* Fond gris clair texture béton (zone de contenu de toutes les pages).
+     `texture-beton-mask.webp` est un masque noir dont l'opacité suit la
+     luminance de la photo de béton : seules les parties claires (grain,
+     rayures, éclats) assombrissent le gris #dcdcdc, le reste laisse la
+     couleur de fond apparaître. La tuile défile avec la page (attachement
+     par défaut) ; ses bords sont fondus pour un raccord sans couture. */
   .texture-light {
     background-color: #dcdcdc;
-    background-image:
-      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.6), transparent 45%),
-      radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.06), transparent 50%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-attachment: fixed;
+    background-image: url('/media/texture-beton-mask.webp');
+    background-repeat: repeat;
+    background-size: 1800px 1800px;
     color: #1d1d1d;
+  }
+
+  /* Tuile plus petite sur mobile : même échelle de grain à l'écran */
+  @media (max-width: 768px) {
+    .texture-light {
+      background-size: 900px 900px;
+    }
   }
 
   /* Titre de section centré : « LES ÉVÉNEMENTS <span>TOULOUSAINS</span> » */

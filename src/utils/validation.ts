@@ -109,8 +109,8 @@ export const adhesionIndivSchema = z.object({
   phone: optionalString(),
   address: requiredString('L’adresse'),
   birthDate: optionalIsoDate('La date de naissance'),
-  contribution: z.enum(['10', '20', '50', 'libre'], {
-    message: 'Choisissez un montant de cotisation.',
+  contribution: z.enum(['1', '5'], {
+    message: 'Choisissez une formule d’adhésion.',
   }),
   paymentMethod: z.enum(['cb', 'cheque', 'virement'], {
     message: 'Choisissez un moyen de paiement.',

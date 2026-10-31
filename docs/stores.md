@@ -126,7 +126,7 @@ Chaque formulaire expose **ses données** (`reactive`) et **son état de soumiss
 |---|---|---|
 | `VOLUNTEER_INTERESTS` | `readonly string[]` | Domaines d'intérêt : Événementiel, Communication, Technique, Encadrement, Logistique |
 | `VOLUNTEER_AVAILABILITIES` | `readonly { id, label }[]` | Journée / Soirée / Week-end |
-| `CONTRIBUTION_OPTIONS` | `readonly { value, label }[]` | 10 € Soutien, 20 € Adhérent, 50 € Mécène, Montant libre |
+| `CONTRIBUTION_OPTIONS` | `readonly { value, label }[]` | 1 € membre individuel, 5 € membre sympathisant |
 | `PAYMENT_OPTIONS` | `readonly { value, label }[]` | Carte bancaire / Chèque / Virement (stub — aucun paiement en ligne) |
 
 ### Actions

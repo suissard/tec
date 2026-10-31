@@ -79,21 +79,22 @@ describe('validation', () => {
     expect(Object.keys(result.errors).some((key) => key.startsWith('availability'))).toBe(true);
   });
 
-  it('adhesionIndivSchema valide contribution libre + amount ignoré hors schema', () => {
-    const data = {
+  it('adhesionIndivSchema valide les formules membre individuel et sympathisant', () => {
+    const base = {
       firstName: 'Jean',
       lastName: 'Dupont',
       email: 'jean@test.fr',
       phone: '0600000000',
       address: '1 rue',
       birthDate: '2000-01-01',
-      contribution: 'libre',
-      amount: '25',
       paymentMethod: 'cb',
       acceptCgu: true,
     };
-    const result = validateForm(data, adhesionIndivSchema);
-    expect(result.valid).toBe(true);
+
+    for (const contribution of ['1', '5']) {
+      const result = validateForm({ ...base, contribution }, adhesionIndivSchema);
+      expect(result.valid).toBe(true);
+    }
   });
 
   it('adhesionIndivSchema rejette contribution et moyen de paiement invalides', () => {
@@ -104,7 +105,7 @@ describe('validation', () => {
       phone: '',
       address: '1 rue',
       birthDate: '',
-      contribution: '100',
+      contribution: '50',
       paymentMethod: 'crypto',
       acceptCgu: true,
     };

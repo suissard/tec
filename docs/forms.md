@@ -140,12 +140,13 @@ est dans la ref `kind`.
 | `phone` | facultatif |
 | `address` | requis |
 | `birthDate` | ISO ou vide |
-| `contribution` | `enum('10','20','50','libre')` — options `CONTRIBUTION_OPTIONS` |
+| `contribution` | `enum('1','5')` — 1 € membre individuel, 5 € membre sympathisant (`CONTRIBUTION_OPTIONS`) |
 | `paymentMethod` | `enum('cb','cheque','virement')` — options `PAYMENT_OPTIONS` |
-| `amount` | **hors schema** : géré côté UI quand `contribution === 'libre'` |
 | `acceptCgu` | `true` obligatoire |
 
 ### Adhésion structure (`kind = 'asso'`)
+
+Cotisation affichée : **50 € / an — entité morale**.
 
 | Champ | Règle Zod |
 |---|---|

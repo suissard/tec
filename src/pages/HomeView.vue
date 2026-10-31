@@ -21,7 +21,6 @@ const modal = useModal();
 /** Visuel du héros (à remplacer par une photo officielle d'événement). */
 const HERO_IMAGE = '/media/hero-esport.jpg';
 
-
 /* ------------------------------------------------------------- données */
 const upcomingEvents = computed<EventItem[]>(() => dataStore.getUpcomingEvents(3));
 const associations = computed<Association[]>(() => dataStore.associations.slice(0, 7));
@@ -53,8 +52,18 @@ onMounted(async () => {
 <template>
   <div class="home">
     <!-- ============================== HÉROS ============================== -->
-    <section class="hero" aria-labelledby="home-title">
-      <div class="hero__image" :style="{ backgroundImage: `url('${HERO_IMAGE}')` }" aria-hidden="true"></div>
+    <!-- Pas de fond propre : on laisse apparaître `.texture-light` du <main>
+         (même texture béton) pour un raccord invisible entre les sections. -->
+    <section class="hero relative overflow-hidden" aria-labelledby="home-title">
+      <!-- Wrapper visuel : porte l'ombre de la déchirure (non coupée par le masque) -->
+      <div class="hero__visual-wrapper" aria-hidden="true">
+        <!-- Photo de scène esport directement découpée par le masque de griffure -->
+        <div
+          class="hero__image"
+          :style="{ backgroundImage: `url('${HERO_IMAGE}')` }"
+          aria-hidden="true"
+        ></div>
+      </div>
 
       <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
         <div class="max-w-xl">
@@ -116,23 +125,58 @@ onMounted(async () => {
   position: relative;
   overflow: hidden;
 }
-.hero__image {
+
+/* Wrapper : positionnement (58 % à droite) + ombre qui épouse la déchirure */
+.hero__visual-wrapper {
   position: absolute;
   inset: 0 0 0 auto;
-  width: 55%;
-  background-size: cover;
-  background-position: center;
-  /* bord gauche « déchiré » */
-  clip-path: polygon(8% 0, 100% 0, 100% 100%, 3% 100%, 6% 92%, 2% 84%, 7% 75%, 3% 66%, 8% 57%, 2% 48%, 6% 38%, 1% 28%, 7% 18%, 3% 9%);
+  width: 58%;
+  z-index: 1;
+  /* Relief exactement sur le contour alpha du masque de griffure */
+  filter: drop-shadow(-8px 0 12px rgba(0, 0, 0, 0.25));
   animation: hero-in 0.9s ease-out both;
 }
-@media (max-width: 767px) {
-  .hero__image {
+
+/* Photo masquée par la griffure :
+   - couche 1 : dechirure-inverse.png sur la bande gauche → l'opaque cache la photo
+     (fond gris), le transparent laisse voir la photo ;
+   - couche 2 : linear-gradient plein à droite pour afficher la photo entière. */
+.hero__image {
+  --band: 420px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  -webkit-mask-image:
+    url(/media/dechirure-inverse.webp),
+    linear-gradient(to right, transparent calc(var(--band) - 1px), black var(--band));
+  mask-image:
+    url(/media/dechirure-inverse.webp),
+    linear-gradient(to right, transparent calc(var(--band) - 1px), black var(--band));
+  -webkit-mask-size: var(--band) 100%, 100% 100%;
+  mask-size: var(--band) 100%, 100% 100%;
+  -webkit-mask-position: left center, center;
+  mask-position: left center, center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Responsive : fondu vertical propre sur mobile */
+@media (max-width: 768px) {
+  .hero__visual-wrapper {
     width: 100%;
-    opacity: 0.25;
-    clip-path: none;
+    height: 45%;
+    inset: auto 0 0 0;
+    filter: none;
+  }
+  .hero__image {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 35%);
+    mask-image: linear-gradient(to bottom, transparent, black 35%);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
   }
 }
+
 @keyframes hero-in {
   from { opacity: 0; transform: translateX(40px); }
 }
