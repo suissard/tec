@@ -119,17 +119,12 @@ Le typage de ces variables vit dans [`src/vite-env.d.ts`](./src/vite-env.d.ts).
 ```text
 tec/
 ├── index.html                 # Point d'entrée Vite (app Vue 3)
-├── vite.config.ts             # Plugin Vue, alias @/, plugin data/ (dev + build)
+├── vite.config.ts             # Plugin Vue, alias @/, plugins src/data (dev + build)
 ├── vitest.config.ts           # jsdom, globals, setup tests, seuils de couverture
 ├── eslint.config.mjs          # Flat config ESLint (Vue + TS + Prettier)
 ├── eslint.legacy.config.mjs   # Flat config séparée pour le site legacy
 ├── tsconfig*.json             # TS app (strict-ish) / TS Node
 ├── postcss.config.js          # @tailwindcss/postcss (Tailwind 4)
-│
-├── data/                      # 📦 Données métier JSON (source unique)
-│   ├── associations.json      # 6 associations
-│   ├── evenements.json        # 8 événements
-│   └── news.json              # 4 actualités
 │
 ├── src/                       # 🧩 Application Vue 3 (voir ci-dessous)
 │
@@ -171,12 +166,17 @@ src/
 │   ├── forms/                 # ContactForm
 │   └── *.vue                  # Cartes métier (Association/Event/News), Hero, Pagination…
 ├── composables/               # 6 composables réutilisables
+├── data/                      # 📦 JSON éditables (source unique)
+│   ├── content.json           # Textes des pages (importé au build)
+│   ├── associations.json      # 6 associations  ┐
+│   ├── evenements.json        # 8 événements    ├ servis en /data/*.json
+│   └── news.json              # 4 actualités    ┘
 ├── layouts/DefaultLayout.vue  # Skip-link + header + <main> + footer
 ├── pages/                     # 10 vues (9 routes + NotFound)
 ├── router/index.ts            # Routes, guards SEO, scrollBehavior, history/hash
 ├── services/api.ts            # Couche HTTP typée (ApiError + fetch JSON local)
 ├── stores/                    # Pinia : app.ts, data.ts, forms.ts
-├── types/index.ts             # Types métier alignés sur data/*.json
+├── types/index.ts             # Types métier alignés sur src/data/*.json
 └── utils/                     # constants, helpers, validation (Zod), seo (JSON-LD)
 ```
 
@@ -185,7 +185,7 @@ src/
 ## 🏗️ Architecture en bref
 
 ```text
-data/*.json ──▶ services/api.ts ──▶ stores/data.ts ──▶ pages/*.vue ──▶ components/*
+src/data/*.json ──▶ services/api.ts ──▶ stores/data.ts ──▶ pages/*.vue ──▶ components/*
                                      ▲                      │
                        stores/app.ts (toasts, menu) ◀───────┤
                        stores/forms.ts (validation Zod) ◀───┘
@@ -211,12 +211,15 @@ Le détail complet se trouve dans [`ARCHITECTURE.md`](./ARCHITECTURE.md) et
 
 ## 📦 Données
 
-Les données sont **locales et statiques** : trois fichiers JSON dans `data/`
-(`associations.json`, `evenements.json`, `news.json`), servis en `/data/*.json`
-par un plugin Vite dédié (`tecDataAssets` dans `vite.config.ts`) :
+Tous les JSON éditables sont regroupés dans [`src/data/`](./src/data/).
 
-- **dev** : middleware Vite qui lit `data/` (interdit toute traversée de répertoire) ;
-- **build** : copie de `data/` vers `dist/data/` (requis pour `vite preview`).
+Les données métier sont **locales et statiques** : `associations.json`,
+`evenements.json` et `news.json`, servis en `/data/*.json` par un plugin Vite
+dédié (`tecDataAssets` dans `vite.config.ts`) :
+
+- **dev** : middleware Vite qui lit `src/data/` (interdit toute traversée de répertoire) ;
+- **build** : copie de `src/data/` vers `dist/data/` (requis pour `vite preview`),
+  sans `content.json` qui est déjà intégré au bundle.
 
 Le passage à une API distante se fait uniquement dans [`src/services/api.ts`](./src/services/api.ts)
 (les stores et pages ne connaissent que `fetchAssociations()`, `fetchEvents()`, …).

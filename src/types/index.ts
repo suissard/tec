@@ -1,6 +1,6 @@
 /**
  * Types métier partagés de l'application TEC.
- * Alignés sur les JSON locaux du site vanilla (data/*.json).
+ * Alignés sur les JSON locaux du site vanilla (src/data/*.json).
  */
 
 /** Association membre du réseau */

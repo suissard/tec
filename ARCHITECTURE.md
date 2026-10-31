@@ -11,7 +11,7 @@
 ```mermaid
 flowchart TB
     subgraph Data["Données (statiques)"]
-        JSON["data/*.json<br/>associations · evenements · news"]
+        JSON["src/data/*.json<br/>associations · evenements · news"]
     end
 
     subgraph Services["Couche service"]
@@ -82,7 +82,7 @@ flowchart TB
 ## 2. Flux de données
 
 ```text
-data/*.json
+src/data/*.json
    │  fetch('/data/…')         (plugin Vite tecDataAssets : dev middleware + copie dist/data)
    ▼
 services/api.ts                ← seule couche HTTP (ApiError, typage strict)
@@ -327,5 +327,5 @@ le CSS, pas de CLI au runtime).
 | Couverture | V8 — seuils 80/80/70/80 | `npm run test:coverage` |
 | E2E | Playwright (installation prête) | *suite à venir* — voir [`docs/deployment.md`](./docs/deployment.md) |
 
-Le lint ignore volontairement le legacy (`js/`, `css/`, `sections/`, `data/`,
+Le lint ignore volontairement le legacy (`js/`, `css/`, `sections/`,
 `index.legacy.html`), linté par `eslint.legacy.config.mjs`.

@@ -17,7 +17,6 @@ export default defineConfigWithVueTs(
       'css/**',
       'media/**',
       'sections/**',
-      'data/**',
       'index.legacy.html',
       'OLD*.html',
       '**/*.legacy.js',

@@ -21,7 +21,7 @@ import {
 } from './forms.js';
 import { initCookieBanner } from './cookies.js';
 
-// Associations Data Registry (populated from data/associations.json or embedded script)
+// Associations Data Registry (populated from src/data/associations.json or embedded script)
 let associationsData = {};
 
 /**
@@ -42,7 +42,7 @@ function initAssociationsData() {
     }
 
     if (typeof fetch !== 'undefined') {
-        fetch('data/associations.json')
+        fetch('src/data/associations.json')
             .then(res => res.json())
             .then(list => {
                 list.forEach(item => {
@@ -50,13 +50,13 @@ function initAssociationsData() {
                 });
             })
             .catch(err => {
-                console.warn('⚠️ Impossible de charger data/associations.json via fetch:', err);
+                console.warn('⚠️ Impossible de charger src/data/associations.json via fetch:', err);
             });
     }
 }
 
 /**
- * Open the detailed modal by association ID (reads from data/associations.json)
+ * Open the detailed modal by association ID (reads from src/data/associations.json)
  * @param {string} id - Association ID (e.g. 'oserv-esport')
  * @param {HTMLElement} [triggerElement] - Element that triggered the modal
  */
@@ -74,7 +74,7 @@ function openModalById(id, triggerElement) {
         });
         openModal(assoc.name, assoc.description, assoc.email, assoc.logo, assoc.games, triggerElement, associationsData);
     } else if (typeof fetch !== 'undefined') {
-        fetch('data/associations.json')
+        fetch('src/data/associations.json')
             .then(r => r.json())
             .then(list => {
                 list.forEach(a => associationsData[a.id] = a);

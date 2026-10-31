@@ -21,7 +21,7 @@ export const BRAND_COLORS = {
   discordHover: '#4752C4',
 } as const;
 
-/** Catégories d'associations (filtres de l'annuaire) — aligné sur data/associations.json */
+/** Catégories d'associations (filtres de l'annuaire) — aligné sur src/data/associations.json */
 export const ASSOCIATION_CATEGORIES = [
   { id: 'all', label: 'Toutes les Associations' },
   { id: 'esport', label: 'Esport' },

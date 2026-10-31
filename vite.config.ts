@@ -9,9 +9,16 @@ import sitemap from 'vite-plugin-sitemap';
 import { validateContent } from './src/utils/contentSchema';
 
 const PROJECT_ROOT = fileURLToPath(new URL('.', import.meta.url));
-const DATA_DIR = join(PROJECT_ROOT, 'data');
+/** Fichiers de données éditables (textes + associations, événements, actualités). */
+const DATA_DIR = join(PROJECT_ROOT, 'src', 'data');
 const DIST_DATA_DIR = join(PROJECT_ROOT, 'dist', 'data');
-const CONTENT_FILE = join(PROJECT_ROOT, 'src', 'data', 'content.json');
+const CONTENT_FILE = join(DATA_DIR, 'content.json');
+
+/**
+ * JSON de `src/data` importés dans le bundle (et non lus via `fetch`) :
+ * inutile de les publier sous `/data/`.
+ */
+const BUNDLED_DATA_FILES = new Set(['content.json']);
 
 /**
  * Base path public du site (préfixe de toutes les URL d'assets).
@@ -81,9 +88,10 @@ function tecPublicBaseAssets(): Plugin {
 }
 
 /**
- * Sert `data/*.json` à l'URL `/data/*.json` :
- * - en dev via un middleware (les JSON restent la source unique à la racine) ;
+ * Sert `src/data/*.json` à l'URL `/data/*.json` (lus par `services/api.ts`) :
+ * - en dev via un middleware (les JSON de `src/data` restent la source unique) ;
  * - en build via une copie vers `dist/data` (requis pour `vite preview`).
+ * Les fichiers de `BUNDLED_DATA_FILES` sont exclus (déjà dans le bundle).
  */
 function tecDataAssets(): Plugin {
   return {
@@ -98,9 +106,10 @@ function tecDataAssets(): Plugin {
           next();
           return;
         }
-        // `basename` interdit toute traversée de répertoire hors de ./data
-        const filePath = join(DATA_DIR, basename(pathname));
-        if (!existsSync(filePath)) {
+        // `basename` interdit toute traversée de répertoire hors de src/data
+        const fileName = basename(pathname);
+        const filePath = join(DATA_DIR, fileName);
+        if (BUNDLED_DATA_FILES.has(fileName) || !existsSync(filePath)) {
           next();
           return;
         }
@@ -110,7 +119,10 @@ function tecDataAssets(): Plugin {
     },
     closeBundle() {
       if (existsSync(DATA_DIR)) {
-        cpSync(DATA_DIR, DIST_DATA_DIR, { recursive: true });
+        cpSync(DATA_DIR, DIST_DATA_DIR, {
+          recursive: true,
+          filter: (source) => !BUNDLED_DATA_FILES.has(basename(source)),
+        });
       }
     },
   };
@@ -214,7 +226,7 @@ const PRIORITY: Record<string, number> = {
 };
 
 /**
- * Construit les URLs dynamiques du sitemap à partir de `data/associations.json` :
+ * Construit les URLs dynamiques du sitemap à partir de `src/data/associations.json` :
  * `/adhesion?asso=<id>` préremplit le formulaire d'adhésion (cf.
  * `AssociationDetailModal` et `AdhesionView`).
  *
@@ -231,7 +243,7 @@ function associationRoutes(): string[] {
       .map((id) => `/adhesion?asso=${encodeURIComponent(id)}`);
   } catch (error) {
     console.warn(
-      '[sitemap] data/associations.json illisible — routes dynamiques ignorées :',
+      '[sitemap] src/data/associations.json illisible — routes dynamiques ignorées :',
       error instanceof Error ? error.message : error
     );
     return [];

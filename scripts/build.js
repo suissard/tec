@@ -9,7 +9,7 @@ const path = require('path');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const SECTIONS_DIR = path.join(ROOT_DIR, 'sections');
-const DATA_DIR = path.join(ROOT_DIR, 'data');
+const DATA_DIR = path.join(ROOT_DIR, 'src', 'data');
 const OUTPUT_HTML = path.join(ROOT_DIR, 'index.legacy.html');
 const ASSOC_JSON_PATH = path.join(DATA_DIR, 'associations.json');
 const EVENTS_JSON_PATH = path.join(DATA_DIR, 'evenements.json');
@@ -28,7 +28,7 @@ function getAssociations() {
     try {
       return JSON.parse(fs.readFileSync(ASSOC_JSON_PATH, 'utf8'));
     } catch (e) {
-      console.error('⚠️ Erreur lecture data/associations.json:', e);
+      console.error('⚠️ Erreur lecture src/data/associations.json:', e);
     }
   }
   return [];
@@ -57,7 +57,7 @@ function getEvents() {
     try {
       return JSON.parse(fs.readFileSync(EVENTS_JSON_PATH, 'utf8'));
     } catch (e) {
-      console.error('⚠️ Erreur lecture data/evenements.json:', e);
+      console.error('⚠️ Erreur lecture src/data/evenements.json:', e);
     }
   }
   return [];
@@ -102,7 +102,7 @@ function getNews() {
     try {
       return JSON.parse(fs.readFileSync(NEWS_JSON_PATH, 'utf8'));
     } catch (e) {
-      console.error('⚠️ Erreur lecture data/news.json:', e);
+      console.error('⚠️ Erreur lecture src/data/news.json:', e);
     }
   }
   return [];
@@ -138,7 +138,7 @@ function assembleHtml() {
   console.log('🔨 Assembling sections into index.html...');
 
   const associationsList = getAssociations();
-  console.log(`📦 Loaded ${associationsList.length} associations from data/associations.json`);
+  console.log(`📦 Loaded ${associationsList.length} associations from src/data/associations.json`);
 
   const header = readSection('header.html');
   const accueil = readSection('accueil.html');
@@ -154,7 +154,7 @@ function assembleHtml() {
   }
 
   const eventsList = getEvents();
-  console.log(`📅 Loaded ${eventsList.length} events from data/evenements.json`);
+  console.log(`📅 Loaded ${eventsList.length} events from src/data/evenements.json`);
 
   let evenements = readSection('evenements.html');
   if (eventsList.length > 0) {
@@ -170,7 +170,7 @@ function assembleHtml() {
   const cookieBanner = readSection('cookie-banner.html');
 
   const newsList = getNews();
-  console.log(`📰 Loaded ${newsList.length} news from data/news.json`);
+  console.log(`📰 Loaded ${newsList.length} news from src/data/news.json`);
 
   let news = readSection('news.html');
   if (newsList.length > 0) {

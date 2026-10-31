@@ -193,7 +193,7 @@ src/
 ├── composables/   # use* : singleton si état global, factory sinon
 ├── services/      # toute la couche HTTP
 ├── utils/         # purs, sans Vue (testables tels quels)
-└── types/         # types métier partagés (alignés sur data/*.json)
+└── types/         # types métier partagés (alignés sur src/data/*.json)
 ```
 
 Une nouvelle page suit le chemin : `types` → `utils` (validation si besoin) →

@@ -60,9 +60,9 @@ données métier (JSON locaux chargés via `services/api.ts`).
 
 | Propriété | Type | Description |
 |---|---|---|
-| `associations` | `ref<Association[]>` | Contenu de `data/associations.json` |
-| `events` | `ref<EventItem[]>` | Contenu de `data/evenements.json` |
-| `news` | `ref<NewsItem[]>` | Contenu de `data/news.json` |
+| `associations` | `ref<Association[]>` | Contenu de `src/data/associations.json` |
+| `events` | `ref<EventItem[]>` | Contenu de `src/data/evenements.json` |
+| `news` | `ref<NewsItem[]>` | Contenu de `src/data/news.json` |
 | `loading` | `ref<boolean>` | `true` pendant `loadAll()` |
 | `error` | `ref<string \| null>` | Message d'erreur (jamais de throw vers l'appelant) |
 

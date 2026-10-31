@@ -23,14 +23,14 @@ npm run preview       # sert dist/ en local (vérification finale)
 | `dist/assets/*.js` | Chunks : app, pages (lazy) + **`vendor-vue`**, **`vendor-zod`**, **`vendor-ui`** via `advancedChunks.groups` (Vite 8 / Rolldown) |
 | `dist/assets/*.css` | CSS Tailwind compilé (`cssCodeSplit: true`) |
 | `dist/assets/*` | Fonts self-hosted (Bebas Neue, Rajdhani, Inter) et médias |
-| `dist/data/*.json` | **Copie de `data/`** réalisée par le plugin `tecDataAssets` (`closeBundle`) — indispensable au fonctionnement |
+| `dist/data/*.json` | **Copie de `src/data/`** (hors `content.json`, intégré au bundle) réalisée par le plugin `tecDataAssets` (`closeBundle`) — indispensable au fonctionnement |
 | `dist/assets/*.map` | Sourcemaps (`sourcemap: true`) |
 
 Options notables de [`vite.config.ts`](../vite.config.ts) :
 
 - alias `@` → `src/` ;
 - plugin maison `tecDataAssets` : sert `/data/*.json` en dev (middleware Vite,
-  `basename()` contre la traversée de répertoire) et copie `data/` au build ;
+  `basename()` contre la traversée de répertoire) et copie `src/data/` au build ;
 - `server.port = 3000`, `open: true`, `css.devSourcemap: true`.
 
 ### Prévisualisation

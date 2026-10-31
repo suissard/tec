@@ -7,9 +7,9 @@ Le fichier est intégré au site **au moment du build** : une modification est e
 ligne au prochain déploiement (push sur `main` → workflow *Deploy*). En local,
 `npm run dev` recharge la page dès la sauvegarde.
 
-> Les listes d'**associations**, d'**événements** et d'**actualités** ne sont pas
-> dans ce fichier : elles vivent dans [`data/`](../data/) (`associations.json`,
-> `evenements.json`, `news.json`).
+> Les listes d'**associations**, d'**événements** et d'**actualités** sont dans le
+> même dossier [`src/data/`](../src/data/) : `associations.json`,
+> `evenements.json` et `news.json`.
 
 ---
 
