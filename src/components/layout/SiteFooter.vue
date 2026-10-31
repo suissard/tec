@@ -4,6 +4,7 @@
  * contact, puis barre rouge copyright / mentions légales.
  */
 import { EXTERNAL_LINKS } from '@/utils/constants';
+import { publicUrl } from '@/utils/paths';
 
 const currentYear = new Date().getFullYear();
 
@@ -33,7 +34,7 @@ const quickLinks: { label: string; to: string }[] = [
       <!-- Identité -->
       <div class="flex items-center gap-5 md:pr-8">
         <RouterLink to="/" aria-label="Toulouse Esport Connect — Accueil" class="shrink-0 transition-transform hover:scale-105">
-          <img src="/media/logo-clair.svg" alt="Toulouse Esport Connect" class="h-16 w-auto" width="120" height="64" loading="lazy" />
+          <img :src="publicUrl('/media/logo-clair.svg')" alt="Toulouse Esport Connect" class="h-16 w-auto" width="120" height="64" loading="lazy" />
         </RouterLink>
         <p class="text-xs leading-relaxed text-white/85 max-w-[220px]">
           T.E.C a pour mission de fédérer les acteurs de l’esport toulousain, d’organiser des événements et de

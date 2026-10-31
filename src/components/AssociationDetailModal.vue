@@ -10,6 +10,7 @@ import TagInput from '@/components/ui/TagInput.vue';
 import { useModal } from '@/composables/useModal';
 import { LOGO_PLACEHOLDER } from '@/utils/constants';
 import { capitalize } from '@/utils/helpers';
+import { publicUrl } from '@/utils/paths';
 import type { Association } from '@/types';
 
 interface Props {
@@ -53,7 +54,7 @@ function onLogoError(event: Event): void {
     <!-- Identité -->
     <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
       <img
-        :src="association.logo"
+        :src="publicUrl(association.logo)"
         :alt="`Logo de ${association.name}`"
         class="h-40 w-40 sm:h-[180px] sm:w-[180px] shrink-0 rounded-2xl bg-white/5 object-contain p-2"
         :class="association.imgClass"

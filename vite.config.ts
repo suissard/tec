@@ -11,6 +11,73 @@ const DATA_DIR = join(PROJECT_ROOT, 'data');
 const DIST_DATA_DIR = join(PROJECT_ROOT, 'dist', 'data');
 
 /**
+ * Base path public du site (préfixe de toutes les URL d'assets).
+ *
+ * - `/` (défaut) : domaine dédié (tec-asso.fr, Netlify, Vercel…).
+ * - `/tec/` : GitHub Pages « project site » (`https://<user>.github.io/tec/`),
+ *   surchargeable en CI via `VITE_BASE_PATH`.
+ *
+ * Sans ce préfixe, le `index.html` déployé demande `/assets/index-*.js` à la
+ * racine de `github.io` → 404 → page blanche.
+ */
+function normalizeBasePath(value: string | undefined): string {
+  const trimmed = (value ?? '').trim();
+  if (!trimmed || trimmed === '/') return '/';
+  return `/${trimmed.replace(/^\/+|\/+$/g, '')}/`;
+}
+
+const BASE_PATH = normalizeBasePath(process.env.VITE_BASE_PATH);
+
+/**
+ * Hash routing (`/#/contact`) : obligatoire sur GitHub Pages, qui ne sait pas
+ * réécrire les URL profondes vers `index.html` (pas de fallback SPA).
+ * `VITE_HASH_ROUTER` force le mode (utile pour un domaine dédié).
+ */
+const USE_HASH_ROUTER =
+  process.env.VITE_HASH_ROUTER === 'true' ||
+  (process.env.VITE_HASH_ROUTER !== 'false' && BASE_PATH !== '/');
+
+/**
+ * Réécrit les URL absolues du dossier public (`/media/...`) dans le CSS émis.
+ *
+ * Vite ne préfixe pas `base` sur les `url('/media/…')` écrites à la main dans
+ * les feuilles de style : sur un sous-chemin (`/tec/`), elles pointeraient vers
+ * la racine du domaine. Les composants, eux, utilisent `publicUrl()`.
+ */
+function tecPublicBaseAssets(): Plugin {
+  let base = '/';
+  return {
+    name: 'tec:public-base-assets',
+    configResolved(config) {
+      base = config.base;
+    },
+    generateBundle(_options, bundle) {
+      if (base === '/') return;
+      const prefix = base.replace(/\/+$/, '');
+      for (const file of Object.values(bundle)) {
+        if (file.type !== 'asset' || !file.fileName.endsWith('.css')) continue;
+        const source =
+          typeof file.source === 'string' ? file.source : new TextDecoder().decode(file.source);
+        file.source = source
+          .replace(/url\('\/media\//g, `url('${prefix}/media/`)
+          .replace(/url\("\/media\//g, `url("${prefix}/media/`)
+          .replace(/url\(\/media\//g, `url(${prefix}/media/`);
+      }
+    },
+    // `vite-plugin-sitemap` injecte `<link rel="sitemap" href="/sitemap.xml">`
+    // sans tenir compte du `base` : on corrige après son passage.
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        if (base === '/') return html;
+        const prefix = base.replace(/\/+$/, '');
+        return html.replace(/href="\/sitemap\.xml"/g, `href="${prefix}/sitemap.xml"`);
+      },
+    },
+  };
+}
+
+/**
  * Sert `data/*.json` à l'URL `/data/*.json` :
  * - en dev via un middleware (les JSON restent la source unique à la racine) ;
  * - en build via une copie vers `dist/data` (requis pour `vite preview`).
@@ -21,12 +88,15 @@ function tecDataAssets(): Plugin {
     configureServer(server) {
       server.middlewares.use((request, response, next) => {
         const url = (request.url ?? '').split('?')[0];
-        if (!url.startsWith('/data/') || !url.endsWith('.json')) {
+        // En dev avec un `base` non racine (`VITE_BASE_PATH=/tec/`), l'URL
+        // reçue est `/tec/data/…` : on retire le préfixe avant de résoudre.
+        const pathname = url.startsWith(BASE_PATH) ? `/${url.slice(BASE_PATH.length)}` : url;
+        if (!pathname.startsWith('/data/') || !pathname.endsWith('.json')) {
           next();
           return;
         }
         // `basename` interdit toute traversée de répertoire hors de ./data
-        const filePath = join(DATA_DIR, basename(url));
+        const filePath = join(DATA_DIR, basename(pathname));
         if (!existsSync(filePath)) {
           next();
           return;
@@ -121,14 +191,22 @@ function associationRoutes(): string[] {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: BASE_PATH,
   plugins: [
     vue(),
     tecDataAssets(),
+    tecPublicBaseAssets(),
     sitemap({
       hostname: SITE_URL,
+      // Préfixe les URL du sitemap/robots pour un déploiement en sous-chemin.
+      basePath: BASE_PATH === '/' ? '' : BASE_PATH.replace(/\/+$/, ''),
       // `/` est déjà détecté par le plugin (scan de `dist/index.html`) :
       // ne pas le redéclarer ici, sinon il apparaîtrait deux fois.
-      dynamicRoutes: [...STATIC_ROUTES.filter((route) => route !== '/'), ...associationRoutes()],
+      // En hash routing, les URL profondes n'existent pas côté serveur : seul
+      // `/` est indexable.
+      dynamicRoutes: USE_HASH_ROUTER
+        ? []
+        : [...STATIC_ROUTES.filter((route) => route !== '/'), ...associationRoutes()],
       changefreq: CHANGEFREQ,
       priority: PRIORITY,
       // Génère `dist/sitemap.xml` + `dist/robots.txt` (et écrase les copies

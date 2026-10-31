@@ -67,7 +67,9 @@ const sanitizedContent = computed(() => sanitizeHtml(props.news.content ?? ''));
 
 /** URL de partage : la page des actualités (aucune route par article). */
 function shareUrl(): string {
-  return `${window.location.origin}${window.location.pathname}`;
+  // `href` inclut le hash routing (`/tec/#/actualites`) contrairement à
+  // `pathname`, qui vaudrait `/tec/` sur GitHub Pages.
+  return window.location.href;
 }
 
 /** Paramètres d'URL de partage (réseaux sociaux). */

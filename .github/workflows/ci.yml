@@ -11,6 +11,15 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # GitHub Pages « project site » → base `/<repo>/` (ex. `/tec/`).
+  # Surchargeable par la variable de dépôt `BASE_PATH` (ex. `/` pour un
+  # domaine dédié type tec-asso.fr).
+  VITE_BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+  # Pages ne sait pas réécrire les URL profondes vers index.html : hash routing.
+  VITE_HASH_ROUTER: ${{ vars.HASH_ROUTER || 'true' }}
+  VITE_SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+
 jobs:
   lint:
     name: Lint (ESLint + Prettier)
@@ -78,8 +87,6 @@ jobs:
       - run: npm ci
       - name: Build (sitemap.xml + robots.txt générés par vite-plugin-sitemap)
         run: npm run build
-        env:
-          VITE_SITE_URL: ${{ vars.SITE_URL }}
       - name: Vérifie les assets media dans dist/
         run: |
           test -f dist/index.html

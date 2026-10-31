@@ -55,7 +55,8 @@ Toutes facultatives, préfixées `VITE_`, définies dans `.env` / `.env.local`
 
 | Variable | Défaut | Effet |
 |---|---|---|
-| `VITE_HASH_ROUTER` | *(absente → History API)* | `'true'` → `createWebHashHistory` (`/#/…`). À utiliser **sans** rewrite serveur |
+| `VITE_BASE_PATH` | `/` | `base` Vite (préfixe de toutes les URL d'assets). GitHub Pages « project site » : `/tec/` |
+| `VITE_HASH_ROUTER` | *(auto)* | `'true'` → `createWebHashHistory` (`/#/…`) ; `'false'` → History API. Par défaut : hash dès que `VITE_BASE_PATH !== '/'` (Pages n'a pas de rewrite SPA) |
 | `VITE_POSTHOG_KEY` | *(absente → aucun tracker)* | Clé PostHog. Le SDK n'est injecté que si le consentement est `granted` |
 | `VITE_POSTHOG_HOST` | `https://eu.i.posthog.com` | Hébergeur du SDK PostHog |
 
@@ -63,6 +64,7 @@ Typage TypeScript : [`src/vite-env.d.ts`](../src/vite-env.d.ts).
 
 ```bash
 # .env (exemple)
+VITE_BASE_PATH=/tec/
 VITE_HASH_ROUTER=true
 VITE_POSTHOG_KEY=phc_xxxxxxxxxxxx
 VITE_POSTHOG_HOST=https://eu.i.posthog.com
@@ -121,8 +123,29 @@ add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: htt
 
 ### GitHub Pages
 
-Base path à passer via `vite.config.ts` (`base: '/tec/'`) **et**
-`VITE_HASH_ROUTER=true` (pas de rewrite sur Pages).
+Le workflow [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml)
+construit et publie `dist/` via `actions/deploy-pages`.
+
+1. **Settings → Pages → Source : « GitHub Actions »** (et non « Deploy from a
+   branch »).
+2. Le workflow fixe automatiquement, pour un « project site » :
+
+   ```bash
+   VITE_BASE_PATH=/<nom-du-dépôt>/   # ex. /tec/
+   VITE_HASH_ROUTER=true             # Pages n'offre pas de rewrite SPA
+   VITE_SITE_URL=https://<user>.github.io/<nom-du-dépôt>
+   ```
+
+   Surcharger via les **variables de dépôt** (Settings → Secrets and variables →
+   Actions → Variables) : `BASE_PATH`, `HASH_ROUTER`, `SITE_URL`. Pour un
+   domaine dédié (`tec-asso.fr`), mettre `BASE_PATH=/` et
+   `HASH_ROUTER=false`.
+3. Après déploiement, l'URL est `https://<user>.github.io/<dépôt>/` (le
+   `index.html` doit charger `/tec/assets/index-*.js`, pas `/assets/…`).
+
+`publicUrl()` ([`src/utils/paths.ts`](../src/utils/paths.ts)) préfixe les
+références aux médias et aux JSON du dossier `public/` avec ce `base` ; le CSS
+est corrigé au build par le plugin `tecPublicBaseAssets`.
 
 ### Site vanilla (repli)
 
@@ -135,9 +158,10 @@ npm run legacy:serve   # vérification sur http://localhost:8080
 
 ## 4. CI / CD — GitHub Actions
 
-> **État actuel du dépôt** : aucun workflow n'est encore versionné
-> (dossier `.github/workflows/` absent). Le modèle ci-dessous est prêt à l'être
-> déposé tel quel ; il reflète les commandes réelles du projet.
+> **Workflows versionnés** : [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
+> (lint, typecheck, tests, build) et
+> [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) (déploiement
+> après une CI verte sur `main`). L'extrait ci-dessous reste un modèle minimal.
 
 ### `.github/workflows/ci.yml` (modèle)
 

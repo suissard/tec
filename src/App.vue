@@ -6,6 +6,8 @@ import ModalHost from '@/components/ui/ModalHost.vue';
 import ToastHost from '@/components/ui/ToastHost.vue';
 import { useCookieConsent } from '@/composables/useCookieConsent';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import { useHashHistory } from '@/router';
+import { publicUrl } from '@/utils/paths';
 
 const { init } = useCookieConsent();
 
@@ -15,14 +17,19 @@ const PREFETCH_ROUTES = ['/', '/associations', '/evenements', '/actualites'];
 /**
  * Préchauffe la navigation en demandant au navigateur de prefetcher
  * les documents des routes les plus visitées ( `<link rel="prefetch">` ).
+ *
+ * Sans objet en hash routing (une seule page HTML) et les URL doivent être
+ * préfixées par le `base` (ex. `/tec/associations` sur GitHub Pages).
  */
 function prefetchRoutes(paths: readonly string[]): void {
+  if (useHashHistory) return;
   for (const path of paths) {
-    if (document.querySelector(`link[rel="prefetch"][href="${path}"]`)) continue;
+    const href = publicUrl(path);
+    if (document.querySelector(`link[rel="prefetch"][href="${href}"]`)) continue;
     const link = document.createElement('link');
     link.rel = 'prefetch';
     link.as = 'document';
-    link.href = path;
+    link.href = href;
     document.head.appendChild(link);
   }
 }

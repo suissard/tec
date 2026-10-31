@@ -3,6 +3,8 @@
  * Panneau tarifs d'adhésion (maquette 2026) : membres individuels (1 €),
  * membres sympathisants (5 €) et entités morales (50 €) avec leurs avantages.
  */
+import { publicUrl } from '@/utils/paths';
+
 interface Offer {
   price: string;
   title: string[];
@@ -48,8 +50,8 @@ const OFFERS: Offer[] = [
 <template>
   <section class="max-w-6xl mx-auto px-4 pt-6" aria-labelledby="pricing-title">
     <div class="pricing tec-panel">
-      <img src="/media/tec-bandeau.svg" alt="" class="pricing__bandeau" aria-hidden="true" />
-      <img src="/media/tec-logo-only-croix.svg" alt="" class="pricing__croix" aria-hidden="true" />
+      <img :src="publicUrl('/media/tec-bandeau.svg')" alt="" class="pricing__bandeau" aria-hidden="true" />
+      <img :src="publicUrl('/media/tec-logo-only-croix.svg')" alt="" class="pricing__croix" aria-hidden="true" />
       <h2 id="pricing-title" class="relative font-bebas text-5xl text-center text-[#141414]">Adhésion</h2>
 
       <div class="relative mt-6 grid gap-10 md:grid-cols-2 lg:grid-cols-3">

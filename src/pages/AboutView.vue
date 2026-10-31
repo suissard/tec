@@ -12,6 +12,7 @@ import StatsCounter, { type StatItem } from '@/components/StatsCounter.vue';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
 import { LOGO_PLACEHOLDER, STORAGE_KEYS } from '@/utils/constants';
+import { publicUrl } from '@/utils/paths';
 
 /** Membre du bureau affiché dans l'équipe. */
 interface TeamMember {
@@ -209,7 +210,7 @@ onMounted(async () => {
           class="glass-card rounded-2xl p-6 text-center"
         >
           <img
-            :src="member.photo"
+            :src="publicUrl(member.photo)"
             :alt="`Portrait de ${member.name}`"
             loading="lazy"
             class="mx-auto h-28 w-28 rounded-full bg-white/5 object-cover"

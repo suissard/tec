@@ -2,7 +2,9 @@
 /**
  * Appel à l'adhésion (bandeau rouge sur photo) affiché avant le pied de page.
  */
-const BG_IMAGE = '/media/hero-esport.jpg';
+import { publicUrl } from '@/utils/paths';
+
+const BG_IMAGE = publicUrl('/media/hero-esport.jpg');
 </script>
 
 <template>

@@ -96,14 +96,16 @@ préfixées `VITE_` (définies dans `.env` — ignoré par git — ou `.env.loca
 
 | Variable | Défaut | Rôle |
 |---|---|---|
-| `VITE_HASH_ROUTER` | *(absente)* | `'true'` → bascule le routeur en **hash history** (`/#/contact`). Utile sur un hébergeur sans règle de rewrite SPA |
+| `VITE_BASE_PATH` | `/` | Préfixe public du site (`base` Vite). Sur GitHub Pages « project site » : `/tec/` (sinon les assets sont cherchés à la racine de `github.io` → page blanche) |
+| `VITE_HASH_ROUTER` | *(auto)* | `'true'`/`'false'` force le mode. Par défaut : hash history (`/#/contact`) dès que `VITE_BASE_PATH !== '/'`, History API sinon |
 | `VITE_POSTHOG_KEY` | *(absente)* | Clé API PostHog. Sans cette clé, aucune injection de tracker (no-op) |
 | `VITE_POSTHOG_HOST` | `https://eu.i.posthog.com` | Hébergeur du SDK PostHog (injecté **uniquement** après consentement) |
 
 Exemple `.env` :
 
 ```bash
-VITE_HASH_ROUTER=true
+# Déploiement GitHub Pages « project site »
+VITE_BASE_PATH=/tec/
 VITE_POSTHOG_KEY=phc_xxxxxxxxxxxxxxxxxxxxx
 VITE_POSTHOG_HOST=https://eu.i.posthog.com
 ```
@@ -257,8 +259,8 @@ Détail des schémas : [`docs/forms.md`](./docs/forms.md).
 ## 🧪 Tests
 
 ```bash
-npm run test:unit       # 13 fichiers, 95 tests
-npm run test:coverage   # V8 : 96 % instructions, 97,7 % lignes, 99,2 % fonctions
+npm run test:unit       # 15 fichiers, 104 tests
+npm run test:coverage   # V8 : seuils bloquants 80/80/70/80
 ```
 
 Couverture cible (seuils bloquants dans `vitest.config.ts`) : **80 %** lignes /
@@ -268,18 +270,89 @@ fonctions / statements, **70 %** branches.
 
 ## 🚢 Déploiement
 
-Build **100 % statique** :
+### Production : GitHub Pages
+
+**URL : <https://suissard.github.io/tec/>**
+
+Le workflow [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
+construit `dist/` puis le publie avec `actions/deploy-pages` après une CI verte
+sur `main`.
+
+#### Réglage indispensable (une seule fois)
+
+**Settings → Pages → Build and deployment → Source = « GitHub Actions »**
+(et non « Deploy from a branch »).
+
+> ⚠️ Avec « Deploy from a branch », GitHub publie la **racine du dépôt** : le
+> `index.html` source référence `/src/main.ts` (non exécutable par le
+> navigateur), d'où la **page blanche**. C'est la cause du problème constaté en
+> production ; le build `dist/` doit être publié à la place.
+
+#### Variables de dépôt (valeurs de production)
+
+Elles sont **facultatives** — le workflow calcule les mêmes valeurs par défaut —
+mais les définir explicitement évite toute surprise. Elles se créent dans
+**Settings → Secrets and variables → Actions → Variables** :
+
+| Variable | Valeur en prod | Rôle |
+|---|---|---|
+| `BASE_PATH` | `/tec/` | Préfixe public du site (assets, médias, JSON) |
+| `HASH_ROUTER` | `true` | `/#/associations` : Pages n'a pas de rewrite SPA |
+| `SITE_URL` | `https://suissard.github.io/tec` | URL canonique (sitemap, robots, OG) |
+
+Création en une commande (nécessite `gh` authentifié avec les droits admin) :
 
 ```bash
-npm run build      # → dist/ (+ dist/data/)
-npm run preview    # vérification locale du build
+./scripts/setup-github-pages.sh
 ```
 
-1. Héberger `dist/` sur un hébergeur statique (Netlify, Vercel, GitHub Pages, nginx).
-2. Configurer un **rewrite SPA** (`/* → /index.html`) — ou définir
-   `VITE_HASH_ROUTER=true` si le rewrite est impossible.
-3. Déployer `data/` avec le build (déjà copié dans `dist/data/`).
-4. CI/CD GitHub Actions prêt à l'emploi : voir [`docs/deployment.md`](./docs/deployment.md).
+Le script définit les 3 variables **et** bascule la source Pages sur
+« GitHub Actions ». Pour un domaine dédié :
+
+```bash
+SITE_URL=https://tec-asso.fr BASE_PATH=/ HASH_ROUTER=false \
+  ./scripts/setup-github-pages.sh
+```
+
+#### Ce qui change en production (`base = /tec/`)
+
+- `index.html` charge `/tec/assets/index-*.js` (et non `/assets/…`, qui
+  renvoyait 404 → page blanche).
+- Tous les médias passent par `publicUrl()` (`src/utils/paths.ts`) :
+  `/tec/media/…`, et les JSON par `/tec/data/…`.
+- Le CSS est réécrit au build par le plugin `tecPublicBaseAssets`
+  (`url(/tec/media/…)`).
+- Le routeur bascule automatiquement en **hash history** dès que
+  `BASE_PATH !== '/'` : les URL profondes sont des fragments
+  (`/tec/#/contact`), donc aucun rewrite serveur n'est nécessaire.
+- Sitemap/robots et le prefetch de routes tiennent compte du préfixe (pas de
+  requêtes vers la racine de `github.io`).
+- En local, `npm run build` reste sur `/` (History API). Pour reproduire la
+  prod : `VITE_BASE_PATH=/tec/ VITE_HASH_ROUTER=true npm run build`.
+
+#### Vérifier un déploiement
+
+```bash
+curl -s https://suissard.github.io/tec/ | grep -E 'src="[^"]+"'
+# ✅ attendu : src="/tec/assets/index-*.js"
+# ❌ interdit : src="/src/main.ts" (Pages publie encore la branche)
+```
+
+Puis dans le navigateur : accueil, `/tec/#/associations`, logos, ouverture
+d'une fiche association, rechargement direct d'une URL en hash.
+
+#### Redéployer
+
+1. Pousser sur `main` → la **CI** (lint, typecheck, tests, build) se lance.
+2. Si elle passe, **Deploy** publie `dist/` (l'artefact du commit validé).
+3. En cas d'échec : Actions → **Deploy** → *Re-run all jobs*, ou relancer la CI.
+
+### Autres hébergeurs (Netlify, Vercel, nginx)
+
+Build **100 % statique** (`npm run build` → `dist/` + `dist/data/`). Sur un
+hébergeur avec rewrite SPA (`/* → /index.html`), garder des URL propres :
+définir `BASE_PATH=/` (sinon le workflow déduit `/tec/`) et `HASH_ROUTER=false`.
+Déployer tout le contenu de `dist/`, `data/` inclus.
 
 ---
 

@@ -13,13 +13,14 @@ import { useModal } from '@/composables/useModal';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
 import type { Association, EventItem } from '@/types';
+import { publicUrl } from '@/utils/paths';
 
 const dataStore = useDataStore();
 const appStore = useAppStore();
 const modal = useModal();
 
 /** Visuel du héros (à remplacer par une photo officielle d'événement). */
-const HERO_IMAGE = '/media/hero-esport.jpg';
+const HERO_IMAGE = publicUrl('/media/hero-esport.jpg');
 
 /* ------------------------------------------------------------- données */
 const upcomingEvents = computed<EventItem[]>(() => dataStore.getUpcomingEvents(3));
@@ -105,7 +106,7 @@ onMounted(async () => {
         <ul class="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
           <li v-for="association in associations" :key="association.id">
             <button type="button" class="assoc-logo" :aria-label="`Découvrir ${association.name}`" @click="openAssociationDetail(association)">
-              <img :src="association.logo" :alt="association.name" loading="lazy" />
+              <img :src="publicUrl(association.logo)" :alt="association.name" loading="lazy" />
             </button>
           </li>
         </ul>

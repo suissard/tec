@@ -11,6 +11,7 @@ import { useFocusTrap } from '@/composables/useFocusTrap';
 import { routeNames } from '@/router';
 import { useAppStore } from '@/stores/app';
 import { EXTERNAL_LINKS } from '@/utils/constants';
+import { publicUrl } from '@/utils/paths';
 
 interface NavItem {
   label: string;
@@ -75,7 +76,7 @@ watch(
         aria-label="Toulouse Esport Connect — Accueil"
       >
         <img
-          src="/media/logo-clair.svg"
+          :src="publicUrl('/media/logo-clair.svg')"
           alt="Toulouse Esport Connect"
           class="h-10 md:h-12 w-auto"
           width="160"

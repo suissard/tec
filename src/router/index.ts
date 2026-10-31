@@ -6,7 +6,11 @@ import {
 } from 'vue-router';
 
 /**
- * Routage History API (HTML5) avec repli hash (`VITE_HASH_ROUTER === 'true'`).
+ * Routage History API (HTML5), avec deux replis hash (`/#/…`) :
+ * - `VITE_HASH_ROUTER === 'true'` (hébergeur sans rewrite SPA) ;
+ * - ou `base !== '/'` (GitHub Pages « project site », ex. `/tec/`, qui ne
+ *   sait pas réécrire les URL profondes vers `index.html`).
+ * `VITE_HASH_ROUTER === 'false'` force l'History API (ex. domaine dédié).
  * Les chemins sont alignés sur `VALID_PAGES` du site vanilla + une route 404.
  */
 
@@ -158,7 +162,9 @@ function applySeo(title: string, description: string): void {
   upsertMeta('property', 'og:url', window.location.href);
 }
 
-const useHashHistory = import.meta.env.VITE_HASH_ROUTER === 'true';
+export const useHashHistory =
+  import.meta.env.VITE_HASH_ROUTER === 'true' ||
+  (import.meta.env.VITE_HASH_ROUTER !== 'false' && import.meta.env.BASE_URL !== '/');
 
 const router = createRouter({
   history: useHashHistory

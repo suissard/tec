@@ -4,6 +4,7 @@
  */
 
 import type { Association, EventItem, NewsItem } from '@/types';
+import { publicUrl } from '@/utils/paths';
 
 /** Erreur métier levée par la couche API */
 export class ApiError extends Error {
@@ -16,9 +17,12 @@ export class ApiError extends Error {
   }
 }
 
-/** Résout une URL relative depuis la racine publique */
+/**
+ * Résout une URL depuis la racine publique, en tenant compte du `base` Vite
+ * (ex. `/tec/` sur GitHub Pages).
+ */
 function resolvePublicUrl(path: string): string {
-  return path.startsWith('/') ? path : `/${path}`;
+  return publicUrl(path);
 }
 
 /**

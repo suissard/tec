@@ -7,6 +7,7 @@ import { computed } from 'vue';
 
 import { LOGO_PLACEHOLDER } from '@/utils/constants';
 import { capitalize } from '@/utils/helpers';
+import { publicUrl } from '@/utils/paths';
 import type { Association } from '@/types';
 
 interface Props {
@@ -38,7 +39,7 @@ function onLogoError(event: Event): void {
   <article class="glass-card rounded-2xl p-6 flex flex-col h-full text-left">
     <div class="flex items-start gap-4">
       <img
-        :src="association.logo"
+        :src="publicUrl(association.logo)"
         :alt="`Logo de ${association.name}`"
         loading="lazy"
         class="h-14 w-14 shrink-0 rounded-xl bg-white/5 object-contain p-1"
