@@ -221,6 +221,13 @@ par un plugin Vite dédié (`tecDataAssets` dans `vite.config.ts`) :
 Le passage à une API distante se fait uniquement dans [`src/services/api.ts`](./src/services/api.ts)
 (les stores et pages ne connaissent que `fetchAssociations()`, `fetchEvents()`, …).
 
+### Textes des pages
+
+Tous les textes éditoriaux (pages, menu, pied de page, SEO) sont regroupés dans
+[`src/data/content.json`](./src/data/content.json), importé au build et validé
+par un schéma Zod (le build échoue si le fichier est invalide). Guide d'édition :
+[`docs/content.md`](./docs/content.md).
+
 ---
 
 ## 📝 Formulaires

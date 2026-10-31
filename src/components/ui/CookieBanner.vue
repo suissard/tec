@@ -7,6 +7,10 @@ import CookiePreferencesPanel from '@/components/ui/CookiePreferencesPanel.vue';
 import { useCookieConsent } from '@/composables/useCookieConsent';
 import { useModal } from '@/composables/useModal';
 import BaseButton from '@/components/ui/BaseButton.vue';
+import RichText from '@/components/ui/RichText.vue';
+import { layout } from '@/utils/content';
+
+const texts = layout.cookieBanner;
 
 const { status, accept, decline } = useCookieConsent();
 const { open } = useModal();
@@ -25,22 +29,16 @@ function openPreferences(): void {
   >
     <div class="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4">
       <div class="text-sm text-gray-300 leading-relaxed max-w-3xl">
-        <p class="font-medium text-white mb-1">Cookies et mesures d'audience</p>
+        <p class="font-medium text-white mb-1">{{ texts.title }}</p>
         <p class="text-xs sm:text-sm text-gray-400">
-          Nous utilisons des cookies pour mesurer l'audience du site et améliorer votre expérience.
-          Aucune donnée personnelle n'est vendue à des tiers.
-          <RouterLink
-            to="/mentions-legales#cookies"
-            class="underline underline-offset-4 hover:text-brand-red-light transition-colors"
-            >En savoir plus</RouterLink
-          >
+          <RichText :text="texts.text" />
         </p>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-end shrink-0">
-        <BaseButton variant="ghost" size="sm" @click="openPreferences()">Personnaliser</BaseButton>
-        <BaseButton variant="outline" size="sm" @click="decline()">Refuser</BaseButton>
-        <BaseButton variant="primary" size="sm" @click="accept()">Tout accepter</BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="openPreferences()">{{ texts.customize }}</BaseButton>
+        <BaseButton variant="outline" size="sm" @click="decline()">{{ texts.decline }}</BaseButton>
+        <BaseButton variant="primary" size="sm" @click="accept()">{{ texts.accept }}</BaseButton>
       </div>
     </div>
   </div>

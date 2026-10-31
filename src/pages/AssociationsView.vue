@@ -14,10 +14,12 @@ import CategoryFilter, { type CategoryOption } from '@/components/CategoryFilter
 import Pagination from '@/components/Pagination.vue';
 import SearchInput from '@/components/SearchInput.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
+import RichText from '@/components/ui/RichText.vue';
 import { useModal } from '@/composables/useModal';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
 import type { Association } from '@/types';
+import { pages } from '@/utils/content';
 
 /** Nombre d'associations affichées par page. */
 const PAGE_SIZE = 12;
@@ -30,9 +32,8 @@ const modal = useModal();
 const route = useRoute();
 const router = useRouter();
 
-const pageTitle = 'Associations';
-const pageDescription =
-  'Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect : esport, versus fighting et rétrogaming.';
+/** Textes de la page (`pages.associations` de `content.json`). */
+const texts = pages.associations;
 
 /* --------------------------------------------------------- état & filtres */
 const query = ref('');
@@ -196,8 +197,8 @@ onMounted(async () => {
 <template>
   <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
     <header class="mb-10">
-      <h1 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white">{{ pageTitle }}</h1>
-      <p class="mt-4 text-lg text-gray-400 max-w-2xl">{{ pageDescription }}</p>
+      <h1 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white">{{ texts.hero.title }}</h1>
+      <p v-if="texts.hero.subtitle" class="mt-4 text-lg text-gray-400 max-w-2xl"><RichText :text="texts.hero.subtitle" /></p>
     </header>
 
     <div class="grid gap-8 lg:grid-cols-12">
@@ -209,25 +210,25 @@ onMounted(async () => {
         <div class="glass-card rounded-2xl p-5 space-y-6">
           <SearchInput
             v-model="query"
-            label="Rechercher une association"
-            placeholder="Nom, jeu, catégorie…"
+            :label="texts.filters.searchLabel"
+            :placeholder="texts.filters.searchPlaceholder"
             input-id="associations-search"
           />
 
           <div>
-            <p class="text-xs font-medium text-gray-300 mb-2">Jeux pratiqués</p>
+            <p class="text-xs font-medium text-gray-300 mb-2">{{ texts.filters.gamesTitle }}</p>
             <CategoryFilter
               v-model:selected="selectedGames"
               :options="gameOptions"
               legend="Filtrer par jeu"
             />
             <p v-if="gameOptions.length === 0" class="text-xs text-gray-500">
-              Aucun jeu renseigné pour l'instant.
+              {{ texts.filters.gamesEmpty }}
             </p>
           </div>
 
           <div v-if="allCities.length > 0">
-            <p class="text-xs font-medium text-gray-300 mb-2">Villes</p>
+            <p class="text-xs font-medium text-gray-300 mb-2">{{ texts.filters.citiesTitle }}</p>
             <CategoryFilter
               v-model:selected="selectedCities"
               :options="cityOptions"
@@ -247,7 +248,7 @@ onMounted(async () => {
               :disabled="!hasActiveFilters"
               @click="resetFilters()"
             >
-              Réinitialiser
+              {{ texts.filters.reset }}
             </BaseButton>
           </div>
         </div>
@@ -264,11 +265,9 @@ onMounted(async () => {
           >
             🔍
           </div>
-          <h2 class="mt-5 font-bebas text-2xl text-white">Aucune association trouvée</h2>
+          <h2 class="mt-5 font-bebas text-2xl text-white">{{ texts.empty.title }}</h2>
           <p class="mx-auto mt-2 max-w-md text-sm text-gray-400">
-            Aucun résultat ne correspond à votre recherche
-            <template v-if="hasActiveFilters"> ni à vos filtres actifs</template>. Essayez un autre
-            mot-clé ou réinitialisez les filtres.
+            {{ hasActiveFilters ? texts.empty.textWithFilters : texts.empty.text }}
           </p>
           <BaseButton
             v-if="hasActiveFilters"
@@ -277,7 +276,7 @@ onMounted(async () => {
             class="mt-6"
             @click="resetFilters()"
           >
-            Réinitialiser les filtres
+            {{ texts.empty.reset }}
           </BaseButton>
         </div>
 

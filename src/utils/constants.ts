@@ -21,13 +21,6 @@ export const BRAND_COLORS = {
   discordHover: '#4752C4',
 } as const;
 
-/** Liens externes officiels */
-export const EXTERNAL_LINKS = {
-  discord: 'https://discord.gg/VH98qQWEhh',
-  instagram: 'https://www.instagram.com/toulouseec__/',
-  email: 'mailto:contact@toulouse-esport-connect.fr',
-} as const;
-
 /** Catégories d'associations (filtres de l'annuaire) — aligné sur data/associations.json */
 export const ASSOCIATION_CATEGORIES = [
   { id: 'all', label: 'Toutes les Associations' },

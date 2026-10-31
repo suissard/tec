@@ -6,9 +6,12 @@ import { defineConfig, type Plugin } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import sitemap from 'vite-plugin-sitemap';
 
+import { validateContent } from './src/utils/contentSchema';
+
 const PROJECT_ROOT = fileURLToPath(new URL('.', import.meta.url));
 const DATA_DIR = join(PROJECT_ROOT, 'data');
 const DIST_DATA_DIR = join(PROJECT_ROOT, 'dist', 'data');
+const CONTENT_FILE = join(PROJECT_ROOT, 'src', 'data', 'content.json');
 
 /**
  * Base path public du site (préfixe de toutes les URL d'assets).
@@ -114,6 +117,52 @@ function tecDataAssets(): Plugin {
 }
 
 /**
+ * Vérifie `src/data/content.json` (textes des pages, édités par des humains)
+ * contre `contentSchema` :
+ * - au build : toute erreur fait échouer `vite build` avec la liste des
+ *   champs fautifs (ex. `pages.home.hero.title : Texte vide`) ;
+ * - en dev : la vérification est rejouée à chaque sauvegarde du fichier et
+ *   les erreurs s'affichent dans le terminal (l'overlay Vite signale aussi un
+ *   JSON syntaxiquement invalide).
+ */
+function tecContentValidation(): Plugin {
+  function validate(): string[] {
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(readFileSync(CONTENT_FILE, 'utf8'));
+    } catch (error) {
+      return [`JSON invalide : ${error instanceof Error ? error.message : String(error)}`];
+    }
+    return validateContent(parsed);
+  }
+
+  function report(errors: string[]): string {
+    return `[content] src/data/content.json contient ${errors.length} erreur(s) :\n  - ${errors.join('\n  - ')}`;
+  }
+
+  return {
+    name: 'tec:content-validation',
+    buildStart() {
+      const errors = validate();
+      if (errors.length === 0) return;
+      if (this.meta.watchMode) {
+        this.warn(report(errors));
+        return;
+      }
+      this.error(report(errors));
+    },
+    configureServer(server) {
+      server.watcher.add(CONTENT_FILE);
+      server.watcher.on('change', (file) => {
+        if (file !== CONTENT_FILE) return;
+        const errors = validate();
+        if (errors.length > 0) server.config.logger.error(report(errors));
+      });
+    },
+  };
+}
+
+/**
  * URL canonique du site, transmise à `vite-plugin-sitemap` pour générer
  * `dist/sitemap.xml` et `dist/robots.txt`. Surchargeable (CI, hébergeur,
  * prévisualisation…) via `VITE_SITE_URL`.
@@ -194,6 +243,7 @@ export default defineConfig({
   base: BASE_PATH,
   plugins: [
     vue(),
+    tecContentValidation(),
     tecDataAssets(),
     tecPublicBaseAssets(),
     sitemap({

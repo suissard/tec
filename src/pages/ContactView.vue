@@ -10,76 +10,16 @@ import HeroSection from '@/components/HeroSection.vue';
 import Accordion, { type AccordionItem } from '@/components/ui/Accordion.vue';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
+import { pages } from '@/utils/content';
 
 const dataStore = useDataStore();
 const appStore = useAppStore();
 
-const pageTitle = 'Nous contacter';
-const pageDescription =
-  'Une question, un partenariat ou une envie de bénévolat ? Le bureau de TEC vous répond sous 48 h.';
-
-/** Coordonnée affichée dans le bloc « Nos coordonnées ». */
-interface ContactInfo {
-  /** Libellé (terme du dictionnaire <dl>) */
-  term: string;
-  /** Valeur affichée */
-  value: string;
-  /** Lien scheme (`mailto:`, `tel:`…) — absent pour les informations simples */
-  href?: string;
-}
-
-/** Coordonnées du siège social. */
-const CONTACT_INFO: ContactInfo[] = [
-  { term: 'Adresse', value: '10 route de Bordé Neuve, 31570 Sainte-Foy-d’Aigrefeuille' },
-  { term: 'Email', value: 'contact@tec-asso.fr', href: 'mailto:contact@tec-asso.fr' },
-  { term: 'Téléphone', value: '06 XX XX XX XX', href: 'tel:06XXXXXXXX' },
-  { term: 'Horaires', value: 'Lun-Ven 9h-18h' },
-];
-
-/** Intégration OpenStreetMap (bbox autour de Toulouse, marqueur sur le siège). */
-const MAP_SRC =
-  'https://www.openstreetmap.org/export/embed.html?bbox=1.2,43.5,1.5,43.7&layer=mapnik&marker=43.6,1.35';
-
-/** Lien d'ouverture de la carte dans un nouvel onglet. */
-const MAP_LINK = 'https://www.openstreetmap.org/?mlat=43.6&mlon=1.35#map=12/43.6/1.35';
-
-/** Questions fréquentes. */
-const faqItems: AccordionItem[] = [
-  {
-    id: 'faq-benevolat',
-    title: 'Comment devenir bénévole ?',
-    content:
-      'Rendez-vous sur la page « Devenir bénévole » et remplissez le formulaire en 4 étapes. Nous vous recontacterons sous 48h.',
-  },
-  {
-    id: 'faq-adhesion',
-    title: 'Combien coûte l’adhésion ?',
-    content:
-      'L’adhésion est de 1 €/an pour un membre individuel (bénévole), 5 €/an pour un membre sympathisant et 50 €/an pour une entité morale (association).',
-  },
-  {
-    id: 'faq-evenement',
-    title: 'Puis-je proposer un événement ?',
-    content: 'Oui ! Connectez-vous à votre espace association ou contactez-nous via le formulaire.',
-  },
-  {
-    id: 'faq-association',
-    title: 'Comment contacter une association ?',
-    content:
-      'Chaque fiche association affiche ses coordonnées (email, Discord, site web) dans la modale de détail.',
-  },
-  {
-    id: 'faq-rgpd',
-    title: 'Mes données sont-elles protégées ?',
-    content: 'Oui, nous respectons le RGPD. Consultez nos mentions légales pour plus de détails.',
-  },
-  {
-    id: 'faq-local',
-    title: 'Y a-t-il un local physique ?',
-    content:
-      'Notre siège social est au 10 route de Bordé Neuve, 31570 Sainte-Foy-d’Aigrefeuille. Nous n’avons pas de local d’accueil public.',
-  },
-];
+/** Textes de la page (`pages.contact` de `content.json`) : coordonnées, carte, FAQ. */
+const texts = pages.contact;
+const CONTACT_INFO = texts.details.items;
+const MAP = texts.details.map;
+const faqItems: AccordionItem[] = texts.faq.items;
 
 onMounted(async () => {
   appStore.setLoading(true);
@@ -98,7 +38,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <HeroSection :title="pageTitle" :subtitle="pageDescription" eyebrow="Contact" />
+    <HeroSection v-bind="texts.hero" />
 
     <!-- Coordonnées + formulaire -->
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="contact-infos">
@@ -108,10 +48,10 @@ onMounted(async () => {
           <p
             class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
           >
-            Nos coordonnées
+            {{ texts.details.eyebrow }}
           </p>
           <h2 id="contact-infos" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-            Où nous trouver
+            {{ texts.details.title }}
           </h2>
 
           <dl class="mt-6 space-y-4">
@@ -134,22 +74,22 @@ onMounted(async () => {
 
           <div class="mt-6 overflow-hidden rounded-xl border border-brand-card-border">
             <iframe
-              :src="MAP_SRC"
-              title="Carte du siège de Toulouse Esport Connect — Sainte-Foy-d’Aigrefeuille"
+              :src="MAP.embedUrl"
+              :title="MAP.title"
               class="h-72 w-full border-0"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
           <p class="mt-2 text-xs text-gray-500">
-            Siège social de l’association —
+            {{ MAP.caption }}
             <a
-              :href="MAP_LINK"
+              :href="MAP.linkUrl"
               target="_blank"
               rel="noopener noreferrer"
               class="underline underline-offset-4 transition-colors hover:text-brand-red-light"
             >
-              ouvrir dans OpenStreetMap
+              {{ MAP.linkLabel }}
             </a>
           </p>
         </div>
@@ -159,13 +99,13 @@ onMounted(async () => {
           <p
             class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
           >
-            Écrivez-nous
+            {{ texts.form.eyebrow }}
           </p>
           <h2 id="contact-form" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-            Votre message
+            {{ texts.form.title }}
           </h2>
           <p class="mt-3 text-sm text-gray-400">
-            Réponse du bureau sous 48 h ouvrées. Les champs marqués d’un astérisque sont requis.
+            {{ texts.form.text }}
           </p>
           <div class="mt-6">
             <ContactForm />
@@ -177,10 +117,10 @@ onMounted(async () => {
     <!-- FAQ -->
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="contact-faq">
       <p class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light">
-        Foire aux questions
+        {{ texts.faq.eyebrow }}
       </p>
       <h2 id="contact-faq" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-        Questions fréquentes
+        {{ texts.faq.title }}
       </h2>
       <div class="mt-6">
         <Accordion :items="faqItems" />

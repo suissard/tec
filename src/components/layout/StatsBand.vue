@@ -7,14 +7,17 @@ import { computed, ref } from 'vue';
 import { useCountUp } from '@/composables/useCountUp';
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
 import { useDataStore } from '@/stores/data';
+import { layout } from '@/utils/content';
 
 const dataStore = useDataStore();
 
-const stats = computed(() => [
-  { icon: 'users', value: dataStore.associations.length || 10, label: ['Associations', 'membres'] },
-  { icon: 'calendar', value: 30, label: ['Événements', 'par an'] },
-  { icon: 'gamepad', value: 200, label: ['Joueurs', 'touchés'] },
-]);
+/** Chiffres déclarés dans `content.json` (`layout.statsBand`). */
+const stats = computed(() =>
+  layout.statsBand.map((stat) => ({
+    ...stat,
+    value: (stat.useAssociationCount && dataStore.associations.length) || stat.value,
+  }))
+);
 
 const bandRef = ref<HTMLElement | null>(null);
 const { isIntersecting } = useIntersectionObserver(bandRef, { threshold: 0.4 });
@@ -33,7 +36,7 @@ const displayed = useCountUp(() => stats.value.map((stat) => stat.value), isInte
           <template v-else><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 10.5v4M5 12.5h4" /><circle cx="15.5" cy="11.5" r=".8" /><circle cx="17.5" cy="13.5" r=".8" /></template>
         </svg>
         <span class="font-bebas text-5xl tabular-nums">+{{ displayed[index] }}</span>
-        <span class="text-xs font-bold uppercase leading-tight">{{ stat.label[0] }}<br />{{ stat.label[1] }}</span>
+        <span class="text-xs font-bold uppercase leading-tight">{{ stat.label[0] }}<template v-if="stat.label[1]"><br />{{ stat.label[1] }}</template></span>
       </li>
     </ul>
   </section>

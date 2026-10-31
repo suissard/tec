@@ -1,0 +1,536 @@
+{
+  "site": {
+    "name": "Toulouse Esport Connect",
+    "defaultDescription": "Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème de l'esport dans la Ville Rose.",
+    "socials": [
+      { "icon": "x", "url": "https://x.com/toulouseec__", "label": "Suivre TEC sur X" },
+      { "icon": "discord", "url": "https://discord.gg/VH98qQWEhh", "label": "Rejoindre le Discord de TEC" },
+      { "icon": "instagram", "url": "https://www.instagram.com/toulouseec__/", "label": "Suivre TEC sur Instagram" }
+    ]
+  },
+
+  "navigation": {
+    "primary": [
+      { "label": "Accueil", "route": "Home" },
+      { "label": "Notre projet", "route": "About" },
+      { "label": "Événements", "route": "Events" },
+      { "label": "Associations", "route": "Associations" }
+    ],
+    "contact": { "label": "Contact", "route": "Contact" },
+    "desktopCta": { "label": "Adhérer", "route": "Adhesion" },
+    "mobileActions": [
+      { "label": "Adhésion", "route": "Adhesion", "variant": "primary" },
+      { "label": "Bénévolat", "route": "Volunteer", "variant": "outline" }
+    ],
+    "discordLabel": "Rejoindre le Discord"
+  },
+
+  "layout": {
+    "statsBand": [
+      { "icon": "users", "value": 10, "useAssociationCount": true, "label": ["Associations", "membres"] },
+      { "icon": "calendar", "value": 30, "label": ["Événements", "par an"] },
+      { "icon": "gamepad", "value": 200, "label": ["Joueurs", "touchés"] }
+    ],
+    "joinCta": {
+      "title": "Rejoignez Toulouse Esport Connect",
+      "text": "Ensemble, faisons rayonner l’esport toulousain !",
+      "button": { "label": "Adhérer maintenant", "route": "Adhesion" }
+    },
+    "footer": {
+      "mission": "T.E.C a pour mission de fédérer les acteurs de l’esport toulousain, d’organiser des événements et de développer l’écosystème local.",
+      "quickLinksTitle": "Liens rapides",
+      "quickLinks": [
+        { "label": "Accueil", "route": "Home" },
+        { "label": "Le projet", "route": "About" },
+        { "label": "Événements", "route": "Events" },
+        { "label": "Associations", "route": "Associations" },
+        { "label": "Actualités", "route": "News" },
+        { "label": "Adhérer", "route": "Adhesion" },
+        { "label": "Contact", "route": "Contact" }
+      ],
+      "socialsTitle": "Suivez-nous",
+      "contactTitle": "Contact",
+      "email": "contact@toulouse-esport-connect.fr",
+      "location": "Toulouse, Occitanie",
+      "copyright": "Toulouse Esport Connect · Tous droits réservés",
+      "legalLinks": [
+        { "label": "Mentions légales", "route": "Legal" },
+        { "label": "Politique de confidentialité", "route": "Legal", "hash": "rgpd" }
+      ]
+    },
+    "cookieBanner": {
+      "title": "Cookies et mesures d'audience",
+      "text": "Nous utilisons des cookies pour mesurer l'audience du site et améliorer votre expérience. Aucune donnée personnelle n'est vendue à des tiers. [En savoir plus](/mentions-legales#cookies)",
+      "customize": "Personnaliser",
+      "decline": "Refuser",
+      "accept": "Tout accepter"
+    }
+  },
+
+  "pages": {
+    "home": {
+      "meta": {
+        "title": "Accueil",
+        "description": "Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème de l'esport dans la Ville Rose."
+      },
+      "hero": {
+        "titleLines": ["Fédérer", "l’esport", "à Toulouse"],
+        "subtitle": "Le réseau des associations\net événements gaming en Occitanie",
+        "primaryButton": { "label": "Voir les événements", "route": "Events" },
+        "secondaryButton": { "label": "Rejoindre le T.E.C", "route": "Adhesion" }
+      },
+      "events": {
+        "title": "Prochains événements",
+        "empty": "Aucun événement à venir pour le moment — revenez vite !",
+        "button": { "label": "Voir tous les événements", "route": "Events" }
+      },
+      "associations": {
+        "title": "Les associations toulousaines",
+        "button": { "label": "Voir toutes les associations", "route": "Associations" }
+      }
+    },
+
+    "about": {
+      "meta": {
+        "title": "Qui sommes-nous ?",
+        "description": "Qui sommes-nous ? Découvrez Toulouse Esport Connect, association loi 1901 fédérant l'écosystème esport toulousain."
+      },
+      "hero": {
+        "eyebrow": "Toulouse Esport Connect",
+        "title": "Qui sommes-nous ?",
+        "subtitle": "Toulouse Esport Connect fédère les acteurs de l'esport local autour d'une mission commune : structurer, accompagner et faire rayonner l'écosystème."
+      },
+      "mission": {
+        "eyebrow": "Notre mission",
+        "title": "Un collectif au service de l'écosystème",
+        "text": "Toulouse Esport Connect rassemble les associations, clubs et acteurs de l'esport toulousain autour d'objectifs communs : partager les bonnes pratiques, accompagner la création et la structuration des associations, faciliter l'accès aux événements et donner de la visibilité aux initiatives locales. Le collectif fonctionne par la contribution de ses membres et de ses bénévoles."
+      },
+      "team": {
+        "eyebrow": "Le bureau",
+        "title": "L'équipe",
+        "members": [
+          {
+            "name": "Julien Fontanilles Paltou",
+            "role": "Président / Fondateur",
+            "photo": "/media/team/julien-paltou.jpg",
+            "bio": "Porte la vision du collectif et coordonne les grands dossiers du réseau TEC."
+          },
+          {
+            "name": "Roro",
+            "role": "Trésorier / Événementiel",
+            "photo": "/media/team/roro.jpg",
+            "bio": "Suit les comptes et orchestre la logistique des événements du réseau."
+          }
+        ]
+      },
+      "partners": {
+        "eyebrow": "Ils nous soutiennent",
+        "title": "Nos partenaires",
+        "logos": [
+          { "src": "https://placehold.co/300x100/141419/E30613?text=Partenaire+1", "alt": "Partenaire 1", "label": "Partenaire 1" },
+          { "src": "https://placehold.co/300x100/141419/FFFFFF?text=Partenaire+2", "alt": "Partenaire 2", "label": "Partenaire 2" },
+          { "src": "https://placehold.co/300x100/141419/FF3847?text=Partenaire+3", "alt": "Partenaire 3", "label": "Partenaire 3" },
+          { "src": "https://placehold.co/300x100/141419/E30613?text=Partenaire+4", "alt": "Partenaire 4", "label": "Partenaire 4" }
+        ]
+      },
+      "stats": {
+        "associations": "Associations membres",
+        "upcomingEvents": "Événements à venir",
+        "volunteers": "Bénévoles engagés",
+        "cities": "Villes représentées"
+      },
+      "history": {
+        "eyebrow": "Notre histoire",
+        "title": "Les jalons du collectif",
+        "items": [
+          {
+            "id": "2020",
+            "title": "2020 — La création",
+            "content": "Naissance de Toulouse Esport Connect : quelques associations et passionnés décident de structurer un collectif commun pour fédérer l'esport toulousain."
+          },
+          {
+            "id": "2021",
+            "title": "2021 — Le premier événement",
+            "content": "Première LAN organisée par le collectif : l'idée prend forme sur le terrain et révèle les besoins partagés des associations membres."
+          },
+          {
+            "id": "2022",
+            "title": "2022 — 50 associations accompagnées",
+            "content": "Le réseau atteint 50 structures accompagnées : clubs esport, associations de versus fighting, LAN parties et associations étudiantes."
+          },
+          {
+            "id": "2023",
+            "title": "2023 — 100 bénévoles engagés",
+            "content": "La communauté dépasse les 100 bénévoles réguliers, moteur de l'événementiel, de la communication et du support technique du réseau."
+          },
+          {
+            "id": "2024",
+            "title": "2024 — Un réseau structuré",
+            "content": "Consolidation du collectif : bureau élu, partenariats renforcés et outils partagés au service des associations et des adhérents."
+          }
+        ]
+      }
+    },
+
+    "events": {
+      "meta": {
+        "title": "Événements",
+        "description": "Agenda des tournois, LAN et événements esport organisés par le réseau TEC à Toulouse et en Occitanie."
+      },
+      "hero": {
+        "title": "Les événements toulousains",
+        "subtitle": "Agenda des tournois, LAN et rendez-vous esport organisés par le réseau TEC à Toulouse et en Occitanie."
+      },
+      "tabs": {
+        "upcoming": "À venir",
+        "past": "Passés",
+        "byCategory": "Par catégorie"
+      },
+      "filters": {
+        "searchLabel": "Rechercher",
+        "searchPlaceholder": "Tournoi, LAN, organisateur…",
+        "categoryLabel": "Catégorie",
+        "allCategories": "Toutes les catégories",
+        "dateStartLabel": "Du",
+        "dateEndLabel": "Au",
+        "reset": "Réinitialiser"
+      },
+      "empty": {
+        "title": "Rien à l'horizon… pour l'instant",
+        "byCategoryTitle": "Aucune catégorie à afficher",
+        "upcoming": "Aucun événement à venir ne correspond à vos filtres — revenez vite !",
+        "past": "Aucun événement passé ne correspond à vos filtres.",
+        "byCategory": "Aucun événement à afficher pour le moment.",
+        "reset": "Réinitialiser les filtres"
+      }
+    },
+
+    "news": {
+      "meta": {
+        "title": "Actualités",
+        "description": "Les dernières actualités de Toulouse Esport Connect et de ses associations membres."
+      },
+      "hero": {
+        "title": "Actualités",
+        "subtitle": "Les dernières nouvelles de Toulouse Esport Connect et de ses associations membres."
+      },
+      "empty": {
+        "title": "Aucune actualité trouvée",
+        "text": "Aucun article ne correspond à vos filtres. Essayez une autre catégorie ou un autre auteur.",
+        "reset": "Réinitialiser les filtres"
+      },
+      "sidebar": {
+        "categoriesTitle": "Catégories",
+        "authorsTitle": "Auteurs",
+        "authorLabel": "Auteur",
+        "allAuthors": "Tous les auteurs",
+        "archivesTitle": "Archives",
+        "archivesEmpty": "Aucune archive disponible."
+      },
+      "newsletter": {
+        "title": "Newsletter",
+        "text": "Une fois par mois, l'essentiel du réseau dans votre boîte mail.",
+        "emailLabel": "Adresse email",
+        "emailPlaceholder": "vous@exemple.fr",
+        "button": "Je m'inscris",
+        "success": "Inscription enregistrée — à bientôt dans votre boîte mail !",
+        "invalidEmail": "Merci de saisir une adresse email valide."
+      }
+    },
+
+    "associations": {
+      "meta": {
+        "title": "Associations",
+        "description": "Découvrez les associations esport, versus fighting et rétro gaming du réseau Toulouse Esport Connect."
+      },
+      "hero": {
+        "title": "Associations",
+        "subtitle": "Retrouvez toutes les associations affiliées au collectif Toulouse Esport Connect : esport, versus fighting et rétrogaming."
+      },
+      "filters": {
+        "searchLabel": "Rechercher une association",
+        "searchPlaceholder": "Nom, jeu, catégorie…",
+        "gamesTitle": "Jeux pratiqués",
+        "gamesEmpty": "Aucun jeu renseigné pour l'instant.",
+        "citiesTitle": "Villes",
+        "reset": "Réinitialiser"
+      },
+      "empty": {
+        "title": "Aucune association trouvée",
+        "text": "Aucun résultat ne correspond à votre recherche. Essayez un autre mot-clé ou réinitialisez les filtres.",
+        "textWithFilters": "Aucun résultat ne correspond à votre recherche ni à vos filtres actifs. Essayez un autre mot-clé ou réinitialisez les filtres.",
+        "reset": "Réinitialiser les filtres"
+      }
+    },
+
+    "contact": {
+      "meta": {
+        "title": "Contact",
+        "description": "Contactez le bureau de Toulouse Esport Connect pour toute question, partenariat ou collaboration."
+      },
+      "hero": {
+        "eyebrow": "Contact",
+        "title": "Nous contacter",
+        "subtitle": "Une question, un partenariat ou une envie de bénévolat ? Le bureau de TEC vous répond sous 48 h."
+      },
+      "details": {
+        "eyebrow": "Nos coordonnées",
+        "title": "Où nous trouver",
+        "items": [
+          { "term": "Adresse", "value": "10 route de Bordé Neuve, 31570 Sainte-Foy-d’Aigrefeuille" },
+          { "term": "Email", "value": "contact@tec-asso.fr", "href": "mailto:contact@tec-asso.fr" },
+          { "term": "Téléphone", "value": "06 XX XX XX XX", "href": "tel:06XXXXXXXX" },
+          { "term": "Horaires", "value": "Lun-Ven 9h-18h" }
+        ],
+        "map": {
+          "embedUrl": "https://www.openstreetmap.org/export/embed.html?bbox=1.2,43.5,1.5,43.7&layer=mapnik&marker=43.6,1.35",
+          "linkUrl": "https://www.openstreetmap.org/?mlat=43.6&mlon=1.35#map=12/43.6/1.35",
+          "title": "Carte du siège de Toulouse Esport Connect — Sainte-Foy-d’Aigrefeuille",
+          "caption": "Siège social de l’association —",
+          "linkLabel": "ouvrir dans OpenStreetMap"
+        }
+      },
+      "form": {
+        "eyebrow": "Écrivez-nous",
+        "title": "Votre message",
+        "text": "Réponse du bureau sous 48 h ouvrées. Les champs marqués d’un astérisque sont requis."
+      },
+      "faq": {
+        "eyebrow": "Foire aux questions",
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "id": "faq-benevolat",
+            "title": "Comment devenir bénévole ?",
+            "content": "Rendez-vous sur la page « Devenir bénévole » et remplissez le formulaire en 4 étapes. Nous vous recontacterons sous 48h."
+          },
+          {
+            "id": "faq-adhesion",
+            "title": "Combien coûte l’adhésion ?",
+            "content": "L’adhésion est de 1 €/an pour un membre individuel (bénévole), 5 €/an pour un membre sympathisant et 50 €/an pour une entité morale (association)."
+          },
+          {
+            "id": "faq-evenement",
+            "title": "Puis-je proposer un événement ?",
+            "content": "Oui ! Connectez-vous à votre espace association ou contactez-nous via le formulaire."
+          },
+          {
+            "id": "faq-association",
+            "title": "Comment contacter une association ?",
+            "content": "Chaque fiche association affiche ses coordonnées (email, Discord, site web) dans la modale de détail."
+          },
+          {
+            "id": "faq-rgpd",
+            "title": "Mes données sont-elles protégées ?",
+            "content": "Oui, nous respectons le RGPD. Consultez nos mentions légales pour plus de détails."
+          },
+          {
+            "id": "faq-local",
+            "title": "Y a-t-il un local physique ?",
+            "content": "Notre siège social est au 10 route de Bordé Neuve, 31570 Sainte-Foy-d’Aigrefeuille. Nous n’avons pas de local d’accueil public."
+          }
+        ]
+      }
+    },
+
+    "legal": {
+      "meta": {
+        "title": "Mentions légales",
+        "description": "Mentions légales, statut de l’association et politique de confidentialité de Toulouse Esport Connect."
+      },
+      "hero": {
+        "eyebrow": "Informations",
+        "title": "Mentions légales",
+        "subtitle": "Statut de l'association, hébergement, cookies et traitement des données personnelles de Toulouse Esport Connect."
+      },
+      "summaryTitle": "Sommaire",
+      "printButton": "Imprimer cette page",
+      "sections": [
+        {
+          "id": "mentions",
+          "title": "Mentions légales",
+          "details": [
+            { "term": "Éditeur", "value": "Toulouse Esport Connect (TEC), association régie par la loi du 1er juillet 1901" },
+            { "term": "RNA", "value": "W313041561" },
+            { "term": "SIRET", "value": "999 816 069 00010" },
+            { "term": "Siège social", "value": "10 route de Bordé Neuve, 31570 Sainte-Foy-d’Aigrefeuille" },
+            { "term": "Directeur de publication", "value": "Julien Fontanilles Paltou" },
+            { "term": "Hébergeur", "value": "À compléter" }
+          ],
+          "blocks": [
+            {
+              "title": "Propriété intellectuelle",
+              "text": "L’ensemble des contenus du site (textes, visuels, logos, charte graphique) est la propriété de Toulouse Esport Connect ou de ses partenaires. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite. Les marques et logos cités restent la propriété de leurs détenteurs respectifs."
+            }
+          ]
+        },
+        {
+          "id": "rgpd",
+          "title": "Protection des données (RGPD)",
+          "details": [
+            { "term": "Responsable de traitement", "value": "Toulouse Esport Connect" },
+            { "term": "Finalités", "value": "Gestion des adhésions, des candidatures bénévoles, des demandes de contact et de la vie du réseau" },
+            { "term": "Base légale", "value": "Consentement, exécution d’un contrat et intérêt légitime de l’association" },
+            { "term": "Destinataires", "value": "Bureau de l’association uniquement — aucune cession à des tiers" },
+            { "term": "Durée de conservation", "value": "3 ans à compter du dernier contact, sauf obligation légale contraire" },
+            { "term": "Délégataire à la protection des données", "value": "Julien Fontanilles Paltou — [contact@tec-asso.fr](mailto:contact@tec-asso.fr)" }
+          ],
+          "blocks": [
+            {
+              "title": "Vos droits",
+              "text": "Vous disposez d’un droit d’accès, de rectification, d’effacement, d’opposition, de portabilité et de limitation du traitement des données vous concernant. Pour les exercer, écrivez à [contact@tec-asso.fr](mailto:contact@tec-asso.fr) en précisant l’objet de votre demande. Vous pouvez également saisir la CNIL si vous estimez que vos droits ne sont pas respectés. Le détail des traceurs utilisés figure dans la section [Cookies](#cookies)."
+            }
+          ]
+        },
+        {
+          "id": "cookies",
+          "title": "Cookies",
+          "intro": "Ce site dépose uniquement les cookies nécessaires à son fonctionnement, sauf si vous acceptez la mesure d’audience. Vous pouvez modifier votre choix à tout moment.",
+          "cookieTable": true
+        },
+        {
+          "id": "cgu",
+          "title": "Conditions d’utilisation",
+          "blocks": [
+            {
+              "title": "Services proposés",
+              "text": "Le site TEC présente le réseau, ses associations membres, ses événements et ses actualités, et permet l’adhésion en ligne ainsi que la candidature bénévole. L’accès au site est gratuit, hors coûts de connexion."
+            },
+            {
+              "title": "Responsabilités",
+              "text": "Toulouse Esport Connect s’efforce d’assurer l’exactitude et la mise à jour des informations publiées, sans garantir l’absence d’erreur ni la disponibilité permanente du site. L’utilisateur reste responsable de l’usage qu’il fait des informations consultées et des données transmises via les formulaires."
+            },
+            {
+              "title": "Liens externes",
+              "text": "Les liens vers des sites tiers sont fournis à titre informatif. TEC n’exerce aucun contrôle sur leur contenu et décline toute responsabilité quant à leur contenu ou à leurs pratiques."
+            },
+            {
+              "title": "Droit applicable et juridiction",
+              "text": "Les présentes conditions sont régies par le droit français. À défaut de résolution amiable, tout litige relève de la compétence des tribunaux de Toulouse."
+            }
+          ]
+        }
+      ],
+      "cookies": {
+        "caption": "Cookies déposés par le site TEC",
+        "columns": { "name": "Nom", "purpose": "Finalité", "duration": "Durée", "type": "Type" },
+        "rows": [
+          { "name": "posthog", "purpose": "Mesure d’audience anonymisée (statistiques de navigation)", "duration": "13 mois", "type": "Tiers" },
+          { "name": "tec_cookie_consent", "purpose": "Mémorisation de votre choix de consentement", "duration": "1 an", "type": "Nécessaire" },
+          { "name": "tec_volunteer_draft", "purpose": "Brouillon du formulaire de candidature bénévole", "duration": "Session", "type": "Fonctionnel" },
+          { "name": "tec_adhesions / tec_volunteers / tec_contacts", "purpose": "Enregistrement local des formulaires envoyés", "duration": "1 an", "type": "Fonctionnel" }
+        ],
+        "manageButton": "Gérer mes préférences",
+        "note": "Les cookies nécessaires ne peuvent pas être désactivés."
+      }
+    },
+
+    "volunteer": {
+      "meta": {
+        "title": "Devenir bénévole",
+        "description": "Devenez bénévole de Toulouse Esport Connect et donnez un coup de main à l'écosystème esport toulousain."
+      },
+      "hero": {
+        "eyebrow": "Bénévolat",
+        "title": "Devenir bénévole",
+        "subtitle": "Donnez un coup de main au réseau TEC : broadcast, communication, événementiel ou vie associative."
+      },
+      "intro": {
+        "eyebrow": "Votre candidature",
+        "title": "Rejoindre l’équipe bénévole",
+        "text": "4 étapes d’environ 5 minutes. Votre brouillon est conservé dans ce navigateur : vous pourrez reprendre votre saisie plus tard."
+      },
+      "steps": ["Profil", "Motivations", "Compétences", "Validation"],
+      "reviewText": "Vérifiez vos informations avant l’envoi. Vous pouvez revenir en arrière avec le stepper.",
+      "success": {
+        "eyebrow": "Candidature envoyée",
+        "title": "Merci pour votre engagement !",
+        "text": "Votre candidature a bien été enregistrée. Le bureau vous recontacte sous 48 h. Vous allez être redirigé vers l’accueil dans quelques secondes.",
+        "button": { "label": "Retour à l’accueil", "route": "Home" }
+      }
+    },
+
+    "adhesion": {
+      "meta": {
+        "title": "Adhésion",
+        "description": "Rejoignez le réseau Toulouse Esport Connect : adhésion des particuliers, clubs, associations et partenaires."
+      },
+      "hero": {
+        "eyebrow": "Adhésion",
+        "title": "Adhésion",
+        "subtitle": "Rejoignez le réseau Toulouse Esport Connect : particuliers, clubs, associations et partenaires."
+      },
+      "pricing": {
+        "title": "Adhésion",
+        "offers": [
+          {
+            "price": "1€",
+            "title": ["Membres", "individuels"],
+            "groups": [
+              { "title": "Devenir bénévole", "items": ["Droits bénévoles et accès au staff TEC", "Participation active à l’organisation des événements"] },
+              { "title": "Rejoindre le réseau esport toulousain", "items": ["Accès à une communauté locale active", "Rencontres et networking avec les acteurs de l’esport", "Participation aux événements et soirées TEC"] },
+              { "title": "Participer à la vie associative", "items": ["Droit de vote en assemblée générale", "Possibilité de proposer des projets et idées", "Possibilité de rejoindre les groupes de travail TEC"] },
+              { "title": "Gagner en visibilité", "items": ["Mise en avant des profils et projets membres", "Valorisation des compétences au sein du réseau"] },
+              { "title": "Accéder à des ressources", "items": ["Accès aux espaces privés Discord", "Partage de documents, conseils et retours d’expérience", "Veille et informations sur l’esport régional"] }
+            ]
+          },
+          {
+            "price": "5€",
+            "title": ["Membres", "sympathisants"],
+            "groups": [
+              { "title": "Soutenir l’association", "items": ["Contribution au développement de l’esport toulousain", "Soutien aux projets et actions du collectif"] },
+              { "title": "Rejoindre la communauté", "items": ["Accès à une communauté locale active", "Participation aux événements et soirées TEC"] },
+              { "title": "Rester informé", "items": ["Veille et informations sur l’esport régional", "Relais des actualités TEC"] },
+              { "title": "Sans engagement bénévole", "items": ["Pas de droits bénévoles", "Pas d’accès au staff"] }
+            ]
+          },
+          {
+            "price": "50€",
+            "title": ["Entité morale", "(association)"],
+            "groups": [
+              { "title": "Intégrer un réseau structuré", "items": ["Accès direct aux acteurs de l’esport en Occitanie", "Développement de collaborations locales", "Participation aux réflexions et projets communs"] },
+              { "title": "Gagner en visibilité", "items": ["Présence sur le site et les supports TEC", "Relais des événements et actualités"] },
+              { "title": "Développer ses projets", "items": ["Mise en relation avec bénévoles, prestataires et talents", "Partage d’expérience entre structures", "Accompagnement et échanges sur l’organisation événementielle"] },
+              { "title": "Accéder à des opportunités", "items": ["Participation aux événements collectifs", "Mutualisation de certaines ressources et contacts"] },
+              { "title": "Participer au développement de l’écosystème", "items": ["Droit de vote en assemblée générale (1 voix)", "Participation aux orientations du collectif", "Contribution au développement de l’esport toulousain et occitan"] }
+            ]
+          }
+        ]
+      },
+      "intro": {
+        "eyebrow": "Rejoindre le réseau",
+        "title": "Votre adhésion",
+        "text": "Adhérez à titre personnel ou au nom de votre structure. Les champs marqués d’un astérisque sont requis.",
+        "primaryButton": { "label": "Parler au bureau", "route": "Contact" },
+        "secondaryButton": { "label": "Voir les associations", "route": "Associations" }
+      },
+      "tabs": {
+        "indiv": "Particulier",
+        "asso": "Association / Club"
+      },
+      "indivTitle": "Adhésion individuelle",
+      "assoTitle": "Adhésion d’une structure",
+      "assoFee": {
+        "label": "Cotisation annuelle",
+        "price": "50 €",
+        "detail": "— Entité morale"
+      },
+      "submitButton": "Envoyer ma demande d’adhésion",
+      "success": {
+        "title": "Adhésion envoyée",
+        "text": "Merci ! Votre demande a bien été enregistrée. Le bureau vérifie les informations puis vous recontacte sous 48 h pour finaliser votre adhésion au réseau TEC.",
+        "button": { "label": "Retour à l’accueil", "route": "Home" }
+      }
+    },
+
+    "notFound": {
+      "meta": {
+        "title": "Page introuvable",
+        "description": "La page demandée est introuvable — revenez à l’accueil de Toulouse Esport Connect."
+      },
+      "title": "404",
+      "text": "Page introuvable",
+      "button": { "label": "Retour à l'accueil", "route": "Home" }
+    }
+  }
+}

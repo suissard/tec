@@ -11,7 +11,7 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 import { useFocusTrap } from '@/composables/useFocusTrap';
 import { routeNames } from '@/router';
 import { useAppStore } from '@/stores/app';
-import { EXTERNAL_LINKS } from '@/utils/constants';
+import { content } from '@/utils/content';
 import {
   CONTACT_NAV,
   DESKTOP_CTA,
@@ -20,6 +20,9 @@ import {
   PRIMARY_NAV,
 } from '@/utils/navigation';
 import { publicUrl } from '@/utils/paths';
+
+/** Lien Discord : entrée `discord` de `site.socials` dans `content.json`. */
+const DISCORD_URL = content.site.socials.find((social) => social.icon === 'discord')?.url;
 
 const appStore = useAppStore();
 const route = useRoute();
@@ -184,8 +187,8 @@ watch(
         </nav>
 
         <div class="mt-6 pt-4 border-t border-brand-card-border flex flex-col gap-2">
-          <BaseButton variant="discord" size="sm" class="w-full" :href="EXTERNAL_LINKS.discord">
-            Rejoindre le Discord
+          <BaseButton v-if="DISCORD_URL" variant="discord" size="sm" class="w-full" :href="DISCORD_URL">
+            {{ content.navigation.discordLabel }}
           </BaseButton>
           <BaseButton
             v-for="action in MOBILE_ACTIONS"

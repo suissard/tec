@@ -12,97 +12,17 @@ import StatsCounter, { type StatItem } from '@/components/StatsCounter.vue';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
 import { LOGO_PLACEHOLDER, STORAGE_KEYS } from '@/utils/constants';
+import { pages } from '@/utils/content';
 import { publicUrl } from '@/utils/paths';
 
-/** Membre du bureau affiché dans l'équipe. */
-interface TeamMember {
-  name: string;
-  role: string;
-  /** Chemin de la photo (repli automatique si le fichier est absent) */
-  photo: string;
-  bio: string;
-}
-
-/** Bureau de l'association (données statiques). */
-const TEAM: TeamMember[] = [
-  {
-    name: 'Julien Fontanilles Paltou',
-    role: 'Président / Fondateur',
-    photo: '/media/team/julien-paltou.jpg',
-    bio: 'Porte la vision du collectif et coordonne les grands dossiers du réseau TEC.',
-  },
-  {
-    name: 'Roro',
-    role: 'Trésorier / Événementiel',
-    photo: '/media/team/roro.jpg',
-    bio: 'Suit les comptes et orchestre la logistique des événements du réseau.',
-  },
-];
-
-/** Logos partenaires (placeholders — à remplacer dans `media/partners/`). */
-const PARTNERS: CarouselItem[] = [
-  {
-    src: 'https://placehold.co/300x100/141419/E30613?text=Partenaire+1',
-    alt: 'Partenaire 1',
-    label: 'Partenaire 1',
-  },
-  {
-    src: 'https://placehold.co/300x100/141419/FFFFFF?text=Partenaire+2',
-    alt: 'Partenaire 2',
-    label: 'Partenaire 2',
-  },
-  {
-    src: 'https://placehold.co/300x100/141419/FF3847?text=Partenaire+3',
-    alt: 'Partenaire 3',
-    label: 'Partenaire 3',
-  },
-  {
-    src: 'https://placehold.co/300x100/141419/E30613?text=Partenaire+4',
-    alt: 'Partenaire 4',
-    label: 'Partenaire 4',
-  },
-];
-
-/** Jalons clés du collectif, année par année. */
-const HISTORY: AccordionItem[] = [
-  {
-    id: '2020',
-    title: '2020 — La création',
-    content:
-      "Naissance de Toulouse Esport Connect : quelques associations et passionnés décident de structurer un collectif commun pour fédérer l'esport toulousain.",
-  },
-  {
-    id: '2021',
-    title: '2021 — Le premier événement',
-    content:
-      "Première LAN organisée par le collectif : l'idée prend forme sur le terrain et révèle les besoins partagés des associations membres.",
-  },
-  {
-    id: '2022',
-    title: '2022 — 50 associations accompagnées',
-    content:
-      'Le réseau atteint 50 structures accompagnées : clubs esport, associations de versus fighting, LAN parties et associations étudiantes.',
-  },
-  {
-    id: '2023',
-    title: '2023 — 100 bénévoles engagés',
-    content:
-      "La communauté dépasse les 100 bénévoles réguliers, moteur de l'événementiel, de la communication et du support technique du réseau.",
-  },
-  {
-    id: '2024',
-    title: '2024 — Un réseau structuré',
-    content:
-      'Consolidation du collectif : bureau élu, partenariats renforcés et outils partagés au service des associations et des adhérents.',
-  },
-];
+/** Textes de la page (`pages.about` de `content.json`) : équipe, partenaires, jalons… */
+const texts = pages.about;
+const TEAM = texts.team.members;
+const PARTNERS: CarouselItem[] = texts.partners.logos;
+const HISTORY: AccordionItem[] = texts.history.items;
 
 const dataStore = useDataStore();
 const appStore = useAppStore();
-
-const pageTitle = 'Qui sommes-nous ?';
-const pageDescription =
-  "Toulouse Esport Connect fédère les acteurs de l'esport local autour d'une mission commune : structurer, accompagner et faire rayonner l'écosystème.";
 
 /** Nombre de candidatures bénévoles enregistrées dans le navigateur. */
 const volunteerCount = ref(0);
@@ -130,10 +50,10 @@ const uniqueCities = computed<string[]>(() => {
 
 /** Chiffres clés du réseau (compteurs animés). */
 const stats = computed<StatItem[]>(() => [
-  { value: dataStore.associations.length, label: 'Associations membres' },
-  { value: dataStore.getUpcomingEvents().length, label: 'Événements à venir' },
-  { value: volunteerCount.value, label: 'Bénévoles engagés' },
-  { value: uniqueCities.value.length, label: 'Villes représentées' },
+  { value: dataStore.associations.length, label: texts.stats.associations },
+  { value: dataStore.getUpcomingEvents().length, label: texts.stats.upcomingEvents },
+  { value: volunteerCount.value, label: texts.stats.volunteers },
+  { value: uniqueCities.value.length, label: texts.stats.cities },
 ]);
 
 /** Repli visuel si la photo de l'équipe est absente (404). */
@@ -163,23 +83,19 @@ onMounted(async () => {
 
 <template>
   <div>
-    <HeroSection :title="pageTitle" :subtitle="pageDescription" eyebrow="Toulouse Esport Connect" />
+    <HeroSection v-bind="texts.hero" />
 
     <!-- Mission -->
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="about-mission">
       <div class="glass-card rounded-3xl p-8 md:p-12">
         <p class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light">
-          Notre mission
+          {{ texts.mission.eyebrow }}
         </p>
         <h2 id="about-mission" class="mt-2 font-bebas text-3xl md:text-4xl text-white">
-          Un collectif au service de l'écosystème
+          {{ texts.mission.title }}
         </h2>
         <p class="mt-4 max-w-3xl text-sm md:text-base text-gray-400 leading-relaxed">
-          Toulouse Esport Connect rassemble les associations, clubs et acteurs de l'esport
-          toulousain autour d'objectifs communs : partager les bonnes pratiques, accompagner la
-          création et la structuration des associations, faciliter l'accès aux événements et donner
-          de la visibilité aux initiatives locales. Le collectif fonctionne par la contribution de
-          ses membres et de ses bénévoles.
+          {{ texts.mission.text }}
         </p>
       </div>
     </section>
@@ -187,9 +103,9 @@ onMounted(async () => {
     <!-- Équipe -->
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="about-team">
       <p class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light">
-        Le bureau
+        {{ texts.team.eyebrow }}
       </p>
-      <h2 id="about-team" class="mt-1 font-bebas text-3xl md:text-4xl text-white">L'équipe</h2>
+      <h2 id="about-team" class="mt-1 font-bebas text-3xl md:text-4xl text-white">{{ texts.team.title }}</h2>
 
       <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-3xl">
         <article
@@ -218,10 +134,10 @@ onMounted(async () => {
     >
       <div class="max-w-6xl mx-auto px-4 py-10 md:py-14">
         <p class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light">
-          Ils nous soutiennent
+          {{ texts.partners.eyebrow }}
         </p>
         <h2 id="about-partners" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-          Nos partenaires
+          {{ texts.partners.title }}
         </h2>
         <div class="mt-6">
           <ImageCarousel :items="PARTNERS" label="Logos des partenaires" />
@@ -235,10 +151,10 @@ onMounted(async () => {
     <!-- Histoire -->
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="about-history">
       <p class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light">
-        Notre histoire
+        {{ texts.history.eyebrow }}
       </p>
       <h2 id="about-history" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-        Les jalons du collectif
+        {{ texts.history.title }}
       </h2>
       <div class="mt-6">
         <Accordion :items="HISTORY" :default-open="[0]" />

@@ -6,6 +6,9 @@
  */
 import { computed } from 'vue';
 
+import RichText from '@/components/ui/RichText.vue';
+import { splitHighlight } from '@/utils/content';
+
 interface Props {
   /** Titre principal (h1 de la page) */
   title: string;
@@ -22,12 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   eyebrow: undefined,
 });
 
-const parts = computed(() => {
-  const title = props.title.trim();
-  const red = props.highlight ?? (title.includes(' ') ? title.slice(title.lastIndexOf(' ') + 1) : '');
-  if (!red || !title.endsWith(red)) return { start: title, red: '' };
-  return { start: title.slice(0, title.length - red.length), red };
-});
+const parts = computed(() => splitHighlight(props.title, props.highlight));
 </script>
 
 <template>
@@ -40,7 +38,7 @@ const parts = computed(() => {
         {{ parts.start }}<span v-if="parts.red">{{ parts.red }}</span>
       </h1>
       <p v-if="subtitle" class="mx-auto mt-5 max-w-2xl text-base md:text-lg text-[#333]">
-        {{ subtitle }}
+        <RichText :text="subtitle" />
       </p>
       <div v-if="$slots.actions" class="mt-8 flex flex-wrap justify-center gap-4">
         <slot name="actions" />

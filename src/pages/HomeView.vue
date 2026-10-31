@@ -9,11 +9,23 @@ import { computed, onMounted } from 'vue';
 import AssociationDetailModal from '@/components/AssociationDetailModal.vue';
 import EventCard from '@/components/EventCard.vue';
 import EventDetailModal from '@/components/EventDetailModal.vue';
+import RichText from '@/components/ui/RichText.vue';
 import { useModal } from '@/composables/useModal';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
 import type { Association, EventItem } from '@/types';
+import { pages, splitHighlight } from '@/utils/content';
+import { toLink } from '@/utils/navigation';
 import { publicUrl } from '@/utils/paths';
+
+/** Textes de la page (`pages.home` de `content.json`). */
+const texts = pages.home;
+const heroPrimary = toLink(texts.hero.primaryButton);
+const heroSecondary = toLink(texts.hero.secondaryButton);
+const eventsTitle = splitHighlight(texts.events.title, texts.events.highlight);
+const eventsButton = toLink(texts.events.button);
+const associationsTitle = splitHighlight(texts.associations.title, texts.associations.highlight);
+const associationsButton = toLink(texts.associations.button);
 
 const dataStore = useDataStore();
 const appStore = useAppStore();
@@ -69,16 +81,21 @@ onMounted(async () => {
       <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
         <div class="max-w-xl">
           <h1 id="home-title" class="font-bebas leading-[0.9] text-6xl md:text-8xl text-[#141414]">
-            <span class="hero__line">Fédérer</span>
-            <span class="hero__line">l’esport</span>
-            <span class="hero__line text-brand-red">à Toulouse</span>
+            <!-- La dernière ligne du titre passe en rouge -->
+            <span
+              v-for="(line, index) in texts.hero.titleLines"
+              :key="index"
+              class="hero__line"
+              :class="{ 'text-brand-red': index === texts.hero.titleLines.length - 1 }"
+              >{{ line }}</span
+            >
           </h1>
           <p class="mt-5 text-base md:text-lg font-semibold text-[#1d1d1d]">
-            Le réseau des associations<br />et événements gaming en Occitanie
+            <RichText :text="texts.hero.subtitle" />
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
-            <RouterLink id="hero-events-btn" to="/evenements" class="btn-red">Voir les événements</RouterLink>
-            <RouterLink id="hero-join-btn" to="/adhesion" class="btn-outline-red">Rejoindre le T.E.C</RouterLink>
+            <RouterLink id="hero-events-btn" :to="heroPrimary.to" class="btn-red">{{ heroPrimary.label }}</RouterLink>
+            <RouterLink id="hero-join-btn" :to="heroSecondary.to" class="btn-outline-red">{{ heroSecondary.label }}</RouterLink>
           </div>
         </div>
       </div>
@@ -87,23 +104,23 @@ onMounted(async () => {
     <div>
       <!-- ======================= PROCHAINS ÉVÉNEMENTS ======================= -->
       <section class="max-w-5xl mx-auto px-4 py-14" aria-labelledby="home-events">
-        <h2 id="home-events" v-reveal class="section-title">Prochains <span>événements</span></h2>
+        <h2 id="home-events" v-reveal class="section-title">{{ eventsTitle.start }}<span v-if="eventsTitle.red">{{ eventsTitle.red }}</span></h2>
 
         <p v-if="upcomingEvents.length === 0" class="mt-8 text-center text-sm text-gray-600">
-          Aucun événement à venir pour le moment — revenez vite !
+          {{ texts.events.empty }}
         </p>
         <div v-else class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <EventCard v-for="(event, index) in upcomingEvents" :key="event.id" v-reveal="index" :event="event" @open="openEventDetail(event)" />
         </div>
 
         <div class="mt-8 text-center">
-          <RouterLink id="home-all-events" to="/evenements" class="btn-outline-red">Voir tous les événements</RouterLink>
+          <RouterLink id="home-all-events" :to="eventsButton.to" class="btn-outline-red">{{ eventsButton.label }}</RouterLink>
         </div>
       </section>
 
       <!-- ======================= ASSOCIATIONS ======================= -->
       <section class="max-w-6xl mx-auto px-4 pb-16" aria-labelledby="home-associations">
-        <h2 id="home-associations" v-reveal class="section-title">Les associations <span>toulousaines</span></h2>
+        <h2 id="home-associations" v-reveal class="section-title">{{ associationsTitle.start }}<span v-if="associationsTitle.red">{{ associationsTitle.red }}</span></h2>
 
         <ul class="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
           <li v-for="(association, index) in associations" :key="association.id" v-reveal="index">
@@ -114,7 +131,7 @@ onMounted(async () => {
         </ul>
 
         <div class="mt-10 text-center">
-          <RouterLink id="home-all-assos" to="/associations" class="btn-outline-red">Voir toutes les associations</RouterLink>
+          <RouterLink id="home-all-assos" :to="associationsButton.to" class="btn-outline-red">{{ associationsButton.label }}</RouterLink>
         </div>
       </section>
     </div>

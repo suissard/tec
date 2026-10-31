@@ -24,6 +24,8 @@ import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
 import { CONTRIBUTION_OPTIONS, PAYMENT_OPTIONS, useFormStore } from '@/stores/forms';
 import type { AdhesionAssoData, AdhesionIndivData, AdhesionKind, PaymentMethod } from '@/types';
+import { pages } from '@/utils/content';
+import { toLink } from '@/utils/navigation';
 import { adhesionAssoSchema, adhesionIndivSchema, validateForm } from '@/utils/validation';
 
 /**
@@ -45,9 +47,11 @@ const appStore = useAppStore();
 const formStore = useFormStore();
 const route = useRoute();
 
-const pageTitle = 'Adhésion';
-const pageDescription =
-  'Rejoignez le réseau Toulouse Esport Connect : particuliers, clubs, associations et partenaires.';
+/** Textes de la page (`pages.adhesion` de `content.json`). */
+const texts = pages.adhesion;
+const introPrimary = toLink(texts.intro.primaryButton);
+const introSecondary = toLink(texts.intro.secondaryButton);
+const successButton = toLink(texts.success.button);
 
 /** Onglets accessible (aria-controls / aria-labelledby croisés). */
 const KIND_TABS: KindTab[] = [
@@ -55,13 +59,13 @@ const KIND_TABS: KindTab[] = [
     kind: 'indiv',
     tabId: 'adhesion-tab-indiv',
     panelId: 'adhesion-panel-indiv',
-    label: 'Particulier',
+    label: texts.tabs.indiv,
   },
   {
     kind: 'asso',
     tabId: 'adhesion-tab-asso',
     panelId: 'adhesion-panel-asso',
-    label: 'Association / Club',
+    label: texts.tabs.asso,
   },
 ];
 
@@ -270,7 +274,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <HeroSection :title="pageTitle" :subtitle="pageDescription" eyebrow="Adhésion" />
+    <HeroSection v-bind="texts.hero" />
     <AdhesionPricing v-if="!showSuccess" />
 
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="adhesion-title">
@@ -300,14 +304,13 @@ onMounted(async () => {
           </svg>
         </div>
         <h2 id="adhesion-title" class="mt-4 font-bebas text-3xl md:text-4xl text-white">
-          Adhésion envoyée
+          {{ texts.success.title }}
         </h2>
         <p class="mt-4 text-sm leading-relaxed text-gray-400">
-          Merci ! Votre demande a bien été enregistrée. Le bureau vérifie les informations puis vous
-          recontacte sous 48 h pour finaliser votre adhésion au réseau TEC.
+          {{ texts.success.text }}
         </p>
         <div class="mt-6 flex justify-center">
-          <BaseButton variant="primary" to="/">Retour à l’accueil</BaseButton>
+          <BaseButton variant="primary" :to="successButton.to">{{ successButton.label }}</BaseButton>
         </div>
       </div>
 
@@ -317,18 +320,17 @@ onMounted(async () => {
           <p
             class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
           >
-            Rejoindre le réseau
+            {{ texts.intro.eyebrow }}
           </p>
           <h2 id="adhesion-title" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-            Votre adhésion
+            {{ texts.intro.title }}
           </h2>
           <p class="mt-3 max-w-2xl text-sm text-gray-400">
-            Adhérez à titre personnel ou au nom de votre structure. Les champs marqués d’un
-            astérisque sont requis.
+            {{ texts.intro.text }}
           </p>
           <div class="mt-6 flex flex-wrap gap-4">
-            <BaseButton variant="primary" to="/contact">Parler au bureau</BaseButton>
-            <BaseButton variant="outline" to="/associations">Voir les associations</BaseButton>
+            <BaseButton variant="primary" :to="introPrimary.to">{{ introPrimary.label }}</BaseButton>
+            <BaseButton variant="outline" :to="introSecondary.to">{{ introSecondary.label }}</BaseButton>
           </div>
         </header>
 
@@ -373,7 +375,7 @@ onMounted(async () => {
               v-if="kind === 'indiv'"
               class="space-y-5"
             >
-              <h3 class="font-bebas text-2xl text-white">Adhésion individuelle</h3>
+              <h3 class="font-bebas text-2xl text-white">{{ texts.indivTitle }}</h3>
 
               <div class="grid gap-5 sm:grid-cols-2">
                 <BaseInput
@@ -477,19 +479,19 @@ onMounted(async () => {
               v-if="kind === 'asso'"
               class="space-y-5"
             >
-              <h3 class="font-bebas text-2xl text-white">Adhésion d’une structure</h3>
+              <h3 class="font-bebas text-2xl text-white">{{ texts.assoTitle }}</h3>
 
               <div class="rounded-xl border border-brand-card-border bg-white/5 p-4">
                 <p
                   class="font-rajdhani text-xs font-bold uppercase tracking-[0.2em] text-brand-red-light"
                 >
-                  Cotisation annuelle
+                  {{ texts.assoFee.label }}
                 </p>
                 <p class="mt-1 font-bebas text-2xl text-white">
-                  50 €
+                  {{ texts.assoFee.price }}
                   <span
                     class="font-rajdhani text-sm font-bold uppercase tracking-wider text-gray-400"
-                    >— Entité morale</span
+                    >{{ texts.assoFee.detail }}</span
                   >
                 </p>
               </div>
@@ -643,7 +645,7 @@ onMounted(async () => {
                 variant="primary"
                 :loading="formStore.adhesionState.submitting"
               >
-                Envoyer ma demande d’adhésion
+                {{ texts.submitButton }}
               </BaseButton>
             </div>
           </form>

@@ -3,29 +3,20 @@
  * Pied de page (maquette 2026) : logo + mission, liens rapides, réseaux sociaux,
  * contact, puis barre rouge copyright / mentions légales.
  */
-import { EXTERNAL_LINKS } from '@/utils/constants';
+import { content, layout } from '@/utils/content';
+import { toLink } from '@/utils/navigation';
 import { publicUrl } from '@/utils/paths';
 
 const currentYear = new Date().getFullYear();
 
-type SocialIcon = 'x' | 'discord' | 'twitch' | 'instagram';
+/** Textes et liens du pied de page (`layout.footer` de `content.json`). */
+const footer = layout.footer;
 
-/** TODO : ajouter Twitch quand l'URL officielle sera connue. */
-const socialLinks: { icon: SocialIcon; url: string; label: string }[] = [
-  { icon: 'x', url: 'https://x.com/toulouseec__', label: 'Suivre TEC sur X' },
-  { icon: 'discord', url: EXTERNAL_LINKS.discord, label: 'Rejoindre le Discord de TEC' },
-  { icon: 'instagram', url: EXTERNAL_LINKS.instagram, label: 'Suivre TEC sur Instagram' },
-];
+/** Réseaux sociaux (`site.socials`) — icônes : x, discord, twitch, instagram. */
+const socialLinks = content.site.socials;
 
-const quickLinks: { label: string; to: string }[] = [
-  { label: 'Accueil', to: '/' },
-  { label: 'Le projet', to: '/qui-sommes-nous' },
-  { label: 'Événements', to: '/evenements' },
-  { label: 'Associations', to: '/associations' },
-  { label: 'Actualités', to: '/actualites' },
-  { label: 'Adhérer', to: '/adhesion' },
-  { label: 'Contact', to: '/contact' },
-];
+const quickLinks = footer.quickLinks.map(toLink);
+const legalLinks = footer.legalLinks.map(toLink);
 </script>
 
 <template>
@@ -37,16 +28,15 @@ const quickLinks: { label: string; to: string }[] = [
           <img :src="publicUrl('/media/logo-clair.svg')" alt="Toulouse Esport Connect" class="h-16 w-auto" width="120" height="64" loading="lazy" />
         </RouterLink>
         <p class="text-xs leading-relaxed text-white/85 max-w-[220px]">
-          T.E.C a pour mission de fédérer les acteurs de l’esport toulousain, d’organiser des événements et de
-          développer l’écosystème local.
+          {{ footer.mission }}
         </p>
       </div>
 
       <!-- Liens rapides -->
       <nav aria-label="Liens rapides" class="md:px-8">
-        <h2 class="footer-title">Liens rapides</h2>
+        <h2 class="footer-title">{{ footer.quickLinksTitle }}</h2>
         <ul class="space-y-1 text-xs">
-          <li v-for="link in quickLinks" :key="link.to">
+          <li v-for="link in quickLinks" :key="link.label">
             <RouterLink :to="link.to" class="text-white/85 hover:text-brand-red-light transition-colors">{{ link.label }}</RouterLink>
           </li>
         </ul>
@@ -54,9 +44,9 @@ const quickLinks: { label: string; to: string }[] = [
 
       <!-- Réseaux -->
       <div class="md:px-8">
-        <h2 class="footer-title">Suivez-nous</h2>
+        <h2 class="footer-title">{{ footer.socialsTitle }}</h2>
         <ul class="flex gap-3">
-          <li v-for="social in socialLinks" :key="social.icon">
+          <li v-for="social in socialLinks" :key="social.url">
             <a :href="social.url" target="_blank" rel="noopener noreferrer" :aria-label="social.label" class="social">
               <svg v-if="social.icon === 'x'" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z" /></svg>
               <svg v-else-if="social.icon === 'discord'" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 5.3A16.6 16.6 0 0 0 15.5 4l-.5 1a15.4 15.4 0 0 0-6 0l-.5-1a16.6 16.6 0 0 0-4.1 1.3C1.8 9.2 1.1 13 1.4 16.8a16.7 16.7 0 0 0 5 2.5l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11.6 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.7a16.6 16.6 0 0 0 5-2.5c.4-4.4-.7-8.2-3-11.5zM8.5 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm7 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z" /></svg>
@@ -69,21 +59,22 @@ const quickLinks: { label: string; to: string }[] = [
 
       <!-- Contact -->
       <div class="md:pl-8">
-        <h2 class="footer-title">Contact</h2>
-        <a href="mailto:contact@toulouse-esport-connect.fr" class="block text-xs text-white/85 hover:text-brand-red-light break-all">
-          contact@toulouse-esport-connect.fr
+        <h2 class="footer-title">{{ footer.contactTitle }}</h2>
+        <a :href="`mailto:${footer.email}`" class="block text-xs text-white/85 hover:text-brand-red-light break-all">
+          {{ footer.email }}
         </a>
-        <p class="mt-3 font-semibold">Toulouse, Occitanie</p>
+        <p class="mt-3 font-semibold">{{ footer.location }}</p>
       </div>
     </div>
 
     <div class="bg-[#9e1c1f]">
       <div class="max-w-6xl mx-auto px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-        <p class="sm:flex-1 sm:text-center">© {{ currentYear }} Toulouse Esport Connect · Tous droits réservés</p>
+        <p class="sm:flex-1 sm:text-center">© {{ currentYear }} {{ footer.copyright }}</p>
         <div class="flex gap-3">
-          <RouterLink to="/mentions-legales" class="hover:underline">Mentions légales</RouterLink>
-          <span aria-hidden="true">|</span>
-          <RouterLink to="/mentions-legales#rgpd" class="hover:underline">Politique de confidentialité</RouterLink>
+          <template v-for="(link, index) in legalLinks" :key="link.label">
+            <span v-if="index > 0" aria-hidden="true">|</span>
+            <RouterLink :to="link.to" class="hover:underline">{{ link.label }}</RouterLink>
+          </template>
         </div>
       </div>
     </div>

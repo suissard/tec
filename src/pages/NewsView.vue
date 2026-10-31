@@ -14,9 +14,11 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseInput from '@/components/ui/BaseInput.vue';
 import BaseSelect, { type SelectOption } from '@/components/ui/BaseSelect.vue';
 import Pagination from '@/components/Pagination.vue';
+import RichText from '@/components/ui/RichText.vue';
 import { useModal } from '@/composables/useModal';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
+import { content, pages } from '@/utils/content';
 import { injectJsonLd, removeJsonLd } from '@/utils/seo';
 import { parseIsoDate } from '@/utils/helpers';
 import type { NewsItem } from '@/types';
@@ -30,9 +32,8 @@ const dataStore = useDataStore();
 const appStore = useAppStore();
 const modal = useModal();
 
-const pageTitle = 'Actualités';
-const pageDescription =
-  'Les dernières nouvelles de Toulouse Esport Connect et de ses associations membres.';
+/** Textes de la page (`pages.news` de `content.json`). */
+const texts = pages.news;
 
 /* --------------------------------------------------------- état & filtres */
 const selectedCategories = ref<string[]>([]);
@@ -54,7 +55,7 @@ const authorOptions = computed<SelectOption[]>(() => {
     a.localeCompare(b, 'fr')
   );
   return [
-    { value: '', label: 'Tous les auteurs' },
+    { value: '', label: texts.sidebar.allAuthors },
     ...unique.map((name) => ({ value: name, label: name })),
   ];
 });
@@ -144,12 +145,12 @@ const newsletterEmail = ref('');
 function subscribe(): void {
   const email = newsletterEmail.value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    appStore.showToast('Merci de saisir une adresse email valide.', 'error');
+    appStore.showToast(texts.newsletter.invalidEmail, 'error');
     return;
   }
   // Stub : aucun envoi réseau, la saisie est simplement confirmée.
   newsletterEmail.value = '';
-  appStore.showToast('Inscription enregistrée — à bientôt dans votre boîte mail !', 'success');
+  appStore.showToast(texts.newsletter.success, 'success');
 }
 
 /* --------------------------------------------------------------- modales */
@@ -185,7 +186,7 @@ onMounted(async () => {
       author: { '@type': 'Person', name: lead.author },
       publisher: {
         '@type': 'Organization',
-        name: 'Toulouse Esport Connect',
+        name: content.site.name,
         url: window.location.origin,
       },
       mainEntityOfPage: window.location.href,
@@ -202,8 +203,8 @@ onBeforeUnmount(() => {
 <template>
   <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
     <header class="mb-10">
-      <h1 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white">{{ pageTitle }}</h1>
-      <p class="mt-4 text-lg text-gray-400 max-w-2xl">{{ pageDescription }}</p>
+      <h1 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white">{{ texts.hero.title }}</h1>
+      <p v-if="texts.hero.subtitle" class="mt-4 text-lg text-gray-400 max-w-2xl"><RichText :text="texts.hero.subtitle" /></p>
     </header>
 
     <div class="grid gap-8 lg:grid-cols-12">
@@ -219,13 +220,12 @@ onBeforeUnmount(() => {
           >
             📰
           </div>
-          <h3 class="mt-5 font-bebas text-2xl text-white">Aucune actualité trouvée</h3>
+          <h3 class="mt-5 font-bebas text-2xl text-white">{{ texts.empty.title }}</h3>
           <p class="mx-auto mt-2 max-w-md text-sm text-gray-400">
-            Aucun article ne correspond à vos filtres. Essayez une autre catégorie ou un autre
-            auteur.
+            {{ texts.empty.text }}
           </p>
           <BaseButton variant="outline" size="sm" class="mt-6" @click="resetFilters()">
-            Réinitialiser les filtres
+            {{ texts.empty.reset }}
           </BaseButton>
         </div>
 
@@ -264,7 +264,7 @@ onBeforeUnmount(() => {
       <aside class="lg:col-span-4 space-y-6" aria-label="Filtres et archives">
         <!-- Catégories -->
         <section class="glass-card rounded-2xl p-5" aria-labelledby="news-categories">
-          <h2 id="news-categories" class="font-bebas text-xl text-white mb-3">Catégories</h2>
+          <h2 id="news-categories" class="font-bebas text-xl text-white mb-3">{{ texts.sidebar.categoriesTitle }}</h2>
           <CategoryFilter
             v-model:selected="selectedCategories"
             :options="categoryOptions"
@@ -275,10 +275,10 @@ onBeforeUnmount(() => {
 
         <!-- Auteurs -->
         <section class="glass-card rounded-2xl p-5" aria-labelledby="news-authors">
-          <h2 id="news-authors" class="font-bebas text-xl text-white mb-3">Auteurs</h2>
+          <h2 id="news-authors" class="font-bebas text-xl text-white mb-3">{{ texts.sidebar.authorsTitle }}</h2>
           <BaseSelect
             v-model="author"
-            label="Auteur"
+            :label="texts.sidebar.authorLabel"
             :options="authorOptions"
             select-id="news-author"
           />
@@ -286,7 +286,7 @@ onBeforeUnmount(() => {
 
         <!-- Archives par mois -->
         <section class="glass-card rounded-2xl p-5" aria-labelledby="news-archives">
-          <h2 id="news-archives" class="font-bebas text-xl text-white mb-3">Archives</h2>
+          <h2 id="news-archives" class="font-bebas text-xl text-white mb-3">{{ texts.sidebar.archivesTitle }}</h2>
           <Accordion v-if="archiveItems.length > 0" :items="archiveItems">
             <template #content="{ item }">
               <div class="space-y-1">
@@ -300,26 +300,26 @@ onBeforeUnmount(() => {
               </div>
             </template>
           </Accordion>
-          <p v-else class="text-sm text-gray-500">Aucune archive disponible.</p>
+          <p v-else class="text-sm text-gray-500">{{ texts.sidebar.archivesEmpty }}</p>
         </section>
 
         <!-- Newsletter (stub) -->
         <section class="glass-card rounded-2xl p-5" aria-labelledby="news-newsletter">
-          <h2 id="news-newsletter" class="font-bebas text-xl text-white mb-2">Newsletter</h2>
+          <h2 id="news-newsletter" class="font-bebas text-xl text-white mb-2">{{ texts.newsletter.title }}</h2>
           <p class="text-sm text-gray-400 mb-4">
-            Une fois par mois, l'essentiel du réseau dans votre boîte mail.
+            {{ texts.newsletter.text }}
           </p>
           <form class="space-y-3" novalidate @submit.prevent="subscribe">
             <BaseInput
               v-model="newsletterEmail"
               type="email"
-              label="Adresse email"
-              placeholder="vous@exemple.fr"
+              :label="texts.newsletter.emailLabel"
+              :placeholder="texts.newsletter.emailPlaceholder"
               autocomplete="email"
               input-id="newsletter-email"
             />
             <BaseButton type="submit" variant="primary" size="sm" class="w-full">
-              Je m'inscris
+              {{ texts.newsletter.button }}
             </BaseButton>
           </form>
         </section>

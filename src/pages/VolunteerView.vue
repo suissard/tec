@@ -22,6 +22,8 @@ import { useDataStore } from '@/stores/data';
 import { useFormStore, VOLUNTEER_AVAILABILITIES, VOLUNTEER_INTERESTS } from '@/stores/forms';
 import type { VolunteerAvailability, VolunteerFormData } from '@/types';
 import { STORAGE_KEYS } from '@/utils/constants';
+import { pages } from '@/utils/content';
+import { toLink } from '@/utils/navigation';
 import { validateForm, volunteerStepSchemas } from '@/utils/validation';
 
 /** Élément du récapitulatif (étape 4). */
@@ -35,12 +37,12 @@ const appStore = useAppStore();
 const formStore = useFormStore();
 const router = useRouter();
 
-const pageTitle = 'Devenir bénévole';
-const pageDescription =
-  'Donnez un coup de main au réseau TEC : broadcast, communication, événementiel ou vie associative.';
+/** Textes de la page (`pages.volunteer` de `content.json`). */
+const texts = pages.volunteer;
+const successButton = toLink(texts.success.button);
 
 /** Libellés des étapes du stepper. */
-const STEPS = ['Profil', 'Motivations', 'Compétences', 'Validation'];
+const STEPS = texts.steps;
 
 /** Suggestions de domaines d'intérêt (tags libres). */
 const INTEREST_SUGGESTIONS: string[] = [...VOLUNTEER_INTERESTS];
@@ -266,7 +268,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <HeroSection :title="pageTitle" :subtitle="pageDescription" eyebrow="Bénévolat" />
+    <HeroSection v-bind="texts.hero" />
 
     <section class="max-w-6xl mx-auto px-4 py-10 md:py-14" aria-labelledby="volunteer-title">
       <!-- Confirmation après envoi -->
@@ -277,17 +279,16 @@ onMounted(async () => {
         aria-live="polite"
       >
         <p class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light">
-          Candidature envoyée
+          {{ texts.success.eyebrow }}
         </p>
         <h2 id="volunteer-title" class="mt-2 font-bebas text-3xl md:text-4xl text-white">
-          Merci pour votre engagement !
+          {{ texts.success.title }}
         </h2>
         <p class="mt-4 text-sm leading-relaxed text-gray-400">
-          Votre candidature a bien été enregistrée. Le bureau vous recontacte sous 48 h. Vous allez
-          être redirigé vers l’accueil dans quelques secondes.
+          {{ texts.success.text }}
         </p>
         <div class="mt-6 flex justify-center">
-          <BaseButton variant="primary" to="/">Retour à l’accueil</BaseButton>
+          <BaseButton variant="primary" :to="successButton.to">{{ successButton.label }}</BaseButton>
         </div>
       </div>
 
@@ -297,14 +298,13 @@ onMounted(async () => {
           <p
             class="font-rajdhani text-xs font-bold uppercase tracking-[0.25em] text-brand-red-light"
           >
-            Votre candidature
+            {{ texts.intro.eyebrow }}
           </p>
           <h2 id="volunteer-title" class="mt-1 font-bebas text-3xl md:text-4xl text-white">
-            Rejoindre l’équipe bénévole
+            {{ texts.intro.title }}
           </h2>
           <p class="mt-3 max-w-2xl text-sm text-gray-400">
-            4 étapes d’environ 5 minutes. Votre brouillon est conservé dans ce navigateur : vous
-            pourrez reprendre votre saisie plus tard.
+            {{ texts.intro.text }}
           </p>
         </header>
 
@@ -319,7 +319,7 @@ onMounted(async () => {
           >
             <!-- Étape 1 — Profil -->
             <div v-if="step === 1" class="space-y-5">
-              <h3 class="font-bebas text-2xl text-white">Étape 1 — Profil</h3>
+              <h3 class="font-bebas text-2xl text-white">Étape 1 — {{ STEPS[0] }}</h3>
               <div class="grid gap-5 sm:grid-cols-2">
                 <BaseInput
                   v-model="formData.firstName"
@@ -375,7 +375,7 @@ onMounted(async () => {
 
             <!-- Étape 2 — Motivations -->
             <div v-else-if="step === 2" class="space-y-5">
-              <h3 class="font-bebas text-2xl text-white">Étape 2 — Motivations</h3>
+              <h3 class="font-bebas text-2xl text-white">Étape 2 — {{ STEPS[1] }}</h3>
 
               <div>
                 <label
@@ -434,7 +434,7 @@ onMounted(async () => {
 
             <!-- Étape 3 — Compétences -->
             <div v-else-if="step === 3" class="space-y-5">
-              <h3 class="font-bebas text-2xl text-white">Étape 3 — Compétences</h3>
+              <h3 class="font-bebas text-2xl text-white">Étape 3 — {{ STEPS[2] }}</h3>
 
               <div>
                 <label for="volunteer-skills" class="block text-xs font-medium text-gray-300 mb-1">
@@ -488,11 +488,10 @@ onMounted(async () => {
 
             <!-- Étape 4 — Validation -->
             <div v-else class="space-y-5">
-              <h3 class="font-bebas text-2xl text-white">Étape 4 — Validation</h3>
+              <h3 class="font-bebas text-2xl text-white">Étape 4 — {{ STEPS[3] }}</h3>
 
               <p class="text-sm text-gray-400">
-                Vérifiez vos informations avant l’envoi. Vous pouvez revenir en arrière avec le
-                stepper.
+                {{ texts.reviewText }}
               </p>
 
               <dl v-if="recap.length > 0" class="grid gap-4 sm:grid-cols-2">

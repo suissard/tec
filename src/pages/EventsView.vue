@@ -14,27 +14,31 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseDatePicker from '@/components/ui/BaseDatePicker.vue';
 import BaseSelect, { type SelectOption } from '@/components/ui/BaseSelect.vue';
 import Pagination from '@/components/Pagination.vue';
+import RichText from '@/components/ui/RichText.vue';
 import { useModal } from '@/composables/useModal';
 import { useAppStore } from '@/stores/app';
 import { useDataStore } from '@/stores/data';
+import { pages, splitHighlight } from '@/utils/content';
 import { groupBy } from '@/utils/helpers';
 import type { EventItem } from '@/types';
 
 /** Onglets disponibles de l'agenda. */
 type EventTab = 'upcoming' | 'past' | 'byCategory';
 
+/** Textes de la page (`pages.events` de `content.json`). */
+const texts = pages.events;
+const title = splitHighlight(texts.hero.title, texts.hero.highlight);
+
 /** Libellés des onglets (pills). */
-const TABS: { id: EventTab; label: string }[] = [
-  { id: 'upcoming', label: 'À venir' },
-  { id: 'past', label: 'Passés' },
-  { id: 'byCategory', label: 'Par catégorie' },
-];
+const TABS: { id: EventTab; label: string }[] = (['upcoming', 'past', 'byCategory'] as const).map(
+  (id) => ({ id, label: texts.tabs[id] })
+);
 
 /** Message d'état vide selon l'onglet actif. */
 const EMPTY_MESSAGES: Record<EventTab, string> = {
-  upcoming: 'Aucun événement à venir ne correspond à vos filtres — revenez vite !',
-  past: 'Aucun événement passé ne correspond à vos filtres.',
-  byCategory: 'Aucun événement à afficher pour le moment.',
+  upcoming: texts.empty.upcoming,
+  past: texts.empty.past,
+  byCategory: texts.empty.byCategory,
 };
 
 /** Nombre d'événements affichés par page (hors onglet « Par catégorie »). */
@@ -43,10 +47,6 @@ const PAGE_SIZE = 12;
 const dataStore = useDataStore();
 const appStore = useAppStore();
 const modal = useModal();
-
-const pageTitle = 'Événements';
-const pageDescription =
-  'Agenda des tournois, LAN et rendez-vous esport organisés par le réseau TEC à Toulouse et en Occitanie.';
 
 /** Jour courant (ISO) figé au montage : découpe « à venir » / « passé ». */
 const todayIso = new Date().toISOString().slice(0, 10);
@@ -76,7 +76,7 @@ const categoryOptions = computed<SelectOption[]>(() => {
     counts.set(key, (counts.get(key) ?? 0) + 1);
   });
   return [
-    { value: '', label: 'Toutes les catégories' },
+    { value: '', label: texts.filters.allCategories },
     ...[...counts.entries()].map(([label, count]) => ({
       value: label,
       label: `${label} (${count})`,
@@ -190,8 +190,8 @@ onMounted(async () => {
 <template>
   <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
     <header class="mb-10 text-center">
-      <h1 v-reveal class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">Les événements <span>toulousains</span></h1>
-      <p class="mx-auto mt-5 text-base text-[#333] max-w-2xl">{{ pageDescription }}</p>
+      <h1 v-reveal class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">{{ title.start }}<span v-if="title.red">{{ title.red }}</span></h1>
+      <p v-if="texts.hero.subtitle" class="mx-auto mt-5 text-base text-[#333] max-w-2xl"><RichText :text="texts.hero.subtitle" /></p>
     </header>
 
     <!-- Onglets -->
@@ -214,18 +214,18 @@ onMounted(async () => {
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <SearchInput
           v-model="search"
-          label="Rechercher"
-          placeholder="Tournoi, LAN, organisateur…"
+          :label="texts.filters.searchLabel"
+          :placeholder="texts.filters.searchPlaceholder"
           input-id="events-search"
         />
         <BaseSelect
           v-model="category"
-          label="Catégorie"
+          :label="texts.filters.categoryLabel"
           :options="categoryOptions"
           select-id="events-category"
         />
-        <BaseDatePicker v-model="dateStart" label="Du" input-id="events-date-start" />
-        <BaseDatePicker v-model="dateEnd" label="Au" input-id="events-date-end" />
+        <BaseDatePicker v-model="dateStart" :label="texts.filters.dateStartLabel" input-id="events-date-start" />
+        <BaseDatePicker v-model="dateEnd" :label="texts.filters.dateEndLabel" input-id="events-date-end" />
       </div>
 
       <div
@@ -239,7 +239,7 @@ onMounted(async () => {
           }}
         </p>
         <BaseButton variant="ghost" size="sm" :disabled="!hasActiveFilters" @click="resetFilters()">
-          Réinitialiser
+          {{ texts.filters.reset }}
         </BaseButton>
       </div>
     </div>
@@ -255,7 +255,7 @@ onMounted(async () => {
       >
         🗓️
       </div>
-      <h2 class="mt-5 font-bebas text-2xl text-white">Rien à l'horizon… pour l'instant</h2>
+      <h2 class="mt-5 font-bebas text-2xl text-white">{{ texts.empty.title }}</h2>
       <p class="mx-auto mt-2 max-w-md text-sm text-gray-400">{{ EMPTY_MESSAGES[activeTab] }}</p>
       <BaseButton
         v-if="hasActiveFilters"
@@ -264,7 +264,7 @@ onMounted(async () => {
         class="mt-6"
         @click="resetFilters()"
       >
-        Réinitialiser les filtres
+        {{ texts.empty.reset }}
       </BaseButton>
     </div>
 
@@ -298,7 +298,7 @@ onMounted(async () => {
         >
           🏆
         </div>
-        <h3 class="mt-5 font-bebas text-2xl text-white">Aucune catégorie à afficher</h3>
+        <h3 class="mt-5 font-bebas text-2xl text-white">{{ texts.empty.byCategoryTitle }}</h3>
         <p class="mx-auto mt-2 max-w-md text-sm text-gray-400">
           {{ EMPTY_MESSAGES.byCategory }}
         </p>
@@ -309,7 +309,7 @@ onMounted(async () => {
           class="mt-6"
           @click="resetFilters()"
         >
-          Réinitialiser les filtres
+          {{ texts.empty.reset }}
         </BaseButton>
       </div>
 

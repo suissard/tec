@@ -5,6 +5,8 @@ import {
   type RouteRecordRaw,
 } from 'vue-router';
 
+import { content, pages } from '@/utils/content';
+
 /**
  * Routage History API (HTML5), avec deux replis hash (`/#/…`) :
  * - `VITE_HASH_ROUTER === 'true'` (hébergeur sans rewrite SPA) ;
@@ -37,105 +39,69 @@ declare module 'vue-router' {
   }
 }
 
-const DEFAULT_DESCRIPTION =
-  "Toulouse Esport Connect fédère et accompagne les associations, joueurs, créateurs et acteurs locaux pour développer l'écosystème de l'esport dans la Ville Rose.";
+/** Description par défaut (`site.defaultDescription` de `content.json`). */
+const DEFAULT_DESCRIPTION = content.site.defaultDescription;
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: routeNames.Home,
     component: () => import('@/pages/HomeView.vue'),
-    meta: { title: 'Accueil', description: DEFAULT_DESCRIPTION },
+    meta: { ...pages.home.meta },
   },
   {
     path: '/associations',
     name: routeNames.Associations,
     component: () => import('@/pages/AssociationsView.vue'),
-    meta: {
-      title: 'Associations',
-      description:
-        'Découvrez les associations esport, versus fighting et rétro gaming du réseau Toulouse Esport Connect.',
-    },
+    meta: { ...pages.associations.meta },
   },
   {
     path: '/evenements',
     name: routeNames.Events,
     component: () => import('@/pages/EventsView.vue'),
-    meta: {
-      title: 'Événements',
-      description:
-        'Agenda des tournois, LAN et événements esport organisés par le réseau TEC à Toulouse et en Occitanie.',
-    },
+    meta: { ...pages.events.meta },
   },
   {
     path: '/actualites',
     name: routeNames.News,
     component: () => import('@/pages/NewsView.vue'),
-    meta: {
-      title: 'Actualités',
-      description:
-        'Les dernières actualités de Toulouse Esport Connect et de ses associations membres.',
-    },
+    meta: { ...pages.news.meta },
   },
   {
     path: '/qui-sommes-nous',
     name: routeNames.About,
     component: () => import('@/pages/AboutView.vue'),
-    meta: {
-      title: 'Qui sommes-nous ?',
-      description:
-        "Qui sommes-nous ? Découvrez Toulouse Esport Connect, association loi 1901 fédérant l'écosystème esport toulousain.",
-    },
+    meta: { ...pages.about.meta },
   },
   {
     path: '/contact',
     name: routeNames.Contact,
     component: () => import('@/pages/ContactView.vue'),
-    meta: {
-      title: 'Contact',
-      description:
-        'Contactez le bureau de Toulouse Esport Connect pour toute question, partenariat ou collaboration.',
-    },
+    meta: { ...pages.contact.meta },
   },
   {
     path: '/mentions-legales',
     name: routeNames.Legal,
     component: () => import('@/pages/LegalView.vue'),
-    meta: {
-      title: 'Mentions légales',
-      description:
-        'Mentions légales, statut de l’association et politique de confidentialité de Toulouse Esport Connect.',
-    },
+    meta: { ...pages.legal.meta },
   },
   {
     path: '/benevolat',
     name: routeNames.Volunteer,
     component: () => import('@/pages/VolunteerView.vue'),
-    meta: {
-      title: 'Devenir bénévole',
-      description:
-        "Devenez bénévole de Toulouse Esport Connect et donnez un coup de main à l'écosystème esport toulousain.",
-    },
+    meta: { ...pages.volunteer.meta },
   },
   {
     path: '/adhesion',
     name: routeNames.Adhesion,
     component: () => import('@/pages/AdhesionView.vue'),
-    meta: {
-      title: 'Adhésion',
-      description:
-        'Rejoignez le réseau Toulouse Esport Connect : adhésion des particuliers, clubs, associations et partenaires.',
-    },
+    meta: { ...pages.adhesion.meta },
   },
   {
     path: '/:pathMatch(.*)*',
     name: routeNames.NotFound,
     component: () => import('@/pages/NotFoundView.vue'),
-    meta: {
-      title: 'Page introuvable',
-      description:
-        'La page demandée est introuvable — revenez à l’accueil de Toulouse Esport Connect.',
-    },
+    meta: { ...pages.notFound.meta },
   },
 ];
 
