@@ -16,6 +16,9 @@ env:
   VITE_BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
   VITE_HASH_ROUTER: ${{ vars.HASH_ROUTER || 'true' }}
   VITE_SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+  # Cible de déploiement : `github-pages` (défaut), `netlify` ou `vercel`.
+  # ⚠️ Le contexte `secrets` n'est PAS autorisé dans un `if` : on utilise donc
+  # une variable de dépôt (`vars.DEPLOY_TARGET`).
 
 jobs:
   deploy:
@@ -38,26 +41,26 @@ jobs:
 
       # GitHub Pages : l'artefact doit être téléversé AVANT le déploiement.
       - name: Upload Pages artifact
-        if: ${{ secrets.DEPLOY_TARGET == 'github-pages' || !secrets.DEPLOY_TARGET }}
+        if: vars.DEPLOY_TARGET == '' || vars.DEPLOY_TARGET == 'github-pages'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
           name: github-pages
       - name: Deploy to GitHub Pages
-        if: ${{ secrets.DEPLOY_TARGET == 'github-pages' || !secrets.DEPLOY_TARGET }}
+        if: vars.DEPLOY_TARGET == '' || vars.DEPLOY_TARGET == 'github-pages'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages
 
       - name: Deploy to Netlify
-        if: ${{ secrets.DEPLOY_TARGET == 'netlify' }}
+        if: vars.DEPLOY_TARGET == 'netlify'
         run: npx netlify-cli deploy --dir=dist --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Deploy to Vercel
-        if: ${{ secrets.DEPLOY_TARGET == 'vercel' }}
+        if: vars.DEPLOY_TARGET == 'vercel'
         run: npx vercel deploy --prod
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
