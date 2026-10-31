@@ -3,6 +3,7 @@
  * En-tête du site : logo, navigation desktop, CTA et menu mobile accessible
  * (piège de focus, touche Échap, fermeture automatique à la navigation).
  */
+import { useWindowScroll } from '@vueuse/core';
 import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -24,6 +25,10 @@ const appStore = useAppStore();
 const route = useRoute();
 
 const isMenuOpen = computed(() => appStore.isMobileMenuOpen);
+
+// En-tête resserré (et souligné d'un filet rouge) dès qu'on a quitté le haut de page.
+const { y: scrollY } = useWindowScroll();
+const isScrolled = computed(() => scrollY.value > 40);
 const mobileMenu = ref<HTMLElement | null>(null);
 
 function toggleMobileMenu(): void {
@@ -49,10 +54,12 @@ watch(
 
 <template>
   <header
-    class="sticky top-0 z-40 bg-[#232323] shadow-[0_2px_12px_rgba(0,0,0,0.35)] transition-all duration-300"
+    class="sticky top-0 z-40 bg-[#232323] transition-shadow duration-300 ease-out-expo"
+    :class="isScrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.5)]' : 'shadow-[0_2px_12px_rgba(0,0,0,0.35)]'"
   >
     <nav
-      class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4"
+      class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4 transition-[height] duration-300 ease-out-expo"
+      :class="isScrolled ? 'md:h-16' : 'md:h-20'"
       aria-label="Navigation principale"
     >
       <!-- Logo -->
@@ -64,7 +71,8 @@ watch(
         <img
           :src="publicUrl('/media/logo-clair.svg')"
           alt="Toulouse Esport Connect"
-          class="h-10 md:h-12 w-auto"
+          class="h-10 w-auto transition-[height] duration-300 ease-out-expo"
+          :class="isScrolled ? 'md:h-10' : 'md:h-12'"
           width="160"
           height="48"
         />
@@ -112,6 +120,13 @@ watch(
         </svg>
       </button>
     </nav>
+
+    <!-- Filet rouge : se trace depuis la gauche quand l'en-tête se resserre -->
+    <span
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left bg-brand-red transition-transform duration-500 ease-out-expo"
+      :class="isScrolled ? 'scale-x-100' : 'scale-x-0'"
+      aria-hidden="true"
+    />
 
     <!-- Backdrop -->
     <Transition name="fade">

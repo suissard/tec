@@ -14,4 +14,9 @@
   --glow-red-sm: 0 0 12px rgba(227, 6, 19, 0.3);
   --glow-discord: 0 0 16px rgba(88, 101, 242, 0.35);
   --glow-text: 0 0 14px rgba(255, 56, 71, 0.7);
+
+  /* Durées de mouvement (la courbe vit dans @theme : --ease-out-expo) */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 600ms;
 }

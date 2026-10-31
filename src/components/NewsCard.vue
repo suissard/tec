@@ -73,24 +73,24 @@ function onImageError(event: Event): void {
   <!-- Variante mise en avant : grande carte d'accueil -->
   <article
     v-else-if="isFeatured"
-    class="glass-card rounded-2xl overflow-hidden h-full text-left flex flex-col"
+    class="tec-card group h-full text-left flex flex-col"
   >
     <div class="relative aspect-video overflow-hidden">
       <img
         :src="imageUrl"
         :alt="`Illustration : ${news.title}`"
-        class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+        class="h-full w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
         @error="onImageError"
       />
       <span
-        class="absolute left-4 top-4 rounded-full bg-brand-red px-3 py-1 text-[11px] font-rajdhani font-bold uppercase tracking-wider text-white glow-red-sm"
+        class="absolute left-0 top-4 bg-brand-red px-3 py-1 text-[11px] font-rajdhani font-bold uppercase tracking-wider text-white"
       >
         {{ news.category }}
       </span>
     </div>
 
     <div class="flex flex-1 flex-col p-5 sm:p-6">
-      <h2 class="font-bebas text-2xl sm:text-3xl text-white leading-tight">
+      <h2 class="font-bebas text-2xl sm:text-3xl text-[#141414] leading-tight">
         <button
           type="button"
           class="hover:text-brand-red-light transition-colors focus-visible:outline-none"
@@ -113,7 +113,7 @@ function onImageError(event: Event): void {
 
       <button
         type="button"
-        class="mt-5 self-start rounded-xl border border-brand-red/50 px-4 py-2 text-xs font-rajdhani font-bold uppercase tracking-wider text-brand-red-light transition-colors hover:bg-brand-red/10 focus-visible:outline-none"
+        class="btn-red btn-sm mt-5 self-start"
         :aria-label="`Lire la suite de : ${news.title}`"
         @click="emit('open')"
       >
@@ -123,24 +123,24 @@ function onImageError(event: Event): void {
   </article>
 
   <!-- Variante par défaut : vignette 4:3 + résumé -->
-  <article v-else class="glass-card rounded-2xl overflow-hidden h-full text-left flex flex-col">
+  <article v-else class="tec-card group h-full text-left flex flex-col">
     <div class="relative aspect-[4/3] overflow-hidden">
       <img
         :src="imageUrl"
         :alt="`Illustration : ${news.title}`"
         loading="lazy"
-        class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+        class="h-full w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
         @error="onImageError"
       />
       <span
-        class="absolute left-3 top-3 rounded-full bg-brand-dark/80 px-2.5 py-1 text-[11px] font-rajdhani font-bold uppercase tracking-wider text-brand-red-light border border-brand-red/40"
+        class="absolute left-0 top-3 bg-[#141414]/85 px-2.5 py-1 text-[11px] font-rajdhani font-bold uppercase tracking-wider text-white"
       >
         {{ news.category }}
       </span>
     </div>
 
     <div class="flex flex-1 flex-col p-5">
-      <h3 class="font-bebas text-xl text-white leading-tight">
+      <h3 class="font-bebas text-2xl text-[#141414] leading-tight">
         <button
           type="button"
           class="hover:text-brand-red-light transition-colors focus-visible:outline-none"
@@ -161,7 +161,7 @@ function onImageError(event: Event): void {
 
       <button
         type="button"
-        class="mt-4 self-start text-xs font-rajdhani font-bold uppercase tracking-wider text-brand-red-light hover:text-white transition-colors focus-visible:outline-none"
+        class="mt-4 self-start text-xs font-rajdhani font-bold uppercase tracking-wider text-brand-red hover:text-brand-red-hover transition-colors"
         :aria-label="`Lire la suite de : ${news.title}`"
         @click="emit('open')"
       >

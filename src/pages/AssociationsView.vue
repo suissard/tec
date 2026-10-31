@@ -284,8 +284,9 @@ onMounted(async () => {
         <template v-else>
           <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             <AssociationCard
-              v-for="association in paginated"
+              v-for="(association, index) in paginated"
               :key="association.id"
+              v-reveal="index"
               :association="association"
               @open="openAssociationDetail(association)"
             />

@@ -36,7 +36,7 @@ const parts = computed(() => {
       <p v-if="eyebrow" class="mb-2 font-rajdhani text-sm font-bold uppercase tracking-[0.3em] text-brand-red">
         {{ eyebrow }}
       </p>
-      <h1 class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">
+      <h1 v-reveal class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">
         {{ parts.start }}<span v-if="parts.red">{{ parts.red }}</span>
       </h1>
       <p v-if="subtitle" class="mx-auto mt-5 max-w-2xl text-base md:text-lg text-[#333]">

@@ -36,30 +36,31 @@ function onLogoError(event: Event): void {
 </script>
 
 <template>
-  <article class="glass-card rounded-2xl p-6 flex flex-col h-full text-left">
+  <article class="tec-card p-6 flex flex-col h-full text-left">
     <div class="flex items-start gap-4">
       <img
         :src="publicUrl(association.logo)"
         :alt="`Logo de ${association.name}`"
         loading="lazy"
-        class="h-14 w-14 shrink-0 rounded-xl bg-white/5 object-contain p-1"
+        class="h-14 w-14 shrink-0 rounded-md bg-white/60 object-contain p-1"
         :class="association.imgClass"
         @error="onLogoError"
       />
       <div class="min-w-0">
-        <h3 class="font-bebas text-xl text-white leading-tight">
+        <h3 class="font-bebas text-2xl text-[#141414] leading-tight">
           {{ association.name }}
         </h3>
-        <p class="mt-0.5 text-xs uppercase tracking-wider text-brand-red-light">
+        <p class="mt-0.5 font-rajdhani text-xs font-bold uppercase tracking-wider text-brand-red">
           {{ capitalize(association.category) }}
         </p>
-        <p v-if="association.city" class="mt-0.5 text-xs text-gray-400">
-          📍 {{ association.city }}
+        <p v-if="association.city" class="mt-1 inline-flex items-center gap-1.5 text-xs text-[#333]">
+          <svg class="h-3.5 w-3.5 text-brand-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z" /><circle cx="12" cy="9" r="2.5" /></svg>
+          {{ association.city }}
         </p>
       </div>
     </div>
 
-    <p class="mt-4 text-sm text-gray-400 line-clamp-3 flex-1">
+    <p class="mt-4 text-sm text-[#333] line-clamp-3 flex-1">
       {{ association.description }}
     </p>
 
@@ -67,18 +68,18 @@ function onLogoError(event: Event): void {
       <li
         v-for="game in games.slice(0, 4)"
         :key="game"
-        class="rounded-md bg-brand-red/10 border border-brand-red/30 px-2 py-0.5 text-[11px] text-gray-200"
+        class="border border-brand-red/30 bg-brand-red/10 px-2 py-0.5 text-[11px] text-[#222]"
       >
         {{ game }}
       </li>
-      <li v-if="games.length > 4" class="px-1 py-0.5 text-[11px] text-gray-500">
+      <li v-if="games.length > 4" class="px-1 py-0.5 text-[11px] text-[#4a4a4a]">
         +{{ games.length - 4 }}
       </li>
     </ul>
 
     <button
       type="button"
-      class="mt-5 w-full rounded-xl border border-brand-red/50 px-4 py-2 text-xs font-rajdhani font-bold uppercase tracking-wider text-brand-red-light transition-colors hover:bg-brand-red/10 focus-visible:outline-none"
+      class="btn-red btn-sm mt-5 self-start"
       :aria-label="`Voir la fiche détaillée de ${association.name}`"
       @click="emit('open')"
     >

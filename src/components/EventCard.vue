@@ -33,7 +33,7 @@ const longDate = computed(() =>
 </script>
 
 <template>
-  <article class="event-card" :class="{ 'opacity-70': status === 'cancelled' || status === 'past' }">
+  <article class="event-card tec-card" :class="{ 'opacity-70': status === 'cancelled' || status === 'past' }">
     <div class="event-card__media">
       <img v-if="event.image" :src="event.image" alt="" class="h-full w-full object-cover" loading="lazy" />
       <div class="event-card__date" aria-hidden="true">
@@ -62,19 +62,6 @@ const longDate = computed(() =>
 </template>
 
 <style scoped>
-.event-card {
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 0.25s,
-    box-shadow 0.25s;
-}
-.event-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
-}
 .event-card__media {
   position: relative;
   height: 130px;

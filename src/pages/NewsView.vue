@@ -241,8 +241,9 @@ onBeforeUnmount(() => {
           <!-- Grille 2 colonnes -->
           <div class="mt-6 grid gap-5 sm:grid-cols-2">
             <NewsCard
-              v-for="news in paginated"
+              v-for="(news, index) in paginated"
               :key="news.id"
+              v-reveal="index"
               :news="news"
               variant="default"
               @open="openNewsDetail(news)"

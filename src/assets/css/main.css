@@ -35,18 +35,8 @@
   --font-rajdhani: 'Rajdhani', sans-serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
-  /* Animations */
-  --animate-fade-in: fade-in 0.3s ease-out;
-  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  /* Mouvement : décélération franche, sans rebond (charte « griffure ») */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ==========================================================================
@@ -231,22 +221,43 @@
 }
 
 /* ==========================================================================
-   Animations globales
+   Révélation au scroll (directive v-reveal)
+   La directive pose `.reveal` puis `.is-revealed` à l'entrée dans le viewport.
+   On anime `translate` (et non `transform`) pour ne pas écraser les effets de
+   survol des cartes, qui utilisent `transform`.
    ========================================================================== */
 
-@keyframes fadeIn {
+@keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    translate: 0 12px;
   }
 }
 
-.page-enter-active {
-  animation: fadeIn 0.25s ease-in-out forwards;
+.reveal:not(.is-revealed) {
+  opacity: 0;
+}
+.reveal.is-revealed {
+  animation: reveal-up var(--dur-slow) var(--ease-out-expo) var(--reveal-delay, 0ms) both;
+}
+
+/* ==========================================================================
+   Mouvement réduit : on coupe animations, transitions et défilement doux
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 
 /* ==========================================================================
@@ -342,14 +353,27 @@
     width: 110px;
     height: 3px;
     transform: translateX(-50%);
+    /* Origine à gauche de la boîte non translatée = centre du titre :
+       `scale` fait alors pousser le trait symétriquement depuis le milieu. */
+    transform-origin: left center;
     background: var(--color-brand-red);
+  }
+  /* Révélé au scroll : le soulignement se trace après l'apparition du texte */
+  .section-title.reveal::after {
+    scale: 0 1;
+    transition: scale var(--dur-slow) var(--ease-out-expo) calc(var(--reveal-delay, 0ms) + 200ms);
+  }
+  .section-title.reveal.is-revealed::after {
+    scale: 1 1;
   }
 
   /* Boutons carrés de la maquette */
   .btn-red,
   .btn-outline-red,
   .btn-dark {
+    position: relative;
     display: inline-block;
+    overflow: hidden;
     padding: 0.55rem 1.6rem;
     font-family: var(--font-rajdhani);
     font-weight: 700;
@@ -359,36 +383,58 @@
     text-align: center;
     cursor: pointer;
     transition:
-      transform 0.2s,
-      background-color 0.2s,
-      color 0.2s,
-      box-shadow 0.2s;
+      translate var(--dur-fast) var(--ease-out-expo),
+      background-color var(--dur-base) var(--ease-out-expo),
+      background-position var(--dur-base) var(--ease-out-expo),
+      color var(--dur-base) var(--ease-out-expo);
   }
+  /* Seule réponse « physique » : un léger enfoncement au clic */
+  .btn-red:active,
+  .btn-outline-red:active,
+  .btn-dark:active {
+    translate: 0 1px;
+  }
+
+  /* Rouge plein : un reflet fin traverse le bouton une fois, comme une lame */
   .btn-red {
     background: var(--color-brand-red);
     color: #fff;
   }
+  .btn-red::after {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    translate: -120% 0;
+    pointer-events: none;
+  }
   .btn-red:hover {
     background: var(--color-brand-red-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(227, 6, 19, 0.35);
   }
+  .btn-red:hover::after {
+    translate: 260% 0;
+    transition: translate var(--dur-slow) var(--ease-out-expo);
+  }
+
+  /* Contour : le rouge remplit le bouton de gauche à droite, bord légèrement biseauté */
   .btn-outline-red {
     border: 2px solid var(--color-brand-red);
     color: #141414;
+    background: linear-gradient(100deg, var(--color-brand-red) 50%, transparent 50.1%) right / 230% 100%
+      no-repeat;
   }
   .btn-outline-red:hover {
-    background: var(--color-brand-red);
+    background-position: left;
     color: #fff;
-    transform: translateY(-2px);
   }
+
   .btn-dark {
     background: #1c1c1c;
     color: #fff;
   }
   .btn-dark:hover {
     background: #000;
-    transform: translateY(-2px);
   }
   .btn-sm {
     padding: 0.4rem 1.4rem;
@@ -400,6 +446,21 @@
     background: rgba(255, 255, 255, 0.5);
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Carte cliquable (événements, associations, actualités) : panneau + soulèvement */
+  .tec-card {
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition:
+      transform var(--dur-base) var(--ease-out-expo),
+      box-shadow var(--dur-base) var(--ease-out-expo);
+  }
+  .tec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
   }
 }
 
@@ -433,6 +494,7 @@
 .theme-light .bg-brand-card-bg,
 .theme-light [class*='bg-brand-card-bg/'] {
   background: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
   backdrop-filter: none;
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);

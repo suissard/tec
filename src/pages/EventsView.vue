@@ -190,7 +190,7 @@ onMounted(async () => {
 <template>
   <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
     <header class="mb-10 text-center">
-      <h1 class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">Les événements <span>toulousains</span></h1>
+      <h1 v-reveal class="section-title text-[clamp(2.4rem,5vw,3.5rem)]!">Les événements <span>toulousains</span></h1>
       <p class="mx-auto mt-5 text-base text-[#333] max-w-2xl">{{ pageDescription }}</p>
     </header>
 
@@ -275,8 +275,9 @@ onMounted(async () => {
       </h2>
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <EventCard
-          v-for="event in paginated"
+          v-for="(event, index) in paginated"
           :key="event.id"
+          v-reveal="index"
           :event="event"
           @open="openEventDetail(event)"
         />

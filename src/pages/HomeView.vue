@@ -69,7 +69,9 @@ onMounted(async () => {
       <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
         <div class="max-w-xl">
           <h1 id="home-title" class="font-bebas leading-[0.9] text-6xl md:text-8xl text-[#141414]">
-            Fédérer<br />l’esport<br /><span class="text-brand-red">à Toulouse</span>
+            <span class="hero__line">Fédérer</span>
+            <span class="hero__line">l’esport</span>
+            <span class="hero__line text-brand-red">à Toulouse</span>
           </h1>
           <p class="mt-5 text-base md:text-lg font-semibold text-[#1d1d1d]">
             Le réseau des associations<br />et événements gaming en Occitanie
@@ -85,13 +87,13 @@ onMounted(async () => {
     <div>
       <!-- ======================= PROCHAINS ÉVÉNEMENTS ======================= -->
       <section class="max-w-5xl mx-auto px-4 py-14" aria-labelledby="home-events">
-        <h2 id="home-events" class="section-title">Prochains <span>événements</span></h2>
+        <h2 id="home-events" v-reveal class="section-title">Prochains <span>événements</span></h2>
 
         <p v-if="upcomingEvents.length === 0" class="mt-8 text-center text-sm text-gray-600">
           Aucun événement à venir pour le moment — revenez vite !
         </p>
         <div v-else class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <EventCard v-for="event in upcomingEvents" :key="event.id" :event="event" @open="openEventDetail(event)" />
+          <EventCard v-for="(event, index) in upcomingEvents" :key="event.id" v-reveal="index" :event="event" @open="openEventDetail(event)" />
         </div>
 
         <div class="mt-8 text-center">
@@ -101,10 +103,10 @@ onMounted(async () => {
 
       <!-- ======================= ASSOCIATIONS ======================= -->
       <section class="max-w-6xl mx-auto px-4 pb-16" aria-labelledby="home-associations">
-        <h2 id="home-associations" class="section-title">Les associations <span>toulousaines</span></h2>
+        <h2 id="home-associations" v-reveal class="section-title">Les associations <span>toulousaines</span></h2>
 
         <ul class="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
-          <li v-for="association in associations" :key="association.id">
+          <li v-for="(association, index) in associations" :key="association.id" v-reveal="index">
             <button type="button" class="assoc-logo" :aria-label="`Découvrir ${association.name}`" @click="openAssociationDetail(association)">
               <img :src="publicUrl(association.logo)" :alt="association.name" loading="lazy" />
             </button>
@@ -135,7 +137,7 @@ onMounted(async () => {
   z-index: 1;
   /* Relief exactement sur le contour alpha du masque de griffure */
   filter: drop-shadow(-8px 0 12px rgba(0, 0, 0, 0.25));
-  animation: hero-in 0.9s ease-out both;
+  animation: hero-in 0.9s var(--ease-out-expo) both;
 }
 
 /* Photo masquée par la griffure :
@@ -182,13 +184,39 @@ onMounted(async () => {
   from { opacity: 0; transform: translateX(40px); }
 }
 
+/* Photo : léger dézoom à l'arrivée, pour accompagner le glissement */
+.hero__image {
+  animation: hero-settle 1.2s var(--ease-out-expo) both;
+}
+@keyframes hero-settle {
+  from { scale: 1.04; }
+}
+
+/* Titre : chaque ligne sort du béton, comme un tampon, en cascade */
+.hero__line {
+  display: block;
+  animation: hero-line var(--dur-slow) var(--ease-out-expo) both;
+}
+.hero__line:nth-child(2) { animation-delay: 80ms; }
+.hero__line:nth-child(3) { animation-delay: 160ms; }
+@keyframes hero-line {
+  /* Insets négatifs à l'arrivée : les accents (É) dépassent la ligne serrée */
+  from {
+    clip-path: inset(100% -5% -20% -5%);
+    translate: 0 0.3em;
+  }
+  to {
+    clip-path: inset(-30% -5% -20% -5%);
+  }
+}
+
 /* ---------- Logos associations ---------- */
 .assoc-logo {
   display: grid;
   place-items: center;
   width: 96px;
   height: 96px;
-  transition: transform 0.25s, filter 0.25s;
+  transition: transform var(--dur-base) var(--ease-out-expo), filter var(--dur-base) var(--ease-out-expo);
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
 }
 .assoc-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
