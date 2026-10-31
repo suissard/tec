@@ -210,7 +210,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="sm:flex sm:gap-4">
                 <dt class="sm:w-48 shrink-0 text-gray-500">Directeur de publication</dt>
-                <dd class="text-gray-200">Julien Paltou</dd>
+                <dd class="text-gray-200">Julien Fontanilles Paltou</dd>
               </div>
               <div class="sm:flex sm:gap-4">
                 <dt class="sm:w-48 shrink-0 text-gray-500">Hébergeur</dt>
@@ -273,7 +273,7 @@ onBeforeUnmount(() => {
                   Délégataire à la protection des données
                 </dt>
                 <dd class="text-gray-200">
-                  Julien Paltou —
+                  Julien Fontanilles Paltou —
                   <a
                     href="mailto:contact@tec-asso.fr"
                     class="underline underline-offset-4 transition-colors hover:text-brand-red-light"

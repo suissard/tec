@@ -301,9 +301,9 @@
 
 @layer components {
   /* Fond gris clair texture béton (zone de contenu de toutes les pages).
-     `texture-beton-mask.webp` est un masque noir dont l'opacité suit la
+     `texture-beton-mask.webp` est un masque blanc dont l'opacité suit la
      luminance de la photo de béton : seules les parties claires (grain,
-     rayures, éclats) assombrissent le gris #dcdcdc, le reste laisse la
+     rayures, éclats) éclaircissent le gris #dcdcdc, le reste laisse la
      couleur de fond apparaître. La tuile défile avec la page (attachement
      par défaut) ; ses bords sont fondus pour un raccord sans couture. */
   .texture-light {

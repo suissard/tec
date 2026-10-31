@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * Page « Qui sommes-nous ? » — présentation du collectif :
- * mission, bureau (4 membres), partenaires, chiffres clés et histoire (jalons).
+ * mission, bureau (2 membres), partenaires, chiffres clés et histoire (jalons).
  */
 import { computed, onMounted, ref } from 'vue';
 
@@ -26,28 +26,16 @@ interface TeamMember {
 /** Bureau de l'association (données statiques). */
 const TEAM: TeamMember[] = [
   {
-    name: 'Julien Paltou',
+    name: 'Julien Fontanilles Paltou',
     role: 'Président / Fondateur',
     photo: '/media/team/julien-paltou.jpg',
     bio: 'Porte la vision du collectif et coordonne les grands dossiers du réseau TEC.',
-  },
-  {
-    name: 'Florian Brion',
-    role: 'Vice-président / Technique',
-    photo: '/media/team/florian.jpg',
-    bio: 'Pilote les aspects techniques : plateformes, outils et support aux événements.',
   },
   {
     name: 'Roro',
     role: 'Trésorier / Événementiel',
     photo: '/media/team/roro.jpg',
     bio: 'Suit les comptes et orchestre la logistique des événements du réseau.',
-  },
-  {
-    name: 'Esperita',
-    role: 'Communication / Partenariats',
-    photo: '/media/team/esperita.jpg',
-    bio: 'Anime la communication du collectif et développe les partenariats locaux.',
   },
 ];
 
@@ -203,7 +191,7 @@ onMounted(async () => {
       </p>
       <h2 id="about-team" class="mt-1 font-bebas text-3xl md:text-4xl text-white">L'équipe</h2>
 
-      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-3xl">
         <article
           v-for="member in TEAM"
           :key="member.name"
