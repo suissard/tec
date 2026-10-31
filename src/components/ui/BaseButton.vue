@@ -5,7 +5,7 @@
  * Les classes `$attrs.class` sont fusionnées automatiquement (root unique).
  */
 import { computed } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, type RouteLocationRaw } from 'vue-router';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'discord';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -22,7 +22,7 @@ interface Props {
   /** Type natif du bouton */
   type?: 'button' | 'submit' | 'reset';
   /** Route interne : rend un `<RouterLink>` au lieu d'un `<button>` */
-  to?: string;
+  to?: RouteLocationRaw;
   /** URL externe : rend un `<a target="_blank" rel="noopener noreferrer">` */
   href?: string;
 }

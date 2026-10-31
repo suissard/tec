@@ -11,28 +11,14 @@ import { useFocusTrap } from '@/composables/useFocusTrap';
 import { routeNames } from '@/router';
 import { useAppStore } from '@/stores/app';
 import { EXTERNAL_LINKS } from '@/utils/constants';
+import {
+  CONTACT_NAV,
+  DESKTOP_CTA,
+  MAIN_NAV,
+  MOBILE_ACTIONS,
+  PRIMARY_NAV,
+} from '@/utils/navigation';
 import { publicUrl } from '@/utils/paths';
-
-interface NavItem {
-  label: string;
-  to: { name: routeNames };
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Accueil', to: { name: routeNames.Home } },
-  { label: 'Notre projet', to: { name: routeNames.About } },
-  { label: 'Événements', to: { name: routeNames.Events } },
-  { label: 'Associations', to: { name: routeNames.Associations } },
-];
-
-const CONTACT_ITEM: NavItem = { label: 'Contact', to: { name: routeNames.Contact } };
-
-/** Menu mobile : liens principaux + actualités + contact. */
-const MOBILE_ITEMS: NavItem[] = [
-  ...NAV_ITEMS,
-  { label: 'Actualités', to: { name: routeNames.News } },
-  CONTACT_ITEM,
-];
 
 const appStore = useAppStore();
 const route = useRoute();
@@ -86,7 +72,7 @@ watch(
 
       <!-- Navigation desktop -->
       <ul class="hidden lg:flex items-center gap-8 mr-auto ml-12">
-        <li v-for="item in NAV_ITEMS" :key="item.label">
+        <li v-for="item in PRIMARY_NAV" :key="item.label">
           <RouterLink :to="item.to" class="nav-link tec-nav-link">
             {{ item.label }}
           </RouterLink>
@@ -95,8 +81,12 @@ watch(
 
       <!-- CTA desktop -->
       <div class="hidden lg:flex items-center gap-10">
-        <RouterLink :to="CONTACT_ITEM.to" class="nav-link tec-nav-link">Contact</RouterLink>
-        <RouterLink id="header-adhesion" to="/adhesion" class="btn-red px-8!">Adhérer</RouterLink>
+        <RouterLink :to="CONTACT_NAV.to" class="nav-link tec-nav-link">
+          {{ CONTACT_NAV.label }}
+        </RouterLink>
+        <RouterLink id="header-adhesion" :to="DESKTOP_CTA.to" class="btn-red px-8!">
+          {{ DESKTOP_CTA.label }}
+        </RouterLink>
       </div>
 
       <!-- Bascule menu mobile -->
@@ -167,7 +157,7 @@ watch(
 
         <nav aria-label="Navigation mobile">
           <ul class="space-y-1">
-            <li v-for="item in MOBILE_ITEMS" :key="`mobile-${item.label}`">
+            <li v-for="item in MAIN_NAV" :key="`mobile-${item.label}`">
               <RouterLink
                 :to="item.to"
                 class="block w-full text-left py-2.5 px-3 rounded-lg text-gray-300 hover:text-brand-red-light hover:bg-white/5 transition-colors"
@@ -182,11 +172,15 @@ watch(
           <BaseButton variant="discord" size="sm" class="w-full" :href="EXTERNAL_LINKS.discord">
             Rejoindre le Discord
           </BaseButton>
-          <BaseButton variant="primary" size="sm" class="w-full" to="/adhesion">
-            Adhésion
-          </BaseButton>
-          <BaseButton variant="outline" size="sm" class="w-full" to="/benevolat">
-            Bénévolat
+          <BaseButton
+            v-for="action in MOBILE_ACTIONS"
+            :key="action.label"
+            :variant="action.variant"
+            size="sm"
+            class="w-full"
+            :to="action.to"
+          >
+            {{ action.label }}
           </BaseButton>
         </div>
       </aside>

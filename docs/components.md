@@ -225,6 +225,13 @@ mobile (fermeture Échap / clic extérieur via `useFocusTrap`,
 `aria-expanded` sur le bouton), lien Discord (`variant="discord"`).
 **Props/slots/emits** : aucun.
 
+Les raccourcis sont déclarés dans [`src/data/navigation.json`](../src/data/navigation.json)
+et résolus par [`src/utils/navigation.ts`](../src/utils/navigation.ts) : le menu
+desktop (`PRIMARY_NAV` + `CONTACT_NAV`) et le menu mobile (`MAIN_NAV`) partagent
+la même source, ce qui empêche qu'un lien n'apparaisse que sur un seul format.
+Ajouter/retirer un raccourci = modifier uniquement le JSON (routes nommées de
+`routeNames`).
+
 ### `SiteFooter` — `components/layout/SiteFooter.vue`
 
 Liens rapides (toutes les routes), coordonnées, réseaux sociaux (Discord,
