@@ -1,9 +1,10 @@
 <script setup lang="ts">
 /**
  * Carte d'une association (annuaire TEC) : logo, nom, ville, badges de jeux.
- * Un clic sur la carte ouvre la fiche détaillée (modale) via l'événement `open`.
+ * Un clic sur la carte ou sur le bouton ouvre la fiche détaillée (modale)
+ * via l'événement `open`.
  */
-import { computed } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 
 import { LOGO_PLACEHOLDER } from '@/utils/constants';
 import { capitalize } from '@/utils/helpers';
@@ -18,7 +19,7 @@ interface Props {
 const props = defineProps<Props>();
 const emit = defineEmits<{ open: [] }>();
 
-/** Jeux listés, découparés depuis la chaîne CSV du JSON. */
+/** Jeux listés, découpés depuis la chaîne CSV du JSON. */
 const games = computed(() =>
   (props.association.games ?? '')
     .split(',')
@@ -33,10 +34,44 @@ function onLogoError(event: Event): void {
     img.src = LOGO_PLACEHOLDER;
   }
 }
+
+/** Élément de la description, pour détecter si le texte est rogné (line-clamp). */
+const descriptionEl = ref<HTMLParagraphElement | null>(null);
+/** Vrai quand la description dépasse 3 lignes et est donc rognée. */
+const isDescriptionClamped = ref(false);
+
+/**
+ * Détecte si la description est coupée par `line-clamp-3`.
+ * `scrollHeight` = hauteur du contenu complet ; `clientHeight` = boîte rognée.
+ */
+function checkDescriptionClamp(): void {
+  const el = descriptionEl.value;
+  if (!el) {
+    isDescriptionClamped.value = false;
+    return;
+  }
+  // Petite tolérance pour les arrondis de interligne.
+  isDescriptionClamped.value = el.scrollHeight > el.clientHeight + 2;
+}
+
+onMounted(async () => {
+  // Attendre le chargement des polices self-hostées (font-display: swap) car
+  // un changement de police peut modifier le césure et donc la hauteur.
+  await document.fonts.ready;
+  checkDescriptionClamp();
+  window.addEventListener('resize', checkDescriptionClamp);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkDescriptionClamp);
+});
 </script>
 
 <template>
-  <article class="tec-card p-6 flex flex-col h-full text-left">
+  <article
+    class="tec-card p-6 flex flex-col h-full text-left cursor-pointer"
+    @click="emit('open')"
+  >
     <div class="flex items-start gap-4">
       <img
         :src="publicUrl(association.logo)"
@@ -60,7 +95,11 @@ function onLogoError(event: Event): void {
       </div>
     </div>
 
-    <p class="mt-4 text-sm text-[#333] line-clamp-3 flex-1">
+    <p
+      ref="descriptionEl"
+      class="mt-4 text-sm text-[#333] line-clamp-3 flex-1"
+      :class="{ 'is-clamped': isDescriptionClamped }"
+    >
       {{ association.description }}
     </p>
 
@@ -81,9 +120,22 @@ function onLogoError(event: Event): void {
       type="button"
       class="btn-red btn-sm mt-5 self-start"
       :aria-label="`Voir la fiche détaillée de ${association.name}`"
-      @click="emit('open')"
+      @click.stop="emit('open')"
     >
       Voir la fiche
     </button>
   </article>
 </template>
+
+<style scoped>
+/* Fondu en bas de la description quand elle est rognée par line-clamp-3.
+   Le masque agit sur l'affichage du texte (il devient transparent vers le bas)
+   et laisse apparaître le fond de la carte tel quel : aucune couleur à faire
+   correspondre, donc fonctionne dans les thèmes clair et sombre. Il n'est
+   appliqué que quand le texte dépasse réellement les 3 lignes (classe
+   `is-clamped` ajoutée en JS), les textes courts restent nets. */
+.is-clamped {
+  mask-image: linear-gradient(to bottom, #000 78%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent);
+}
+</style>
