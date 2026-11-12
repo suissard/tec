@@ -234,6 +234,7 @@ onBeforeUnmount(() => {
           <NewsCard
             v-if="page === 1 && featured"
             :news="featured"
+            :data-tec-record="`news:${featured.id}`"
             variant="featured"
             @open="openNewsDetail(featured)"
           />
@@ -245,6 +246,7 @@ onBeforeUnmount(() => {
               :key="news.id"
               v-reveal="index"
               :news="news"
+              :data-tec-record="`news:${news.id}`"
               variant="default"
               @open="openNewsDetail(news)"
             />
@@ -294,6 +296,7 @@ onBeforeUnmount(() => {
                   v-for="news in archiveById[item.id ?? ''] ?? []"
                   :key="news.id"
                   :news="news"
+              :data-tec-record="`news:${news.id}`"
                   variant="compact"
                   @open="openNewsDetail(news)"
                 />

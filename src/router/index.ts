@@ -2,6 +2,7 @@ import {
   createRouter,
   createWebHashHistory,
   createWebHistory,
+  type RouteLocationNormalized,
   type RouteRecordRaw,
 } from 'vue-router';
 
@@ -30,78 +31,98 @@ export enum routeNames {
   NotFound = 'not-found',
 }
 
+/** Nom de la route d'administration (hors `routeNames` : non ciblable depuis le contenu). */
+export const ADMIN_ROUTE_NAME = 'admin';
+
+/** Clé de page dans `content.pages`. */
+type PageKey = keyof typeof pages;
+
 declare module 'vue-router' {
   interface RouteMeta {
-    /** Titre affiché dans l'onglet (`${title} | TEC`) */
+    /** Titre affiché dans l'onglet (`${title} | TEC`), repli si pas de `contentKey` */
     title: string;
     /** Meta description (SEO + Open Graph) */
     description?: string;
+    /** Page de `content.pages` dont le bloc `meta` fournit titre et description (lu à chaque navigation) */
+    contentKey?: PageKey;
+    /** `blank` : rendu sans en-tête ni pied de page (administration) */
+    layout?: 'default' | 'blank';
+    /** Exclut la page des moteurs de recherche */
+    noindex?: boolean;
   }
 }
 
-/** Description par défaut (`site.defaultDescription` de `content.json`). */
-const DEFAULT_DESCRIPTION = content.site.defaultDescription;
+/** Meta d'une page liée au contenu éditorial (titre lu dynamiquement). */
+function pageMeta(key: PageKey) {
+  return { contentKey: key, title: pages[key].meta.title };
+}
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: routeNames.Home,
     component: () => import('@/pages/HomeView.vue'),
-    meta: { ...pages.home.meta },
+    meta: pageMeta('home'),
   },
   {
     path: '/associations',
     name: routeNames.Associations,
     component: () => import('@/pages/AssociationsView.vue'),
-    meta: { ...pages.associations.meta },
+    meta: pageMeta('associations'),
   },
   {
     path: '/evenements',
     name: routeNames.Events,
     component: () => import('@/pages/EventsView.vue'),
-    meta: { ...pages.events.meta },
+    meta: pageMeta('events'),
   },
   {
     path: '/actualites',
     name: routeNames.News,
     component: () => import('@/pages/NewsView.vue'),
-    meta: { ...pages.news.meta },
+    meta: pageMeta('news'),
   },
   {
     path: '/qui-sommes-nous',
     name: routeNames.About,
     component: () => import('@/pages/AboutView.vue'),
-    meta: { ...pages.about.meta },
+    meta: pageMeta('about'),
   },
   {
     path: '/contact',
     name: routeNames.Contact,
     component: () => import('@/pages/ContactView.vue'),
-    meta: { ...pages.contact.meta },
+    meta: pageMeta('contact'),
   },
   {
     path: '/mentions-legales',
     name: routeNames.Legal,
     component: () => import('@/pages/LegalView.vue'),
-    meta: { ...pages.legal.meta },
+    meta: pageMeta('legal'),
   },
   {
     path: '/benevolat',
     name: routeNames.Volunteer,
     component: () => import('@/pages/VolunteerView.vue'),
-    meta: { ...pages.volunteer.meta },
+    meta: pageMeta('volunteer'),
   },
   {
     path: '/adhesion',
     name: routeNames.Adhesion,
     component: () => import('@/pages/AdhesionView.vue'),
-    meta: { ...pages.adhesion.meta },
+    meta: pageMeta('adhesion'),
+  },
+  {
+    path: '/admin',
+    name: ADMIN_ROUTE_NAME,
+    component: () => import('@/admin/AdminView.vue'),
+    meta: { title: 'Administration', layout: 'blank', noindex: true },
   },
   {
     path: '/:pathMatch(.*)*',
     name: routeNames.NotFound,
     component: () => import('@/pages/NotFoundView.vue'),
-    meta: { ...pages.notFound.meta },
+    meta: pageMeta('notFound'),
   },
 ];
 
@@ -119,13 +140,26 @@ function upsertMeta(attribute: 'name' | 'property', key: string, content: string
 }
 
 /** Applique le titre + les meta description/OG de la route courante. */
-function applySeo(title: string, description: string): void {
+function applySeo(title: string, description: string, noindex = false): void {
   const documentTitle = `${title} | TEC`;
   document.title = documentTitle;
   upsertMeta('name', 'description', description);
+  upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow');
   upsertMeta('property', 'og:title', documentTitle);
   upsertMeta('property', 'og:description', description);
   upsertMeta('property', 'og:url', window.location.href);
+}
+
+/**
+ * Applique titre et description d'une route, lus dans le contenu **courant**
+ * (PocketBase ou JSON embarqué, modifications du mode édition comprises).
+ */
+export function applyRouteSeo(route: RouteLocationNormalized): void {
+  const page = route.meta.contentKey ? pages[route.meta.contentKey] : undefined;
+  const title = page?.meta.title ?? route.meta.title;
+  const description =
+    page?.meta.description ?? route.meta.description ?? content.site.defaultDescription;
+  applySeo(title, description, route.meta.noindex === true);
 }
 
 export const useHashHistory =
@@ -148,9 +182,7 @@ const router = createRouter({
 
 /** Met à jour titre + meta SEO à chaque navigation. */
 router.beforeEach((to) => {
-  const title = to.meta.title;
-  const description = to.meta.description ?? DEFAULT_DESCRIPTION;
-  applySeo(title, description);
+  applyRouteSeo(to);
 });
 
 export { router };

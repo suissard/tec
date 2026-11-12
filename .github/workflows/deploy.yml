@@ -16,6 +16,9 @@ env:
   VITE_BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
   VITE_HASH_ROUTER: ${{ vars.HASH_ROUTER || 'true' }}
   VITE_SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+  # Serveur PocketBase (contenu éditable en ligne). Variable de dépôt `POCKETBASE_URL` ;
+  # vide = site 100 % JSON (src/data), comme avant.
+  VITE_POCKETBASE_URL: ${{ vars.POCKETBASE_URL || '' }}
   # Cible de déploiement : `github-pages` (défaut), `netlify` ou `vercel`.
   # ⚠️ Le contexte `secrets` n'est PAS autorisé dans un `if` : on utilise donc
   # une variable de dépôt (`vars.DEPLOY_TARGET`).

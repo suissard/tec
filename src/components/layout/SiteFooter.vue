@@ -3,6 +3,8 @@
  * Pied de page (maquette 2026) : logo + mission, liens rapides, réseaux sociaux,
  * contact, puis barre rouge copyright / mentions légales.
  */
+import { computed } from 'vue';
+
 import { content, layout } from '@/utils/content';
 import { toLink } from '@/utils/navigation';
 import { publicUrl } from '@/utils/paths';
@@ -15,8 +17,8 @@ const footer = layout.footer;
 /** Réseaux sociaux (`site.socials`) — icônes : x, discord, twitch, instagram. */
 const socialLinks = content.site.socials;
 
-const quickLinks = footer.quickLinks.map(toLink);
-const legalLinks = footer.legalLinks.map(toLink);
+const quickLinks = computed(() => footer.quickLinks.map(toLink));
+const legalLinks = computed(() => footer.legalLinks.map(toLink));
 </script>
 
 <template>

@@ -27,7 +27,7 @@ type EventTab = 'upcoming' | 'past' | 'byCategory';
 
 /** Textes de la page (`pages.events` de `content.json`). */
 const texts = pages.events;
-const title = splitHighlight(texts.hero.title, texts.hero.highlight);
+const title = computed(() => splitHighlight(texts.hero.title, texts.hero.highlight));
 
 /** Libellés des onglets (pills). */
 const TABS: { id: EventTab; label: string }[] = (['upcoming', 'past', 'byCategory'] as const).map(
@@ -279,6 +279,7 @@ onMounted(async () => {
           :key="event.id"
           v-reveal="index"
           :event="event"
+          :data-tec-record="`events:${event.id}`"
           @open="openEventDetail(event)"
         />
       </div>
@@ -320,6 +321,7 @@ onMounted(async () => {
               v-for="event in eventsByCategory[item.id ?? ''] ?? []"
               :key="event.id"
               :event="event"
+          :data-tec-record="`events:${event.id}`"
               @open="openEventDetail(event)"
             />
           </div>

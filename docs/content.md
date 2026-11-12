@@ -1,5 +1,10 @@
 # ✏️ Modifier les textes du site
 
+> **Site relié à PocketBase ?** Modifiez plutôt les textes en ligne : `/admin`
+> → *Textes du site*, ou directement sur la page avec `?edit` dans l'URL
+> ([`pocketbase.md`](./pocketbase.md)). Ce fichier JSON sert alors de valeur
+> par défaut et de repli.
+
 Tous les textes des pages sont regroupés dans **un seul fichier** :
 [`src/data/content.json`](../src/data/content.json).
 

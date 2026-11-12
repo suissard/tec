@@ -1,8 +1,17 @@
 /**
- * Couche d'accès aux données (fetch JSON local / API future).
- * Centralise la logique HTTP et la gestion d'erreurs.
+ * Couche d'accès aux données : PocketBase si configuré (`VITE_POCKETBASE_URL`),
+ * avec repli automatique sur les JSON locaux (`/data/*.json`) si la base est
+ * injoignable. Centralise la logique HTTP et la gestion d'erreurs.
  */
 
+import {
+  isPocketBaseEnabled,
+  pbListAll,
+  type PbRecord,
+  toAssociation,
+  toEvent,
+  toNews,
+} from '@/services/pocketbase';
 import type { Association, EventItem, NewsItem } from '@/types';
 import { publicUrl } from '@/utils/paths';
 
@@ -62,22 +71,50 @@ export async function apiGet<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 /* ==========================================================================
-   Endpoints spécifiques (données JSON locales du site vanilla)
+   Endpoints spécifiques
    ========================================================================== */
+
+/**
+ * Lit une collection PocketBase, ou le JSON local si PocketBase est désactivé
+ * ou en erreur (le site reste ainsi consultable même base coupée).
+ */
+async function fromPocketBaseOrJson<T>(
+  collection: string,
+  sort: string,
+  map: (record: PbRecord) => T,
+  jsonPath: string
+): Promise<T[]> {
+  if (isPocketBaseEnabled) {
+    try {
+      return (await pbListAll(collection, sort)).map(map);
+    } catch (error) {
+      console.warn(
+        `[api] PocketBase indisponible pour "${collection}", repli sur ${jsonPath} :`,
+        error instanceof Error ? error.message : error
+      );
+    }
+  }
+  return apiGet<T[]>(jsonPath);
+}
 
 /** Charge la liste des associations membres */
 export function fetchAssociations(): Promise<Association[]> {
-  return apiGet<Association[]>('/data/associations.json');
+  return fromPocketBaseOrJson(
+    'associations',
+    'sort,name',
+    toAssociation,
+    '/data/associations.json'
+  );
 }
 
 /** Charge la liste des événements */
 export function fetchEvents(): Promise<EventItem[]> {
-  return apiGet<EventItem[]>('/data/evenements.json');
+  return fromPocketBaseOrJson('events', 'date', toEvent, '/data/evenements.json');
 }
 
 /** Charge la liste des actualités */
 export function fetchNews(): Promise<NewsItem[]> {
-  return apiGet<NewsItem[]>('/data/news.json');
+  return fromPocketBaseOrJson('news', '-date', toNews, '/data/news.json');
 }
 
 /** Récupère une association par son slug (= identifiant du JSON) */

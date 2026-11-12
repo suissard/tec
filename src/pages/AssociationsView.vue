@@ -287,6 +287,7 @@ onMounted(async () => {
               :key="association.id"
               v-reveal="index"
               :association="association"
+              :data-tec-record="`associations:${association.id}`"
               @open="openAssociationDetail(association)"
             />
           </div>

@@ -8,3 +8,9 @@ coverage/
 .DS_Store
 Thumbs.db
 .kilo/worktrees/
+!.env.example
+
+# PocketBase : binaire et base locale (seuls migrations + hooks sont versionnés)
+pocketbase/pocketbase
+pocketbase/pocketbase.exe
+pocketbase/pb_data/

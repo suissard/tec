@@ -65,6 +65,11 @@ npm install
 npm run dev
 ```
 
+> **Contenu éditable en ligne (facultatif)** : avec PocketBase, les textes et
+> données se modifient depuis **`/admin`** ou directement sur le site avec
+> **`?edit`** dans l'URL. Mise en route en 5 minutes :
+> [`docs/pocketbase.md`](./docs/pocketbase.md).
+
 ### Commandes
 
 | Commande | Description |
@@ -77,6 +82,10 @@ npm run dev
 | `npm run typecheck` | `vue-tsc` (app) + `tsc` (config Node) en `--noEmit` |
 | `npm run test:unit` | Tests unitaires Vitest (13 fichiers, **95 tests**) |
 | `npm run test:coverage` | Tests + couverture V8 (seuils : 80 % lignes/fonctions, 70 % branches) |
+| `npm run pb:install` | Télécharge PocketBase dans `pocketbase/` |
+| `npm run pb:serve` | Lance PocketBase (http://127.0.0.1:8090) avec migrations + hooks du dépôt |
+| `npm run pb:seed` | Importe `src/data/*.json` dans PocketBase (+ compte éditeur) |
+| `npm run pb:export` | Exporte PocketBase vers `src/data/*.json` |
 | `npm run legacy:build` | Assemble le site vanilla (`sections/` → `index.legacy.html`) + compile Tailwind |
 | `npm run legacy:build:css` | Compile uniquement `css/tailwind.min.css` |
 | `npm run legacy:watch:css` | Recompile le CSS legacy en continu |
@@ -100,6 +109,7 @@ préfixées `VITE_` (définies dans `.env` — ignoré par git — ou `.env.loca
 | `VITE_HASH_ROUTER` | *(auto)* | `'true'`/`'false'` force le mode. Par défaut : hash history (`/#/contact`) dès que `VITE_BASE_PATH !== '/'`, History API sinon |
 | `VITE_POSTHOG_KEY` | *(absente)* | Clé API PostHog. Sans cette clé, aucune injection de tracker (no-op) |
 | `VITE_POSTHOG_HOST` | `https://eu.i.posthog.com` | Hébergeur du SDK PostHog (injecté **uniquement** après consentement) |
+| `VITE_POCKETBASE_URL` | *(absente)* | URL du serveur PocketBase : contenu lu en base, `/admin` et `?edit` actifs. Absente = site 100 % JSON. Voir [`docs/pocketbase.md`](./docs/pocketbase.md) |
 
 Exemple `.env` :
 
@@ -221,8 +231,12 @@ dédié (`tecDataAssets` dans `vite.config.ts`) :
 - **build** : copie de `src/data/` vers `dist/data/` (requis pour `vite preview`),
   sans `content.json` qui est déjà intégré au bundle.
 
-Le passage à une API distante se fait uniquement dans [`src/services/api.ts`](./src/services/api.ts)
-(les stores et pages ne connaissent que `fetchAssociations()`, `fetchEvents()`, …).
+Avec `VITE_POCKETBASE_URL`, ces données (et les textes) viennent de
+**PocketBase**, éditables depuis `/admin` ou `?edit` ; les JSON deviennent le
+repli automatique si la base est injoignable. Tout passe par
+[`src/services/api.ts`](./src/services/api.ts) (les stores et pages ne
+connaissent que `fetchAssociations()`, `fetchEvents()`, …). Détails :
+[`docs/pocketbase.md`](./docs/pocketbase.md).
 
 ### Textes des pages
 

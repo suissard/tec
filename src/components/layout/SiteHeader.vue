@@ -22,7 +22,9 @@ import {
 import { publicUrl } from '@/utils/paths';
 
 /** Lien Discord : entrée `discord` de `site.socials` dans `content.json`. */
-const DISCORD_URL = content.site.socials.find((social) => social.icon === 'discord')?.url;
+const DISCORD_URL = computed(
+  () => content.site.socials.find((social) => social.icon === 'discord')?.url
+);
 
 const appStore = useAppStore();
 const route = useRoute();
