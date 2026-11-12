@@ -22,6 +22,8 @@ export default defineConfigWithVueTs(
       '**/*.legacy.js',
       'eslint.legacy.config.mjs',
       '**/*.tsbuildinfo',
+      // PocketBase : migrations et hooks exécutés par le moteur JS de PocketBase
+      'pocketbase/**',
     ],
   },
   {

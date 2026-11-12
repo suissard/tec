@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Styles partagés de l'administration et du mode édition (chunk à la demande).
+   CSS simple sur les tokens de la charte (pas de @apply : fichier hors main.css).
+   ========================================================================== */
+
+.tec-admin-input {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--color-brand-card-border, #262630);
+  background: var(--color-brand-dark, #0b0b0e);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  color: #fff;
+  transition:
+    border-color 150ms,
+    box-shadow 150ms;
+}
+.tec-admin-input:focus {
+  outline: none;
+  border-color: var(--color-brand-red, #e30613);
+  box-shadow: 0 0 0 2px rgb(227 6 19 / 0.25);
+}
+.tec-admin-input::placeholder {
+  color: rgb(255 255 255 / 0.35);
+}
+textarea.tec-admin-input {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.tec-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.06);
+  padding: 0.5rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 150ms,
+    border-color 150ms,
+    opacity 150ms;
+}
+.tec-admin-btn:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.14);
+}
+.tec-admin-btn:focus-visible {
+  outline: 2px solid var(--color-brand-red-light, #ff3847);
+  outline-offset: 2px;
+}
+.tec-admin-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.tec-admin-btn.is-primary {
+  border-color: var(--color-brand-red, #e30613);
+  background: var(--color-brand-red, #e30613);
+}
+.tec-admin-btn.is-primary:hover:not(:disabled) {
+  background: var(--color-brand-red-hover, #bf000b);
+}
+.tec-admin-btn.is-danger:hover:not(:disabled) {
+  border-color: var(--color-brand-red, #e30613);
+  background: rgb(227 6 19 / 0.25);
+}
+.tec-admin-btn.is-small {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.tec-admin-card {
+  border-radius: 8px;
+  border: 1px solid var(--color-brand-card-border, #262630);
+  background: var(--color-brand-card-bg, #141419);
+}
+
+.tec-admin-label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgb(255 255 255 / 0.75);
+}
+
+.tec-admin-errors {
+  border-radius: 6px;
+  border: 1px solid rgb(227 6 19 / 0.5);
+  background: rgb(227 6 19 / 0.12);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  color: #ffd5d8;
+}
+
+/* --------------------------------------------------------------------------
+   Mode édition : surlignage des textes modifiables de la page
+   -------------------------------------------------------------------------- */
+html.tec-editing [data-tec-edit] {
+  outline: 1px dashed rgb(227 6 19 / 0.55);
+  outline-offset: 2px;
+  border-radius: 2px;
+  cursor: text;
+  transition:
+    outline-color 120ms,
+    background-color 120ms;
+}
+html.tec-editing [data-tec-edit]:hover {
+  outline: 2px solid var(--color-brand-red, #e30613);
+  background-color: rgb(227 6 19 / 0.08);
+}
+html.tec-editing [data-tec-edit][data-tec-edit-mode='panel'] {
+  cursor: pointer;
+}
+html.tec-editing [data-tec-editing] {
+  outline: 2px solid var(--color-brand-red, #e30613) !important;
+  background-color: rgb(255 255 255 / 0.92) !important;
+  color: #111 !important;
+  -webkit-text-fill-color: #111;
+  cursor: text;
+}
+html.tec-editing [data-tec-edit-dirty]::after {
+  content: '•';
+  margin-left: 0.15em;
+  color: var(--color-brand-red, #e30613);
+  -webkit-text-fill-color: var(--color-brand-red, #e30613);
+}
+html.tec-editing [data-tec-record] {
+  position: relative;
+  outline: 1px dashed rgb(88 101 242 / 0.7);
+  outline-offset: 3px;
+}
+html.tec-editing [data-tec-record]:hover {
+  outline: 2px solid var(--color-brand-discord, #5865f2);
+}
+.tec-record-badge {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 5;
+  border-radius: 999px;
+  background: var(--color-brand-discord, #5865f2);
+  padding: 0.2rem 0.6rem;
+  font:
+    600 0.72rem/1.2 Inter,
+    system-ui,
+    sans-serif;
+  color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+}

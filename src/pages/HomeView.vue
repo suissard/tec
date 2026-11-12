@@ -20,12 +20,14 @@ import { publicUrl } from '@/utils/paths';
 
 /** Textes de la page (`pages.home` de `content.json`). */
 const texts = pages.home;
-const heroPrimary = toLink(texts.hero.primaryButton);
-const heroSecondary = toLink(texts.hero.secondaryButton);
-const eventsTitle = splitHighlight(texts.events.title, texts.events.highlight);
-const eventsButton = toLink(texts.events.button);
-const associationsTitle = splitHighlight(texts.associations.title, texts.associations.highlight);
-const associationsButton = toLink(texts.associations.button);
+const heroPrimary = computed(() => toLink(texts.hero.primaryButton));
+const heroSecondary = computed(() => toLink(texts.hero.secondaryButton));
+const eventsTitle = computed(() => splitHighlight(texts.events.title, texts.events.highlight));
+const eventsButton = computed(() => toLink(texts.events.button));
+const associationsTitle = computed(() =>
+  splitHighlight(texts.associations.title, texts.associations.highlight)
+);
+const associationsButton = computed(() => toLink(texts.associations.button));
 
 const dataStore = useDataStore();
 const appStore = useAppStore();
@@ -110,7 +112,7 @@ onMounted(async () => {
           {{ texts.events.empty }}
         </p>
         <div v-else class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <EventCard v-for="(event, index) in upcomingEvents" :key="event.id" v-reveal="index" :event="event" @open="openEventDetail(event)" />
+          <EventCard v-for="(event, index) in upcomingEvents" :key="event.id" v-reveal="index" :event="event" :data-tec-record="`events:${event.id}`" @open="openEventDetail(event)" />
         </div>
 
         <div class="mt-8 text-center">

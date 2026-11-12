@@ -39,7 +39,7 @@ const router = useRouter();
 
 /** Textes de la page (`pages.volunteer` de `content.json`). */
 const texts = pages.volunteer;
-const successButton = toLink(texts.success.button);
+const successButton = computed(() => toLink(texts.success.button));
 
 /** Libellés des étapes du stepper. */
 const STEPS = texts.steps;

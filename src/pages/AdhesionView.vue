@@ -49,9 +49,9 @@ const route = useRoute();
 
 /** Textes de la page (`pages.adhesion` de `content.json`). */
 const texts = pages.adhesion;
-const introPrimary = toLink(texts.intro.primaryButton);
-const introSecondary = toLink(texts.intro.secondaryButton);
-const successButton = toLink(texts.success.button);
+const introPrimary = computed(() => toLink(texts.intro.primaryButton));
+const introSecondary = computed(() => toLink(texts.intro.secondaryButton));
+const successButton = computed(() => toLink(texts.success.button));
 
 /** Onglets accessible (aria-controls / aria-labelledby croisés). */
 const KIND_TABS: KindTab[] = [

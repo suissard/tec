@@ -7,4 +7,6 @@ interface ImportMetaEnv {
   readonly VITE_POSTHOG_KEY?: string;
   /** Hébergeur PostHog (défaut : https://eu.i.posthog.com) */
   readonly VITE_POSTHOG_HOST?: string;
+  /** URL du serveur PocketBase (vide = site 100 % JSON, sans édition en ligne) */
+  readonly VITE_POCKETBASE_URL?: string;
 }

@@ -1,15 +1,39 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { computed, defineAsyncComponent, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 import CookieBanner from '@/components/ui/CookieBanner.vue';
 import ModalHost from '@/components/ui/ModalHost.vue';
 import ToastHost from '@/components/ui/ToastHost.vue';
 import { useCookieConsent } from '@/composables/useCookieConsent';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
-import { useHashHistory } from '@/router';
+import { editMode, syncEditModeFromUrl } from '@/editor/editMode';
+import { applyRouteSeo, useHashHistory } from '@/router';
+import { content } from '@/utils/content';
 import { publicUrl } from '@/utils/paths';
 
+/** Barre et outils du mode édition (`?edit`), chargés uniquement à la demande. */
+const EditorRoot = defineAsyncComponent(() => import('@/editor/EditorRoot.vue'));
+
 const { init } = useCookieConsent();
+const route = useRoute();
+
+/** Pages d'administration : rendu sans en-tête ni pied de page. */
+const isBlankLayout = computed(() => route.meta.layout === 'blank');
+
+// `?edit` dans l'URL (avant ou après le `#` en hash routing) active le mode édition.
+watch(
+  () => route.fullPath,
+  () => syncEditModeFromUrl(route.query),
+  { immediate: true }
+);
+
+// Titre d'onglet / description à jour quand les textes changent (base, édition).
+watch(
+  () => route.meta.contentKey && content.pages[route.meta.contentKey].meta,
+  () => applyRouteSeo(route),
+  { deep: true }
+);
 
 /** Routes principales dont le document est préchargé après le premier rendu. */
 const PREFETCH_ROUTES = ['/', '/associations', '/evenements', '/actualites'];
@@ -41,7 +65,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <DefaultLayout>
+  <RouterView v-if="isBlankLayout" />
+  <DefaultLayout v-else>
     <RouterView v-slot="{ Component }">
       <Transition name="fade" mode="out-in">
         <component :is="Component" />
@@ -52,6 +77,7 @@ onMounted(() => {
   <Teleport to="body">
     <ModalHost />
     <ToastHost />
-    <CookieBanner />
+    <CookieBanner v-if="!isBlankLayout" />
+    <EditorRoot v-if="editMode.active && !isBlankLayout" />
   </Teleport>
 </template>

@@ -9,6 +9,9 @@ export default mergeConfig(
       environment: 'jsdom',
       globals: true,
       setupFiles: ['./tests/setup.ts'],
+      // Tests indépendants d'un éventuel `.env.local` : site en mode JSON pur
+      // (les tests PocketBase activent l'URL eux-mêmes).
+      env: { VITE_POCKETBASE_URL: '' },
       coverage: {
         provider: 'v8',
         reporter: ['text', 'html'],

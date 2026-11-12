@@ -7,6 +7,7 @@
  * (`MAIN_NAV`) afin d'éviter toute divergence (ex. un raccourci présent
  * uniquement sur petit écran).
  */
+import { reactive, watchSyncEffect } from 'vue';
 import type { RouteLocationRaw } from 'vue-router';
 
 import { routeNames } from '@/router';
@@ -55,23 +56,41 @@ export function toLink(item: ContentLink): NavLink {
 
 const navigation = content.navigation;
 
+/*
+ * Les listes ci-dessous sont des objets réactifs recalculés *en place* dès que
+ * le contenu change (chargement PocketBase, mode édition) : les composants
+ * peuvent les importer directement.
+ */
+
 /** Liens du menu principal (colonne de gauche sur desktop). */
-export const PRIMARY_NAV: readonly NavLink[] = navigation.primary.map(toLink);
+export const PRIMARY_NAV: NavLink[] = reactive([]);
 
 /** Lien Contact (à droite sur desktop, dans la liste sur mobile). */
-export const CONTACT_NAV: NavLink = toLink(navigation.contact);
+export const CONTACT_NAV: NavLink = reactive({ label: '', to: '/' });
 
 /**
  * Liens communs aux deux menus : c'est **la** liste affichée en mobile, et
  * celle dont le desktop reprend `PRIMARY_NAV` + `CONTACT_NAV`.
  */
-export const MAIN_NAV: readonly NavLink[] = [...PRIMARY_NAV, CONTACT_NAV];
+export const MAIN_NAV: NavLink[] = reactive([]);
 
 /** CTA « Adhérer » de l'en-tête desktop. */
-export const DESKTOP_CTA: NavLink = toLink(navigation.desktopCta);
+export const DESKTOP_CTA: NavLink = reactive({ label: '', to: '/' });
 
 /** Boutons d'action du panneau mobile (sous la navigation). */
-export const MOBILE_ACTIONS: readonly NavAction[] = navigation.mobileActions.map((item) => ({
-  ...toLink(item),
-  variant: item.variant === 'outline' ? 'outline' : 'primary',
-}));
+export const MOBILE_ACTIONS: NavAction[] = reactive([]);
+
+watchSyncEffect(() => {
+  PRIMARY_NAV.splice(0, PRIMARY_NAV.length, ...navigation.primary.map(toLink));
+  Object.assign(CONTACT_NAV, toLink(navigation.contact));
+  MAIN_NAV.splice(0, MAIN_NAV.length, ...PRIMARY_NAV, { ...CONTACT_NAV });
+  Object.assign(DESKTOP_CTA, toLink(navigation.desktopCta));
+  MOBILE_ACTIONS.splice(
+    0,
+    MOBILE_ACTIONS.length,
+    ...navigation.mobileActions.map((item) => ({
+      ...toLink(item),
+      variant: item.variant === 'outline' ? ('outline' as const) : ('primary' as const),
+    }))
+  );
+});

@@ -59,6 +59,7 @@ Toutes facultatives, préfixées `VITE_`, définies dans `.env` / `.env.local`
 | `VITE_HASH_ROUTER` | *(auto)* | `'true'` → `createWebHashHistory` (`/#/…`) ; `'false'` → History API. Par défaut : hash dès que `VITE_BASE_PATH !== '/'` (Pages n'a pas de rewrite SPA) |
 | `VITE_POSTHOG_KEY` | *(absente → aucun tracker)* | Clé PostHog. Le SDK n'est injecté que si le consentement est `granted` |
 | `VITE_POSTHOG_HOST` | `https://eu.i.posthog.com` | Hébergeur du SDK PostHog |
+| `VITE_POCKETBASE_URL` | *(absente → 100 % JSON)* | Serveur PocketBase (contenu éditable, `/admin`, `?edit`). En CI : variable de dépôt `POCKETBASE_URL`. Voir [`pocketbase.md`](./pocketbase.md) |
 
 Typage TypeScript : [`src/vite-env.d.ts`](../src/vite-env.d.ts).
 

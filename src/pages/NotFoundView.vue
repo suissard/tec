@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import BaseButton from '@/components/ui/BaseButton.vue';
 import { pages } from '@/utils/content';
 import { toLink } from '@/utils/navigation';
 
 const texts = pages.notFound;
-const button = toLink(texts.button);
+const button = computed(() => toLink(texts.button));
 </script>
 
 <template>

@@ -2,12 +2,14 @@
 /**
  * Appel à l'adhésion (bandeau rouge sur photo) affiché avant le pied de page.
  */
+import { computed } from 'vue';
+
 import { layout } from '@/utils/content';
 import { toLink } from '@/utils/navigation';
 import { publicUrl } from '@/utils/paths';
 
 const cta = layout.joinCta;
-const button = toLink(cta.button);
+const button = computed(() => toLink(cta.button));
 
 const BG_IMAGE = publicUrl('/media/hero-esport.jpg');
 </script>
